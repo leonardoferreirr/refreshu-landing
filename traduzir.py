@@ -307,7 +307,6 @@ D.update({
 '>Back to refreshu.com<': '>Voltar para refreshu.com<',
 '<h1 class="display auth__t">Welcome back</h1>': '<h1 class="display auth__t">Bem-vindo de volta</h1>',
 'Pick your journey up where you left it.': 'Retome sua jornada de onde você parou.',
-'<b>Demonstration.</b> The portal is not connected to real accounts yet. Any valid email and any password open it.': '<b>Demonstração.</b> O portal ainda não está conectado a contas reais. Qualquer e-mail válido e qualquer senha abrem o portal.',
 '<label for="email">Email</label>': '<label for="email">E-mail</label>',
 '<label for="password">Password</label>': '<label for="password">Senha</label>',
 '>Forgot your password?<': '>Esqueceu a senha?<',
@@ -316,9 +315,6 @@ D.update({
 'aria-label="Show password"': 'aria-label="Mostrar senha"',
 '<span>Keep me signed in on this device</span>': '<span>Continuar conectado neste dispositivo</span>',
 'id="signinBtn">Sign In<': 'id="signinBtn">Entrar<',
-'<span>New to RefreshU</span>': '<span>Novo na RefreshU</span>',
-'Your portal opens once a physician has reviewed your evaluation.': 'Seu portal abre assim que um médico analisar a sua avaliação.',
-'Access is granted to clients with an active plan. Your information is used to coordinate your journey and is shared with the physician reviewing your case.': 'O acesso é liberado para clientes com plano ativo. Suas informações são usadas para coordenar a sua jornada e compartilhadas com o médico que analisa o seu caso.',
 })
 
 # --- portal -----------------------------------------------------------------

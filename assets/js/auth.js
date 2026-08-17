@@ -12,7 +12,6 @@
   var email = document.getElementById('email');
   var senha = document.getElementById('password');
   var botao = document.getElementById('signinBtn');
-  var aviso = document.getElementById('authMsg');
   var olho = document.getElementById('peek');
 
   /* mostrar/esconder senha */
@@ -43,14 +42,11 @@
   function enviar() {
     botao.textContent = 'Signing in';
     botao.disabled = true;
-    aviso.hidden = false;
-    aviso.textContent = 'Opening your journey.';
     setTimeout(function () { window.location.href = 'portal.html'; }, 620);
   }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    aviso.hidden = true;
     var okEmail = valida(email, temEmail(email.value));
     var okSenha = valida(senha, senha.value.trim().length > 0);
     if (!okEmail) { email.focus(); return; }

@@ -41,12 +41,17 @@ O inglês é a fonte da verdade. Mexeu no texto? Roda `traduzir.py` de novo. O s
 
 **O portal é demonstração declarada.** Uma faixa fixa no topo diz, em toda tela, que nome, data, clínica, hotel e documento são exemplo. Hotel Aurora, Clínica Vértice, Dra. Camila Rocha, Beatriz L. e Michael Carter são fictícios, escolhidos assim de propósito para não sugerir parceria que não existe. Trocar tudo antes de qualquer uso real.
 
-**Um CTA só, e ele leva ao login.** "Explore Treatments" e o link "Sign In" saíram do topo. Sobrou "Start My Evaluation" em navy sólido, apontando para `signin.html` em todos os pontos da home: topo, hero, seção de médicos, seção de avaliação e rodapé. Consequências que vieram junto:
+**Um CTA só, e ele leva ao login.** "Explore Treatments" e o link "Sign In" saíram do topo. Sobrou "Start My Evaluation", no gradiente ciano da marca, apontando para `signin.html` em todos os pontos da home: topo, hero, seção de médicos, seção de avaliação e rodapé. Consequências que vieram junto:
 
-- O botão "Start My Evaluation" que existia dentro do login foi removido. Ele mandava o visitante de volta para `index.html#evaluation`, que traz de volta para o login. A frase explicando que o portal abre depois da análise médica continua lá.
-- O login ganhou um aviso âmbar dizendo que é demonstração e que qualquer e-mail válido e qualquer senha abrem o portal. Sem isso o visitante clica em Sign In com os campos vazios, a validação barra e parece que o portal não existe.
-- O CTA entrou no menu do celular, onde o botão do topo é escondido. Dentro do menu ele inverte para branco com texto navy, porque o painel do menu é navy e um botão navy sumiria ali.
+- O CTA entrou no menu do celular, onde o botão do topo é escondido. O gradiente ciano destaca sobre o navy do painel, então ele mantém a cor do resto do site.
 - O rodapé mantém "Sign In", que é a porta de quem já é cliente. É o único lugar do site onde ela aparece agora.
+
+**A página de login é só o formulário.** Título, subtítulo, e-mail, senha, lembrar e o botão. Saíram, a pedido: o aviso de demonstração, a mensagem "Opening your journey." depois do envio, o separador "New to RefreshU" com o botão que devolvia para a home, a frase sobre o portal abrir depois da análise médica e o texto de acesso e privacidade. O `authMsg` saiu do HTML e do `auth.js` junto.
+
+Duas coisas a recolocar antes do lançamento, porque saíram da única tela onde apareciam:
+
+- O texto de privacidade ("suas informações são usadas para coordenar a jornada e compartilhadas com o médico que analisa o caso") é conteúdo do briefing e precisa de um lugar, seja no rodapé, seja na política de privacidade.
+- Sem o aviso de demonstração, quem abre o login não tem como saber que qualquer e-mail e senha entram. Enquanto não houver autenticação de verdade, quem for mostrar a demo precisa dizer isso por fora.
 
 ## Auditoria contra o briefing
 
@@ -106,7 +111,8 @@ SEO baixo em `signin` e `portal` é o `noindex`, proposital. LCP 2,2 s, CLS 0, T
 - **Captura de tela mente:** `scroll-behavior: smooth` deixa a página em movimento no print e `loading="lazy"` esvazia seção abaixo da dobra. Forçar `loading="eager"` e desligar o scroll suave antes do screenshot.
 - **O painel do menu do celular precisa de altura cheia.** Sem `min-height: 100dvh` ele para onde o conteúdo acaba, o CTA do hero vaza por baixo e aparecem dois "Start My Evaluation" empilhados.
 - **`.nav a` vence `.nav__cta`.** Um botão dentro do menu precisa de `.nav a.nav__cta` para sobrescrever cor, padding e a borda de baixo dos links.
-- **O login cabe em 660px de altura e não sobra folga.** O aviso de demonstração sozinho custou 76px e estourou. Medir `scrollHeight - innerHeight` a 660px antes de acrescentar qualquer bloco ali.
+- **O login cabe em 660px de altura.** Hoje sobra folga, mas já estourou por 57px quando ganhou um bloco de aviso. Medir `scrollHeight - innerHeight` a 660px antes de acrescentar qualquer coisa ali.
+- **Tirar conteúdo do HTML pede rodar o `traduzir.py` na sequência.** Ele lista as chaves que deixaram de casar, e essa lista é a única forma de achar tradução órfã. Foram 4 nesta rodada.
 
 ## Próximo
 
