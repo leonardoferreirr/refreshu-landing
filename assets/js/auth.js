@@ -1,8 +1,8 @@
 /* RefreshU · entrada no portal.
-   O portal ainda nao tem back end. Em vez de simular um login que nao existe,
-   o envio devolve a regra real do produto: o portal abre depois que um medico
-   analisa a avaliacao (secoes 14, 15 e 27 do briefing). Quando a autenticacao
-   e a assinatura entrarem, o unico ponto a trocar e o corpo de enviar(). */
+   Ainda nao ha autenticacao: qualquer email valido abre o portal em modo
+   demonstracao, que se anuncia como tal na faixa do topo. Quando a
+   autenticacao e a assinatura entrarem, o unico ponto a trocar e o corpo de
+   enviar(): validar credencial de verdade antes de redirecionar. */
 (function () {
   'use strict';
 
@@ -41,15 +41,11 @@
   });
 
   function enviar() {
-    botao.textContent = 'Checking';
+    botao.textContent = 'Signing in';
     botao.disabled = true;
-    setTimeout(function () {
-      botao.textContent = 'Sign In';
-      botao.disabled = false;
-      aviso.hidden = false;
-      aviso.textContent = 'The client portal is not open yet. If you have already completed your evaluation, your concierge will send your access as soon as it is released.';
-      aviso.focus && aviso.focus();
-    }, 700);
+    aviso.hidden = false;
+    aviso.textContent = 'Opening your journey.';
+    setTimeout(function () { window.location.href = 'portal.html'; }, 620);
   }
 
   form.addEventListener('submit', function (e) {

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minha jornada · RefreshU</title>
+<meta name="theme-color" content="#071b33">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+<body class="portal-body">
+
+<!-- Faixa de demonstracao. Fica visivel em todas as telas de proposito: cada
+     nome, data, clinica, hotel e documento aqui dentro e exemplo. -->
+<div class="demo" role="note">
+  <span class="demo__dot" aria-hidden="true"></span>
+  <p><b>Demonstração.</b> Todo nome, data, clínica, hotel e documento destas telas é dado de exemplo, criado para mostrar como a plataforma funciona.</p>
+</div>
+
+<div class="portal">
+
+  <!-- Navegacao lateral: as dez areas da secao 27 do briefing -->
+  <aside class="pside" id="pside">
+    <a class="brand brand--foot pside__brand" href="index.html" aria-label="RefreshU, início">
+      <img class="brand__mark" src="../assets/img/refreshu-mark.svg" alt="" width="24" height="34">
+      <span class="brand__word">refresh<b>U</b></span>
+    </a>
+
+    <nav class="pnav" aria-label="Portal">
+      <a href="#journey" data-view="journey" data-sub="Terça, dia 2 de 8 em São Paulo" class="is-on">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19h16M6 19V9m6 10V5m6 14v-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="pnav__lbl">Minha jornada</span></a>
+      <a href="#trip" data-view="trip" data-sub="São Paulo, 9 a 16 de março">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 21 4l-4 8 4 8-18-6.5v-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="pnav__lbl">Minha viagem</span></a>
+      <a href="#schedule" data-view="schedule" data-sub="Sua semana, sua viagem, seu médico e seu concierge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 10h17M8 3v4m8-4v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="pnav__lbl">Minha agenda</span></a>
+      <a href="#doctor" data-view="doctor" data-sub="Consulta na quarta, 11 de março">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="pnav__lbl">Meu médico</span></a>
+      <a href="#requirements" data-view="requirements" data-sub="Dois itens dependem de você">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h14v16H5z" stroke="currentColor" stroke-width="1.6"/><path d="m8.5 11.5 2.2 2.2 4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="pnav__lbl">Minhas pendências</span> <span class="pnav__badge">2</span></a>
+      <a href="#concierge" data-view="concierge" data-sub="Beatriz L., São Paulo">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18v-5a8 8 0 0 1 16 0v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="2.5" y="14" width="4" height="6" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="17.5" y="14" width="4" height="6" rx="2" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="pnav__lbl">Meu concierge</span></a>
+      <a href="#brazil" data-view="brazil" data-sub="Filtrado pelo que o seu médico liberou">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.3 2.5 3.5 5.4 3.5 8.5s-1.2 6-3.5 8.5c-2.3-2.5-3.5-5.4-3.5-8.5s1.2-6 3.5-8.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="pnav__lbl">Explorar o Brasil</span></a>
+      <a href="#documents" data-view="documents" data-sub="Tudo o que foi enviado e tudo o que foi emitido">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 3.5v6h6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="pnav__lbl">Documentos</span></a>
+      <a href="#payments" data-view="payments" data-sub="Em que pé está cada item da sua jornada">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="pnav__lbl">Pagamentos</span></a>
+      <a href="#support" data-view="support" data-sub="Com quem falar, e sobre o quê">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></svg>
+        <span class="pnav__lbl">Suporte</span></a>
+    </nav>
+
+    <div class="pside__foot">
+      <div class="pme">
+        <span class="pme__av" aria-hidden="true">MC</span>
+        <span>
+          <b>Michael Carter</b>
+          <i>Solo Refresh, São Paulo</i>
+        </span>
+      </div>
+      <div class="pside__row">
+        <a class="pside__out" href="signin.html">Sair</a>
+        <div class="lang " role="group" aria-label="Idioma">
+  <a class="lang__b" href="../portal.html" hreflang="en" title="English" aria-label="English"><svg class="flag" viewBox="0 0 24 24" aria-hidden="true"><mask id="fus"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><g mask="url(#fus)"><rect width="24" height="24" fill="#fff"/><g fill="#B22234"><rect y="0" width="24" height="1.85"/><rect y="3.69" width="24" height="1.85"/><rect y="7.38" width="24" height="1.85"/><rect y="11.08" width="24" height="1.85"/><rect y="14.77" width="24" height="1.85"/><rect y="18.46" width="24" height="1.85"/><rect y="22.15" width="24" height="1.85"/></g><rect width="10" height="12.92" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2.2" r=".6"/><circle cx="5" cy="2.2" r=".6"/><circle cx="8" cy="2.2" r=".6"/><circle cx="3.5" cy="4.6" r=".6"/><circle cx="6.5" cy="4.6" r=".6"/><circle cx="2" cy="7" r=".6"/><circle cx="5" cy="7" r=".6"/><circle cx="8" cy="7" r=".6"/><circle cx="3.5" cy="9.4" r=".6"/><circle cx="6.5" cy="9.4" r=".6"/><circle cx="2" cy="11.8" r=".6"/><circle cx="5" cy="11.8" r=".6"/><circle cx="8" cy="11.8" r=".6"/></g></g></svg></a>
+  <a class="lang__b is-on" href="portal.html" hreflang="pt-BR" aria-current="page" title="Português" aria-label="Português"><svg class="flag" viewBox="0 0 24 24" aria-hidden="true"><mask id="fbr"><circle cx="12" cy="12" r="12" fill="#fff"/></mask><clipPath id="fbrc"><circle cx="12" cy="12" r="4.1"/></clipPath><g mask="url(#fbr)"><rect width="24" height="24" fill="#009B3A"/><path d="M12 3.2 20.6 12 12 20.8 3.4 12Z" fill="#FEDF00"/><circle cx="12" cy="12" r="4.1" fill="#002776"/><path clip-path="url(#fbrc)" d="M7.4 10.1Q12 15.6 16.9 12.2" stroke="#fff" stroke-width="1.3" fill="none"/></g></svg></a>
+</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Conteudo -->
+  <main class="pmain">
+
+    <header class="ptop">
+      <button class="pburger" id="pburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="pside">
+        <span></span><span></span><span></span>
+      </button>
+      <div>
+        <h1 class="display ptop__t" id="viewTitle">Minha jornada</h1>
+        <p class="ptop__sub" id="viewSub">Terça, dia 2 de 8 em São Paulo</p>
+      </div>
+      <a class="btn btn--sm ptop__cta" href="#concierge" data-view="concierge">Falar com meu concierge</a>
+    </header>
+
+    <!-- ======================================================= My Journey -->
+    <section class="pview" id="v-journey">
+
+      <div class="rail">
+        <ol class="rail__steps">
+          <li class="is-done"><span></span>Avaliação</li>
+          <li class="is-done"><span></span>Análise médica</li>
+          <li class="is-done"><span></span>Contato do concierge</li>
+          <li class="is-done"><span></span>Consulta médica</li>
+          <li class="is-done"><span></span>Confirmado</li>
+          <li class="is-done"><span></span>Preparação</li>
+          <li class="is-now"><span></span>No Brasil</li>
+          <li><span></span>Procedimento</li>
+          <li><span></span>Recuperação</li>
+          <li><span></span>Experiência</li>
+          <li><span></span>Volta para casa</li>
+        </ol>
+      </div>
+
+      <!-- as cinco perguntas que a secao 15 exige que o cliente sempre saiba -->
+      <div class="qgrid">
+        <article class="q">
+          <h2>Em que etapa estou</h2>
+          <p class="q__big">No Brasil</p>
+          <p>Você chegou ontem. Seu processo pré-operatório acontece hoje e amanhã.</p>
+        </article>
+        <article class="q">
+          <h2>Qual é a próxima</h2>
+          <p class="q__big">Exames de sangue pré-operatórios</p>
+          <p>Hoje às 10h, no hotel. Seu motorista está confirmado para as 9h.</p>
+        </article>
+        <article class="q q--act">
+          <h2>O que você precisa fazer</h2>
+          <p class="q__big">Enviar os resultados dos exames</p>
+          <p>A Dra. Camila Rocha pediu os resultados antes da consulta de amanhã.</p>
+          <a class="link-arrow" href="#requirements" data-view="requirements">Ir para minhas pendências</a>
+        </article>
+        <article class="q">
+          <h2>Com quem você fala</h2>
+          <p class="q__big">Beatriz L.</p>
+          <p>Sua concierge em São Paulo, disponível das 7h às 22h no horário local.</p>
+          <a class="link-arrow" href="#concierge" data-view="concierge">Falar com a Beatriz</a>
+        </article>
+      </div>
+
+      <div class="two">
+        <!-- secao 25 do briefing: a tela Today in Brazil -->
+        <article class="card">
+          <h2 class="card__t">Hoje no Brasil</h2>
+          <ol class="today">
+            <li class="is-past"><b>09:00</b><span>Motorista no lobby do hotel</span></li>
+            <li class="is-now"><b>10:00</b><span>Exames de sangue pré-operatórios</span></li>
+            <li><b>12:30</b><span>Reserva para o almoço, Jardins</span></li>
+            <li><b>15:00</b><span>Passeio pelos Jardins, liberado pelo seu médico</span></li>
+            <li><b>19:30</b><span>Reserva para o jantar</span></li>
+          </ol>
+        </article>
+
+        <div class="stack">
+          <article class="card card--act">
+            <h2 class="card__t">Próxima ação médica</h2>
+            <p class="card__big">Enviar os resultados laboratoriais</p>
+            <p class="card__p">Suba os resultados assim que o laboratório liberar. Seu médico analisa antes da consulta.</p>
+            <a class="btn btn--sm" href="#documents" data-view="documents">Enviar resultados</a>
+          </article>
+
+          <article class="card">
+            <h2 class="card__t">Precisa de alguma coisa</h2>
+            <p class="card__p">Um restaurante, um item de farmácia que seu médico prescreveu, lavanderia, um motorista, ou só uma dúvida sobre amanhã.</p>
+            <a class="link-arrow" href="#concierge" data-view="concierge">Falar com seu concierge RefreshU</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== My Trip -->
+    <section class="pview" id="v-trip" hidden>
+      <p class="pview__lead">Suas informações médicas e de viagem em um roteiro só, para você não precisar de cinco aplicativos, vinte e-mails e uma planilha.</p>
+
+      <div class="tgrid">
+        <article class="card"><h2 class="card__t">Voo de chegada</h2><p class="card__big">Seg, 9 de março</p><p class="card__p">Pouso em GRU, 6h40 no horário local. Confirmação registrada.</p></article>
+        <article class="card"><h2 class="card__t">Hotel</h2><p class="card__big">Hotel Aurora, Jardins</p><p class="card__p">Check-in seg, 9 de março. Check-out seg, 16 de março. Quarto adequado à recuperação, andar alto, lado silencioso.</p></article>
+        <article class="card"><h2 class="card__t">Transporte</h2><p class="card__big">Motorista particular</p><p class="card__p">Transfer do aeroporto, hotel, clínica e todo compromisso da sua agenda.</p></article>
+        <article class="card"><h2 class="card__t">Consultas</h2><p class="card__big">Qua, 11 de março, 14h</p><p class="card__p">Clínica Vértice, Itaim Bibi. Com a Dra. Camila Rocha.</p></article>
+        <article class="card card--hi"><h2 class="card__t">Procedimento</h2><p class="card__big">Qui, 12 de março</p><p class="card__p">Transplante capilar FUE. Chegada às 7h. Motorista confirmado. Retorno ao hotel no mesmo dia.</p></article>
+        <article class="card"><h2 class="card__t">Dias de recuperação</h2><p class="card__big">Sex 13 e sáb 14</p><p class="card__p">Descanso no hotel com entrega de refeições, depois atividades conforme a liberação do seu médico.</p></article>
+        <article class="card"><h2 class="card__t">Restaurantes</h2><p class="card__big">3 reservas</p><p class="card__p">Jantar de terça, almoço de sábado e jantar de domingo, todos escolhidos pelo que você pode comer em cada dia.</p></article>
+        <article class="card"><h2 class="card__t">Experiências</h2><p class="card__big">2 reservadas</p><p class="card__p">Um passeio pelos Jardins hoje e uma visita a museu no domingo, os dois compatíveis com a recuperação.</p></article>
+        <article class="card"><h2 class="card__t">Voo de volta</h2><p class="card__big">Seg, 16 de março</p><p class="card__p">Partida às 22h10 de GRU. Motorista confirmado para as 18h30.</p></article>
+      </div>
+    </section>
+
+    <!-- ====================================================== My Schedule -->
+    <section class="pview" id="v-schedule" hidden>
+      <p class="pview__lead">Uma linha do tempo reunindo quatro agendas: a sua, a da viagem, a do médico e da equipe clínica, e a do concierge. As folgas ficam de propósito, para atrasos e para o que o seu médico exigir.</p>
+
+      <ul class="legend">
+        <li><i class="k k--you"></i>Você</li>
+        <li><i class="k k--trav"></i>Viagem</li>
+        <li><i class="k k--med"></i>Médico e clínica</li>
+        <li><i class="k k--conc"></i>Concierge</li>
+      </ul>
+
+      <ol class="week2">
+        <li>
+          <div class="week2__d"><b>Segunda</b><i>9 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--trav">06h40 Chegada em GRU</span>
+            <span class="ev ev--conc">08h00 Transfer do aeroporto</span>
+            <span class="ev ev--conc">10h00 Check-in no hotel e kit de boas-vindas</span>
+            <span class="ev ev--you">20h00 Reserva para o jantar</span>
+          </div>
+        </li>
+        <li class="is-today">
+          <div class="week2__d"><b>Terça</b><i>10 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--conc">09h00 Motorista</span>
+            <span class="ev ev--med">10h00 Exames de sangue pré-operatórios</span>
+            <span class="ev ev--you">12h30 Almoço</span>
+            <span class="ev ev--you">15h00 Jardins</span>
+            <span class="ev ev--you">19h30 Jantar</span>
+          </div>
+        </li>
+        <li>
+          <div class="week2__d"><b>Quarta</b><i>11 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--med">14h00 Consulta com a Dra. Camila Rocha</span>
+            <span class="ev ev--med">15h30 Preparo para a recuperação e orientações</span>
+            <span class="ev ev--you">Tarde livre, mantida tranquila de propósito</span>
+          </div>
+        </li>
+        <li>
+          <div class="week2__d"><b>Quinta</b><i>12 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--conc">06h15 Motorista</span>
+            <span class="ev ev--med">07h00 Procedimento, Clínica Vértice</span>
+            <span class="ev ev--conc">Retorno ao hotel</span>
+            <span class="ev ev--conc">Suporte de recuperação e entrega de refeições</span>
+          </div>
+        </li>
+        <li>
+          <div class="week2__d"><b>Sexta</b><i>13 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--med">11h00 Retorno com o seu médico</span>
+            <span class="ev ev--conc">Recuperação no hotel, refeições entregues</span>
+          </div>
+        </li>
+        <li>
+          <div class="week2__d"><b>Sábado</b><i>14 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--med">Atividades liberadas pelo seu médico</span>
+            <span class="ev ev--you">13h00 Reserva para o almoço</span>
+            <span class="ev ev--you">Um dia calmo em São Paulo</span>
+          </div>
+        </li>
+        <li>
+          <div class="week2__d"><b>Domingo</b><i>15 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--you">11h00 Visita a museu</span>
+            <span class="ev ev--you">19h30 Reserva para o jantar</span>
+          </div>
+        </li>
+        <li>
+          <div class="week2__d"><b>Segunda</b><i>16 de março</i></div>
+          <div class="week2__e">
+            <span class="ev ev--med">09h00 Checagem final com o seu médico</span>
+            <span class="ev ev--conc">18h30 Motorista para o aeroporto</span>
+            <span class="ev ev--trav">22h10 Voo de volta</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ======================================================== My Doctor -->
+    <section class="pview" id="v-doctor" hidden>
+      <div class="doc">
+        <div class="doc__head">
+          <span class="doc__av" aria-hidden="true">CR</span>
+          <div>
+            <h2 class="display doc__n">Dr. Camila Rocha</h2>
+            <p class="doc__s">Restauração capilar e transplante FUE</p>
+            <p class="doc__c">Clínica Vértice, Itaim Bibi, São Paulo</p>
+          </div>
+        </div>
+
+        <dl class="facts">
+          <div><dt>Credenciais</dt><dd>Registro de credencial de exemplo</dd></div>
+          <div><dt>Anos de experiência</dt><dd>18</dd></div>
+          <div><dt>Idiomas</dt><dd>Português, inglês, espanhol</dd></div>
+          <div><dt>Procedimentos realizados</dt><dd>Transplante FUE, restauração capilar</dd></div>
+          <div><dt>Pacientes internacionais</dt><dd>Atende pacientes dos Estados Unidos toda semana</dd></div>
+          <div><dt>Sua consulta</dt><dd>Quarta, 11 de março, 14h</dd></div>
+        </dl>
+
+        <div class="doc__body">
+          <h3>Abordagem</h3>
+          <p>Biografia de exemplo. Na plataforma real este é o texto do próprio médico, descrevendo como trabalha, o que recomenda e o que não recomenda, e o que espera de um paciente que vem de fora.</p>
+          <h3>Antes e depois</h3>
+          <p>A galeria aparece aqui assim que o contrato com o médico autorizar o uso de conteúdo do profissional e dos pacientes.</p>
+        </div>
+
+        <p class="fine-note">O médico decide a elegibilidade, o plano de tratamento, os riscos, os exames e toda orientação clínica. A RefreshU coordena a logística em torno dessas decisões e não participa delas.</p>
+      </div>
+    </section>
+
+    <!-- ================================================== My Requirements -->
+    <section class="pview" id="v-requirements" hidden>
+      <div class="alert">
+        <b>Ação necessária:</b> seu médico precisa dos resultados laboratoriais antes da consulta de quarta, 11 de março.
+      </div>
+
+      <p class="pview__lead">A RefreshU cuida da logística. Seu médico e a clínica controlam todas as exigências clínicas desta lista.</p>
+
+      <ul class="chk">
+        <li class="is-done"><b>Questionário médico</b><span>Enviado e analisado</span></li>
+        <li class="is-done"><b>Itinerário de voo</b><span>Confirmado nos dois trechos</span></li>
+        <li class="is-done"><b>Documentação de seguro-viagem</b><span>Recebida</span></li>
+        <li class="is-done"><b>Hotel</b><span>Confirmado, 9 a 16 de março</span></li>
+        <li class="is-done"><b>Transporte</b><span>Motorista particular para todo compromisso</span></li>
+        <li class="is-todo"><b>Exames de sangue exigidos pelo seu médico</b><span>Coleta hoje às 10h, resultados pendentes</span></li>
+        <li class="is-todo"><b>Pagamentos</b><span>Um item a vencer antes do procedimento</span></li>
+        <li class="is-wait"><b>Exames cardíacos</b><span>Não exigidos no seu caso</span></li>
+        <li class="is-wait"><b>Consulta médica</b><span>Quarta, 11 de março, 14h</span></li>
+        <li class="is-wait"><b>Orientações do médico</b><span>Liberadas depois da consulta</span></li>
+        <li class="is-wait"><b>Documentos médicos</b><span>Emitidos pela clínica depois do procedimento</span></li>
+      </ul>
+    </section>
+
+    <!-- ===================================================== My Concierge -->
+    <section class="pview" id="v-concierge" hidden>
+      <div class="conc2">
+        <article class="card card--hi conc2__me">
+          <span class="doc__av" aria-hidden="true">BL</span>
+          <div>
+            <p class="card__big">Beatriz L.</p>
+            <p class="card__p">Sua concierge em São Paulo. Disponível das 7h às 22h no horário local, e acessível a qualquer hora para o que for urgente.</p>
+            <div class="conc2__act">
+              <a class="btn btn--sm" href="#support" data-view="support">Enviar mensagem</a>
+              <a class="btn btn--sm btn--ghost btn--dark2" href="#support" data-view="support">Pedir uma ligação</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="cc2">
+        <article class="card"><h2 class="card__t">Transporte</h2><p class="card__p">Transfer do aeroporto, hotel, clínica e motorista particular para qualquer item da sua agenda.</p></article>
+        <article class="card"><h2 class="card__t">Alimentação</h2><p class="card__p">Recomendações, reservas e entrega de refeições nos dias em que você deve descansar.</p></article>
+        <article class="card"><h2 class="card__t">Experiências</h2><p class="card__p">Restaurantes, compras, museus, passeios e atrações locais, filtrados pelo que a sua recuperação permite.</p></article>
+        <article class="card"><h2 class="card__t">Cuidado pessoal</h2><p class="card__p">Barbeiro, cabeleireiro, unhas, cílios e profissionais de bem-estar aprovados.</p></article>
+        <article class="card"><h2 class="card__t">Conveniência</h2><p class="card__p">Lavanderia, compras, roupas e apoio na farmácia para itens prescritos pelo seu médico.</p></article>
+        <article class="card"><h2 class="card__t">Suporte de recuperação</h2><p class="card__p">Profissionais qualificados quando apropriado, serviços aprovados pelo seu médico e transporte para o retorno.</p></article>
+      </div>
+
+      <article class="card card--wide">
+        <h2 class="card__t">Serviços médicos no hotel</h2>
+        <p class="card__p">Onde for legalmente permitido e solicitado pelo seu médico, profissionais qualificados atendem você no hotel: coleta de sangue, serviços laboratoriais, exames básicos, eletrocardiograma quando prestado de forma adequada, visita de enfermagem e suporte de recuperação aprovado pelo médico.</p>
+        <p class="card__p"><b>Seus exames pré-operatórios</b> estão agendados no hotel hoje às 10h.</p>
+      </article>
+    </section>
+
+    <!-- ==================================================== Explore Brazil -->
+    <section class="pview" id="v-brazil" hidden>
+      <p class="pview__lead">Tudo aqui é filtrado pelo que o seu médico liberou para o dia em que você está. As opções vão abrindo conforme a recuperação avança.</p>
+
+      <div class="xgrid">
+        <article class="x"><img src="../assets/img/food.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Restaurantes</h3><p>Do dia a dia à reserva que você vai contar para os outros.</p><span class="tag tag--ok">Liberado hoje</span></div></article>
+        <article class="x"><img src="../assets/img/park.webp" alt="" width="900" height="675" loading="lazy"><div><h3>Parques e bairros</h3><p>Jardins, Ibirapuera e uma caminhada tranquila que cabe na sua semana.</p><span class="tag tag--ok">Liberado hoje</span></div></article>
+        <article class="x"><img src="../assets/img/architecture.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Museus e cultura</h3><p>Arquitetura, arte e as partes da cidade que valem o desvio.</p><span class="tag tag--ok">Liberado hoje</span></div></article>
+        <article class="x"><img src="../assets/img/restaurant.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Compras</h3><p>Bairros e lojas, com um motorista esperando.</p><span class="tag tag--soon">Abre no sábado</span></div></article>
+        <article class="x"><img src="../assets/img/wellness.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Bem-estar</h3><p>Profissionais aprovados, assim que o seu médico liberar.</p><span class="tag tag--soon">Abre no sábado</span></div></article>
+        <article class="x"><img src="../assets/img/beach.webp" alt="" width="1100" height="825" loading="lazy"><div><h3>Bate-voltas</h3><p>O litoral, para o fim da estadia se você estiver liberado para viajar.</p><span class="tag tag--wait">Aguardando liberação médica</span></div></article>
+      </div>
+    </section>
+
+    <!-- ======================================================== Documents -->
+    <section class="pview" id="v-documents" hidden>
+      <p class="pview__lead">Tudo o que você enviou e tudo o que foi emitido para você, em um lugar só.</p>
+
+      <table class="tbl">
+        <caption class="sr">Seus documentos</caption>
+        <thead><tr><th scope="col">Documento</th><th scope="col">Adicionado</th><th scope="col">Situação</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Questionário médico</th><td>12 de fevereiro</td><td><span class="tag tag--ok">Analisado</span></td></tr>
+          <tr><th scope="row">Fotos para avaliação</th><td>12 de fevereiro</td><td><span class="tag tag--ok">Analisado</span></td></tr>
+          <tr><th scope="row">Itinerário de voo</th><td>24 de fevereiro</td><td><span class="tag tag--ok">Confirmado</span></td></tr>
+          <tr><th scope="row">Seguro-viagem</th><td>27 de fevereiro</td><td><span class="tag tag--ok">Recebido</span></td></tr>
+          <tr><th scope="row">Confirmação do hotel</th><td>1 de março</td><td><span class="tag tag--ok">Confirmado</span></td></tr>
+          <tr><th scope="row">Resultados laboratoriais</th><td>Aguardando</td><td><span class="tag tag--wait">Envio pendente</span></td></tr>
+          <tr><th scope="row">Orientações do médico</th><td>Aguardando</td><td><span class="tag tag--soon">Depois da consulta</span></td></tr>
+          <tr><th scope="row">Relatório médico</th><td>Aguardando</td><td><span class="tag tag--soon">Depois do procedimento</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ========================================================= Payments -->
+    <section class="pview" id="v-payments" hidden>
+      <p class="pview__lead">Cada item da sua jornada e em que pé está. Os valores aparecem aqui assim que o preço for aprovado para publicação.</p>
+
+      <table class="tbl">
+        <caption class="sr">Seus pagamentos</caption>
+        <thead><tr><th scope="col">Item</th><th scope="col">Vencimento</th><th scope="col">Situação</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Depósito de reserva</th><td>20 de fevereiro</td><td><span class="tag tag--ok">Pago</span></td></tr>
+          <tr><th scope="row">Concierge e coordenação de viagem</th><td>1 de março</td><td><span class="tag tag--ok">Pago</span></td></tr>
+          <tr><th scope="row">Hotel</th><td>9 de março</td><td><span class="tag tag--ok">Pago</span></td></tr>
+          <tr><th scope="row">Saldo do procedimento</th><td>11 de março</td><td><span class="tag tag--wait">A vencer antes do procedimento</span></td></tr>
+          <tr><th scope="row">Experiências adicionais</th><td>Sob demanda</td><td><span class="tag tag--soon">Nada pendente</span></td></tr>
+        </tbody>
+      </table>
+
+      <p class="fine-note">O processamento de pagamento, os recibos e as medidas de segurança em volta fazem parte da construção da plataforma e não estão representados nesta tela de demonstração.</p>
+    </section>
+
+    <!-- ========================================================== Support -->
+    <section class="pview" id="v-support" hidden>
+      <div class="sup">
+        <article class="card card--hi">
+          <h2 class="card__t">Seu concierge, primeiro</h2>
+          <p class="card__big">Beatriz L.</p>
+          <p class="card__p">Para qualquer coisa sobre a viagem, a agenda, transporte, comida, reservas ou necessidades do dia a dia. Das 7h às 22h no horário local.</p>
+        </article>
+        <article class="card">
+          <h2 class="card__t">Dúvidas clínicas</h2>
+          <p class="card__p">Toda questão clínica vai para a Dra. Camila Rocha e a equipe clínica. Seu concierge encaminha e nunca responde.</p>
+        </article>
+        <article class="card">
+          <h2 class="card__t">Urgente, fora do horário</h2>
+          <p class="card__p">Uma linha que alcança uma pessoa a qualquer hora, para o que não pode esperar até de manhã.</p>
+        </article>
+        <article class="card">
+          <h2 class="card__t">Conta e pagamentos</h2>
+          <p class="card__p">Cobrança, documentos e acesso a este portal.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="../assets/js/portal.js" defer></script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 # RefreshU
 
-Site público e tela de entrada do portal. Concierge médico, economia e experiência de viagem no Brasil, para público americano.
+Site público, tela de entrada e portal demonstrativo do cliente. Concierge médico, economia e experiência de viagem no Brasil, para público americano.
 
-Construído a partir de `RefreshU-Briefing-de-Design-PT-BR.pdf` (31 seções).
+Construído a partir de `RefreshU-Briefing-de-Design-PT-BR.pdf`, 31 seções.
 
 ## Rodar
 
@@ -10,55 +10,94 @@ Construído a partir de `RefreshU-Briefing-de-Design-PT-BR.pdf` (31 seções).
 npx -y serve -l 8821 .
 ```
 
-Site estático, sem build. Editar direto e recarregar.
+Site estático, sem build. A única etapa gerada é a versão em português:
+
+```bash
+python3 traduzir.py
+```
+
+## Páginas
+
+| Arquivo | O que é |
+|---|---|
+| `index.html` | home pública |
+| `signin.html` | entrada no portal |
+| `portal.html` | portal do cliente, demonstrativo, dez áreas da seção 27 |
+| `pt/` | as três acima em pt-BR, **geradas**, nunca editar na mão |
+
+O inglês é a fonte da verdade. Mexeu no texto? Roda `traduzir.py` de novo. O script avisa se alguma chave do dicionário deixou de casar, que é o sinal de que o texto mudou e a tradução ficou para trás.
 
 ## Decisões que valem saber
 
-**O site é em inglês.** O público é americano. Todo CTA do briefing está em inglês (`Explore Treatments`, `Start My Evaluation`, `See If I'm a Candidate`, `Contact My Concierge`) e a navegação da seção 26 também. A tradução PT-BR do briefing serve para leitura interna, não para virar o site.
+**O site nasce em inglês, com português no botão.** O público é americano e todo CTA do briefing já está em inglês. As bandeiras ao lado do CTA levam para `/pt/`, que existe para o cliente, parceiros e imprensa no Brasil.
 
 **Paleta tirada da logo**, não do PDF do briefing: navy `#12305a` da palavra "refresh" e o degradê ciano `#25c6e0` para turquesa `#12bfa2` do símbolo. O papel é um marfim quente `#fbf9f5` de propósito: branco puro somado a ciano dá cara de SaaS médico, e o briefing pede hospitalidade.
 
-**Tipografia:** Newsreader para títulos (serifa editorial, puxa o lado viagem de alto padrão) e DM Sans para interface (geométrica, conversa com a construção da logo). Auto-hospedadas, 57 KB somadas.
+**Tipografia:** Newsreader nos títulos, DM Sans na interface. Auto-hospedadas, 57 KB somadas.
 
-**Sem travessão e sem tag acima de título**, verificado no arquivo inteiro.
+**Sem travessão e sem tag acima de título**, verificado nos arquivos inteiros.
 
-**Sem médicos inventados.** As buscas de foto de médico voltaram só com imagem gerada por IA (consultório genérico, pele plástica). Colocar isso num site médico entrega justamente a cara de IA que o cliente não quer, e nomear médicos fictícios num site que pode ir ao ar é pior. A seção de médicos sustenta a credibilidade pela lista de credenciais da seção 13, sem retrato e sem nome. As páginas de listagem e de perfil entram quando houver médicos contratados.
+**Sem médicos inventados na home.** As buscas de foto de médico voltaram só com imagem gerada por IA. A seção de médicos sustenta a credibilidade pela lista de credenciais da seção 13, sem retrato e sem nome.
 
-**Sem foto de compras.** As buscas voltaram com vitrines de Celine, Mulberry, Tory Burch e Jo Malone, marcas de terceiros em rua europeia. Compras entrou como texto na legenda do mosaico.
+**O portal é demonstração declarada.** Uma faixa fixa no topo diz, em toda tela, que nome, data, clínica, hotel e documento são exemplo. Hotel Aurora, Clínica Vértice, Dra. Camila Rocha, Beatriz L. e Michael Carter são fictícios, escolhidos assim de propósito para não sugerir parceria que não existe. Trocar tudo antes de qualquer uso real.
+
+## Auditoria contra o briefing
+
+Passei as 31 seções contra o que está no ar. Estado por seção:
+
+**No ar e fiel:** 1, 2, 3, 4, 5, 7, 8, 11, 13 (campos), 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 27, 28, 29.
+
+**No ar com ressalva:**
+
+- **Seção 6, economia.** A estrutura está pronta com o seletor de procedimento e as quatro linhas. Os valores aparecem como "A confirmar" porque o próprio briefing exige fonte defensável e aprovação jurídica antes de publicar.
+- **Seção 26, navegação.** O briefing lista nove itens no menu. Coloquei seis no cabeçalho e levei "Sobre" e "FAQ" para o rodapé: nove itens num cabeçalho premium viram sopa de links. Se o cliente quiser os nove, é reverter em um minuto.
+- **Seção 13, perfis.** Os campos estão listados na home. As páginas de listagem e de perfil entram quando houver médico contratado.
+
+**Fora do escopo desta rodada, previstas no briefing:**
+
+- Seção 9 e 12: páginas de destino e de procedimento (hoje são seções da home)
+- Seção 10: montador de roteiro, que o próprio briefing coloca no futuro
+- Seção 14: o fluxo de seis etapas da avaliação
+- Seção 25: a tela "Today in Brazil" existe no painel, falta a versão de app
+- Seção 30, fase 2 inteira
+
+**Correções que a auditoria gerou:** os três pilares ganharam os nomes da seção 5 (cuidado, valor e viagem) sem perder o trio da marca; entrou a frase de fechamento do quadro de economia; entrou a hospitalidade brasileira na lista do Brasil; e entrou a seção 28 inteira, "Três produtos, uma experiência", que estava diluída no site.
 
 ## O que está travado esperando terceiros
 
 | Item | Onde | Depende de |
 |---|---|---|
-| Números da economia | seção `#savings`, quatro células "Pending verification" | fonte defensável e aprovação jurídica (aviso da própria seção 6 do briefing) |
-| Vetor oficial da logo | `assets/img/refreshu-mark.svg` | o símbolo foi recriado a partir do PNG; trocar pelo AI/EPS/SVG do cliente |
-| Autenticação e assinatura | `assets/js/auth.js`, função `enviar()` | back end. Hoje o envio devolve a regra real do produto: o portal abre depois da análise médica |
-| Médicos | seção `#physicians` | contratos autorizando uso de conteúdo do profissional e de pacientes (seção 13) |
-| Fotografia própria | `assets/img/` | as 14 fotos são Unsplash, licença de uso comercial. Para marca premium, o ideal é ensaio próprio no hero e nos tratamentos |
-
-Toda afirmação médica, jurídica, de privacidade, preço, pagamento, seguro e marketing continua pendente de aprovação profissional, como a capa do briefing determina.
+| Números da economia | `#savings` | fonte defensável e aprovação jurídica |
+| Vetor oficial da logo | `assets/img/refreshu-mark.svg` | símbolo recriado a partir do PNG, trocar pelo arquivo do cliente |
+| Autenticação e assinatura | `assets/js/auth.js`, função `enviar()` | back end. Hoje qualquer e-mail válido abre o portal demonstrativo |
+| Pagamento seguro | tela Pagamentos do portal | mostra itens e situação, sem valores, até o preço ser aprovado |
+| Médicos | `#physicians` | contratos autorizando uso de conteúdo do profissional e de pacientes |
+| Fotografia própria | `assets/img/` | as 14 fotos são Unsplash, licença comercial. Para marca premium, o ideal é ensaio próprio |
+| Domínio | `hreflang` | as tags `<link rel="alternate">` precisam de URL absoluta, entram no lançamento |
 
 ## Medições
 
-Lighthouse com `--throttling-method=devtools` (o modo `simulate` infla o LCP):
+Lighthouse com `--throttling-method=devtools`, porque `simulate` infla o LCP:
 
 | Página | Perf | A11y | Práticas | SEO |
 |---|---|---|---|---|
 | `/` mobile | 98 | 100 | 100 | 100 |
-| `/` desktop | 95 | 100 | 100 | 100 |
+| `/pt/` mobile | 98 | 100 | 100 | 100 |
 | `/signin.html` mobile | 97 | 100 | 100 | 63 |
+| `/portal.html` mobile | 97 | 100 | 100 | 54 |
 
-O SEO 63 do Sign In é o `noindex`, proposital numa tela de login.
-
-LCP 2,2 s no mobile, CLS 0, TBT 0 ms.
+SEO baixo em `signin` e `portal` é o `noindex`, proposital. LCP 2,2 s, CLS 0, TBT 0 ms.
 
 ## Armadilhas já pagas
 
-- **Especificidade no mosaico:** as regras `.mosaic > :nth-child(N)` do desktop vencem um reset com `*`. No celular o reset precisa ser `:nth-child(n)`, senão a grade do desktop atravessa.
-- **Posicionamento automático em grade abre buraco:** o item largo que não cabe no resto da linha pula, deixando célula vazia. As duas grades do mosaico são explícitas.
-- **Alfa de texto sobre fundo escuro:** `--on-deep-fine` está em `.58` porque é o mínimo que passa 4.5:1 nos dois fundos escuros do site. `--on-paper-fine` em `.66` pelo mesmo motivo do lado claro. Não baixar sem recalcular.
-- **Captura de tela mente:** `scroll-behavior: smooth` deixa a página em movimento no print, e `loading="lazy"` faz seção abaixo da dobra sair vazia. Para conferir layout, forçar `loading="eager"` e desligar o scroll suave antes do screenshot.
+- **Medir `/pt/index.html` dá 87, medir `/pt/` dá 98.** O `serve` faz 301 de `/pt/index.html` para `/pt/index`, e o redirecionamento sozinho custa um segundo de FCP. Medir sempre na URL que responde 200.
+- **Especificidade no mosaico:** as regras `.mosaic > :nth-child(N)` do desktop vencem um reset com `*`. No celular o reset precisa ser `:nth-child(n)`.
+- **Posicionamento automático em grade abre buraco:** o item largo que não cabe no resto da linha pula. As duas grades do mosaico são explícitas.
+- **`opacity` derruba contraste:** o item já cumprido do "Hoje no Brasil" usava `opacity: .5` e caiu para 2,2:1. Item apagado se faz com cor própria, não com opacidade.
+- **Alfa de texto:** `--on-deep-fine` em `.58` e `--on-paper-fine` em `.66` são os mínimos que passam 4.5:1 no pior fundo de cada lado. Não baixar sem recalcular.
+- **Título de tela do portal não pode viver no JavaScript.** Estava numa tabela fixa e a versão pt-BR continuava em inglês. Agora sai do rótulo do próprio menu, então a tradução do HTML resolve.
+- **Captura de tela mente:** `scroll-behavior: smooth` deixa a página em movimento no print e `loading="lazy"` esvazia seção abaixo da dobra. Forçar `loading="eager"` e desligar o scroll suave antes do screenshot.
 
 ## Próximo
 
-Páginas que o briefing pede e ainda não existem: procedimento (Hair e Face + Neck), listagem e perfil de médico, destino São Paulo completo, o fluxo `Start My Evaluation` de seis etapas, e o portal do cliente com as dez áreas da seção 27.
+Páginas que o briefing pede e ainda não existem: procedimento (Hair e Face + Neck), listagem e perfil de médico, destino São Paulo completo, o fluxo `Start My Evaluation` de seis etapas, e a versão de app da tela "Today in Brazil".
