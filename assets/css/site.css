@@ -116,6 +116,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .chrome.is-stuck .nav a:hover { color: var(--navy); }
 
 .chrome__act { display: flex; align-items: center; gap: 16px; flex: none; }
+/* o CTA so existe dentro do menu no mobile, onde o botao do header e escondido */
+.nav a.nav__cta { display: none; }
 .link-quiet {
   text-decoration: none; font-size: .93rem; color: rgba(255, 255, 255, .82);
   transition: color .25s;
@@ -129,12 +131,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   padding: 15px 30px; border: 0; border-radius: 999px;
   font-family: var(--sans); font-size: .97rem; font-weight: 500; letter-spacing: .005em;
-  text-decoration: none; color: #04202c; cursor: pointer;
-  background: var(--grad); background-size: 160% 160%;
-  transition: background-position .5s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
-  box-shadow: 0 6px 24px rgba(18, 191, 162, .22);
+  text-decoration: none; color: #fff; cursor: pointer;
+  background: var(--navy);
+  transition: background-color .35s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  box-shadow: 0 6px 24px rgba(7, 27, 51, .3);
 }
-.btn:hover { background-position: 100% 100%; transform: translateY(-2px); box-shadow: 0 12px 34px rgba(18, 191, 162, .3); }
+.btn:hover { background-color: #1b4479; transform: translateY(-2px); box-shadow: 0 12px 34px rgba(7, 27, 51, .38); }
 .btn--sm { padding: 11px 20px; font-size: .89rem; box-shadow: none; }
 .btn--lg { padding: 18px 40px; font-size: 1.04rem; }
 .btn--ghost {
@@ -504,6 +506,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     flex-direction: column; gap: 0;
     background: rgba(7, 27, 51, .98); backdrop-filter: blur(14px);
     padding: 84px var(--gutter) 26px;
+    /* painel de altura cheia: senao o CTA do hero vaza por baixo do menu e
+       aparecem dois "Start My Evaluation" empilhados */
+    min-height: 100vh; min-height: 100dvh;
     transform: translateY(-101%); transition: transform .45s var(--ease);
   }
   .nav.is-open { transform: none; }
@@ -519,6 +524,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .burger[aria-expanded="true"] span:first-child { transform: translateY(3.2px) rotate(45deg); }
   .burger[aria-expanded="true"] span:last-child { transform: translateY(-3.2px) rotate(-45deg); }
   .chrome__act .btn--sm { display: none; }
+  /* dentro do menu o fundo e navy, entao o botao inverte para nao sumir */
+  .nav a.nav__cta {
+    display: inline-flex; align-self: flex-start;
+    margin-top: 26px; padding: 14px 30px;
+    border-bottom: 0; font-size: .97rem;
+    background: #fff; color: var(--navy); box-shadow: none;
+  }
+  .nav a.nav__cta:hover { background: #eaf4f8; transform: none; box-shadow: none; }
+  .nav a.nav__cta::after { display: none; }
+  .chrome.is-stuck .nav a.nav__cta { color: var(--navy); }
 }
 
 @media (max-width: 720px) {
@@ -653,6 +668,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn--full { width: 100%; padding-block: clamp(12px, 2.1vh, 16px); }
 .btn--dark { color: var(--navy); border-color: rgba(14, 40, 70, .28); }
 .btn--dark:hover { background: rgba(14, 40, 70, .05); }
+
+/* aviso de demonstracao: mesma familia ambar da faixa do portal, para o
+   visitante saber o que digitar enquanto nao ha autenticacao de verdade.
+   #5c3f04 sobre o ambar .12 no marfim da 8.6:1 */
+.auth__demo {
+  margin: clamp(8px, 1.5vh, 16px) 0 0;
+  padding: 10px 13px; border-radius: 10px;
+  background: rgba(240, 180, 41, .12); border: 1px solid rgba(240, 180, 41, .45);
+  font-size: .82rem; line-height: 1.48; color: #5c3f04;
+}
+.auth__demo b { font-weight: 600; }
 
 .auth__msg {
   margin-top: 18px; padding: 14px 16px; border-radius: 10px;

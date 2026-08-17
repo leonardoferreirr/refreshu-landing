@@ -41,6 +41,13 @@ O inglês é a fonte da verdade. Mexeu no texto? Roda `traduzir.py` de novo. O s
 
 **O portal é demonstração declarada.** Uma faixa fixa no topo diz, em toda tela, que nome, data, clínica, hotel e documento são exemplo. Hotel Aurora, Clínica Vértice, Dra. Camila Rocha, Beatriz L. e Michael Carter são fictícios, escolhidos assim de propósito para não sugerir parceria que não existe. Trocar tudo antes de qualquer uso real.
 
+**Um CTA só, e ele leva ao login.** "Explore Treatments" e o link "Sign In" saíram do topo. Sobrou "Start My Evaluation" em navy sólido, apontando para `signin.html` em todos os pontos da home: topo, hero, seção de médicos, seção de avaliação e rodapé. Consequências que vieram junto:
+
+- O botão "Start My Evaluation" que existia dentro do login foi removido. Ele mandava o visitante de volta para `index.html#evaluation`, que traz de volta para o login. A frase explicando que o portal abre depois da análise médica continua lá.
+- O login ganhou um aviso âmbar dizendo que é demonstração e que qualquer e-mail válido e qualquer senha abrem o portal. Sem isso o visitante clica em Sign In com os campos vazios, a validação barra e parece que o portal não existe.
+- O CTA entrou no menu do celular, onde o botão do topo é escondido. Dentro do menu ele inverte para branco com texto navy, porque o painel do menu é navy e um botão navy sumiria ali.
+- O rodapé mantém "Sign In", que é a porta de quem já é cliente. É o único lugar do site onde ela aparece agora.
+
 ## Auditoria contra o briefing
 
 Passei as 31 seções contra o que está no ar. Estado por seção:
@@ -97,6 +104,9 @@ SEO baixo em `signin` e `portal` é o `noindex`, proposital. LCP 2,2 s, CLS 0, T
 - **Alfa de texto:** `--on-deep-fine` em `.58` e `--on-paper-fine` em `.66` são os mínimos que passam 4.5:1 no pior fundo de cada lado. Não baixar sem recalcular.
 - **Título de tela do portal não pode viver no JavaScript.** Estava numa tabela fixa e a versão pt-BR continuava em inglês. Agora sai do rótulo do próprio menu, então a tradução do HTML resolve.
 - **Captura de tela mente:** `scroll-behavior: smooth` deixa a página em movimento no print e `loading="lazy"` esvazia seção abaixo da dobra. Forçar `loading="eager"` e desligar o scroll suave antes do screenshot.
+- **O painel do menu do celular precisa de altura cheia.** Sem `min-height: 100dvh` ele para onde o conteúdo acaba, o CTA do hero vaza por baixo e aparecem dois "Start My Evaluation" empilhados.
+- **`.nav a` vence `.nav__cta`.** Um botão dentro do menu precisa de `.nav a.nav__cta` para sobrescrever cor, padding e a borda de baixo dos links.
+- **O login cabe em 660px de altura e não sobra folga.** O aviso de demonstração sozinho custou 76px e estourou. Medir `scrollHeight - innerHeight` a 660px antes de acrescentar qualquer bloco ali.
 
 ## Próximo
 

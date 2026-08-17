@@ -45,7 +45,6 @@ D = {
 'alt="Coastline of Rio de Janeiro at golden hour"': 'alt="Litoral do Rio de Janeiro na luz do fim da tarde"',
 'Refresh yourself.<br>Experience Brazil.': 'Renove você.<br>Viva o Brasil.',
 'Exceptional aesthetic care in Brazil, savings that can be meaningful, and a trip built around you: the physician, the procedure, the hotel, the transport, the meals, the recovery, and everything you will actually want to see.': 'Cuidado estético excepcional no Brasil, uma economia que pode ser relevante e uma viagem montada em torno de você: o médico, o procedimento, o hotel, o transporte, as refeições, a recuperação e tudo o que você de fato vai querer conhecer.',
-'>Explore Treatments<': '>Conhecer os tratamentos<',
 
 # --- pilares
 '<b>Exceptional value.</b> Access high quality aesthetic procedures in Brazil, with savings that can be significant against the prices practiced in the United States.': '<b>Valor excepcional.</b> Acesso a procedimentos estéticos de alta qualidade no Brasil, com economia que pode ser significativa em relação aos preços praticados nos Estados Unidos.',
@@ -308,6 +307,7 @@ D.update({
 '>Back to refreshu.com<': '>Voltar para refreshu.com<',
 '<h1 class="display auth__t">Welcome back</h1>': '<h1 class="display auth__t">Bem-vindo de volta</h1>',
 'Pick your journey up where you left it.': 'Retome sua jornada de onde você parou.',
+'<b>Demonstration.</b> The portal is not connected to real accounts yet. Any valid email and any password open it.': '<b>Demonstração.</b> O portal ainda não está conectado a contas reais. Qualquer e-mail válido e qualquer senha abrem o portal.',
 '<label for="email">Email</label>': '<label for="email">E-mail</label>',
 '<label for="password">Password</label>': '<label for="password">Senha</label>',
 '>Forgot your password?<': '>Esqueceu a senha?<',
