@@ -615,7 +615,8 @@ def traduzir(html, arquivo):
     # Anexo A.2, e um segundo idioma esta no Anexo D, fora do escopo. Entao
     # o /pt/ aponta para a versao em ingles em vez de gerar um 404.
     for so_raiz in ('assessment.html', 'console.html', 'sales.html',
-                    'signin-team.html', 'signin-sales.html'):
+                    'signin-team.html', 'signin-sales.html',
+                    'signup.html', 'recover.html'):
         html = html.replace('href="%s"' % so_raiz, 'href="../%s"' % so_raiz)
 
     # idioma do documento e alternativas

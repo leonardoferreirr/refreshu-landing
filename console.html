@@ -358,6 +358,19 @@
               <select class="fsel" aria-label="Concierge">
                 <option>Any concierge</option><option>Beatriz L.</option><option>Rafael M.</option>
               </select>
+              <select class="fsel" aria-label="Package">
+                <option>All packages</option><option>Solo Refresh</option><option>Companion Refresh</option><option>Full Refresh</option><option>Undecided</option>
+              </select>
+              <select class="fsel" aria-label="Destination">
+                <option>All destinations</option><option>São Paulo</option><option>Rio de Janeiro</option>
+              </select>
+              <select class="fsel" aria-label="Period">
+                <option>Any travel period</option><option>This month</option><option>Next month</option><option>Next 90 days</option><option>Past journeys</option>
+              </select>
+              <button class="cbtn cbtn--ghost cbtn--sm" type="button">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v12m0 0-4.5-4.5M12 16l4.5-4.5M4 18v2h16v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Export CSV
+              </button>
             </div>
           </span>
         </div>
@@ -457,7 +470,7 @@
           </span>
         </span>
         <span class="rhead__a">
-          <button class="cbtn cbtn--ghost" type="button">Add internal note</button>
+          <button class="cbtn cbtn--ghost" type="button" data-drawer="note">Add internal note</button>
           <button class="cbtn" type="button" data-drawer="advance">Advance stage</button>
         </span>
       </div>
@@ -740,7 +753,7 @@
                   <td class="nw">Dr. Camila Rocha</td>
                   <td class="nw"><span class="tag tag--risk">5 days</span></td>
                   <td class="nw"><span class="tag tag--warn">Awaiting result</span></td>
-                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="referral">Record result</button></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="request">Open</button> <button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="referral">Record result</button></td>
                 </tr>
                 <tr>
                   <td><span class="who"><span class="who__av">TA</span><span class="who__t"><b>Thomas Ayers</b><span>Miami, FL</span></span></span></td>
@@ -756,7 +769,7 @@
                   <td class="nw">Dr. Helena Braga</td>
                   <td class="nw">1 day</td>
                   <td class="nw"><span class="tag tag--warn">Awaiting result</span></td>
-                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="referral">Record result</button></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="request">Open</button> <button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="referral">Record result</button></td>
                 </tr>
                 <tr>
                   <td><span class="who"><span class="who__av">MC</span><span class="who__t"><b>Michael Carter</b><span>Austin, TX</span></span></span></td>
@@ -1039,7 +1052,7 @@
                   <td class="nw">Physician</td>
                   <td class="nw"><span class="tag tag--risk">2 days ago</span></td>
                   <td class="nw"><span class="tag tag--risk">Not confirmed</span></td>
-                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Chase physician</button></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="request">Chase physician</button></td>
                 </tr>
                 <tr>
                   <td class="nw">Linda Park</td>
@@ -1067,6 +1080,24 @@
                   <td class="nw">Apr 4</td>
                   <td class="nw"><span class="tag tag--info">Not started</span></td>
                   <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Publish</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Susan Delgado</td>
+                  <td>Signed consent forms</td>
+                  <td class="nw"><span class="tag tag--flat">Administrative</span></td>
+                  <td class="nw">Beatriz L.</td>
+                  <td class="nw">Mar 4</td>
+                  <td class="nw"><span class="tag tag--info">In review</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Approve</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Michael Carter</td>
+                  <td>Cardiac evaluation</td>
+                  <td class="nw"><span class="clin">Status only</span></td>
+                  <td class="nw">Physician</td>
+                  <td class="nw">—</td>
+                  <td class="nw"><span class="tag tag--flat">Not applicable</span></td>
+                  <td class="nw"></td>
                 </tr>
               </tbody>
             </table>
@@ -1492,6 +1523,34 @@
         </div>
       </div>
 
+      <div class="cpanel" style="margin-top:16px">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Messages sent<small>Every message, with what happened to it</small></span>
+          <span class="cpanel__a">
+            <div class="filters">
+              <select class="fsel" aria-label="Template"><option>All templates</option><option>Action needed</option><option>Assessment received</option><option>Medical result available</option><option>Appointment set or changed</option><option>Payment due</option><option>Arrival reminder</option></select>
+              <select class="fsel" aria-label="Delivery"><option>Any result</option><option>Delivered</option><option>Bounced</option><option>Failed</option></select>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Sent</th><th>Recipient</th><th>Template</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td class="nw">Mar 10, 09:41</td><td class="nw">michael.carter@example.com</td><td>Action needed</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 10, 08:02</td><td class="nw">s.delgado@example.com</td><td>Payment due</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 9, 17:20</td><td class="nw">michael.carter@example.com</td><td>Appointment set or changed</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 9, 16:48</td><td class="nw">j.whitfield@example.com</td><td>Medical result available</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 9, 14:05</td><td class="nw">t.ayers@exmaple.com</td><td>Assessment received</td><td class="nw"><span class="tag tag--risk">Bounced</span></td></tr>
+                <tr><td class="nw">Mar 9, 11:12</td><td class="nw">r.nguyen@example.com</td><td>Arrival reminder</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 8, 19:30</td><td class="nw">l.park@example.com</td><td>Action needed</td><td class="nw"><span class="tag tag--warn">Deferred, retrying</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ====================================================== TEAM ====== -->
@@ -1546,6 +1605,10 @@
       <div class="cpanel" style="margin-top:16px">
         <div class="cpanel__h">
           <span class="cpanel__t">Permission matrix<small>Configurable by an Administrator across every module</small></span>
+          <span class="cpanel__a">
+            <select class="fsel" aria-label="Edit role"><option>Editing: Concierge</option><option>Editing: Sales</option><option>Editing: Read only</option></select>
+            <button class="cbtn cbtn--sm" type="button">Save permissions</button>
+          </span>
         </div>
         <div class="cpanel__b cpanel__b--flush">
           <div class="tw">
@@ -1620,6 +1683,7 @@
           <span class="cpanel__a">
             <div class="filters">
               <select class="fsel" aria-label="User"><option>Any user</option><option>Beatriz Lima</option><option>Rafael Moraes</option><option>Alberto Silveira</option></select>
+              <select class="fsel" aria-label="Client record"><option>Any client record</option><option>Michael Carter · RU-2419</option><option>Susan Delgado · RU-2402</option><option>Robert Nguyen · RU-2431</option></select>
               <select class="fsel" aria-label="Range"><option>Last 24 hours</option><option>Last 7 days</option><option>Last 30 days</option></select>
               <button class="cbtn cbtn--ghost cbtn--sm" type="button">Export CSV</button>
             </div>
@@ -1683,6 +1747,47 @@
         </div>
       </div>
 
+      <!-- ---------------------------------------------------- A.3.3 ---- -->
+      <div class="dpanel" data-panel="request" data-title="Assessment request" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p><b>No clinical content is shown, because none is held.</b> This is what the person told RefreshU, and nothing else. Their questionnaire and photographs went straight to the physician.</p>
+        </div>
+        <div class="cpanel">
+          <div class="cpanel__h">
+            <span class="cpanel__t">James Whitfield<small>Submitted February 24, through the website</small></span>
+            <span class="cpanel__a"><span class="tag tag--warn">Awaiting result</span></span>
+          </div>
+          <div class="cpanel__b">
+            <dl class="facts">
+              <div><dt>Email</dt><dd>j.whitfield@example.com</dd></div>
+              <div><dt>Phone</dt><dd>+1 303 555 0192</dd></div>
+              <div><dt>Where they live</dt><dd>Denver, Colorado</dd></div>
+              <div><dt>Area of interest</dt><dd>Face</dd></div>
+              <div><dt>Procedure selected</dt><dd>Rhinoplasty</dd></div>
+              <div><dt>Destination</dt><dd>São Paulo</dd></div>
+              <div><dt>Travel window</dt><dd>April, flexible</dd></div>
+              <div><dt>Companion</dt><dd>Travelling alone</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Hand-off<small>Who, when, and what came back</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Referred to Dr. Camila Rocha</b><span>February 24, 11:40, by Beatriz Lima</span></span><span class="row__x"></span></div>
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m3.6 7 8.4 6 8.4-6" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Screening instruction sent to the client</b><span>February 24, 11:41, delivered</span></span><span class="row__x"></span></div>
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Client marked the physician's form complete</b><span>February 26</span></span><span class="row__x"></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="row__t"><b>Waiting on the physician</b><span>5 days · chased on March 1 and March 6</span></span><span class="row__x"><span class="tag tag--risk">Slow</span></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-drawer="referral">Record the outcome</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Chase the physician</button>
+        </div>
+      </div>
+
       <!-- ---------------------------------------------------- A.3.2 ---- -->
       <div class="dpanel" data-panel="new" data-title="New client record" hidden>
         <div class="bound">
@@ -1715,6 +1820,27 @@
         </div></div>
         <div class="dact">
           <button class="cbtn" type="button" data-close>Create record</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.2 ---- -->
+      <div class="dpanel" data-panel="note" data-title="Add an internal note" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/></svg>
+          <p><b>Never visible to the client.</b> Notes stay with the team, carry your name and the time, and are for operations, not for anything clinical.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="noRec">On the record of</label>
+            <input id="noRec" value="Michael Carter · RU-2419" readonly></div>
+          <div class="fld2 fld2--req">
+            <label for="noText">Note</label>
+            <textarea id="noText" style="min-height:120px" placeholder="What the team should know."></textarea>
+          </div>
+          <label class="check"><input type="checkbox"><span>Flag it, so it sits at the top of the record</span></label>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Save note</button>
           <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
         </div>
       </div>

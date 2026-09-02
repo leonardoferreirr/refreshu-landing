@@ -36,6 +36,163 @@
   .demo__go { margin-left: 0; width: 100%; }
 }
 
+/* Envio preso ao proprio item do checklist (A.5.7). Fica junto do requisito
+   que o pede, e nao numa tela separada onde a pessoa precisa lembrar de qual
+   item era. Aceita documento administrativo e de viagem, nunca clinico. */
+.upl {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: .5rem;
+  padding: .42rem .8rem;
+  border: 1.5px solid rgba(37, 198, 224, .4);
+  border-radius: 999px;
+  background: rgba(37, 198, 224, .07);
+  color: var(--navy);
+  font-size: .82rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s var(--ease), border-color .2s var(--ease);
+}
+.upl:hover { background: rgba(37, 198, 224, .16); border-color: var(--cyan); }
+.upl svg { width: 14px; height: 14px; }
+.upl input { display: none; }
+.upl--go::after { content: '→'; font-weight: 400; }
+
+/* Galeria de antes e depois (A.5.6). So aparece quando o cadastro do medico
+   marca o conteudo de paciente como autorizado. */
+.ba { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; margin-top: .9rem; }
+.ba__i { margin: 0; position: relative; border-radius: 8px; overflow: hidden; background: var(--paper-2); }
+.ba__i img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; display: block; }
+.ba__i figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: .4rem .6rem;
+  font-size: .74rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(0deg, rgba(7, 27, 51, .82), rgba(7, 27, 51, 0));
+}
+.ba__i--more {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4/3;
+  border: 1px dashed var(--line);
+  background: none;
+}
+.ba__i--more span { text-align: center; font-size: .78rem; color: var(--on-paper-dim); line-height: 1.3; }
+.ba__i--more b { display: block; font-family: var(--display); font-size: 1.3rem; color: var(--navy); }
+
+/* Perguntas frequentes (A.5.12). */
+.faq2 { display: grid; border-top: 1px solid var(--line); margin-top: .9rem; }
+.faq2 details { border-bottom: 1px solid var(--line); }
+.faq2 summary {
+  cursor: pointer;
+  list-style: none;
+  padding: .95rem 2.2rem .95rem 0;
+  position: relative;
+  font-size: .98rem;
+  font-weight: 600;
+  transition: color .25s var(--ease);
+}
+.faq2 summary::-webkit-details-marker { display: none; }
+.faq2 summary:hover { color: var(--navy); }
+.faq2 summary::after {
+  content: '';
+  position: absolute;
+  right: .3rem;
+  top: 50%;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--cyan);
+  border-bottom: 2px solid var(--cyan);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform .3s var(--ease);
+}
+.faq2 details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.faq2 p { padding-bottom: 1.1rem; color: var(--on-paper-dim); max-width: 68ch; font-size: .94rem; line-height: 1.62; }
+
+/* Kit de boas-vindas, com o caminho por QR do impresso ate aqui (A.5.12). */
+.kit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.6rem; align-items: start; margin-top: .9rem; }
+.kit__l { list-style: none; display: grid; gap: .4rem; margin: .9rem 0 1.1rem; padding: 0; }
+.kit__l li { display: flex; gap: .6rem; font-size: .92rem; color: var(--on-paper-dim); }
+.kit__l li::before { content: ''; width: 5px; height: 5px; margin-top: .55rem; flex: none; border-radius: 50%; background: var(--teal); }
+.kit__qr { display: grid; gap: .5rem; justify-items: center; text-align: center; }
+.kit__qr svg { border-radius: 8px; border: 1px solid var(--line); padding: 8px; background: #fff; }
+.kit__qr span { font-size: .74rem; color: var(--on-paper-fine); max-width: 14ch; line-height: 1.35; }
+
+@media (max-width: 720px) {
+  .kit { grid-template-columns: minmax(0, 1fr); justify-items: start; }
+  .ba { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Agenda: barra com legenda e as duas visoes que o A.5.5 pede. */
+.schedbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .9rem 1.4rem;
+  margin-bottom: 1.2rem;
+}
+.schedbar .legend { margin: 0; }
+
+.segs2 {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  background: var(--paper-2);
+  border-radius: 8px;
+}
+.segs2 button {
+  padding: .4rem .85rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--on-paper-dim);
+  cursor: pointer;
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.segs2 button[aria-pressed="true"] {
+  background: var(--paper);
+  color: var(--navy);
+  box-shadow: 0 1px 3px rgba(7, 27, 51, .1);
+}
+
+/* Item que o médico fixou. A primazia médica da seção 11 tem que ser legível
+   sem clicar, então ganha um alfinete além da cor da trilha. */
+.k--pin { background: #c2415b; position: relative; }
+
+.ev.is-pin { padding-left: 1.5rem; position: relative; font-weight: 600; }
+.ev.is-pin::before {
+  content: '';
+  position: absolute;
+  left: .55rem;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -4.5px;
+  background: currentColor;
+  clip-path: polygon(50% 0, 62% 38%, 100% 38%, 50% 100%, 0 38%, 38% 38%);
+}
+
+/* Visão em lista: os mesmos eventos, um por linha, com o dia à esquerda. */
+.week2[data-view="list"] { display: grid; gap: 0; }
+.week2[data-view="list"] > li { display: block; border-bottom: 1px solid var(--line); padding-block: .8rem; }
+.week2[data-view="list"] > li:last-child { border-bottom: 0; }
+.week2[data-view="list"] .week2__d {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  margin-bottom: .5rem;
+}
+.week2[data-view="list"] .week2__d b { font-size: .95rem; }
+.week2[data-view="list"] .week2__e { display: grid; gap: .35rem; }
+.week2[data-view="list"] .ev { display: block; width: 100%; }
+
 /* Formulario do perfil (A.5.1). Duas colunas onde cabe, uma no celular. */
 .pf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
 .pf__f { display: grid; gap: .3rem; align-content: start; }

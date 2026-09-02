@@ -22,6 +22,7 @@
   <nav class="demo__go" aria-label="Platforms">
     <a href="index.html">Site público</a>
     <a href="../console.html">Operação</a>
+    <a href="../sales.html">Comercial</a>
     <a href="portal.html" aria-current="page">Portal do cliente</a>
   </nav>
 </div>
@@ -63,6 +64,9 @@
       <a href="#payments" data-view="payments" data-sub="Em que pé está cada item da sua jornada">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.6"/></svg>
         <span class="pnav__lbl">Pagamentos</span></a>
+      <a href="#profile" data-view="profile" data-sub="Your details, your companion and how you sign in">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.6"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="pnav__lbl">My Profile</span></a>
       <a href="#support" data-view="support" data-sub="Com quem falar, e sobre o quê">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></svg>
         <span class="pnav__lbl">Suporte</span></a>
@@ -196,12 +200,19 @@
     <section class="pview" id="v-schedule" hidden>
       <p class="pview__lead">Uma linha do tempo reunindo quatro agendas: a sua, a da viagem, a do médico e da equipe clínica, e a do concierge. As folgas ficam de propósito, para atrasos e para o que o seu médico exigir.</p>
 
-      <ul class="legend">
-        <li><i class="k k--you"></i>Você</li>
-        <li><i class="k k--trav"></i>Viagem</li>
-        <li><i class="k k--med"></i>Médico e clínica</li>
-        <li><i class="k k--conc"></i>Concierge</li>
-      </ul>
+      <div class="schedbar">
+        <ul class="legend">
+          <li><i class="k k--you"></i>Você</li>
+          <li><i class="k k--trav"></i>Viagem</li>
+          <li><i class="k k--med"></i>Médico e clínica</li>
+          <li><i class="k k--conc"></i>Concierge</li>
+          <li><i class="k k--pin" aria-hidden="true"></i>Fixed by your physician</li>
+        </ul>
+        <div class="segs2" role="group" aria-label="How to show the schedule">
+          <button type="button" data-sched="days" aria-pressed="true">By day</button>
+          <button type="button" data-sched="list" aria-pressed="false">As a list</button>
+        </div>
+      </div>
 
       <ol class="week2">
         <li>
@@ -217,7 +228,7 @@
           <div class="week2__d"><b>Terça</b><i>10 de março</i></div>
           <div class="week2__e">
             <span class="ev ev--conc">09h00 Motorista</span>
-            <span class="ev ev--med">10h00 Exames de sangue pré-operatórios</span>
+            <span class="ev ev--med is-pin">10h00 Exames de sangue pré-operatórios</span>
             <span class="ev ev--you">12h30 Almoço</span>
             <span class="ev ev--you">15h00 Jardins</span>
             <span class="ev ev--you">19h30 Jantar</span>
@@ -226,8 +237,8 @@
         <li>
           <div class="week2__d"><b>Quarta</b><i>11 de março</i></div>
           <div class="week2__e">
-            <span class="ev ev--med">14h00 Consulta com a Dra. Camila Rocha</span>
-            <span class="ev ev--med">15h30 Preparo para a recuperação e orientações</span>
+            <span class="ev ev--med is-pin">14h00 Consulta com a Dra. Camila Rocha</span>
+            <span class="ev ev--med is-pin">15h30 Preparo para a recuperação e orientações</span>
             <span class="ev ev--you">Tarde livre, mantida tranquila de propósito</span>
           </div>
         </li>
@@ -235,7 +246,7 @@
           <div class="week2__d"><b>Quinta</b><i>12 de março</i></div>
           <div class="week2__e">
             <span class="ev ev--conc">06h15 Motorista</span>
-            <span class="ev ev--med">07h00 Procedimento, Clínica Vértice</span>
+            <span class="ev ev--med is-pin">07h00 Procedimento, Clínica Vértice</span>
             <span class="ev ev--conc">Retorno ao hotel</span>
             <span class="ev ev--conc">Suporte de recuperação e entrega de refeições</span>
           </div>
@@ -243,14 +254,14 @@
         <li>
           <div class="week2__d"><b>Sexta</b><i>13 de março</i></div>
           <div class="week2__e">
-            <span class="ev ev--med">11h00 Retorno com o seu médico</span>
+            <span class="ev ev--med is-pin">11h00 Retorno com o seu médico</span>
             <span class="ev ev--conc">Recuperação no hotel, refeições entregues</span>
           </div>
         </li>
         <li>
           <div class="week2__d"><b>Sábado</b><i>14 de março</i></div>
           <div class="week2__e">
-            <span class="ev ev--med">Atividades liberadas pelo seu médico</span>
+            <span class="ev ev--med is-pin">Atividades liberadas pelo seu médico</span>
             <span class="ev ev--you">13h00 Reserva para o almoço</span>
             <span class="ev ev--you">Um dia calmo em São Paulo</span>
           </div>
@@ -265,7 +276,7 @@
         <li>
           <div class="week2__d"><b>Segunda</b><i>16 de março</i></div>
           <div class="week2__e">
-            <span class="ev ev--med">09h00 Checagem final com o seu médico</span>
+            <span class="ev ev--med is-pin">09h00 Checagem final com o seu médico</span>
             <span class="ev ev--conc">18h30 Motorista para o aeroporto</span>
             <span class="ev ev--trav">22h10 Voo de volta</span>
           </div>
@@ -298,7 +309,13 @@
           <h3>Abordagem</h3>
           <p>Biografia de exemplo. Na plataforma real este é o texto do próprio médico, descrevendo como trabalha, o que recomenda e o que não recomenda, e o que espera de um paciente que vem de fora.</p>
           <h3>Antes e depois</h3>
-          <p>A galeria aparece aqui assim que o contrato com o médico autorizar o uso de conteúdo do profissional e dos pacientes.</p>
+          <p>Twelve cases she chose, all with the patient's written permission on file.</p>
+          <div class="ba">
+            <figure class="ba__i"><img src="../assets/img/hair.webp" alt="Hair restoration result, twelve months after the procedure" width="900" height="675" loading="lazy"><figcaption>12 months</figcaption></figure>
+            <figure class="ba__i"><img src="../assets/img/face.webp" alt="Hairline result, nine months after the procedure" width="900" height="675" loading="lazy"><figcaption>9 months</figcaption></figure>
+            <figure class="ba__i ba__i--more"><span><b>+10</b>more cases</span></figure>
+          </div>
+          <p class="fine-note">Shown because Dr. Rocha authorised professional and patient content. Where a physician has not, nothing appears here at all.</p>
         </div>
 
         <p class="fine-note">O médico decide a elegibilidade, o plano de tratamento, os riscos, os exames e toda orientação clínica. A RefreshU coordena a logística em torno dessas decisões e não participa delas.</p>
@@ -318,9 +335,15 @@
         <li class="is-done"><b>Itinerário de voo</b><span>Confirmado nos dois trechos</span></li>
         <li class="is-done"><b>Hotel</b><span>Confirmado, 9 a 16 de março</span></li>
         <li class="is-done"><b>Transporte</b><span>Motorista particular para todo compromisso</span></li>
-        <li class="is-todo"><b>Documentação do seguro-viagem</b><span>Vence hoje, envie por aqui</span></li>
+        <li class="is-todo"><b>Travel insurance documentation</b><span>Due today</span>
+          <label class="upl">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Upload it here
+            <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+          </label></li>
         <li class="is-todo"><b>Exames de sangue pedidos pela sua médica</b><span>Coleta hoje às 10:00. O laboratório envia direto para ela</span></li>
-        <li class="is-todo"><b>Pagamentos</b><span>Um item a vencer antes do procedimento</span></li>
+        <li class="is-todo"><b>Pagamentos</b><span>Um item a vencer antes do procedimento</span>
+          <a class="upl upl--go" href="#payments" data-view="payments">Go to payments</a></li>
         <li class="is-wait"><b>Exames cardíacos</b><span>Não exigidos no seu caso</span></li>
         <li class="is-wait"><b>Consulta médica</b><span>Quarta, 11 de março, 14h</span></li>
         <li class="is-wait"><b>Orientações do médico</b><span>Liberadas depois da consulta</span></li>
@@ -437,6 +460,109 @@
           <h2 class="card__t">Conta e pagamentos</h2>
           <p class="card__p">Cobrança, documentos e acesso a este portal.</p>
         </article>
+      </div>
+      <h2 class="card__t" style="margin-top:2rem">Questions people ask us</h2>
+      <div class="faq2">
+        <details><summary>Who decides whether I can have the procedure?</summary>
+          <p>Your physician, and only your physician. RefreshU coordinates the trip around that decision and takes no part in making it.</p></details>
+        <details><summary>Where do my medical records live?</summary>
+          <p>In your physician's own system. Your questionnaire, any photographs, your exam results and your reports go straight to them and never pass through RefreshU. Here you see the status of each item, never the content.</p></details>
+        <details><summary>What if my recovery takes longer than planned?</summary>
+          <p>Your schedule bends around it. Your concierge rearranges restaurants, experiences and transport, and anything your physician has fixed stays where it is.</p></details>
+        <details><summary>Alguém pode viajar comigo?</summary>
+          <p>Yes. Add a companion under My Profile and they are included in your transfers, your room and the parts of the schedule they can join.</p></details>
+        <details><summary>How do payments work?</summary>
+          <p>You pay on the provider's own secure page, through a link we send you. No card detail is ever stored by RefreshU.</p></details>
+        <details><summary>What happens if I need help at 3am?</summary>
+          <p>Use the urgent number on this page. For anything medical, contact your physician or the clinic directly, and call local emergency services if it cannot wait.</p></details>
+      </div>
+
+      <h2 class="card__t" style="margin-top:2rem">Your welcome kit</h2>
+      <article class="card kit">
+        <div class="kit__t">
+          <p class="card__p">The printed kit reached your hotel room on arrival: your itinerary, the numbers you need, a local guide for the neighbourhood and the card with your concierge's direct line. Everything in it is also here, always current.</p>
+          <ul class="kit__l">
+            <li>Your itinerary, printable</li>
+            <li>Concierge, clinic and emergency numbers</li>
+            <li>A guide to Jardins and around</li>
+            <li>What to expect on each day of recovery</li>
+          </ul>
+          <a class="btn btn--sm" href="#documents" data-view="documents">Open the printable itinerary</a>
+        </div>
+        <div class="kit__qr" aria-hidden="true">
+          <svg viewBox="0 0 29 29" role="img" width="128" height="128"><title>QR code from the printed kit to this portal</title><rect width="29" height="29" fill="#fff"/><g fill="#0e2846"><path d="M1 1h7v7H1zM2 2v5h5V2z"/><rect x="3" y="3" width="3" height="3"/><path d="M21 1h7v7h-7zM22 2v5h5V2z"/><rect x="23" y="3" width="3" height="3"/><path d="M1 21h7v7H1zM2 22v5h5v-5z"/><rect x="3" y="23" width="3" height="3"/><rect x="10" y="1" width="1" height="1"/><rect x="12" y="1" width="1" height="1"/><rect x="14" y="1" width="1" height="1"/><rect x="18" y="1" width="1" height="1"/><rect x="11" y="2" width="1" height="1"/><rect x="13" y="2" width="1" height="1"/><rect x="17" y="2" width="1" height="1"/><rect x="10" y="3" width="1" height="1"/><rect x="14" y="3" width="1" height="1"/><rect x="16" y="3" width="1" height="1"/><rect x="18" y="3" width="1" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="15" y="4" width="1" height="1"/><rect x="17" y="4" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="13" y="5" width="1" height="1"/><rect x="18" y="5" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/><rect x="14" y="6" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/><rect x="12" y="7" width="1" height="1"/><rect x="15" y="7" width="1" height="1"/><rect x="18" y="7" width="1" height="1"/><rect x="1" y="10" width="1" height="1"/><rect x="3" y="10" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="7" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="12" y="10" width="1" height="1"/><rect x="15" y="10" width="1" height="1"/><rect x="17" y="10" width="1" height="1"/><rect x="20" y="10" width="1" height="1"/><rect x="22" y="10" width="1" height="1"/><rect x="25" y="10" width="1" height="1"/><rect x="27" y="10" width="1" height="1"/><rect x="2" y="11" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="11" y="11" width="1" height="1"/><rect x="14" y="11" width="1" height="1"/><rect x="18" y="11" width="1" height="1"/><rect x="21" y="11" width="1" height="1"/><rect x="24" y="11" width="1" height="1"/><rect x="26" y="11" width="1" height="1"/><rect x="1" y="12" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="7" y="12" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/><rect x="13" y="12" width="1" height="1"/><rect x="16" y="12" width="1" height="1"/><rect x="19" y="12" width="1" height="1"/><rect x="23" y="12" width="1" height="1"/><rect x="27" y="12" width="1" height="1"/><rect x="3" y="13" width="1" height="1"/><rect x="5" y="13" width="1" height="1"/><rect x="12" y="13" width="1" height="1"/><rect x="15" y="13" width="1" height="1"/><rect x="20" y="13" width="1" height="1"/><rect x="22" y="13" width="1" height="1"/><rect x="25" y="13" width="1" height="1"/><rect x="1" y="14" width="1" height="1"/><rect x="6" y="14" width="1" height="1"/><rect x="11" y="14" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="17" y="14" width="1" height="1"/><rect x="21" y="14" width="1" height="1"/><rect x="26" y="14" width="1" height="1"/><rect x="2" y="15" width="1" height="1"/><rect x="4" y="15" width="1" height="1"/><rect x="7" y="15" width="1" height="1"/><rect x="13" y="15" width="1" height="1"/><rect x="16" y="15" width="1" height="1"/><rect x="19" y="15" width="1" height="1"/><rect x="24" y="15" width="1" height="1"/><rect x="27" y="15" width="1" height="1"/><rect x="10" y="16" width="1" height="1"/><rect x="12" y="16" width="1" height="1"/><rect x="15" y="16" width="1" height="1"/><rect x="18" y="16" width="1" height="1"/><rect x="22" y="16" width="1" height="1"/><rect x="25" y="16" width="1" height="1"/><rect x="11" y="17" width="1" height="1"/><rect x="14" y="17" width="1" height="1"/><rect x="17" y="17" width="1" height="1"/><rect x="20" y="17" width="1" height="1"/><rect x="23" y="17" width="1" height="1"/><rect x="26" y="17" width="1" height="1"/><rect x="10" y="18" width="1" height="1"/><rect x="13" y="18" width="1" height="1"/><rect x="16" y="18" width="1" height="1"/><rect x="21" y="18" width="1" height="1"/><rect x="24" y="18" width="1" height="1"/><rect x="27" y="18" width="1" height="1"/><rect x="10" y="20" width="1" height="1"/><rect x="12" y="20" width="1" height="1"/><rect x="15" y="20" width="1" height="1"/><rect x="19" y="20" width="1" height="1"/><rect x="22" y="20" width="1" height="1"/><rect x="26" y="20" width="1" height="1"/><rect x="11" y="21" width="1" height="1"/><rect x="14" y="21" width="1" height="1"/><rect x="18" y="21" width="1" height="1"/><rect x="21" y="21" width="1" height="1"/><rect x="24" y="21" width="1" height="1"/><rect x="27" y="21" width="1" height="1"/><rect x="10" y="22" width="1" height="1"/><rect x="13" y="22" width="1" height="1"/><rect x="17" y="22" width="1" height="1"/><rect x="20" y="22" width="1" height="1"/><rect x="23" y="22" width="1" height="1"/><rect x="25" y="22" width="1" height="1"/><rect x="12" y="23" width="1" height="1"/><rect x="15" y="23" width="1" height="1"/><rect x="19" y="23" width="1" height="1"/><rect x="22" y="23" width="1" height="1"/><rect x="26" y="23" width="1" height="1"/><rect x="10" y="24" width="1" height="1"/><rect x="14" y="24" width="1" height="1"/><rect x="16" y="24" width="1" height="1"/><rect x="21" y="24" width="1" height="1"/><rect x="24" y="24" width="1" height="1"/><rect x="27" y="24" width="1" height="1"/><rect x="11" y="25" width="1" height="1"/><rect x="13" y="25" width="1" height="1"/><rect x="18" y="25" width="1" height="1"/><rect x="20" y="25" width="1" height="1"/><rect x="23" y="25" width="1" height="1"/><rect x="25" y="25" width="1" height="1"/><rect x="10" y="26" width="1" height="1"/><rect x="15" y="26" width="1" height="1"/><rect x="17" y="26" width="1" height="1"/><rect x="22" y="26" width="1" height="1"/><rect x="26" y="26" width="1" height="1"/><rect x="12" y="27" width="1" height="1"/><rect x="14" y="27" width="1" height="1"/><rect x="19" y="27" width="1" height="1"/><rect x="21" y="27" width="1" height="1"/><rect x="24" y="27" width="1" height="1"/><rect x="27" y="27" width="1" height="1"/></g></svg>
+          <span>Scan from the printed card</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ========================================================== Profile -->
+    <section class="pview" id="v-profile" hidden>
+      <p class="pview__lead">Your details, who travels with you, and how you sign in.</p>
+
+      <div class="two">
+        <article class="card">
+          <h2 class="card__t">Your details</h2>
+          <div class="pf">
+            <div class="pf__f"><label for="pfFirst">First name</label><input id="pfFirst" value="Michael"></div>
+            <div class="pf__f"><label for="pfLast">Last name</label><input id="pfLast" value="Carter"></div>
+            <div class="pf__f"><label for="pfMail">Email</label><input type="email" id="pfMail" value="michael.carter@example.com"></div>
+            <div class="pf__f"><label for="pfPhone">Phone</label><input type="tel" id="pfPhone" value="+1 512 555 0148"></div>
+            <div class="pf__f pf__f--wide"><label for="pfWhere">Where you live</label><input id="pfWhere" value="Austin, Texas"></div>
+            <div class="pf__f pf__f--wide">
+              <label for="pfEm">Emergency contact</label>
+              <input id="pfEm" value="Karen Carter, +1 512 555 0163">
+              <small>Your concierge calls this person only if something urgent happens while you are in Brazil.</small>
+            </div>
+          </div>
+          <button class="btn btn--sm" type="button">Save details</button>
+        </article>
+
+        <div class="stack">
+          <article class="card">
+            <h2 class="card__t">Who travels with you</h2>
+            <p class="card__p">A companion is added to your transfers, your hotel room and the parts of the schedule they can join.</p>
+            <div class="pf" style="margin-top:.9rem">
+              <div class="pf__f pf__f--wide">
+                <label for="pfComp">Companion</label>
+                <select id="pfComp">
+                  <option>No one, I travel alone</option>
+                  <option>Yes, one companion</option>
+                  <option>Still deciding</option>
+                </select>
+              </div>
+            </div>
+            <p class="fine-note" style="margin-top:.8rem">Full family accounts, where a second person signs in with their own login, are not part of this release.</p>
+          </article>
+
+          <article class="card">
+            <h2 class="card__t">Signing in</h2>
+            <div class="pf" style="margin-top:.2rem">
+              <div class="pf__f pf__f--wide">
+                <label for="pfPass">Password</label>
+                <input id="pfPass" type="password" value="••••••••••" readonly>
+              </div>
+            </div>
+            <label class="check" style="margin-top:.9rem">
+              <input type="checkbox" id="pfMfa">
+              <span>Ask for a six digit code when I sign in</span>
+            </label>
+            <p class="fine-note" style="margin-top:.6rem">Optional for you, and required for everyone on the RefreshU team.</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+              <a class="btn btn--sm btn--ghost" href="../recover.html">Change password</a>
+              <button class="btn btn--sm btn--ghost" type="button">Sign out everywhere</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="card__t">What we email you</h2>
+            <label class="check"><input type="checkbox" checked><span>When something needs you</span></label>
+            <label class="check"><input type="checkbox" checked><span>When your schedule changes</span></label>
+            <label class="check"><input type="checkbox" checked><span>When a payment is coming up</span></label>
+            <label class="check"><input type="checkbox"><span>Ideas for your free days in Brazil</span></label>
+          </article>
+        </div>
       </div>
     </section>
 

@@ -74,5 +74,22 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
   }
 
+  /* ------------------------------------------------------ agenda (A.5.5) - */
+
+  // Duas visoes sobre a mesma linha do tempo, como o item pede: por dia, que e
+  // o padrao, e em lista corrida para quem quer ver a semana inteira de uma vez.
+  // Os eventos sao os mesmos; muda o arranjo, nao o conteudo.
+  var semana = document.querySelector('.week2');
+  document.querySelectorAll('[data-sched]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-sched]').forEach(function (x) {
+        x.setAttribute('aria-pressed', String(x === b));
+      });
+      if (!semana) return;
+      if (b.dataset.sched === 'list') { semana.setAttribute('data-view', 'list'); }
+      else { semana.removeAttribute('data-view'); }
+    });
+  });
+
   doHash();
 })();
