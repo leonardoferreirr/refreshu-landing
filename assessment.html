@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start My Assessment · RefreshU</title>
+<meta name="description" content="Tell us what you are considering and we will connect you with a participating physician in Brazil. Three steps, no medical questions.">
+<meta name="theme-color" content="#fbf9f5">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/assessment.css">
+</head>
+<body class="as-body">
+
+<div class="as">
+
+  <!-- ======================================================= TOPO ====== -->
+  <header class="as__top">
+    <div class="as__topIn">
+      <a class="brand" href="index.html" aria-label="RefreshU, home">
+        <img class="brand__mark" src="assets/img/refreshu-mark.svg" alt="" width="22" height="31">
+        <span class="brand__word">refresh<b>U</b></span>
+      </a>
+      <a class="as__exit" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Save and exit
+      </a>
+    </div>
+
+    <div class="as__rail" id="rail" aria-label="Progress">
+      <span class="as__step is-now" data-step="1"><i></i><b>Interest</b></span>
+      <span class="as__step" data-step="2"><i></i><b>Procedure</b></span>
+      <span class="as__step" data-step="3"><i></i><b>About you</b></span>
+      <span class="as__step" data-step="4"><i></i><b>Your physician</b></span>
+      <span class="as__step" data-step="5"><i></i><b>Done</b></span>
+    </div>
+  </header>
+
+  <!-- ====================================================== CORPO ====== -->
+  <main class="as__main">
+    <div class="as__wrap">
+
+      <!-- ------------------------------------------------ 1. interesse -- -->
+      <section class="as__panel" data-panel="1">
+        <div class="as__h">
+          <p class="as__k">Step 1 of 5</p>
+          <h1 class="as__t">What are you considering?</h1>
+          <p class="as__p">Pick the area you have in mind. Nothing here is a commitment, and you can change it later.</p>
+        </div>
+
+        <div class="picks" role="group" aria-label="Area of interest">
+          <button class="pick" type="button" role="button" aria-pressed="false" data-area="hair" data-label="Hair">
+            <span class="pick__c"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="pick__i"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c4.4 0 7 3.2 7 7.5 0 2.4-.6 4-1.4 5.4M12 3C7.6 3 5 6.2 5 10.5c0 2.4.6 4 1.4 5.4M12 3v18M8.5 6.2c1 2.4 1.3 5 .9 7.8M15.5 6.2c-1 2.4-1.3 5-.9 7.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="pick__n">Hair</span>
+            <span class="pick__d">Transplant, restoration and density.</span>
+          </button>
+
+          <button class="pick" type="button" role="button" aria-pressed="false" data-area="face" data-label="Face">
+            <span class="pick__c"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="pick__i"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5c4.1 0 6.8 2.8 6.8 7 0 5-3 10-6.8 10S5.2 15.5 5.2 10.5c0-4.2 2.7-7 6.8-7Z" stroke="currentColor" stroke-width="1.6"/><path d="M9.3 10.2h.01M14.7 10.2h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10 14.6c1.2.8 2.8.8 4 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="pick__n">Face</span>
+            <span class="pick__d">Facelift, eyelids, nose and profile.</span>
+          </button>
+
+          <button class="pick" type="button" role="button" aria-pressed="false" data-area="body" data-label="Body">
+            <span class="pick__c"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="pick__i"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="4.8" r="2.3" stroke="currentColor" stroke-width="1.6"/><path d="M8.6 9.2h6.8l1 5.2-2.2.6.6 5.6h-5.6l.6-5.6-2.2-.6 1-5.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <span class="pick__n">Body</span>
+            <span class="pick__d">Contouring, lifts and sculpting.</span>
+          </button>
+
+          <button class="pick" type="button" role="button" aria-pressed="false" data-area="dental" data-label="Dental">
+            <span class="pick__c"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="pick__i"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3.5c1.4 0 2.6.8 4 .8s2.6-.8 4-.8c2.2 0 3.5 1.8 3.5 4.4 0 3.4-1.4 5-2.2 8.2-.5 2-.8 4.4-2.3 4.4-1.4 0-1.4-2.6-3-2.6s-1.6 2.6-3 2.6c-1.5 0-1.8-2.4-2.3-4.4C5.9 12.9 4.5 11.3 4.5 7.9 4.5 5.3 5.8 3.5 8 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <span class="pick__n">Dental</span>
+            <span class="pick__d">Veneers, implants and whitening.</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------- 2. procedimento -- -->
+      <section class="as__panel" data-panel="2" hidden>
+        <div class="as__h">
+          <p class="as__k">Step 2 of 5</p>
+          <h1 class="as__t">Which procedure?</h1>
+          <p class="as__p">Choose the closest one. The physician confirms what is actually right for you, and it is common for that to change.</p>
+        </div>
+
+        <div class="procs" id="procs" role="group" aria-label="Procedure"></div>
+
+        <p class="f__hint" style="margin-top:16px">Savings are ranges against typical United States pricing, from published fee surveys. Your own figure comes after the physician sees you.</p>
+      </section>
+
+      <!-- -------------------------------------------------- 3. sobre voce -->
+      <section class="as__panel" data-panel="3" hidden>
+        <div class="as__h">
+          <p class="as__k">Step 3 of 5</p>
+          <h1 class="as__t">About you</h1>
+          <p class="as__p">Enough to reach you and to plan the trip. We ask nothing medical here.</p>
+        </div>
+
+        <form class="form2" id="aboutForm" novalidate>
+          <div class="f">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" autocomplete="given-name" required>
+            <span class="f__err" data-err-for="fname">Tell us your first name.</span>
+          </div>
+
+          <div class="f">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="lname" autocomplete="family-name" required>
+            <span class="f__err" data-err-for="lname">Tell us your last name.</span>
+          </div>
+
+          <div class="f">
+            <label for="mail">Email</label>
+            <input type="email" id="mail" name="mail" autocomplete="email" required>
+            <span class="f__err" data-err-for="mail">We need a valid email to reach you.</span>
+          </div>
+
+          <div class="f">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+1">
+            <span class="f__hint">Optional, but it makes the concierge call easier to arrange.</span>
+          </div>
+
+          <div class="f">
+            <label for="state">Where you live</label>
+            <select id="state" name="state" required>
+              <option value="">Select your state</option>
+              <option>Arizona</option><option>California</option><option>Colorado</option>
+              <option>Florida</option><option>Georgia</option><option>Illinois</option>
+              <option>Massachusetts</option><option>New York</option><option>Oregon</option>
+              <option>Texas</option><option>Washington</option><option>Another state</option>
+              <option>Outside the United States</option>
+            </select>
+            <span class="f__err" data-err-for="state">Select where you live.</span>
+          </div>
+
+          <div class="f">
+            <label for="window">When you could travel</label>
+            <select id="window" name="window" required>
+              <option value="">Select a window</option>
+              <option>Within 2 months</option>
+              <option>In 3 to 6 months</option>
+              <option>In 6 to 12 months</option>
+              <option>Still deciding</option>
+            </select>
+            <span class="f__err" data-err-for="window">Give us a rough window.</span>
+          </div>
+
+          <div class="f fw">
+            <label id="compLbl">Would someone travel with you?</label>
+            <div class="yn" role="group" aria-labelledby="compLbl">
+              <button type="button" data-comp="yes" aria-pressed="false">Yes, with a companion</button>
+              <button type="button" data-comp="no" aria-pressed="false">No, travelling alone</button>
+              <button type="button" data-comp="unsure" aria-pressed="false">Not sure yet</button>
+            </div>
+          </div>
+
+          <div class="f fw">
+            <label for="anything">Anything you want us to know</label>
+            <textarea id="anything" name="anything" placeholder="Dates that matter, questions about the trip, anything at all."></textarea>
+            <span class="f__hint">This reaches your concierge, not a physician. Please keep medical details for your consultation.</span>
+          </div>
+        </form>
+      </section>
+
+      <!-- ------------------------------------------------- 4. hand-off --- -->
+      <section class="as__panel" data-panel="4" hidden>
+        <div class="as__h">
+          <p class="as__k">Step 4 of 5</p>
+          <h1 class="as__t">Now your physician takes over</h1>
+          <p class="as__p">The medical part happens directly between you and the physician. It does not pass through RefreshU, and that is on purpose.</p>
+        </div>
+
+        <div class="hoff">
+          <div class="hoff__h">
+            <b>Two separate paths, from here on</b>
+            <p>We coordinate the trip. Your physician handles everything clinical, in their own system, under their own care.</p>
+          </div>
+
+          <div class="hoff__b">
+            <div class="split">
+              <div class="lane">
+                <span class="lane__k">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 21 4l-4 8 4 8-18-6.5v-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                  Goes to RefreshU
+                </span>
+                <ul>
+                  <li>Your name and contact details</li>
+                  <li>The area and procedure you selected</li>
+                  <li>Your destination and travel window</li>
+                  <li>Whether a companion travels with you</li>
+                </ul>
+              </div>
+
+              <div class="lane lane--med">
+                <span class="lane__k">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                  Goes straight to your physician
+                </span>
+                <ul>
+                  <li>The medical questionnaire</li>
+                  <li>Any photographs they ask for</li>
+                  <li>Laboratory results and exams</li>
+                  <li>Every clinical answer you give</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hoff__cta">
+              <b>Your screening link</b>
+              <p>Dr. Camila Rocha reviews hair cases in São Paulo. Open her screening form, complete it there, and come back when you are done. We never see what you send her.</p>
+
+              <div class="doclink">
+                <span class="doclink__av" id="docAv">CR</span>
+                <span class="doclink__t">
+                  <b id="docName">Dr. Camila Rocha</b>
+                  <span id="docMeta">Hair restoration · São Paulo · 14 years</span>
+                </span>
+                <a class="btn btn--sm" href="#screening" target="_blank" rel="noopener">Open the form</a>
+              </div>
+
+              <label class="check">
+                <input type="checkbox" id="handoffDone">
+                <span>I have completed the physician's form</span>
+              </label>
+              <p class="f__hint">You can mark this later. Your assessment is saved either way, and the physician confirms it on their side.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------- 5. concluido -- -->
+      <section class="as__panel" data-panel="5" hidden>
+        <div class="done">
+          <span class="done__i">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.4 4.4L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+
+          <div style="display:grid;gap:10px;justify-items:center">
+            <h1 class="done__t">Your assessment is with us</h1>
+            <p class="done__p">A concierge picks it up within one business day. Nothing here is a promise about your case: only the physician decides that.</p>
+          </div>
+
+          <div class="recap">
+            <p class="recap__h">What you sent RefreshU</p>
+            <dl>
+              <div><dt>Name</dt><dd id="rName">—</dd></div>
+              <div><dt>Email</dt><dd id="rMail">—</dd></div>
+              <div><dt>Area of interest</dt><dd id="rArea">—</dd></div>
+              <div><dt>Procedure</dt><dd id="rProc">—</dd></div>
+              <div><dt>Where you live</dt><dd id="rState">—</dd></div>
+              <div><dt>Travel window</dt><dd id="rWindow">—</dd></div>
+              <div><dt>Companion</dt><dd id="rComp">—</dd></div>
+              <div><dt>Physician form</dt><dd id="rHandoff">—</dd></div>
+            </dl>
+          </div>
+
+          <div class="next">
+            <div class="next__i">
+              <span class="next__n">1</span>
+              <span class="next__t"><b>A concierge reaches out</b><span>Within one business day, by email or phone if you left a number.</span></span>
+            </div>
+            <div class="next__i">
+              <span class="next__n">2</span>
+              <span class="next__t"><b>Your physician reviews your case</b><span>They tell us whether you are a candidate, and any operational instruction we need. We never see the reasoning.</span></span>
+            </div>
+            <div class="next__i">
+              <span class="next__n">3</span>
+              <span class="next__t"><b>You get your portal</b><span>Your journey, your trip, your schedule and your concierge, all in one place.</span></span>
+            </div>
+          </div>
+
+          <a class="btn" href="index.html">Back to refreshu.com</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===================================================== RODAPE ====== -->
+  <footer class="as__foot" id="foot">
+    <div class="as__footIn">
+      <button class="as__back" type="button" id="back" hidden>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
+      <span class="as__fwd">
+        <span class="saved" id="saved">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Saved
+        </span>
+        <button class="btn" type="button" id="next" disabled>Continue</button>
+      </span>
+    </div>
+  </footer>
+
+</div>
+
+<script src="assets/js/assessment.js"></script>
+</body>
+</html>

@@ -22,6 +22,32 @@ PAGINAS = ['index.html', 'signin.html', 'portal.html']
 # regra de copy do projeto: sem travessao, virgula ou dois pontos no lugar
 # ---------------------------------------------------------------------------
 D = {
+# --- clausula 12.6, fronteira clinica (correcao 2026-09)
+'Your questionnaire and photos go straight to the physician, in their own system. They never pass through RefreshU.': 'Seu questionário e suas fotos vão direto para o médico, no sistema dele. Nada disso passa pela RefreshU.',
+'>Send your travel insurance<': '>Envie seu seguro-viagem<',
+'It is the last document we need from you, and it is due today.': 'É o último documento que precisamos de você, e o prazo é hoje.',
+'>Take your results to the consultation<': '>Leve seus exames para a consulta<',
+'The laboratory sends them straight to Dr. Camila Rocha, so there is nothing to send us. We will mark the item complete as soon as she confirms she has them.': 'O laboratório envia direto para a Dra. Camila Rocha, então não há nada para nos mandar. Marcamos o item como concluído assim que ela confirmar que recebeu.',
+'>See where each item stands<': '>Ver como está cada item<',
+'your travel insurance document is due today. It is the last item we are waiting on from you.': 'seu documento de seguro-viagem vence hoje. É o último item que estamos esperando de você.',
+'<b>Medical questionnaire</b><span>Dr. Camila Rocha confirmed she received it</span>': '<b>Questionário médico</b><span>A Dra. Camila Rocha confirmou que recebeu</span>',
+'<b>Travel insurance documentation</b><span>Due today, upload it here</span>': '<b>Documentação do seguro-viagem</b><span>Vence hoje, envie por aqui</span>',
+'<b>Blood work required by your physician</b><span>Collection today at 10:00. The laboratory sends it to her directly</span>': '<b>Exames de sangue pedidos pela sua médica</b><span>Coleta hoje às 10:00. O laboratório envia direto para ela</span>',
+'Clinical items carry a status here and nothing more. Questionnaires, exams and photographs go straight between you and your physician, and this checklist only records when she confirms an item. Files you upload here are travel and administrative documents.': 'Os itens clínicos aqui carregam apenas um status. Questionários, exames e fotografias vão direto entre você e sua médica, e esta lista só registra quando ela confirma um item. Os arquivos que você envia aqui são documentos de viagem e administrativos.',
+'>Your travel and administrative documents, in one place.<': '>Seus documentos de viagem e administrativos, em um só lugar.<',
+'<th scope="row">Transport schedule</th>': '<th scope="row">Programação de transporte</th>',
+'<th scope="row">Your itinerary, printable</th>': '<th scope="row">Seu itinerário, para imprimir</th>',
+'<th scope="row">Consent forms</th>': '<th scope="row">Termos de consentimento</th>',
+'<th scope="row">Invoices and receipts</th>': '<th scope="row">Faturas e recibos</th>',
+'>Signature pending<': '>Assinatura pendente<',
+'>Upload pending<': '>Envio pendente<',
+'>Issued<': '>Emitido<',
+'Your medical records stay with your physician. The questionnaire, any photographs, laboratory results and clinical reports live in her own system, which is where you send them and where you ask for them. RefreshU neither stores nor displays them.': 'Seus registros médicos ficam com sua médica. O questionário, as fotografias, os resultados de exames e os laudos vivem no sistema dela, que é para onde você envia e onde você os pede. A RefreshU não guarda nem exibe esses documentos.',
+'>Public site<': '>Site público<',
+'>Operations<': '>Operação<',
+'>Sales<': '>Comercial<',
+'>Client portal<': '>Portal do cliente<',
+'Every name, date, clinic, hotel and document on these screens is sample data.': 'Todo nome, data, clínica, hotel e documento nestas telas é dado de exemplo.',
 # --- cabecalho e navegacao
 'RefreshU · Medical Concierge, Savings and a Trip Through Brazil': 'RefreshU · Concierge médico, economia e uma viagem pelo Brasil',
 'Exceptional aesthetic care in Brazil, meaningful savings, and a journey coordinated end to end by a single concierge. Hair and Face and Neck procedures with carefully selected physicians.': 'Cuidado estético excepcional no Brasil, economia relevante e uma jornada coordenada de ponta a ponta por um único concierge. Procedimentos de cabelo, rosto e pescoço com médicos criteriosamente selecionados.',
@@ -584,6 +610,13 @@ def traduzir(html, arquivo):
     # caminhos: /pt/ esta um nivel abaixo da raiz
     html = html.replace('href="assets/', 'href="../assets/').replace('src="assets/', 'src="../assets/')
     html = html.replace('srcset="assets/', 'srcset="../assets/')
+
+    # Paginas que existem so na raiz. A Plataforma e apenas em ingles pelo
+    # Anexo A.2, e um segundo idioma esta no Anexo D, fora do escopo. Entao
+    # o /pt/ aponta para a versao em ingles em vez de gerar um 404.
+    for so_raiz in ('assessment.html', 'console.html', 'sales.html',
+                    'signin-team.html', 'signin-sales.html'):
+        html = html.replace('href="%s"' % so_raiz, 'href="../%s"' % so_raiz)
 
     # idioma do documento e alternativas
     html = html.replace('<html lang="en">', '<html lang="pt-BR">')

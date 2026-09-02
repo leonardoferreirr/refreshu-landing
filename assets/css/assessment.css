@@ -1,0 +1,531 @@
+/* ==========================================================================
+   RefreshU · Start My Assessment
+
+   O fluxo do Anexo A.5.2. A secao 14 do briefing descrevia seis etapas, duas
+   delas clinicas. A Clausula 12.6 tirou essas duas da plataforma e colocou um
+   encaminhamento no lugar, entao aqui sao tres etapas mais o hand-off mais a
+   confirmacao.
+
+   Visualmente puxa para o lado do site publico, nao do console: quem esta aqui
+   ainda esta decidindo, e uma ferramenta densa assusta. Herda os tokens de
+   site.css.
+   ========================================================================== */
+
+:root {
+  --as-line: rgba(14, 40, 70, .14);
+  --as-line-2: rgba(14, 40, 70, .08);
+  --as-shadow: 0 1px 2px rgba(7, 27, 51, .05), 0 10px 34px rgba(7, 27, 51, .07);
+  --as-shadow-lg: 0 22px 60px rgba(7, 27, 51, .16);
+}
+
+.as-body { background: var(--paper-2); color: var(--on-paper); font-family: var(--sans); }
+
+.as {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* ---------------------------------------------------------------- topo -- */
+
+.as__top {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(251, 249, 245, .9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--as-line-2);
+}
+
+.as__topIn {
+  max-width: 940px;
+  margin-inline: auto;
+  padding: 14px clamp(18px, 4vw, 32px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* A marca de site.css nasce para a nav escura do site publico, entao a
+   palavra vem branca. Aqui o fundo e claro. */
+.as .brand__word { color: var(--ink); }
+.as .brand__mark { width: 22px; height: 31px; }
+
+.as__exit {
+  margin-left: auto;
+  font-size: .84rem;
+  color: var(--on-paper-dim);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.as__exit:hover { color: var(--navy); }
+.as__exit svg { width: 15px; height: 15px; }
+
+/* Trilha das etapas. Numero e rotulo ate 720px, so a barra abaixo disso. */
+.as__rail { display: flex; gap: 4px; max-width: 940px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 32px) 12px; }
+
+.as__step { flex: 1; min-width: 0; display: grid; gap: 6px; align-content: start; }
+.as__step i {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--as-line);
+  transition: background .4s var(--ease);
+}
+.as__step.is-done i { background: var(--teal); }
+.as__step.is-now i { background: var(--grad); }
+.as__step b {
+  display: block;
+  font-size: .68rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--on-paper-fine);
+  transition: color .3s var(--ease);
+}
+.as__step.is-now b { color: var(--navy); }
+.as__step.is-done b { color: var(--on-paper-dim); }
+
+/* --------------------------------------------------------------- corpo -- */
+
+.as__main { padding: clamp(28px, 5vw, 56px) clamp(18px, 4vw, 32px) 64px; }
+.as__wrap { max-width: 940px; margin-inline: auto; }
+
+.as__panel { animation: asin .38s var(--ease); }
+@keyframes asin {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.as__h { display: grid; gap: 10px; margin-bottom: clamp(24px, 4vw, 36px); max-width: 56ch; }
+.as__k {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.as__t {
+  font-family: var(--display);
+  font-size: clamp(1.85rem, 4vw, 2.7rem);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+.as__p { font-size: clamp(1rem, .4vw + .92rem, 1.08rem); color: var(--on-paper-dim); line-height: 1.62; }
+
+/* --------------------------------------------------------- escolha 1/2 -- */
+
+.picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); gap: 14px; }
+
+.pick {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 22px 20px;
+  background: var(--paper);
+  border: 1.5px solid var(--as-line);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--sans);
+  color: inherit;
+  box-shadow: var(--as-shadow);
+  transition: border-color .26s var(--ease), transform .26s var(--ease), box-shadow .26s var(--ease);
+}
+.pick:hover { transform: translateY(-2px); box-shadow: var(--as-shadow-lg); border-color: rgba(18, 48, 90, .34); }
+.pick:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+.pick[aria-pressed="true"] {
+  border-color: var(--teal);
+  box-shadow: var(--as-shadow-lg), inset 0 0 0 1px var(--teal);
+}
+
+.pick__i {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(37, 198, 224, .12);
+  color: #12628a;
+  transition: background .26s var(--ease), color .26s var(--ease);
+}
+.pick__i svg { width: 24px; height: 24px; }
+.pick[aria-pressed="true"] .pick__i { background: var(--grad); color: #06203a; }
+
+.pick__n { font-family: var(--display); font-size: 1.24rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; }
+.pick__d { font-size: .88rem; color: var(--on-paper-dim); line-height: 1.55; }
+
+.pick__c {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--as-line);
+  display: grid;
+  place-items: center;
+  transition: background .24s var(--ease), border-color .24s var(--ease);
+}
+.pick__c svg { width: 12px; height: 12px; color: #fff; opacity: 0; transition: opacity .24s var(--ease); }
+.pick[aria-pressed="true"] .pick__c { background: var(--teal); border-color: var(--teal); }
+.pick[aria-pressed="true"] .pick__c svg { opacity: 1; }
+
+/* Lista de procedimentos: mais densa que os cards de area. */
+.procs { display: grid; gap: 10px; }
+
+.proc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px;
+  background: var(--paper);
+  border: 1.5px solid var(--as-line);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--sans);
+  color: inherit;
+  transition: border-color .24s var(--ease), background .24s var(--ease), transform .24s var(--ease);
+}
+.proc:hover { border-color: rgba(18, 48, 90, .34); transform: translateX(2px); }
+.proc:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.proc[aria-pressed="true"] { border-color: var(--teal); background: rgba(18, 191, 162, .05); }
+
+.proc__t { min-width: 0; display: grid; gap: 2px; }
+.proc__n { display: block; font-size: 1.02rem; font-weight: 600; line-height: 1.3; }
+.proc__d { display: block; font-size: .86rem; color: var(--on-paper-dim); line-height: 1.5; }
+.proc__x { display: flex; align-items: center; gap: 10px; }
+
+.save {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(18, 191, 162, .14);
+  color: #0f7b5f;
+  font-size: .76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------ etapa 3 --- */
+
+.form2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.form2 .fw { grid-column: 1 / -1; }
+
+.f {
+  display: grid;
+  gap: 6px;
+}
+.f label {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--on-paper-fine);
+}
+.f input, .f select, .f textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--as-line);
+  border-radius: 10px;
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--on-paper);
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.f textarea { min-height: 96px; resize: vertical; line-height: 1.6; }
+.f select {
+  appearance: none;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5a6d' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 15px;
+  cursor: pointer;
+}
+.f input:focus, .f select:focus, .f textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(37, 198, 224, .16);
+}
+.f input[aria-invalid="true"], .f select[aria-invalid="true"] { border-color: #b03a48; }
+
+.f__err { font-size: .8rem; color: #a52f3c; display: none; }
+.f__err.is-on { display: block; }
+
+.f__hint { font-size: .8rem; color: var(--on-paper-fine); line-height: 1.5; }
+
+/* Sim ou nao, para o acompanhante. */
+.yn { display: flex; gap: 8px; }
+.yn button {
+  flex: 1;
+  min-height: 52px;
+  padding: 0 18px;
+  border: 1.5px solid var(--as-line);
+  border-radius: 10px;
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: .96rem;
+  font-weight: 600;
+  color: var(--on-paper-dim);
+  cursor: pointer;
+  transition: border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+}
+.yn button:hover { border-color: rgba(18, 48, 90, .34); }
+.yn button[aria-pressed="true"] { border-color: var(--teal); background: rgba(18, 191, 162, .07); color: var(--navy); }
+
+/* -------------------------------------------------------- hand-off ----- */
+
+/* A tela que carrega a decisao do projeto. Precisa ser inequivoca: o que vai
+   para o RefreshU, o que vai direto para o medico, e que nada clinico passa
+   por aqui. */
+.hoff {
+  background: var(--paper);
+  border: 1.5px solid var(--as-line);
+  border-radius: 16px;
+  box-shadow: var(--as-shadow);
+  overflow: hidden;
+}
+
+.hoff__h {
+  padding: 22px clamp(20px, 3vw, 28px);
+  background: var(--deep);
+  color: var(--on-deep);
+  display: grid;
+  gap: 7px;
+}
+.hoff__h b { font-family: var(--display); font-size: 1.32rem; font-weight: 600; letter-spacing: -.01em; }
+.hoff__h p { font-size: .92rem; color: var(--on-deep-dim); line-height: 1.6; max-width: 62ch; }
+
+.hoff__b { padding: clamp(20px, 3vw, 28px); display: grid; gap: 20px; }
+
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+
+.lane {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid var(--as-line-2);
+  background: var(--paper-2);
+}
+.lane--med { background: rgba(194, 65, 91, .05); border-color: rgba(194, 65, 91, .2); }
+
+.lane__k {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--on-paper-fine);
+}
+.lane--med .lane__k { color: #a52f3c; }
+.lane__k svg { width: 15px; height: 15px; }
+
+.lane ul { list-style: none; display: grid; gap: 7px; }
+.lane li { display: flex; gap: 9px; font-size: .9rem; color: var(--on-paper-dim); line-height: 1.5; }
+.lane li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  margin-top: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .55;
+}
+
+.hoff__cta {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(37, 198, 224, .34);
+  background: rgba(37, 198, 224, .06);
+}
+.hoff__cta b { font-size: 1.02rem; font-weight: 600; }
+.hoff__cta p { font-size: .9rem; color: var(--on-paper-dim); line-height: 1.6; }
+
+.doclink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--paper);
+  border: 1px solid var(--as-line);
+}
+.doclink__av {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #dbe6f2, #eef3f8);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-size: .96rem;
+  font-weight: 600;
+}
+.doclink__t { flex: 1; min-width: 0; line-height: 1.35; }
+.doclink__t b { display: block; font-size: .96rem; font-weight: 600; }
+.doclink__t span { display: block; font-size: .82rem; color: var(--on-paper-dim); }
+
+/* ---------------------------------------------------------- confirmar -- */
+
+.done { display: grid; gap: 22px; justify-items: center; text-align: center; padding: clamp(16px, 3vw, 28px) 0; }
+
+.done__i {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #06203a;
+  display: grid;
+  place-items: center;
+  animation: pop .5s var(--ease) backwards .1s;
+}
+.done__i svg { width: 32px; height: 32px; }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(.7); }
+  to { opacity: 1; transform: none; }
+}
+
+.done__t { font-family: var(--display); font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.15; }
+.done__p { font-size: 1rem; color: var(--on-paper-dim); line-height: 1.62; max-width: 52ch; }
+
+.recap {
+  width: 100%;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--as-line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.recap__h { padding: 14px 18px; border-bottom: 1px solid var(--as-line-2); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--on-paper-fine); }
+.recap dl { display: grid; }
+.recap dl > div {
+  display: grid;
+  grid-template-columns: 158px minmax(0, 1fr);
+  gap: 14px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--as-line-2);
+  font-size: .94rem;
+}
+.recap dl > div:last-child { border-bottom: 0; }
+.recap dt { color: var(--on-paper-dim); }
+.recap dd { font-weight: 500; }
+
+.next { display: grid; gap: 10px; width: 100%; text-align: left; }
+.next__i {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 13px;
+  align-items: start;
+  padding: 14px 16px;
+  background: var(--paper);
+  border: 1px solid var(--as-line-2);
+  border-radius: 11px;
+}
+.next__n {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  font-weight: 700;
+}
+.next__t b { display: block; font-size: .95rem; font-weight: 600; line-height: 1.35; }
+.next__t span { display: block; font-size: .86rem; color: var(--on-paper-dim); line-height: 1.55; margin-top: 2px; }
+
+/* ------------------------------------------------------------- rodape -- */
+
+.as__foot {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  background: rgba(251, 249, 245, .93);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--as-line-2);
+}
+.as__footIn {
+  max-width: 940px;
+  margin-inline: auto;
+  padding: 14px clamp(18px, 4vw, 32px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.as__back {
+  background: none;
+  border: 0;
+  font-family: var(--sans);
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--on-paper-dim);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 2px;
+}
+.as__back:hover { color: var(--navy); }
+.as__back svg { width: 16px; height: 16px; }
+.as__back[hidden] { display: none; }
+
+.as__fwd { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+
+/* Aviso de rascunho salvo. Some sozinho. */
+.saved {
+  font-size: .82rem;
+  color: var(--on-paper-fine);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity .3s var(--ease);
+}
+.saved.is-on { opacity: 1; }
+.saved svg { width: 14px; height: 14px; color: var(--teal); }
+
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+
+/* ========================================================== RESPONSIVO == */
+
+@media (max-width: 860px) {
+  .split { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .as__step b { display: none; }
+  .form2 { grid-template-columns: minmax(0, 1fr); }
+  .recap dl > div { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+  .as__footIn { padding-inline: 18px; }
+  .as__fwd .btn { flex: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}

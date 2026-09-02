@@ -18,7 +18,12 @@
      nome, data, clinica, hotel e documento aqui dentro e exemplo. -->
 <div class="demo" role="note">
   <span class="demo__dot" aria-hidden="true"></span>
-  <p><b>Demonstração.</b> Todo nome, data, clínica, hotel e documento destas telas é dado de exemplo, criado para mostrar como a plataforma funciona.</p>
+  <p><b>Demonstration.</b> Todo nome, data, clínica, hotel e documento nestas telas é dado de exemplo.</p>
+  <nav class="demo__go" aria-label="Platforms">
+    <a href="index.html">Site público</a>
+    <a href="../console.html">Operação</a>
+    <a href="portal.html" aria-current="page">Portal do cliente</a>
+  </nav>
 </div>
 
 <div class="portal">
@@ -128,8 +133,8 @@
         </article>
         <article class="q q--act">
           <h2>O que você precisa fazer</h2>
-          <p class="q__big">Enviar os resultados dos exames</p>
-          <p>A Dra. Camila Rocha pediu os resultados antes da consulta de amanhã.</p>
+          <p class="q__big">Envie seu seguro-viagem</p>
+          <p>É o último documento que precisamos de você, e o prazo é hoje.</p>
           <a class="link-arrow" href="#requirements" data-view="requirements">Ir para minhas pendências</a>
         </article>
         <article class="q">
@@ -156,9 +161,9 @@
         <div class="stack">
           <article class="card card--act">
             <h2 class="card__t">Próxima ação médica</h2>
-            <p class="card__big">Enviar os resultados laboratoriais</p>
-            <p class="card__p">Suba os resultados assim que o laboratório liberar. Seu médico analisa antes da consulta.</p>
-            <a class="btn btn--sm" href="#documents" data-view="documents">Enviar resultados</a>
+            <p class="card__big">Leve seus exames para a consulta</p>
+            <p class="card__p">O laboratório envia direto para a Dra. Camila Rocha, então não há nada para nos mandar. Marcamos o item como concluído assim que ela confirmar que recebeu.</p>
+            <a class="link-arrow" href="#requirements" data-view="requirements">Ver como está cada item</a>
           </article>
 
           <article class="card">
@@ -303,24 +308,26 @@
     <!-- ================================================== My Requirements -->
     <section class="pview" id="v-requirements" hidden>
       <div class="alert">
-        <b>Ação necessária:</b> seu médico precisa dos resultados laboratoriais antes da consulta de quarta, 11 de março.
+        <b>Action needed:</b> seu documento de seguro-viagem vence hoje. É o último item que estamos esperando de você.
       </div>
 
       <p class="pview__lead">A RefreshU cuida da logística. Seu médico e a clínica controlam todas as exigências clínicas desta lista.</p>
 
       <ul class="chk">
-        <li class="is-done"><b>Questionário médico</b><span>Enviado e analisado</span></li>
+        <li class="is-done"><b>Questionário médico</b><span>A Dra. Camila Rocha confirmou que recebeu</span></li>
         <li class="is-done"><b>Itinerário de voo</b><span>Confirmado nos dois trechos</span></li>
-        <li class="is-done"><b>Documentação de seguro-viagem</b><span>Recebida</span></li>
         <li class="is-done"><b>Hotel</b><span>Confirmado, 9 a 16 de março</span></li>
         <li class="is-done"><b>Transporte</b><span>Motorista particular para todo compromisso</span></li>
-        <li class="is-todo"><b>Exames de sangue exigidos pelo seu médico</b><span>Coleta hoje às 10h, resultados pendentes</span></li>
+        <li class="is-todo"><b>Documentação do seguro-viagem</b><span>Vence hoje, envie por aqui</span></li>
+        <li class="is-todo"><b>Exames de sangue pedidos pela sua médica</b><span>Coleta hoje às 10:00. O laboratório envia direto para ela</span></li>
         <li class="is-todo"><b>Pagamentos</b><span>Um item a vencer antes do procedimento</span></li>
         <li class="is-wait"><b>Exames cardíacos</b><span>Não exigidos no seu caso</span></li>
         <li class="is-wait"><b>Consulta médica</b><span>Quarta, 11 de março, 14h</span></li>
         <li class="is-wait"><b>Orientações do médico</b><span>Liberadas depois da consulta</span></li>
         <li class="is-wait"><b>Documentos médicos</b><span>Emitidos pela clínica depois do procedimento</span></li>
       </ul>
+
+      <p class="fine-note">Os itens clínicos aqui carregam apenas um status. Questionários, exames e fotografias vão direto entre você e sua médica, e esta lista só registra quando ela confirma um item. Os arquivos que você envia aqui são documentos de viagem e administrativos.</p>
     </section>
 
     <!-- ===================================================== My Concierge -->
@@ -371,22 +378,24 @@
 
     <!-- ======================================================== Documents -->
     <section class="pview" id="v-documents" hidden>
-      <p class="pview__lead">Tudo o que você enviou e tudo o que foi emitido para você, em um lugar só.</p>
+      <p class="pview__lead">Seus documentos de viagem e administrativos, em um só lugar.</p>
 
       <table class="tbl">
         <caption class="sr">Seus documentos</caption>
         <thead><tr><th scope="col">Documento</th><th scope="col">Adicionado</th><th scope="col">Situação</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Questionário médico</th><td>12 de fevereiro</td><td><span class="tag tag--ok">Analisado</span></td></tr>
-          <tr><th scope="row">Fotos para avaliação</th><td>12 de fevereiro</td><td><span class="tag tag--ok">Analisado</span></td></tr>
           <tr><th scope="row">Itinerário de voo</th><td>24 de fevereiro</td><td><span class="tag tag--ok">Confirmado</span></td></tr>
-          <tr><th scope="row">Seguro-viagem</th><td>27 de fevereiro</td><td><span class="tag tag--ok">Recebido</span></td></tr>
           <tr><th scope="row">Confirmação do hotel</th><td>1 de março</td><td><span class="tag tag--ok">Confirmado</span></td></tr>
-          <tr><th scope="row">Resultados laboratoriais</th><td>Aguardando</td><td><span class="tag tag--wait">Envio pendente</span></td></tr>
+          <tr><th scope="row">Programação de transporte</th><td>1 de março</td><td><span class="tag tag--ok">Confirmado</span></td></tr>
+          <tr><th scope="row">Seu itinerário, para imprimir</th><td>March 5</td><td><span class="tag tag--ok">Emitido</span></td></tr>
+          <tr><th scope="row">Termos de consentimento</th><td>March 5</td><td><span class="tag tag--wait">Assinatura pendente</span></td></tr>
+          <tr><th scope="row">Seguro-viagem</th><td>Aguardando</td><td><span class="tag tag--wait">Envio pendente</span></td></tr>
+          <tr><th scope="row">Faturas e recibos</th><td>March 5</td><td><span class="tag tag--ok">Emitido</span></td></tr>
           <tr><th scope="row">Orientações do médico</th><td>Aguardando</td><td><span class="tag tag--soon">Depois da consulta</span></td></tr>
-          <tr><th scope="row">Relatório médico</th><td>Aguardando</td><td><span class="tag tag--soon">Depois do procedimento</span></td></tr>
         </tbody>
       </table>
+
+      <p class="fine-note">Seus registros médicos ficam com sua médica. O questionário, as fotografias, os resultados de exames e os laudos vivem no sistema dela, que é para onde você envia e onde você os pede. A RefreshU não guarda nem exibe esses documentos.</p>
     </section>
 
     <!-- ========================================================= Payments -->
