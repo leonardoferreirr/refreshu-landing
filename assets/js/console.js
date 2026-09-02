@@ -80,25 +80,68 @@
 
   /* ------------------------------------------------------------ gaveta --- */
 
-  function openDrawer() {
+  // Um drawer com varios paineis. Quem abre diz qual painel quer; o painel
+  // traz o proprio titulo. Os que nao estao em uso saem do DOM visivel, para
+  // que o foco nunca caia num campo de painel escondido.
+  var dTitle = document.getElementById('drawerTitle');
+  var lastFocus = null;
+
+  function openDrawer(name) {
     if (!drawer) return;
+
+    var panels = drawer.querySelectorAll('.dpanel');
+    var target = drawer.querySelector('.dpanel[data-panel="' + name + '"]') || panels[0];
+    if (!target) return;
+
+    panels.forEach(function (p) { p.hidden = p !== target; });
+    if (dTitle && target.dataset.title) dTitle.textContent = target.dataset.title;
+
+    lastFocus = document.activeElement;
     drawer.hidden = false;
     requestAnimationFrame(function () { drawer.setAttribute('data-open', ''); });
     document.body.style.overflow = 'hidden';
-    var first = drawer.querySelector('select, input, textarea, button');
+
+    var first = target.querySelector('input:not([readonly]):not([disabled]), select, textarea, button');
     if (first) first.focus();
   }
 
   function closeDrawer() {
-    if (!drawer) return;
+    if (!drawer || drawer.hidden) return;
     drawer.removeAttribute('data-open');
     document.body.style.overflow = '';
     setTimeout(function () { drawer.hidden = true; }, 300);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    lastFocus = null;
   }
 
   document.addEventListener('click', function (e) {
-    if (e.target.closest('[data-drawer]')) { e.preventDefault(); openDrawer(); return; }
+    var open = e.target.closest('[data-drawer]');
+    if (open) { e.preventDefault(); openDrawer(open.dataset.drawer); return; }
     if (e.target.closest('[data-close]')) { e.preventDefault(); closeDrawer(); }
+  });
+
+  // Prende o foco dentro do drawer enquanto ele estiver aberto.
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || !drawer || drawer.hidden) return;
+    var can = drawer.querySelectorAll('.dpanel:not([hidden]) input:not([disabled]), .dpanel:not([hidden]) select, .dpanel:not([hidden]) textarea, .dpanel:not([hidden]) button, .drawer__h button');
+    if (!can.length) return;
+    var first = can[0], last = can[can.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ----------------------------------------------- visibilidade (A.3.8) -- */
+
+  // Alterna direto na linha, sem abrir nada: o controle documento a documento
+  // que o item pede so serve se for de um clique.
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('.vis');
+    if (!t) return;
+    var on = t.getAttribute('aria-pressed') === 'true';
+    t.setAttribute('aria-pressed', String(!on));
+    t.classList.toggle('vis--on', !on);
+    var lbl = t.getAttribute('aria-label') || '';
+    if (/client/i.test(lbl)) t.setAttribute('aria-label', on ? 'Hidden from the client' : 'Visible to the client');
   });
 
   document.addEventListener('keydown', function (e) {

@@ -63,6 +63,9 @@
       <a href="#payments" data-view="payments" data-sub="Where each item of your journey stands">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.6"/></svg>
         <span class="pnav__lbl">Payments</span></a>
+      <a href="#profile" data-view="profile" data-sub="Your details, your companion and how you sign in">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.6"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="pnav__lbl">My Profile</span></a>
       <a href="#support" data-view="support" data-sub="Who to talk to, and about what">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></svg>
         <span class="pnav__lbl">Support</span></a>
@@ -437,6 +440,75 @@
           <h2 class="card__t">Account and payments</h2>
           <p class="card__p">Billing, documents and access to this portal.</p>
         </article>
+      </div>
+    </section>
+
+    <!-- ========================================================== Profile -->
+    <section class="pview" id="v-profile" hidden>
+      <p class="pview__lead">Your details, who travels with you, and how you sign in.</p>
+
+      <div class="two">
+        <article class="card">
+          <h2 class="card__t">Your details</h2>
+          <div class="pf">
+            <div class="pf__f"><label for="pfFirst">First name</label><input id="pfFirst" value="Michael"></div>
+            <div class="pf__f"><label for="pfLast">Last name</label><input id="pfLast" value="Carter"></div>
+            <div class="pf__f"><label for="pfMail">Email</label><input type="email" id="pfMail" value="michael.carter@example.com"></div>
+            <div class="pf__f"><label for="pfPhone">Phone</label><input type="tel" id="pfPhone" value="+1 512 555 0148"></div>
+            <div class="pf__f pf__f--wide"><label for="pfWhere">Where you live</label><input id="pfWhere" value="Austin, Texas"></div>
+            <div class="pf__f pf__f--wide">
+              <label for="pfEm">Emergency contact</label>
+              <input id="pfEm" value="Karen Carter, +1 512 555 0163">
+              <small>Your concierge calls this person only if something urgent happens while you are in Brazil.</small>
+            </div>
+          </div>
+          <button class="btn btn--sm" type="button">Save details</button>
+        </article>
+
+        <div class="stack">
+          <article class="card">
+            <h2 class="card__t">Who travels with you</h2>
+            <p class="card__p">A companion is added to your transfers, your hotel room and the parts of the schedule they can join.</p>
+            <div class="pf" style="margin-top:.9rem">
+              <div class="pf__f pf__f--wide">
+                <label for="pfComp">Companion</label>
+                <select id="pfComp">
+                  <option>No one, I travel alone</option>
+                  <option>Yes, one companion</option>
+                  <option>Still deciding</option>
+                </select>
+              </div>
+            </div>
+            <p class="fine-note" style="margin-top:.8rem">Full family accounts, where a second person signs in with their own login, are not part of this release.</p>
+          </article>
+
+          <article class="card">
+            <h2 class="card__t">Signing in</h2>
+            <div class="pf" style="margin-top:.2rem">
+              <div class="pf__f pf__f--wide">
+                <label for="pfPass">Password</label>
+                <input id="pfPass" type="password" value="••••••••••" readonly>
+              </div>
+            </div>
+            <label class="check" style="margin-top:.9rem">
+              <input type="checkbox" id="pfMfa">
+              <span>Ask for a six digit code when I sign in</span>
+            </label>
+            <p class="fine-note" style="margin-top:.6rem">Optional for you, and required for everyone on the RefreshU team.</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem">
+              <a class="btn btn--sm btn--ghost" href="recover.html">Change password</a>
+              <button class="btn btn--sm btn--ghost" type="button">Sign out everywhere</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="card__t">What we email you</h2>
+            <label class="check"><input type="checkbox" checked><span>When something needs you</span></label>
+            <label class="check"><input type="checkbox" checked><span>When your schedule changes</span></label>
+            <label class="check"><input type="checkbox" checked><span>When a payment is coming up</span></label>
+            <label class="check"><input type="checkbox"><span>Ideas for your free days in Brazil</span></label>
+          </article>
+        </div>
       </div>
     </section>
 

@@ -963,6 +963,53 @@
 .consent .yes { color: var(--ok); }
 .consent .no { color: var(--risk); }
 
+/* Visibilidade do documento para o cliente. O A.3.8 pede controle documento a
+   documento, entao o estado tem que ser alteravel na propria linha, sem abrir
+   nada, e legivel sem ler o rotulo. */
+.vis {
+  width: 38px;
+  height: 22px;
+  padding: 2px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--c-line);
+  cursor: pointer;
+  display: block;
+  transition: background .24s var(--ease);
+}
+.vis span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--c-surface);
+  box-shadow: 0 1px 3px rgba(7, 27, 51, .28);
+  transition: transform .24s var(--ease);
+}
+.vis--on { background: var(--teal); }
+.vis--on span { transform: translateX(16px); }
+.vis:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+/* Area de arrastar arquivo. Nao recebe upload de verdade nesta fase, entao
+   nao finge: o rotulo diz escolher, e o clique abre o seletor do sistema. */
+.drop {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  text-align: center;
+  padding: 26px 20px;
+  border: 1.5px dashed var(--c-line);
+  border-radius: var(--c-radius);
+  background: var(--c-surface-2);
+  cursor: pointer;
+  transition: border-color .22s var(--ease), background .22s var(--ease);
+}
+.drop:hover { border-color: var(--cyan); background: rgba(37, 198, 224, .05); }
+.drop svg { width: 26px; height: 26px; color: var(--on-paper-fine); }
+.drop b { font-size: 13.5px; font-weight: 600; }
+.drop span { font-size: 12px; color: var(--on-paper-dim); }
+.drop input { display: none; }
+
 /* --------------------------------------------------------------- drawer -- */
 
 .drawer {
@@ -996,7 +1043,62 @@
   border-bottom: 1px solid var(--c-line);
 }
 .drawer__h h2 { font-family: var(--display); font-size: 17px; font-weight: 600; flex: 1; letter-spacing: -.01em; }
-.drawer__b { padding: 16px 18px 34px; overflow-y: auto; display: grid; gap: 14px; }
+.drawer__b { padding: 16px 18px 34px; overflow-y: auto; display: grid; gap: 14px; align-content: start; }
+
+/* Um drawer, varios paineis. O botao que abre diz qual, e so ele fica no DOM
+   visivel, para que o foco nunca caia num campo de painel escondido. */
+.dpanel { display: grid; gap: 14px; align-content: start; }
+.dpanel[hidden] { display: none; }
+
+/* Campos do drawer. Existem para o HTML das telas de acao nao carregar
+   trinta atributos style repetidos. */
+.fld2 { display: grid; gap: 5px; }
+.fld2 > label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--on-paper-fine);
+}
+.fld2 input,
+.fld2 select,
+.fld2 textarea {
+  width: 100%;
+  min-height: 38px;
+  padding: 9px 12px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--c-radius-sm);
+  background: var(--c-surface);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--on-paper);
+}
+.fld2 textarea { min-height: 84px; resize: vertical; }
+.fld2 select {
+  appearance: none;
+  padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5a6d' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 13px;
+  cursor: pointer;
+}
+.fld2 input:focus,
+.fld2 select:focus,
+.fld2 textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(37, 198, 224, .16);
+}
+.fld2 small { font-size: 11.5px; color: var(--on-paper-fine); line-height: 1.5; }
+
+.fld2--req > label::after { content: ' *'; color: var(--risk); }
+
+.drow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 520px) { .drow { grid-template-columns: minmax(0, 1fr); } }
+
+.dact { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 2px; }
 
 /* ------------------------------------------------------------- auditoria - */
 
