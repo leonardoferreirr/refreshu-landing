@@ -1,0 +1,124 @@
+/* ==========================================================================
+   RefreshU · portas de entrada das aplicacoes internas
+
+   Herda todo o layout de .auth de site.css. Aqui entram so as diferencas: o
+   painel da esquerda sem fotografia, o rotulo da aplicacao e a segunda etapa
+   de autenticacao.
+
+   O painel do cliente usa uma fotografia porque vende o que ha atras da porta.
+   Estas duas nao vendem nada: quem chega aqui ja trabalha aqui, entao o painel
+   e a marca, o nome da aplicacao e a lista do que a pessoa alcanca.
+   ========================================================================== */
+
+.auth__side--team,
+.auth__side--sales {
+  background: var(--deep);
+  background-image:
+    radial-gradient(120% 90% at 12% 0%, rgba(37, 198, 224, .16), transparent 62%),
+    radial-gradient(100% 80% at 92% 100%, rgba(18, 191, 162, .14), transparent 58%);
+}
+
+/* Um fio de gradiente separa o painel do formulario e amarra as duas
+   aplicacoes a mesma marca. */
+.auth__side--team::after,
+.auth__side--sales::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 2px;
+  background: var(--grad);
+  opacity: .55;
+}
+
+.authk {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: .7rem;
+}
+
+.auth__x { color: var(--cyan); text-decoration: none; border-bottom: 1px solid rgba(37, 198, 224, .4); }
+.auth__x:hover { border-bottom-color: var(--cyan); }
+
+.auth__note {
+  margin-top: 1.4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  font-size: .8rem;
+  line-height: 1.55;
+  color: var(--on-paper-fine);
+}
+
+/* ------------------------------------------------------- segunda etapa --- */
+
+/* display:grid vence o atributo hidden, entao a segunda etapa precisa
+   desligar explicitamente enquanto a primeira nao passou. */
+.mfa[hidden] { display: none; }
+
+.mfa {
+  display: grid;
+  gap: .8rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(37, 198, 224, .05);
+  animation: mfain .32s var(--ease);
+}
+
+@keyframes mfain {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.mfa__h { display: flex; align-items: center; gap: .7rem; }
+
+.mfa__i {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: rgba(37, 198, 224, .16);
+  color: #12628a;
+}
+.mfa__i svg { width: 18px; height: 18px; }
+
+.mfa__h b { display: block; font-size: .9rem; font-weight: 600; line-height: 1.3; }
+.mfa__h i { display: block; font-style: normal; font-size: .78rem; color: var(--on-paper-dim); }
+
+.mfa__in { display: grid; grid-template-columns: repeat(6, 1fr); gap: .5rem; }
+
+.mfa__in input {
+  width: 100%;
+  height: 52px;
+  padding: 0;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--on-paper);
+  font-variant-numeric: tabular-nums;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.mfa__in input:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(37, 198, 224, .18);
+}
+/* Campo sem placeholder faz :placeholder-shown ser sempre falso, entao o
+   preenchido e marcado pelo JS, nao por pseudo-classe. */
+.mfa__in input[data-filled] { border-color: var(--teal); }
+
+.mfa__aux { font-size: .78rem; color: var(--on-paper-dim); }
+.mfa__aux a { color: var(--navy); }
+
+@media (max-width: 420px) {
+  .mfa__in { gap: .35rem; }
+  .mfa__in input { height: 46px; font-size: 1.05rem; }
+}

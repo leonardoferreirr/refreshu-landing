@@ -23,6 +23,7 @@
   <nav class="demo__go" aria-label="Platforms">
     <a href="index.html">Public site</a>
     <a href="console.html" aria-current="page">Operations</a>
+    <a href="sales.html">Sales</a>
     <a href="portal.html">Client portal</a>
   </nav>
 </div>
@@ -37,125 +38,94 @@
         <img src="assets/img/refreshu-mark.svg" alt="" width="20" height="28">
         <span>refresh<b>U</b></span>
       </a>
-      <span class="cside__env">Staging</span>
+      <span class="cside__app">Operations</span>
     </div>
 
     <nav class="cnav" aria-label="Console">
 
       <p class="cnav__grp">Operation</p>
 
-      <a href="#overview" data-view="overview" data-sub="Where every journey stands right now" class="is-on" data-lock-sales>
+      <a href="#overview" data-view="overview" data-sub="Where every journey stands right now" class="is-on">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19h16M6 19v-7m5 7V6m5 13v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span class="cnav__lbl">Overview</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <a href="#clients" data-view="clients" data-sub="42 records, 11 active journeys" data-sub-sales="12 assigned to you, 6 in the unassigned pool">
+      <a href="#clients" data-view="clients" data-sub="42 records, 11 active journeys">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M3 19a6 6 0 0 1 12 0M16.5 5.6a3.4 3.4 0 0 1 0 6.6M18 19a5.6 5.6 0 0 0-2.2-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span class="cnav__lbl">Clients</span>
-        <span class="cnav__n" data-n-sales="12">42</span>
+        <span class="cnav__n">42</span>
       </a>
 
-      <a href="#referrals" data-view="referrals" data-sub="Hand-off to the physician, and what comes back" data-lock-sales>
+      <a href="#referrals" data-view="referrals" data-sub="Hand-off to the physician, and what comes back">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h11m0 0-4-4m4 4-4 4M20 4v16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="cnav__lbl">Referrals</span>
         <span class="cnav__n cnav__n--risk">3</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <a href="#journeys" data-view="journeys" data-sub="Eleven stages, and who is stuck where" data-lock-sales>
+      <a href="#journeys" data-view="journeys" data-sub="Eleven stages, and who is stuck where">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="19" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/></svg>
         <span class="cnav__lbl">Journeys</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <a href="#itinerary" data-view="itinerary" data-sub="One timeline: patient, travel, physician and concierge" data-lock-sales>
+      <a href="#itinerary" data-view="itinerary" data-sub="One timeline: patient, travel, physician and concierge">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 10h17M8 3v4m8-4v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span class="cnav__lbl">Itinerary</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <a href="#requirements" data-view="requirements" data-sub="Pre-operative checklist across every record" data-lock-sales>
+      <a href="#requirements" data-view="requirements" data-sub="Pre-operative checklist across every record">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m8.6 11.6 2.2 2.2 4.6-4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="cnav__lbl">Requirements</span>
         <span class="cnav__n cnav__n--risk">4</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <a href="#concierge" data-view="concierge" data-sub="Every open request, oldest first" data-lock-sales>
+      <a href="#concierge" data-view="concierge" data-sub="Every open request, oldest first">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 18v-5a7.5 7.5 0 0 1 15 0v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="2.5" y="13.5" width="4" height="6.5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="17.5" y="13.5" width="4" height="6.5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
         <span class="cnav__lbl">Concierge desk</span>
         <span class="cnav__n">7</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <p class="cnav__grp">Commercial</p>
 
-      <a href="#pipeline" data-view="pipeline" data-sub="Prospects by stage, and what is waiting on you">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-        <span class="cnav__lbl">Pipeline</span>
-        <span class="cnav__n">18</span>
-      </a>
-
-      <a href="#tasks" data-view="tasks" data-sub="Follow-ups with a due date">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-        <span class="cnav__lbl">My follow-ups</span>
-        <span class="cnav__n cnav__n--risk">2</span>
-      </a>
-
-      <a href="#payments" data-view="payments" data-sub="Amounts due, paid and outstanding" data-lock-sales>
+      <a href="#payments" data-view="payments" data-sub="Amounts due, paid and outstanding">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"/></svg>
         <span class="cnav__lbl">Payments</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
       <p class="cnav__grp">Catalogue</p>
 
-      <a href="#physicians" data-view="physicians" data-sub="Profiles, consent and what may be published" data-lock-sales>
+      <a href="#physicians" data-view="physicians" data-sub="Profiles, consent and what may be published">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.7"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span class="cnav__lbl">Physicians</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <a href="#content" data-view="content" data-sub="Procedures, destinations, packages and savings ranges" data-lock-sales>
+      <a href="#content" data-view="content" data-sub="Procedures, destinations, packages and savings ranges">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 9h8M8 13h8M8 17h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span class="cnav__lbl">Content</span>
         <span class="cnav__n cnav__n--risk">2</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
       <p class="cnav__grp">Administration</p>
 
-      <a href="#team" data-view="team" data-sub="Four roles, and exactly what each one reaches" data-lock-sales>
+      <a href="#team" data-view="team" data-sub="Four roles, and exactly what each one reaches">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="9" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 19a5.5 5.5 0 0 1 11 0m-2 0a5.5 5.5 0 0 1 10 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span class="cnav__lbl">Team &amp; roles</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
-      <a href="#audit" data-view="audit" data-sub="Every access and every change, kept" data-lock-sales>
+      <a href="#audit" data-view="audit" data-sub="Every access and every change, kept">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9.2 11.8 2 2 3.6-3.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="cnav__lbl">Audit log</span>
-        <svg class="cnav__lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
       </a>
 
     </nav>
 
     <div class="cside__foot">
-      <div class="roleswap">
-        <span class="roleswap__k" id="roleLbl">Viewing as</span>
-        <div class="roleswap__opts" role="group" aria-labelledby="roleLbl">
-          <button class="roleswap__b" type="button" data-role="admin" aria-pressed="true">Admin</button>
-          <button class="roleswap__b" type="button" data-role="sales" aria-pressed="false">Sales</button>
-        </div>
-      </div>
 
-      <div class="cme">
+      <div class="cme" style="margin-top:0;padding-top:0;border-top:0">
         <span class="cme__av" id="meAv" aria-hidden="true">BL</span>
         <span class="cme__id">
           <b id="meName">Beatriz Lima</b>
           <i id="meRole">Administrator · São Paulo</i>
         </span>
-        <a class="cme__out" href="signin.html" aria-label="Sign out" title="Sign out">
+        <a class="cme__out" href="signin-team.html" aria-label="Sign out" title="Sign out">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 17l5-5-5-5m5 5H9M11 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -1121,141 +1091,6 @@
               <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
               <span class="row__t"><b>Laundry, same-day return</b><span>Marcus Webb · Convenience · open 25 min</span></span>
               <span class="row__x"><span class="tag">Open</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Take</button></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ================================================== PIPELINE ====== -->
-    <section class="cview" id="v-pipeline" hidden>
-
-      <div class="kpis" style="margin-bottom:16px">
-        <article class="kpi kpi--info"><span class="kpi__k">Prospects assigned to me</span><b class="kpi__v">12</b><span class="kpi__d">6 unassigned in the pool</span></article>
-        <article class="kpi kpi--warn"><span class="kpi__k">Awaiting medical status</span><b class="kpi__v">3</b><span class="kpi__d">status only, no clinical detail</span></article>
-        <article class="kpi kpi--ok"><span class="kpi__k">Converted this month</span><b class="kpi__v">4</b><span class="kpi__d"><b>33%</b> of qualified</span></article>
-        <article class="kpi"><span class="kpi__k">Contact attempts today</span><b class="kpi__v">9</b><span class="kpi__d">2 follow-ups due</span></article>
-      </div>
-
-      <div class="funnel">
-        <div class="fcol">
-          <div class="fcol__h"><b>New enquiry</b><span class="fcol__n">6</span></div>
-          <div class="fcol__b">
-            <article class="fcard">
-              <span class="fcard__n">Thomas Ayers</span>
-              <span class="fcard__m"><span>Hair</span><span>·</span><span>Miami, FL</span></span>
-              <span class="fcard__f"><span class="tag tag--flat">Website</span><span class="tag tag--warn">Unassigned</span></span>
-            </article>
-            <article class="fcard">
-              <span class="fcard__n">Nina Alvarez</span>
-              <span class="fcard__m"><span>Face</span><span>·</span><span>Tampa, FL</span></span>
-              <span class="fcard__f"><span class="tag tag--flat">Referral</span><span class="tag tag--warn">Unassigned</span></span>
-            </article>
-            <article class="fcard">
-              <span class="fcard__n">Carl Weston</span>
-              <span class="fcard__m"><span>Dental</span><span>·</span><span>Houston, TX</span></span>
-              <span class="fcard__f"><span class="tag tag--flat">Phone</span><span class="tag tag--warn">Unassigned</span></span>
-            </article>
-          </div>
-        </div>
-
-        <div class="fcol">
-          <div class="fcol__h"><b>Contacted</b><span class="fcol__n">5</span></div>
-          <div class="fcol__b">
-            <article class="fcard">
-              <span class="fcard__n">Ellen Marsh</span>
-              <span class="fcard__m"><span>Face</span><span>·</span><span>April window</span></span>
-              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--info">Call booked</span></span>
-            </article>
-            <article class="fcard">
-              <span class="fcard__n">Derek Foss</span>
-              <span class="fcard__m"><span>Body</span><span>·</span><span>Undecided</span></span>
-              <span class="fcard__f"><span class="who__av">RM</span><span class="tag">2 attempts</span></span>
-            </article>
-          </div>
-        </div>
-
-        <div class="fcol">
-          <div class="fcol__h"><b>Medical review</b><span class="fcol__n">3</span></div>
-          <div class="fcol__b">
-            <article class="fcard">
-              <span class="fcard__n">James Whitfield</span>
-              <span class="fcard__m"><span>Rhinoplasty</span><span>·</span><span>Denver, CO</span></span>
-              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--warn">Awaiting status</span></span>
-            </article>
-            <article class="fcard">
-              <span class="fcard__n">Daniel Kroft</span>
-              <span class="fcard__m"><span>Body</span><span>·</span><span>Boston, MA</span></span>
-              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--risk">More info needed</span></span>
-            </article>
-          </div>
-        </div>
-
-        <div class="fcol">
-          <div class="fcol__h"><b>Proposal</b><span class="fcol__n">2</span></div>
-          <div class="fcol__b">
-            <article class="fcard">
-              <span class="fcard__n">Linda Park</span>
-              <span class="fcard__m"><span>Companion Refresh</span><span>·</span><span>Apr 2</span></span>
-              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--info">Package sent</span></span>
-            </article>
-          </div>
-        </div>
-
-        <div class="fcol">
-          <div class="fcol__h"><b>Won</b><span class="fcol__n">4</span></div>
-          <div class="fcol__b">
-            <article class="fcard">
-              <span class="fcard__n">Michael Carter</span>
-              <span class="fcard__m"><span>Solo Refresh</span><span>·</span><span>Mar 9</span></span>
-              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--ok">Confirmed</span></span>
-            </article>
-            <article class="fcard">
-              <span class="fcard__n">Robert Nguyen</span>
-              <span class="fcard__m"><span>Solo Refresh</span><span>·</span><span>Mar 10</span></span>
-              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--ok">Confirmed</span></span>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="bound" style="margin-top:16px" data-sales-only hidden>
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/></svg>
-        <p><b>You are seeing the Sales role.</b> Medical review shows a status and nothing more: no physician instructions, no recovery restrictions, no notes attached to the outcome. Itineraries, requirements, documents, the audit log and bulk export are not reachable from this role.</p>
-      </div>
-
-    </section>
-
-    <!-- ===================================================== TASKS ====== -->
-    <section class="cview" id="v-tasks" hidden>
-
-      <div class="cpanel">
-        <div class="cpanel__h">
-          <span class="cpanel__t">Follow-ups<small>Yours, with a due date</small></span>
-          <span class="cpanel__a"><button class="cbtn cbtn--sm" type="button">Add follow-up</button></span>
-        </div>
-        <div class="cpanel__b cpanel__b--flush">
-          <div class="rows">
-            <div class="row">
-              <span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-              <span class="row__t"><b>Call James Whitfield</b><span>Due yesterday · 2 attempts, no answer · left voicemail Monday</span></span>
-              <span class="row__x"><span class="tag tag--risk">Overdue</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Log attempt</button></span>
-            </div>
-            <div class="row">
-              <span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-              <span class="row__t"><b>Send package comparison to Linda Park</b><span>Due today · asked for Companion vs Full side by side</span></span>
-              <span class="row__x"><span class="tag tag--warn">Today</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Open</button></span>
-            </div>
-            <div class="row">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-              <span class="row__t"><b>Book concierge conversation for Ellen Marsh</b><span>Due Thursday · she is free after 3pm Pacific</span></span>
-              <span class="row__x"><span class="tag">Thursday</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Schedule</button></span>
-            </div>
-            <div class="row">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-              <span class="row__t"><b>Follow up with Derek Foss</b><span>Due Friday · undecided between body and face</span></span>
-              <span class="row__x"><span class="tag">Friday</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Open</button></span>
             </div>
           </div>
         </div>

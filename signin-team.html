@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations Sign In · RefreshU</title>
+<meta name="theme-color" content="#071b33">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/auth-team.css">
+</head>
+<body class="auth-body">
+
+<main class="auth">
+
+  <aside class="auth__side auth__side--team">
+    <div class="auth__sideIn">
+      <a class="brand brand--foot" href="index.html" aria-label="RefreshU, home">
+        <img class="brand__mark" src="assets/img/refreshu-mark.svg" alt="" width="26" height="37">
+        <span class="brand__word">refresh<b>U</b></span>
+      </a>
+
+      <div>
+        <p class="authk">Operations</p>
+        <p class="display auth__claim">The system of record for every journey.</p>
+        <ul class="auth__list">
+          <li>Client records and the journey</li>
+          <li>Referrals and medical outcomes</li>
+          <li>Itineraries and the unified schedule</li>
+          <li>Requirements and documents</li>
+          <li>Concierge desk</li>
+          <li>Payments and reporting</li>
+        </ul>
+      </div>
+
+      <p class="auth__sig">Looking for the sales app? <a class="auth__x" href="signin-sales.html">Sign in there</a>.</p>
+    </div>
+  </aside>
+
+  <section class="auth__main">
+    <div class="auth__topbar">
+      <a class="auth__back" href="index.html">Back to refreshu.com</a>
+    </div>
+
+    <div class="auth__box">
+      <h1 class="display auth__t">Operations sign in</h1>
+      <p class="auth__sub">For the RefreshU team. Client accounts sign in <a href="signin.html">here</a>.</p>
+
+      <form class="auth__form" id="teamForm" novalidate>
+        <div class="fld">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@refreshu.com" required>
+          <span class="fld__err" data-err-for="email">Use your @refreshu.com address.</span>
+        </div>
+
+        <div class="fld">
+          <div class="fld__row">
+            <label for="password">Password</label>
+            <a class="fld__aux" href="#recover">Forgot your password?</a>
+          </div>
+          <div class="fld__pass">
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+            <button type="button" class="peek" id="peek" aria-label="Show password" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <span class="fld__err" data-err-for="password">Enter your password.</span>
+        </div>
+
+        <!-- Segunda etapa. O Anexo A.3.1 torna a autenticacao multifator
+             obrigatoria para toda a equipe, entao ela aparece no fluxo em vez
+             de virar uma configuracao que alguem esquece de ligar. -->
+        <div class="mfa" id="mfa" hidden>
+          <div class="mfa__h">
+            <span class="mfa__i" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <span>
+              <b>Two-factor code</b>
+              <i>Six digits from your authenticator app</i>
+            </span>
+          </div>
+          <div class="mfa__in">
+            <input inputmode="numeric" maxlength="1" aria-label="Digit 1">
+            <input inputmode="numeric" maxlength="1" aria-label="Digit 2">
+            <input inputmode="numeric" maxlength="1" aria-label="Digit 3">
+            <input inputmode="numeric" maxlength="1" aria-label="Digit 4">
+            <input inputmode="numeric" maxlength="1" aria-label="Digit 5">
+            <input inputmode="numeric" maxlength="1" aria-label="Digit 6">
+          </div>
+          <p class="mfa__aux">Lost your device? <a href="#recover">Use a recovery code</a>.</p>
+        </div>
+
+        <button type="submit" class="btn btn--full" id="teamBtn">Continue</button>
+      </form>
+
+      <p class="auth__note">
+        Every sign in, every record you open and every change you make is written to the audit log.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/js/auth-team.js" defer></script>
+</body>
+</html>
