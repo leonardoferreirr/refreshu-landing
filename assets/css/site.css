@@ -787,3 +787,100 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border:1px solid var(--line);
 }
 .btn--line:hover{background:rgba(14,40,70,.05);border-color:rgba(14,40,70,.3);box-shadow:none}
+
+/* ============================================================
+   Pacotes de concierge
+   Cada item traz o rotulo de quem entrega e quem cobra, porque
+   um total unico faria a RefreshU parecer vendedora de servico
+   medico, que e exatamente o que o guia proibe.
+   ============================================================ */
+.pkgs{padding:clamp(3.5rem,8vw,6rem) 0;background:var(--paper-2)}
+.pkgs__key{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin:0 0 1.8rem}
+.pkey{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.72rem;letter-spacing:.03em;color:var(--on-paper-dim);
+}
+.pkey::before{content:"";width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+.pkey--inc::before{background:var(--teal)}
+.pkey--coord::before{background:var(--cyan)}
+.pkey--third::before{background:#c8891f}
+.pkey--med::before{background:var(--navy)}
+
+.pkgs__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem}
+.pkg{
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:1.4rem 1.5rem;display:flex;flex-direction:column;position:relative;
+}
+.pkg--hi{border-color:rgba(37,198,224,.5);box-shadow:0 18px 44px -30px rgba(14,40,70,.35)}
+.pkg__tag{
+  position:absolute;top:-.65rem;left:1.4rem;
+  background:var(--grad);color:#04222c;
+  font-size:.64rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  padding:.25rem .6rem;border-radius:100px;
+}
+.pkg__n{font-family:var(--display);font-size:1.3rem;font-weight:400;margin:0 0 .4rem;color:var(--navy)}
+.pkg__d{margin:0 0 1rem;font-size:.88rem;line-height:1.6;color:var(--on-paper-dim)}
+.pkg__l{list-style:none;margin:0 0 .9rem;padding:0;display:grid;gap:.55rem}
+.pkg__l li{
+  position:relative;padding-left:1.1rem;
+  font-size:.86rem;line-height:1.55;color:var(--on-paper-dim);
+}
+.pkg__l li::before{
+  content:"";position:absolute;left:0;top:.45em;
+  width:9px;height:9px;border-radius:2px;
+}
+.pkg__l li[data-k="inc"]::before{background:var(--teal)}
+.pkg__l li[data-k="coord"]::before{background:var(--cyan)}
+.pkg__l li[data-k="third"]::before{background:#c8891f}
+.pkg__l li[data-k="med"]::before{background:var(--navy)}
+.pkg__note{
+  margin:auto 0 0;padding-top:.8rem;border-top:1px solid var(--line);
+  font-size:.78rem;line-height:1.55;color:var(--on-paper-fine);
+}
+
+.pkgs__sep{
+  margin:1.8rem 0 0;padding:1.3rem 1.5rem;
+  border:1px solid var(--line);border-left:4px solid var(--navy);
+  border-radius:12px;background:var(--paper);
+}
+.pkgs__sep h3{font-size:1rem;margin:0 0 .5rem;color:var(--navy)}
+.pkgs__sep p{margin:0;font-size:.88rem;line-height:1.65;color:var(--on-paper-dim)}
+.pkgs__cta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem}
+
+/* dois destinos */
+.cities{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.6rem 0 1rem}
+.city{border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.25rem;background:var(--paper)}
+.city h3{font-family:var(--display);font-size:1.15rem;font-weight:400;margin:0 0 .35rem;color:var(--navy)}
+.city p{margin:0;font-size:.87rem;line-height:1.6;color:var(--on-paper-dim)}
+@media (max-width:700px){ .cities{grid-template-columns:1fr} }
+
+/* ============================================================
+   Sinais de confianca
+   ============================================================ */
+.trust{padding:clamp(3rem,7vw,5rem) 0}
+.trust__grid{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;
+}
+.tr{border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+.tr > a,.tr{display:block}
+.tr > a{padding:1.1rem 1.2rem;text-decoration:none;transition:border-color .2s,transform .2s}
+.tr:not(:has(a)){padding:1.1rem 1.2rem}
+.tr > a:hover{background:rgba(14,40,70,.02)}
+.tr__i{
+  display:grid;place-items:center;width:34px;height:34px;border-radius:9px;
+  background:rgba(18,191,162,.12);color:var(--teal);margin-bottom:.6rem;
+}
+.tr__i svg{width:19px;height:19px}
+.tr b{display:block;font-size:.94rem;color:var(--navy);margin-bottom:.28rem}
+.tr span{display:block;font-size:.84rem;line-height:1.55;color:var(--on-paper-dim)}
+.trust__note{margin-top:1.2rem}
+
+/* linha de papel, obrigatoria na home */
+.roleline{
+  margin:0;padding:.85rem 0;background:var(--paper-2);
+  border-bottom:1px solid var(--line);
+  font-size:.84rem;line-height:1.55;color:var(--on-paper-dim);
+}
+.roleline .wrap{display:block}
+.sec-note{margin:.5rem 0 0;font-size:.82rem;color:var(--on-paper-fine);line-height:1.55}
