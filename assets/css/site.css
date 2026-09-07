@@ -740,3 +740,43 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: flex; align-items: center; gap: 14px;
 }
 .auth__topbar .auth__back { position: static; }
+
+/* ============================================================
+   Rodape legal compartilhado (foot.js) e faixa de emergencia
+   ============================================================ */
+.foot--slim{padding:2.4rem 0 1.6rem}
+.foot__emerg{
+  border:1px solid rgba(180,67,58,.35);
+  background:rgba(180,67,58,.07);
+  border-radius:10px;padding:.85rem 1rem;margin:0 0 1.4rem;
+}
+.foot__emerg p{margin:0;font-size:.84rem;line-height:1.55;color:#f0d9d6}
+.foot--slim .foot__emerg p{color:#f0d9d6}
+.foot__emerg p b{color:#ffb3aa}
+
+.foot__legalnav{
+  display:flex;flex-wrap:wrap;gap:.35rem 1.15rem;
+  padding:0 0 1.1rem;margin:0 0 1.1rem;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.foot__legalnav a{
+  font-size:.79rem;color:rgba(255,255,255,.72);text-decoration:none;
+  transition:color .2s;
+}
+.foot__legalnav a:hover{color:#fff;text-decoration:underline}
+
+/* coluna legal no rodape do site publico */
+.foot__nav .foot__legalcol a{font-size:.82rem}
+
+/* faixa de emergencia dentro das telas de app */
+.emergbar{
+  display:flex;gap:.6rem;align-items:flex-start;
+  border:1px solid rgba(180,67,58,.3);background:rgba(180,67,58,.06);
+  border-radius:10px;padding:.75rem .9rem;margin:0 0 1.3rem;
+}
+.emergbar svg{width:18px;height:18px;flex:0 0 auto;margin-top:.1rem;color:#b4433a}
+.emergbar p{margin:0;font-size:.83rem;line-height:1.55;color:var(--ink-2,#33465c)}
+.emergbar p b{color:#8f2a20}
+
+/* header ja solido nas paginas internas, sem depender do scroll */
+.chrome.is-fixedsolid{background:var(--paper);border-bottom:1px solid var(--line)}

@@ -1,0 +1,121 @@
+/* ============================================================
+   Legal Center
+   Uma pagina, varios documentos. Cada um com versao e data
+   propria, porque o Anexo do compliance guide exige que o
+   cliente saiba exatamente qual versao ele aceitou.
+   ============================================================ */
+
+.lg{
+  display:grid;
+  grid-template-columns:250px minmax(0,1fr);
+  gap:clamp(1.5rem,4vw,3.5rem);
+  align-items:start;
+  padding:clamp(2rem,5vw,3.5rem) 0 clamp(3rem,7vw,5rem);
+}
+
+/* ---------- indice lateral ---------- */
+.lg__side{position:sticky;top:88px}
+.lg__side h2{
+  font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--on-paper-fine);margin:0 0 .7rem;
+}
+.lgnav{display:flex;flex-direction:column;gap:1px;border-top:1px solid var(--line)}
+.lgnav a{
+  display:block;padding:.62rem .1rem;font-size:.86rem;line-height:1.35;
+  color:var(--on-paper-dim);text-decoration:none;
+  border-bottom:1px solid var(--line);
+  transition:color .2s,padding-left .2s;
+}
+.lgnav a:hover{color:var(--navy);padding-left:.3rem}
+.lgnav a.is-on{color:var(--navy);font-weight:600}
+
+/* ---------- documentos ---------- */
+.lg__docs{min-width:0}
+
+.lgdoc{
+  border-top:2px solid var(--navy);
+  padding-top:1.4rem;margin-bottom:3.2rem;
+  scroll-margin-top:96px;
+}
+.lgdoc:last-child{margin-bottom:0}
+.lgdoc__h{margin-bottom:1.2rem}
+.lgdoc__h h2{
+  font-family:var(--display);
+  font-size:clamp(1.45rem,3vw,1.95rem);line-height:1.18;font-weight:400;
+  margin:0 0 .5rem;color:var(--navy);
+}
+.lgdoc__meta{
+  display:flex;flex-wrap:wrap;gap:.35rem .9rem;
+  font-size:.72rem;letter-spacing:.04em;color:var(--on-paper-fine);
+}
+.lgdoc__meta b{font-weight:600;color:var(--on-paper-dim)}
+
+.lgdoc h3{
+  font-size:.95rem;font-weight:700;margin:1.5rem 0 .45rem;
+  color:var(--navy);
+}
+.lgdoc h3:first-of-type{margin-top:0}
+.lgdoc p{margin:0 0 .8rem;line-height:1.65;color:var(--on-paper-dim);font-size:.93rem}
+.lgdoc ul{margin:0 0 .9rem;padding-left:1.15rem}
+.lgdoc li{margin-bottom:.35rem;line-height:1.6;color:var(--on-paper-dim);font-size:.93rem}
+
+/* ---------- marcacoes ---------- */
+.pend{
+  display:block;
+  border-left:3px solid #c8a24a;
+  background:rgba(200,162,74,.07);
+  padding:.7rem .9rem;margin:0 0 .9rem;
+  font-size:.85rem;line-height:1.55;color:var(--on-paper-dim);
+}
+.pend b{
+  display:block;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+  color:#8a6d20;margin-bottom:.28rem;font-weight:700;
+}
+.fill{
+  background:rgba(7,27,51,.07);border-radius:3px;
+  padding:.05em .38em;font-size:.92em;font-weight:600;color:var(--navy);
+  white-space:nowrap;
+}
+
+/* aviso de emergencia, precisa saltar aos olhos */
+.emerg{
+  border:2px solid #b4433a;background:#fdf4f3;
+  border-radius:10px;padding:1rem 1.15rem;margin:0 0 1.4rem;
+}
+.emerg p{margin:0;color:#7d2b24;font-size:.9rem;line-height:1.6}
+.emerg p b{color:#8f2a20}
+
+/* tabela de politica por marco */
+.lgtbl{width:100%;border-collapse:collapse;margin:0 0 1rem;font-size:.86rem}
+.lgtbl th,.lgtbl td{
+  text-align:left;vertical-align:top;padding:.6rem .7rem;
+  border-bottom:1px solid var(--line);line-height:1.5;
+}
+.lgtbl thead th{
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--on-paper-fine);border-bottom:1px solid var(--navy);
+}
+.lgtbl tbody th{font-weight:600;color:var(--navy);width:34%}
+
+/* cabecalho da pagina */
+.lghead{padding:calc(72px + clamp(1.6rem,4vw,3rem)) 0 0}
+.lghead h1{
+  font-family:var(--display);
+  font-size:clamp(2rem,5vw,3rem);line-height:1.1;font-weight:400;
+  margin:0 0 .7rem;color:var(--navy);
+}
+.lghead p{max-width:44rem;color:var(--on-paper-dim);line-height:1.65;margin:0 0 .5rem}
+
+@media (max-width:880px){
+  .lg{grid-template-columns:1fr;gap:1.6rem}
+  .lg__side{position:static}
+  .lgnav{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:0 1rem;border-top:1px solid var(--line);
+  }
+}
+@media (max-width:560px){
+  .lgtbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .lgtbl tbody th{display:block;width:auto;border-bottom:0;padding-bottom:.15rem}
+  .lgtbl td{display:block;padding-top:0}
+}
