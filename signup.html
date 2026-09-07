@@ -111,10 +111,55 @@
           <p class="mfa__aux">Nothing arrived? <a href="#resend">Send it again</a>.</p>
         </div>
 
-        <label class="check">
-          <input type="checkbox" id="terms" name="terms" required>
-          <span>I agree to the terms of use and the privacy notice</span>
-        </label>
+        <!-- Consent Center. Sete obrigatorios e um opcional, nenhum marcado
+             de antemao, o de marketing separado dos demais. Cada um guarda
+             o documento e a versao que foi aceita, e o registro aparece
+             depois no portal em My Legal Documents. -->
+        <fieldset class="consent">
+          <legend class="consent__lg">Before you create the account</legend>
+
+          <label class="check check--con">
+            <input type="checkbox" name="consent" data-doc="terms" data-version="[VERSION]" required>
+            <span>I agree to the <a href="legal.html#terms" target="_blank" rel="noopener">RefreshU Terms of Use</a>.</span>
+          </label>
+
+          <label class="check check--con">
+            <input type="checkbox" name="consent" data-doc="privacy" data-version="[VERSION]" required>
+            <span>I acknowledge the <a href="legal.html#privacy" target="_blank" rel="noopener">RefreshU Privacy Policy</a>.</span>
+          </label>
+
+          <label class="check check--con">
+            <input type="checkbox" name="consent" data-doc="medical-disclaimer" data-version="[VERSION]" required>
+            <span>I understand that RefreshU is not my healthcare provider and does not provide medical advice, diagnosis or treatment.</span>
+          </label>
+
+          <label class="check check--con">
+            <input type="checkbox" name="consent" data-doc="provider-disclosure" data-version="[VERSION]" required>
+            <span>I understand that participating physicians and clinics are <a href="legal.html#providers" target="_blank" rel="noopener">independent healthcare providers</a>.</span>
+          </label>
+
+          <label class="check check--con">
+            <input type="checkbox" name="consent" data-doc="referral-workflow" data-version="[VERSION]" required>
+            <span>I understand that any medical questionnaire, photograph or clinical document I am asked for goes directly to the physician&rsquo;s own system, and that RefreshU records the referral and its status rather than the clinical content.</span>
+          </label>
+
+          <label class="check check--con">
+            <input type="checkbox" name="consent" data-doc="cross-border" data-version="[VERSION]" required>
+            <span>I understand that a participating physician or clinic may be located in Brazil and may access information as described in the applicable privacy documents.</span>
+          </label>
+
+          <label class="check check--con">
+            <input type="checkbox" name="consent" data-doc="e-comms-consent" data-version="[VERSION]" required>
+            <span>I consent to necessary service-related <a href="legal.html#communications" target="_blank" rel="noopener">electronic communications</a> about my account, scheduling, travel and payments.</span>
+          </label>
+
+          <label class="check check--con check--opt">
+            <input type="checkbox" name="marketing" data-doc="marketing-consent" data-version="[VERSION]">
+            <span><b>Optional.</b> Send me RefreshU promotions, offers and news. This is not required to request a physician review or to purchase concierge services.</span>
+          </label>
+
+          <span class="fld__err" data-err-for="consent">Every item above except the last one is required to create an account.</span>
+        </fieldset>
 
         <button type="submit" class="btn btn--full" id="signupBtn">Create account</button>
       </form>

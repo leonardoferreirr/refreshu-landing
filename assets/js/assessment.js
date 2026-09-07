@@ -25,6 +25,17 @@
   var procs = document.getElementById('procs');
   var form = document.getElementById('aboutForm');
   var handoff = document.getElementById('handoffDone');
+  var handoffAck = document.getElementById('handoffAck');
+  var locCountry = document.getElementById('locCountry');
+  var locState = document.getElementById('locState');
+  var locStateWrap = document.getElementById('locStateWrap');
+  var locBlock = document.getElementById('locBlock');
+
+  // Restricoes por estado. Fica vazio de proposito: quem decide o que um
+  // medico brasileiro pode revisar com o paciente fisicamente nos Estados
+  // Unidos e o juridico, nao o codigo. O admin liga cada estado quando a
+  // orientacao chegar, e a mensagem vem junto.
+  var STATE_RULES = {};   // ex.: { 'California': 'message shown to the client' }
 
   var state = load();
   var step = 1;
@@ -108,7 +119,7 @@
     foot.hidden = step === LAST;
 
     if (step === 2) paintProcs();
-    if (step === 4) paintDoctor();
+    if (step === 4) { paintDoctor(); paintLocation(); }
     if (step === 5) { paintRecap(); save(); }
 
     next.textContent = step === 3 ? 'Continue' : (step === 4 ? 'Send my assessment' : 'Continue');
@@ -230,6 +241,47 @@
     });
   }
 
+  /* ------------------------------------------------ localizacao fisica --
+     O endereco residencial nao responde a pergunta que importa: onde a
+     pessoa esta quando o medico revisa o caso. A resposta e guardada com
+     o evento de encaminhamento.                                          */
+
+  function inUS() { return locCountry && locCountry.value === 'United States'; }
+
+  function locationOk() {
+    if (!locCountry) return true;
+    if (!locCountry.value) return false;
+    if (inUS() && !locState.value) return false;
+    if (inUS() && STATE_RULES[locState.value]) return false;   // estado bloqueado
+    return true;
+  }
+
+  function paintLocation() {
+    if (!locCountry) return;
+    var us = inUS();
+    if (locStateWrap) locStateWrap.hidden = !us;
+    if (locState) locState.required = us;
+
+    var rule = us && locState.value ? STATE_RULES[locState.value] : null;
+    if (locBlock) {
+      locBlock.hidden = !rule;
+      locBlock.textContent = rule || '';
+    }
+    state.locCountry = locCountry.value;
+    state.locState = us ? locState.value : '';
+    gate();
+  }
+
+  if (locCountry) locCountry.addEventListener('change', paintLocation);
+  if (locState) locState.addEventListener('change', paintLocation);
+  if (handoffAck) handoffAck.addEventListener('change', function () {
+    state.ack = handoffAck.checked;
+    state.ackAt = handoffAck.checked ? new Date().toISOString() : null;
+    state.ackDoc = handoffAck.dataset.doc;
+    state.ackVersion = handoffAck.dataset.version;
+    gate();
+  });
+
   /* -------------------------------------------------- 5. confirmado ----- */
 
   function paintRecap() {
@@ -241,6 +293,7 @@
     put('rState', state.state);
     put('rWindow', state.window);
     put('rComp', state.compLabel || 'Not answered');
+    put('rLoc', [state.locState, state.locCountry].filter(Boolean).join(', '));
     put('rHandoff', state.handoff ? 'Marked as completed' : 'Still to complete');
   }
 
@@ -253,6 +306,7 @@
     if (step === 1) ok = !!state.area;
     if (step === 2) ok = !!state.proc;
     if (step === 3) ok = REQUIRED.every(function (id) { return valid(id, true); });
+    if (step === 4) ok = locationOk() && !!(handoffAck && handoffAck.checked);
     next.disabled = !ok;
   }
 
@@ -289,6 +343,9 @@
       if (c) c.setAttribute('aria-pressed', 'true');
     }
     if (state.handoff && handoff) handoff.checked = true;
+    if (state.ack && handoffAck) handoffAck.checked = true;
+    if (state.locCountry && locCountry) locCountry.value = state.locCountry;
+    if (state.locState && locState) locState.value = state.locState;
 
     var at = 1;
     if (state.area) at = 2;

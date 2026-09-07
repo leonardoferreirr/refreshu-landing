@@ -213,6 +213,51 @@
               </div>
             </div>
 
+            <!-- Localizacao fisica no momento do encaminhamento. O endereco
+                 residencial nao serve: o que importa para as restricoes
+                 estaduais e onde a pessoa esta quando o medico revisa. A
+                 lista de estados bloqueados e configuravel, nao esta no
+                 codigo, e so entra depois que o juridico definir. -->
+            <div class="hoff__loc">
+              <b>Where you are right now</b>
+              <p>Not where you live, where you physically are today. Rules about what a physician outside the United States may review differ by state, so we ask at the moment of the referral rather than relying on your address.</p>
+              <div class="locgrid">
+                <div class="f">
+                  <label for="locCountry">Country you are in</label>
+                  <select id="locCountry" name="locCountry" required>
+                    <option value="">Select</option>
+                    <option selected>United States</option>
+                    <option>Brazil</option>
+                    <option>Canada</option>
+                    <option>Another country</option>
+                  </select>
+                  <span class="f__err" data-err-for="locCountry">Tell us which country you are in.</span>
+                </div>
+                <div class="f" id="locStateWrap">
+                  <label for="locState">State you are in</label>
+                  <select id="locState" name="locState" required>
+                    <option value="">Select your state</option>
+                    <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+                    <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+                    <option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option>
+                    <option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option>
+                    <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option>
+                    <option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option>
+                    <option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option>
+                    <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option>
+                    <option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
+                    <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+                    <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option>
+                    <option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option>
+                    <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+                  </select>
+                  <span class="f__err" data-err-for="locState">Tell us which state you are in.</span>
+                </div>
+              </div>
+              <p class="f__hint">Stored with the referral event. We do not use your network address to decide this.</p>
+              <p class="hoff__block" id="locBlock" hidden></p>
+            </div>
+
             <div class="hoff__cta">
               <b>Your screening link</b>
               <p>Dr. Camila Rocha reviews hair cases in São Paulo. Open her screening form, complete it there, and come back when you are done. We never see what you send her.</p>
@@ -226,11 +271,21 @@
                 <a class="btn btn--sm" href="#screening" target="_blank" rel="noopener">Open the form</a>
               </div>
 
+              <label class="check check--con">
+                <input type="checkbox" id="handoffAck" data-doc="referral-acknowledgment" data-version="[VERSION]" required>
+                <span>I understand that I am about to provide health information to an independent healthcare professional for their review, that the physician decides what further evaluation, testing or treatment may be appropriate, and that RefreshU does not make medical decisions. I have read the <a href="legal.html#privacy" target="_blank" rel="noopener">Privacy Policy</a> and the <a href="legal.html#medical" target="_blank" rel="noopener">Medical Disclaimer</a>.</span>
+              </label>
+
               <label class="check">
                 <input type="checkbox" id="handoffDone">
                 <span>I have completed the physician's form</span>
               </label>
-              <p class="f__hint">You can mark this later. Your assessment is saved either way, and the physician confirms it on their side.</p>
+              <p class="f__hint">You can mark the second box later. Your assessment is saved either way, and the physician confirms it on their side.</p>
+
+              <div class="emergbar" role="note">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.6 17.4A2 2 0 0 0 4.3 20.4h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p><b>Not for medical emergencies.</b> If you believe you are experiencing a medical emergency, contact your local emergency service immediately.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -258,6 +313,7 @@
               <div><dt>Where you live</dt><dd id="rState">—</dd></div>
               <div><dt>Travel window</dt><dd id="rWindow">—</dd></div>
               <div><dt>Companion</dt><dd id="rComp">—</dd></div>
+              <div><dt>Where you were at referral</dt><dd id="rLoc">—</dd></div>
               <div><dt>Physician form</dt><dd id="rHandoff">—</dd></div>
             </dl>
           </div>

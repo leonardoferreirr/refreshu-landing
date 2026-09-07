@@ -89,6 +89,29 @@
 
   function code() { return digits.map(function (d) { return d.value; }).join(''); }
 
+  /* ------------------------------------------------- registro de aceite --
+     Um aceite so vale se for possivel provar qual versao foi aceita e
+     quando. O backend grava isto; aqui a estrutura ja sai pronta e fica
+     visivel em My Legal Documents no portal.                              */
+
+  function recordConsents(required, marketing) {
+    var stamp = new Date().toISOString();
+    var log = required.map(function (c) {
+      return { document: c.dataset.doc, version: c.dataset.version, accepted: true, at: stamp };
+    });
+    if (marketing) {
+      log.push({
+        document: marketing.dataset.doc,
+        version: marketing.dataset.version,
+        accepted: !!marketing.checked,
+        at: stamp,
+        separate: true
+      });
+    }
+    try { sessionStorage.setItem('ru-consent-log', JSON.stringify(log)); } catch (err) {}
+    return log;
+  }
+
   /* -------------------------------------------------------------- envio -- */
 
   form.addEventListener('submit', function (e) {
@@ -97,8 +120,18 @@
     if (step === 1) {
       var bad = REQUIRED.filter(function (id) { return !check(id); });
 
-      var terms = f('terms');
-      if (isSignup && terms && !terms.checked) { terms.focus(); return; }
+      // Consent Center: os sete obrigatorios precisam estar marcados um a
+      // um, e cada aceite guarda o documento e a versao. O de marketing e
+      // gravado separado, porque nao pode ser condicao de nada.
+      var missing = null;
+      if (isSignup) {
+        var required = [].slice.call(form.querySelectorAll('input[name="consent"]'));
+        var err = form.querySelector('[data-err-for="consent"]');
+        missing = required.filter(function (c) { return !c.checked; })[0] || null;
+        if (err) err.classList.toggle('is-on', !!missing);
+        if (missing) { missing.focus(); return; }
+        recordConsents(required, form.querySelector('input[name="marketing"]'));
+      }
       if (bad.length) { f(bad[0]).focus(); return; }
 
       step = 2;

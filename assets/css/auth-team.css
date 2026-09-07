@@ -122,3 +122,28 @@
   .mfa__in { gap: .35rem; }
   .mfa__in input { height: 46px; font-size: 1.05rem; }
 }
+
+/* ============================================================
+   Consent Center
+   Sete consentimentos obrigatorios e um opcional. Nenhum nasce
+   marcado, e o de marketing fica visivelmente separado.
+   ============================================================ */
+.consent{border:0;padding:0;margin:.2rem 0 0}
+.consent__lg{
+  font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--on-paper-fine);padding:0;margin:0 0 .7rem;
+}
+.check--con{
+  align-items:flex-start;gap:.6rem;
+  padding:.55rem 0;border-bottom:1px solid var(--line);
+  line-height:1.5;font-size:.88rem;
+}
+.check--con:last-of-type{border-bottom:0}
+.check--con input{margin-top:.18rem;flex:0 0 auto}
+.check--con a{color:var(--navy);text-decoration:underline}
+.check--opt{
+  margin-top:.5rem;padding:.7rem .8rem;
+  background:rgba(14,40,70,.04);border:1px solid var(--line);border-radius:8px;
+}
+.check--opt b{font-weight:600}
+.consent .fld__err{margin-top:.5rem}
