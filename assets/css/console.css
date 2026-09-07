@@ -25,7 +25,7 @@
      e usados em 12% de alfa como fundo de etiqueta. */
   --ok: #0f7b5f;
   --ok-bg: rgba(18, 191, 162, .13);
-  --warn: #9a6200;
+  --warn: #855300;
   --warn-bg: rgba(214, 145, 20, .15);
   --risk: #a52f3c;
   --risk-bg: rgba(190, 60, 74, .12);
@@ -1265,3 +1265,22 @@
 .pubstate.is-clean{background:var(--ok-bg);color:var(--ok)}
 
 .dnote--warn{border-color:rgba(214,145,20,.4);background:var(--warn-bg)}
+
+/* pacotes na tela comercial */
+.pkgkey{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin:0 0 14px}
+.pkey{display:inline-flex;align-items:center;gap:.4rem;font-size:11.5px;color:var(--on-paper-dim)}
+.pkey::before{content:"";width:8px;height:8px;border-radius:2px;flex:0 0 auto}
+.pkey--inc::before{background:var(--ok)}
+.pkey--coord::before{background:var(--info)}
+.pkey--third::before{background:var(--warn)}
+.pkey--med::before{background:var(--t-med)}
+.pkgdesc{font-size:12.5px;color:var(--on-paper-dim);line-height:1.55;margin:0 0 10px}
+.pkglist{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.pkglist li{position:relative;padding-left:15px;font-size:12.5px;color:var(--on-paper-dim);line-height:1.5}
+.pkglist li::before{content:"";position:absolute;left:0;top:.42em;width:8px;height:8px;border-radius:2px}
+.pkglist li[data-k="inc"]::before{background:var(--ok)}
+.pkglist li[data-k="coord"]::before{background:var(--info)}
+.pkglist li[data-k="third"]::before{background:var(--warn)}
+.pkglist li[data-k="med"]::before{background:var(--t-med)}
+.pkgnote{margin:10px 0 0;padding-top:9px;border-top:1px solid var(--c-line);font-size:11.5px;line-height:1.55;color:var(--on-paper-fine)}
+.cpanel__b .pkglist + .tag{margin-top:10px}

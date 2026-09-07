@@ -107,7 +107,7 @@
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--cyan);
+  color:#0d6b7a;
 }
 .as__t {
   font-family: var(--display);
