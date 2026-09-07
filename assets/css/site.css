@@ -780,3 +780,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* header ja solido nas paginas internas, sem depender do scroll */
 .chrome.is-fixedsolid{background:var(--paper);border-bottom:1px solid var(--line)}
+
+/* variante do ghost para fundo claro */
+.btn--line{
+  background:transparent;color:var(--navy);box-shadow:none;
+  border:1px solid var(--line);
+}
+.btn--line:hover{background:rgba(14,40,70,.05);border-color:rgba(14,40,70,.3);box-shadow:none}

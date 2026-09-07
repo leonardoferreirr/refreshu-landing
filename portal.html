@@ -67,6 +67,9 @@
       <a href="#profile" data-view="profile" data-sub="Your details, your companion and how you sign in">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.6"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <span class="pnav__lbl">My Profile</span></a>
+      <a href="#legal" data-view="legal" data-sub="Every document you accepted, and the version you accepted">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14.5 3.5V8H19M9 12.5h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="pnav__lbl">My Legal Documents</span></a>
       <a href="#support" data-view="support" data-sub="Who to talk to, and about what">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></svg>
         <span class="pnav__lbl">Support</span></a>
@@ -180,20 +183,68 @@
     </section>
 
     <!-- ========================================================== My Trip -->
+    <!-- Itinerario publicado. Versionado, com data e hora de emissao, e
+         impresso a partir da ultima versao publicada. Notas internas
+         nunca chegam aqui, e conteudo do medico entra travado. -->
     <section class="pview" id="v-trip" hidden>
-      <p class="pview__lead">Your medical and travel information in one itinerary, so you do not need five apps, twenty emails and a spreadsheet.</p>
+
+      <header class="itin__h">
+        <div>
+          <h2 class="itin__t">Your Brazil journey</h2>
+          <p class="itin__meta">
+            <span>Trip <b>RU-2026-00125</b></span>
+            <span>S&atilde;o Paulo</span>
+            <span>March 9 to 16, 2026</span>
+            <span>Version <b>3</b></span>
+            <span>Updated <time datetime="2026-03-05T16:30">March 5, 4:30 PM</time></span>
+          </p>
+        </div>
+        <div class="itin__acts">
+          <button class="btn btn--sm" type="button" id="itinPrint">Print current version</button>
+          <button class="btn btn--sm btn--line" type="button" id="itinPdf">Download current PDF</button>
+        </div>
+      </header>
+
+      <div class="alert alert--soft" id="itinUpdated">
+        <b>Updated.</b> Your Saturday afternoon moved from 15:00 to 16:30 because your follow-up was rescheduled by the clinic. Version 3, published March 5.
+      </div>
 
       <div class="tgrid">
         <article class="card"><h2 class="card__t">Arrival flight</h2><p class="card__big">Mon, March 9</p><p class="card__p">Landing at GRU, 06:40 local time. Confirmation on file.</p></article>
         <article class="card"><h2 class="card__t">Hotel</h2><p class="card__big">Hotel Aurora, Jardins</p><p class="card__p">Check in Mon, March 9. Check out Mon, March 16. Recovery friendly room, high floor, quiet side.</p></article>
         <article class="card"><h2 class="card__t">Transport</h2><p class="card__big">Private driver</p><p class="card__p">Airport transfer, hotel, clinic and every appointment on your schedule.</p></article>
-        <article class="card"><h2 class="card__t">Consultations</h2><p class="card__big">Wed, March 11, 14:00</p><p class="card__p">Clínica Vértice, Itaim Bibi. With Dr. Camila Rocha.</p></article>
-        <article class="card card--hi"><h2 class="card__t">Procedure</h2><p class="card__big">Thu, March 12</p><p class="card__p">FUE hair transplant. Arrival 07:00. Driver confirmed. Return to the hotel the same day.</p></article>
-        <article class="card"><h2 class="card__t">Recovery days</h2><p class="card__big">Fri 13 and Sat 14</p><p class="card__p">Rest at the hotel with meal delivery, then activities as your physician clears them.</p></article>
-        <article class="card"><h2 class="card__t">Restaurants</h2><p class="card__big">3 reservations</p><p class="card__p">Tue dinner, Sat lunch and Sun dinner, all chosen around what you can eat on each day.</p></article>
-        <article class="card"><h2 class="card__t">Experiences</h2><p class="card__big">2 booked</p><p class="card__p">A walk through Jardins today and a museum visit on Sunday, both recovery compatible.</p></article>
-        <article class="card"><h2 class="card__t">Return flight</h2><p class="card__big">Mon, March 16</p><p class="card__p">Departure 22:10 from GRU. Driver confirmed for 18:30.</p></article>
+        <article class="card"><h2 class="card__t">Independent physician</h2><p class="card__big">Dr. Juliana Buttros</p><p class="card__p">Clínica Vértice, São Paulo. Appointments below are set by the clinic and cannot be moved by RefreshU.</p></article>
+        <article class="card card--hi"><h2 class="card__t">Procedure</h2><p class="card__big">Thu, March 12</p><p class="card__p">Provider time. Medical care is provided exclusively by the independent physician and clinic. RefreshU coordinates logistics only.</p></article>
+        <article class="card"><h2 class="card__t">Assigned concierge</h2><p class="card__big">Beatriz L.</p><p class="card__p">São Paulo, 07:00 to 22:00 local time.</p></article>
+        <article class="card"><h2 class="card__t">Restaurants</h2><p class="card__big">3 reservations</p><p class="card__p">Optional concierge reservations, subject to your physician&rsquo;s restrictions.</p></article>
+        <article class="card"><h2 class="card__t">Experiences</h2><p class="card__big">2 booked</p><p class="card__p">Only where compatible with the physician-controlled schedule and status.</p></article>
+        <article class="card"><h2 class="card__t">Return flight</h2><p class="card__big">Mon, March 16</p><p class="card__p">Departure 22:10 from GRU. Driver confirmed for 18:30. Verify the airline schedule before departure.</p></article>
       </div>
+
+      <!-- ------------------------------- avisos obrigatorios do itinerario -->
+      <section class="itin__disc" aria-labelledby="itinDiscT">
+        <h3 id="itinDiscT">Important itinerary disclosure</h3>
+        <p>This itinerary is provided by RefreshU as a non-medical concierge and logistical coordination tool. It summarises the information available to RefreshU at the time shown on the document. It is not medical advice, a medical order, a treatment recommendation, medical clearance, an emergency plan, or a guarantee that any physician, airline, hotel, transportation provider, restaurant, experience, appointment or other third-party service will occur exactly as displayed.</p>
+
+        <h3>Independent medical provider</h3>
+        <p>All medical evaluations, eligibility decisions, diagnoses, procedure recommendations, examinations, laboratory requirements, prescriptions, medication instructions, preparation instructions, informed consent, procedures, recovery instructions, medical restrictions, medical clearance, follow-up care and emergency medical decisions are controlled exclusively by your independent physician or clinic. RefreshU does not practise medicine and does not create, change, interpret, approve or replace physician instructions. If anything here appears inconsistent with your physician&rsquo;s instructions, follow your physician and contact the clinic.</p>
+
+        <h3>Third parties, changes and no guarantee</h3>
+        <p>Airlines, hotels, transportation providers, restaurants, tour and experience providers, insurers and personal-service providers are independent third parties. Times, reservations, flight information and provider appointments may change. RefreshU updates the itinerary when it receives confirmed changes, and the itinerary is not a guarantee of availability, transportation, medical scheduling, admission, performance or outcome.</p>
+
+        <h3>Travel documents, insurance and accuracy</h3>
+        <p>You are responsible for valid passports, visas or entry authorisations, airline documentation and identification. Insurance coverage, exclusions and claims are determined by your insurer; RefreshU is not the insurer. Tell us promptly about any error in non-medical information, such as name spelling, flight details, dates or hotel information, and take medical questions to your physician.</p>
+
+        <h3>Optional activities and printed copies</h3>
+        <p>Restaurants, sightseeing, wellness, personal services and experiences shown here are concierge options, not medical recommendations. Do not take part in an activity that conflicts with your physician&rsquo;s instructions. If you print or download this itinerary, you are responsible for safeguarding the copy.</p>
+
+        <p class="itin__foot">RefreshU concierge itinerary · Trip RU-2026-00125 · Version 3 · Updated March 5, 2026, 4:30 PM<br>Concierge and logistics document only, not medical advice or medical clearance.</p>
+      </section>
+
+      <label class="check itin__ack">
+        <input type="checkbox" id="itinAck" checked>
+        <span>I understand that my RefreshU itinerary is a concierge and logistical planning document and may change, that RefreshU is not my medical provider, that all medical instructions come from my independent physician or clinic, and that third-party services are subject to their own terms, availability and changes. Accepted March 5, 2026.</span>
+      </label>
     </section>
 
     <!-- ====================================================== My Schedule -->
@@ -285,44 +336,87 @@
     </section>
 
     <!-- ======================================================== My Doctor -->
+    <!-- Perfil profissional apenas. O documento MY_DOCTOR proibe preco,
+         orcamento, deposito, financiamento e qualquer forma de contato
+         que leve o cliente para fora do fluxo RefreshU. A galeria existe
+         no codigo e nasce desligada ate a autorizacao estar documentada. -->
     <section class="pview" id="v-doctor" hidden>
       <div class="doc">
         <div class="doc__head">
-          <span class="doc__av" aria-hidden="true">CR</span>
+          <span class="doc__av" aria-hidden="true">JB</span>
           <div>
-            <h2 class="display doc__n">Dr. Camila Rocha</h2>
-            <p class="doc__s">Hair restoration and FUE transplant</p>
-            <p class="doc__c">Clínica Vértice, Itaim Bibi, São Paulo</p>
+            <h2 class="display doc__n">Dr. Juliana Buttros</h2>
+            <p class="doc__s">Plastic Surgeon · Hair Transplantation</p>
+            <p class="doc__c">CRM 144522 · RQE 75343</p>
+            <p class="doc__badge">Independent Medical Provider</p>
           </div>
         </div>
 
+        <div class="doc__body">
+          <h3>About Dr. Juliana</h3>
+          <p>Dr. Juliana Buttros is a plastic surgeon and master&rsquo;s degree holder trained at the Federal University of S&atilde;o Paulo (UNIFESP-EPM). Her professional practice is focused on hair transplantation using the FUE technique, with an emphasis on individualized planning and natural-looking hair restoration.</p>
+          <p class="fine-note">Her approach, in her own words, is published here once she has approved the final wording.</p>
+        </div>
+
         <dl class="facts">
-          <div><dt>Credentials</dt><dd>Sample credential record</dd></div>
-          <div><dt>Years of experience</dt><dd>18</dd></div>
-          <div><dt>Languages spoken</dt><dd>Portuguese, English, Spanish</dd></div>
-          <div><dt>Procedures performed</dt><dd>FUE transplant, hair restoration</dd></div>
-          <div><dt>International patients</dt><dd>Attends patients from the United States weekly</dd></div>
+          <div><dt>Specialty</dt><dd>Plastic surgery</dd></div>
+          <div><dt>Professional focus</dt><dd>Hair transplantation using the FUE technique</dd></div>
+          <div><dt>CRM</dt><dd>144522</dd></div>
+          <div><dt>RQE</dt><dd>75343</dd></div>
+          <div><dt>Credential verification</dt><dd>Pending, before the profile is marked verified</dd></div>
           <div><dt>Your consultation</dt><dd>Wednesday, March 11, 14:00</dd></div>
         </dl>
 
         <div class="doc__body">
-          <h3>Approach</h3>
-          <p>Sample biography. In the live platform this is the physician&rsquo;s own text, describing how they work, what they will and will not recommend, and what they expect from a patient travelling from abroad.</p>
+          <h3>Education and medical training</h3>
+          <ul class="doc__ul">
+            <li>Medical degree, Universidade Federal de S&atilde;o Paulo (UNIFESP-EPM), 2005 to 2010.</li>
+            <li>Medical residency in general surgery, UNIFESP-EPM, 2011 to 2012.</li>
+            <li>Medical residency in plastic surgery, UNIFESP-EPM, 2013 to 2015.</li>
+            <li>Professional master&rsquo;s degree in science, technology and management applied to tissue regeneration, UNIFESP-EPM, 2018 to 2019. The work focused on a device for placement of follicular units.</li>
+          </ul>
+
+          <h3>Professional memberships</h3>
+          <ul class="doc__ul">
+            <li>Sociedade Brasileira de Cirurgia Pl&aacute;stica</li>
+            <li>Associa&ccedil;&atilde;o Brasileira de Cirurgia da Restaura&ccedil;&atilde;o Capilar</li>
+            <li>World FUE Institute</li>
+          </ul>
+          <p class="fine-note">Membership status is confirmed with the physician before any society badge or logo is displayed.</p>
+
           <h3>Before and after</h3>
-          <p>Twelve cases she chose, all with the patient's written permission on file.</p>
-          <div class="ba">
-            <figure class="ba__i"><img src="assets/img/hair.webp" alt="Hair restoration result, twelve months after the procedure" width="900" height="675" loading="lazy"><figcaption>12 months</figcaption></figure>
-            <figure class="ba__i"><img src="assets/img/face.webp" alt="Hairline result, nine months after the procedure" width="900" height="675" loading="lazy"><figcaption>9 months</figcaption></figure>
-            <figure class="ba__i ba__i--more"><span><b>+10</b>more cases</span></figure>
+          <div class="gallery-off">
+            <p><b>Not published.</b> The gallery is built and stays switched off until Dr. Juliana supplies approved images and the patient and media permissions for each one are documented. When it is enabled, every case carries the note that individual results vary and that the images are physician-supplied examples that do not guarantee a particular result.</p>
           </div>
-          <p class="fine-note">Shown because Dr. Rocha authorised professional and patient content. Where a physician has not, nothing appears here at all.</p>
         </div>
 
-        <p class="fine-note">The physician decides eligibility, the treatment plan, the risks, the exams and every clinical instruction. RefreshU coordinates the logistics around those decisions and does not take part in them.</p>
+        <!-- Separacao dos papeis, exigida logo abaixo do perfil -->
+        <div class="doc__roles">
+          <div class="role">
+            <b>Dr. Juliana Buttros decides</b>
+            <p>All medical evaluation, eligibility, diagnosis, treatment recommendations, risks and benefits, required examinations, informed consent, procedure decisions, prescriptions, clinical instructions, medical care and follow-up are determined and provided by Dr. Juliana and her clinical team.</p>
+          </div>
+          <div class="role role--ru">
+            <b>RefreshU coordinates</b>
+            <p>RefreshU is a separate concierge service. We facilitate the introduction and coordinate the non-medical parts of your journey: scheduling coordination, travel, accommodation, transportation and concierge support. RefreshU does not diagnose, recommend a medical procedure, prescribe treatment or make medical decisions.</p>
+          </div>
+        </div>
+
+        <div class="doc__acts">
+          <a class="btn btn--sm" href="#requirements" data-view="requirements">View my requirements</a>
+          <a class="btn btn--sm btn--line" href="#requirements" data-view="requirements">View physician instructions</a>
+          <a class="btn btn--sm btn--line" href="#support" data-view="support" data-ask="physician">Ask my physician</a>
+          <a class="btn btn--sm btn--line" href="#concierge" data-view="concierge">Contact RefreshU concierge</a>
+        </div>
+
+        <p class="fine-note">This page carries professional profile information only. Consultation scheduling and every message stay inside the approved RefreshU and provider workflow.</p>
       </div>
     </section>
 
     <!-- ================================================== My Requirements -->
+    <!-- O card de instrucoes e o coracao desta tela. O texto e exatamente
+         o que o medico liberou: a RefreshU exibe, versiona e coordena em
+         volta, e nunca escreve, resume nem completa clinicamente. -->
     <section class="pview" id="v-requirements" hidden>
       <div class="alert">
         <b>Action needed:</b> your travel insurance document is due today. It is the last item we are waiting on from you.
@@ -330,27 +424,70 @@
 
       <p class="pview__lead">RefreshU handles the logistics. Your physician and the clinic control every clinical requirement on this list.</p>
 
+      <!-- ---------------------------------------- instrucoes do medico -->
+      <article class="pins" id="pins" data-status="released" data-version="2">
+        <header class="pins__h">
+          <div>
+            <h2 class="pins__t">Physician instructions</h2>
+            <p class="pins__by">Released by <b>Dr. Juliana Buttros</b> · Clínica Vértice, São Paulo</p>
+          </div>
+          <span class="tag tag--act pins__badge" id="pinsBadge">Action required</span>
+        </header>
+
+        <dl class="pins__meta">
+          <div><dt>Category</dt><dd>Pre-operative preparation</dd></div>
+          <div><dt>Released</dt><dd><time datetime="2026-03-11T16:20">March 11, 4:20 PM</time> local time</dd></div>
+          <div><dt>Priority</dt><dd class="is-important">Important</dd></div>
+          <div><dt>Version</dt><dd>v2 · updated March 11</dd></div>
+        </dl>
+
+        <div class="pins__body">
+          <h3>The night before and the morning of your procedure</h3>
+          <p>Exact physician-authored instruction appears here, as released. RefreshU displays it without rewriting, summarising or interpreting it.</p>
+          <p class="pins__due"><b>Due</b> March 12, 6:00 AM</p>
+        </div>
+
+        <div class="pins__foot">
+          <label class="check pins__ack">
+            <input type="checkbox" id="pinsAck">
+            <span>I have read these instructions</span>
+          </label>
+          <div class="pins__acts">
+            <a class="btn btn--sm btn--line" href="#support" data-view="support" data-ask="physician">Ask my physician</a>
+            <button class="btn btn--sm btn--line" type="button" id="pinsHist">View previous version</button>
+          </div>
+        </div>
+
+        <p class="pins__hist" id="pinsHistBox" hidden>
+          <b>Version 1</b>, released March 11 at 9:05 AM, superseded by version 2 the same day. Superseded versions are kept and never disappear from your history. Acknowledging a version records only that you read it, and is not consent to treatment.
+        </p>
+      </article>
+
+      <p class="fine-note pins__note">Reading confirmation records that you opened the instruction. It does not change it, and it is not medical consent. If your physician releases a revised version, you are asked to read it again.</p>
+
+      <!-- --------------------------------------------- lista de itens -->
+      <h2 class="card__t pins__sub">Everything else on your list</h2>
       <ul class="chk">
-        <li class="is-done"><b>Medical questionnaire</b><span>Dr. Camila Rocha confirmed she received it</span></li>
+        <li class="is-done"><b>Medical questionnaire</b><span>Your physician confirmed she received it</span></li>
         <li class="is-done"><b>Flight itinerary</b><span>Confirmed both ways</span></li>
         <li class="is-done"><b>Hotel</b><span>Confirmed, March 9 to March 16</span></li>
         <li class="is-done"><b>Transport</b><span>Private driver for every appointment</span></li>
-        <li class="is-todo"><b>Travel insurance documentation</b><span>Due today</span>
+        <li class="is-todo"><b>Travel insurance documentation</b><span>Due today · Upload pending</span>
           <label class="upl">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Upload it here
             <input type="file" accept=".pdf,.jpg,.jpeg,.png">
-          </label></li>
-        <li class="is-todo"><b>Blood work required by your physician</b><span>Collection today at 10:00. The laboratory sends it to her directly</span></li>
+          </label>
+          <span class="chk__hint">Travel and administrative documents only. Anything clinical goes to your physician, not here.</span></li>
+        <li class="is-todo"><b>Blood work</b><span>Your physician required it · Scheduled today at 10:00 · The laboratory reports to her directly</span></li>
         <li class="is-todo"><b>Payments</b><span>One item due before the procedure</span>
           <a class="upl upl--go" href="#payments" data-view="payments">Go to payments</a></li>
-        <li class="is-wait"><b>Cardiac exams</b><span>Not required for your case</span></li>
-        <li class="is-wait"><b>Medical consultation</b><span>Wednesday, March 11, 14:00</span></li>
-        <li class="is-wait"><b>Physician instructions</b><span>Released after the consultation</span></li>
-        <li class="is-wait"><b>Medical documents</b><span>Issued by the clinic after the procedure</span></li>
+        <li class="is-wait"><b>Cardiac exam</b><span>Your physician marked this as not required for your case</span></li>
+        <li class="is-wait"><b>Medical consultation</b><span>Scheduled for Wednesday, March 11, 14:00</span></li>
+        <li class="is-wait"><b>Medical documents</b><span>Pending provider · Issued by the clinic after the procedure</span></li>
       </ul>
 
-      <p class="fine-note">Clinical items carry a status here and nothing more. Questionnaires, exams and photographs go straight between you and your physician, and this checklist only records when she confirms an item. Files you upload here are travel and administrative documents.</p>
+      <p class="fine-note">Clinical items carry a status here and nothing more, and only your physician or her clinical team can move one of them to complete or to not required. Questionnaires, exams and photographs go straight between you and your physician. What you upload here is travel and administrative documentation.</p>
     </section>
 
     <!-- ===================================================== My Concierge -->
@@ -386,17 +523,42 @@
     </section>
 
     <!-- ==================================================== Explore Brazil -->
+    <!-- Categorias dos guias de Sao Paulo e Rio. Nada aqui e recomendacao
+         medica: uma categoria so abre quando o medico libera, e a
+         RefreshU nunca deduz liberacao do tempo que passou. -->
     <section class="pview" id="v-brazil" hidden>
-      <p class="pview__lead">Everything here is filtered by what your physician has cleared for the day you are on. Options open up as your recovery advances.</p>
+      <p class="pview__lead">Concierge options in São Paulo, filtered by what your physician has released for the day you are on. Categories open as your physician releases them, never because time has passed.</p>
+
+      <!-- filtro "o que acontece durante a sua estadia" -->
+      <form class="xfilter" id="xFilter">
+        <div class="f"><label for="xFrom">From</label><input type="date" id="xFrom" value="2026-03-10"></div>
+        <div class="f"><label for="xTo">To</label><input type="date" id="xTo" value="2026-03-16"></div>
+        <div class="f"><label for="xWho">Who is going</label>
+          <select id="xWho"><option>Me</option><option>Me and my companion</option><option>My companion only</option></select></div>
+        <div class="f"><label for="xEffort">Activity level</label>
+          <select id="xEffort"><option>Low, I am recovering</option><option>Moderate</option><option>No restriction</option></select></div>
+        <div class="f"><label for="xMove">Transport</label>
+          <select id="xMove"><option>Private driver</option><option>Walking distance from the hotel</option><option>Either</option></select></div>
+        <div class="f"><label for="xAcc">Accessibility needs</label>
+          <select id="xAcc"><option>None</option><option>Step-free access</option><option>Short walking distances</option></select></div>
+      </form>
 
       <div class="xgrid">
-        <article class="x"><img src="assets/img/food.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Restaurants</h3><p>From the everyday to the reservation you will tell people about.</p><span class="tag tag--ok">Cleared today</span></div></article>
-        <article class="x"><img src="assets/img/park.webp" alt="" width="900" height="675" loading="lazy"><div><h3>Parks and neighborhoods</h3><p>Jardins, Ibirapuera and a slow walk that fits your week.</p><span class="tag tag--ok">Cleared today</span></div></article>
-        <article class="x"><img src="assets/img/architecture.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Museums and culture</h3><p>Architecture, art and the parts of the city worth the detour.</p><span class="tag tag--ok">Cleared today</span></div></article>
-        <article class="x"><img src="assets/img/restaurant.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Shopping</h3><p>Districts and stores, with a driver waiting.</p><span class="tag tag--soon">Opens Saturday</span></div></article>
-        <article class="x"><img src="assets/img/wellness.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Wellness</h3><p>Approved professionals, once your physician releases it.</p><span class="tag tag--soon">Opens Saturday</span></div></article>
-        <article class="x"><img src="assets/img/beach.webp" alt="" width="1100" height="825" loading="lazy"><div><h3>Day trips</h3><p>The coast, for the end of the stay if you are cleared to travel.</p><span class="tag tag--wait">Pending physician release</span></div></article>
+        <article class="x"><img src="assets/img/food.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Michelin and fine dining</h3><p>D.O.M., Picchi, Fasano, Evvai, Maní and Ryo, with the reservation handled for you.</p><span class="tag tag--ok">Released for today</span></div></article>
+        <article class="x"><img src="assets/img/restaurant.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Everyday dining</h3><p>Neighbourhood restaurants in Jardins, Itaim and Vila Nova Conceição, chosen around what you can eat each day.</p><span class="tag tag--ok">Released for today</span></div></article>
+        <article class="x"><img src="assets/img/park.webp" alt="" width="900" height="675" loading="lazy"><div><h3>Parks and neighbourhoods</h3><p>Ibirapuera, Villa-Lobos, the Botanical Garden and a slow walk through Jardins.</p><span class="tag tag--ok">Released for today</span></div></article>
+        <article class="x"><img src="assets/img/architecture.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Art and museums</h3><p>MASP, Pinacoteca, Instituto Tomie Ohtake, MIS and Japan House.</p><span class="tag tag--ok">Released for today</span></div></article>
+        <article class="x"><img src="assets/img/hotel.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Theatre and culture</h3><p>Theatro Municipal, Sala São Paulo and what is on during your stay.</p><span class="tag tag--ok">Released for today</span></div></article>
+        <article class="x"><img src="assets/img/transport.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Luxury shopping</h3><p>Oscar Freire, Iguatemi, JK Iguatemi and Cidade Jardim, with a driver waiting.</p><span class="tag tag--soon">Opens Saturday</span></div></article>
+        <article class="x"><img src="assets/img/wellness.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Wellness and spa</h3><p>Massage, sauna and heat are only offered once your physician has released them, because they can be incompatible with a procedure.</p><span class="tag tag--wait">Pending physician release</span></div></article>
+        <article class="x"><img src="assets/img/kit.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Wine and gastronomy</h3><p>The São Roque wine route, a chauffeured day among the wineries.</p><span class="tag tag--soon">Opens Saturday</span></div></article>
+        <article class="x"><img src="assets/img/beach.webp" alt="" width="1100" height="825" loading="lazy"><div><h3>Day trips</h3><p>São Roque, Campos do Jordão, Santos and Guarujá, if you are cleared to travel.</p><span class="tag tag--wait">Pending physician release</span></div></article>
+        <article class="x"><img src="assets/img/saopaulo.webp" alt="" width="1200" height="900" loading="lazy"><div><h3>Exclusive experiences</h3><p>Private city tour with a bilingual guide, a helicopter flight over the city, a personal shopper, a private cooking class.</p><span class="tag tag--soon">Opens Saturday</span></div></article>
+        <article class="x"><img src="assets/img/hair.webp" alt="" width="900" height="675" loading="lazy"><div><h3>Family and companion</h3><p>Aquarium, Parque da Mônica, the zoo and a companion itinerary for the days you are resting.</p><span class="tag tag--ok">Released for today</span></div></article>
+        <article class="x"><img src="assets/img/face.webp" alt="" width="900" height="675" loading="lazy"><div><h3>Nightlife</h3><p>Rooftops, cocktail bars and live music. Alcohol may be contraindicated around a procedure or with medication.</p><span class="tag tag--wait">Pending physician release</span></div></article>
       </div>
+
+      <p class="fine-note">Every option here is a concierge recommendation and not a medical recommendation. RefreshU does not guarantee the safety of any neighbourhood, venue or event, does not determine whether an activity is medically appropriate, and never infers clearance from silence or from elapsed time. Addresses, hours, menus, distinctions and prices change, and are reconfirmed before booking.</p>
     </section>
 
     <!-- ======================================================== Documents -->
@@ -441,38 +603,69 @@
     </section>
 
     <!-- ========================================================== Support -->
+    <!-- Duas portas separadas, exigidas pelo guia de instrucoes: clinico
+         vai para o medico, logistica vai para a RefreshU, e uma pergunta
+         clinica que chegue no canal errado e redirecionada, nunca
+         respondida pela equipe de concierge. -->
     <section class="pview" id="v-support" hidden>
+
+      <div class="emergbar" role="note">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.6 17.4A2 2 0 0 0 4.3 20.4h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><b>This portal is not for medical emergencies.</b> If you believe you are experiencing a medical emergency, contact local emergency services immediately: <b>192</b> in Brazil, <b>911</b> in the United States. For procedure-related medical questions, contact your physician or clinic. RefreshU can assist with non-medical logistics but cannot diagnose or manage a medical emergency.</p>
+      </div>
+
+      <div class="asktwo">
+        <article class="ask ask--med" id="ask-physician">
+          <span class="ask__k">Medical</span>
+          <h2 class="ask__t">Ask my physician</h2>
+          <p>Symptoms, medications, test questions, the procedure, recovery and anything in your physician instructions. This reaches Dr. Juliana Buttros and her clinical team, and RefreshU does not answer it.</p>
+          <button class="btn btn--sm" type="button">Write to my physician</button>
+        </article>
+
+        <article class="ask ask--conc">
+          <span class="ask__k">Travel and concierge</span>
+          <h2 class="ask__t">Ask RefreshU</h2>
+          <p>Flights, hotel, driver, restaurants, your schedule and concierge services. Beatriz L., your concierge in São Paulo, from 07:00 to 22:00 local time.</p>
+          <button class="btn btn--sm btn--line" type="button">Message Beatriz</button>
+        </article>
+      </div>
+
+      <p class="fine-note asktwo__note">If a medical question arrives in the RefreshU channel, we tell you so and hand it to your physician in one click. We do not answer it ourselves, and a concierge cannot mark a clinical item complete.</p>
+
       <div class="sup">
-        <article class="card card--hi">
-          <h2 class="card__t">Your concierge, first</h2>
-          <p class="card__big">Beatriz L.</p>
-          <p class="card__p">For anything about your trip, your schedule, transport, food, bookings or day to day needs. 07:00 to 22:00 local time.</p>
-        </article>
-        <article class="card">
-          <h2 class="card__t">Clinical questions</h2>
-          <p class="card__p">Anything clinical goes to Dr. Camila Rocha and the clinical team. Your concierge routes it and never answers it.</p>
-        </article>
         <article class="card">
           <h2 class="card__t">Urgent, outside hours</h2>
-          <p class="card__p">A line that reaches a person at any hour, for anything that cannot wait until morning.</p>
+          <p class="card__p">A line that reaches a person at any hour, for anything that cannot wait until morning. For anything medical, contact your physician or the clinic first.</p>
         </article>
         <article class="card">
           <h2 class="card__t">Account and payments</h2>
           <p class="card__p">Billing, documents and access to this portal.</p>
         </article>
+        <article class="card">
+          <h2 class="card__t">A concern about the service</h2>
+          <p class="card__p">Report it and you get a case number and an audit trail, and we track it to resolution.</p>
+          <a class="link-arrow" href="legal.html#concern">Report a concern</a>
+        </article>
+        <article class="card">
+          <h2 class="card__t">Accessibility</h2>
+          <p class="card__p">If something on this portal is not working with your keyboard, your screen reader or at the text size you need, tell us and we complete the task with you while it is fixed.</p>
+        </article>
       </div>
+
       <h2 class="card__t" style="margin-top:2rem">Questions people ask us</h2>
       <div class="faq2">
         <details><summary>Who decides whether I can have the procedure?</summary>
           <p>Your physician, and only your physician. RefreshU coordinates the trip around that decision and takes no part in making it.</p></details>
         <details><summary>Where do my medical records live?</summary>
-          <p>In your physician's own system. Your questionnaire, any photographs, your exam results and your reports go straight to them and never pass through RefreshU. Here you see the status of each item, never the content.</p></details>
+          <p>In your physician&rsquo;s own system. Your questionnaire, any photographs, your exam results and your reports go straight to her and never pass through RefreshU. Here you see the status of each item and the instructions she releases to you.</p></details>
+        <details><summary>Does reading an instruction mean I agreed to the procedure?</summary>
+          <p>No. Confirming that you read an instruction records only that you opened it. Consent to treatment is a separate process, and it happens with your physician.</p></details>
         <details><summary>What if my recovery takes longer than planned?</summary>
-          <p>Your schedule bends around it. Your concierge rearranges restaurants, experiences and transport, and anything your physician has fixed stays where it is.</p></details>
+          <p>Your schedule bends around it. Your concierge rearranges restaurants, experiences and transport, and anything your physician has fixed stays where it is. RefreshU never assumes you are cleared for an activity because time has passed.</p></details>
         <details><summary>Can someone travel with me?</summary>
-          <p>Yes. Add a companion under My Profile and they are included in your transfers, your room and the parts of the schedule they can join.</p></details>
+          <p>Yes. Add a companion under My Profile and they are included in your transfers, your room and the parts of the schedule they can join. If your companion is also seeing a physician, they complete their own physician review, their own consents and their own medical payment.</p></details>
         <details><summary>How do payments work?</summary>
-          <p>You pay on the provider's own secure page, through a link we send you. No card detail is ever stored by RefreshU.</p></details>
+          <p>You pay on the provider&rsquo;s own secure page, through a link we send you. No card detail is ever stored by RefreshU. Your RefreshU concierge fee and any medical fee are shown as separate lines, paid to separate parties.</p></details>
         <details><summary>What happens if I need help at 3am?</summary>
           <p>Use the urgent number on this page. For anything medical, contact your physician or the clinic directly, and call local emergency services if it cannot wait.</p></details>
       </div>
@@ -497,9 +690,80 @@
 
     </section>
 
+    <!-- ============================================== My Legal Documents -->
+    <!-- Item 21 do tracker. Mostra o documento, a versao e a data em que
+         voce aceitou, e abre os pedidos de privacidade. Um pedido de
+         exclusao abre um chamado revisado: nao existe botao que apaga
+         registro sujeito a retencao. -->
+    <section class="pview" id="v-legal" hidden>
+      <p class="pview__lead">Everything you have accepted, the version you accepted, and the date. Previous versions are kept, so nothing is silently replaced.</p>
+
+      <table class="tbl tbl--legal">
+        <caption class="sr">Documents you accepted</caption>
+        <thead><tr><th scope="col">Document</th><th scope="col">Version</th><th scope="col">Accepted</th><th scope="col"></th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Terms of Use</th><td>[VERSION]</td><td>February 18, 2026</td><td><a class="link-arrow" href="legal.html#terms">Read</a></td></tr>
+          <tr><th scope="row">Privacy Policy</th><td>[VERSION]</td><td>February 18, 2026</td><td><a class="link-arrow" href="legal.html#privacy">Read</a></td></tr>
+          <tr><th scope="row">Medical Disclaimer</th><td>[VERSION]</td><td>February 18, 2026</td><td><a class="link-arrow" href="legal.html#medical">Read</a></td></tr>
+          <tr><th scope="row">Independent Provider Disclosure</th><td>[VERSION]</td><td>February 18, 2026</td><td><a class="link-arrow" href="legal.html#providers">Read</a></td></tr>
+          <tr><th scope="row">Physician referral acknowledgment</th><td>[VERSION]</td><td>February 18, 2026</td><td><a class="link-arrow" href="legal.html#medical">Read</a></td></tr>
+          <tr><th scope="row">Cross-border access acknowledgment</th><td>[VERSION]</td><td>February 18, 2026</td><td><a class="link-arrow" href="legal.html#privacy">Read</a></td></tr>
+          <tr><th scope="row">Electronic Communications Consent</th><td>[VERSION]</td><td>February 18, 2026</td><td><a class="link-arrow" href="legal.html#communications">Read</a></td></tr>
+          <tr><th scope="row">Concierge Services Agreement</th><td>[VERSION]</td><td>March 1, 2026</td><td><a class="link-arrow" href="legal.html#concierge">Read</a></td></tr>
+          <tr><th scope="row">Cancellation &amp; Refund Policy</th><td>[VERSION]</td><td>March 1, 2026</td><td><a class="link-arrow" href="legal.html#cancellation">Read</a></td></tr>
+          <tr><th scope="row">Travel &amp; Journey Terms</th><td>[VERSION]</td><td>March 1, 2026</td><td><a class="link-arrow" href="legal.html#travel">Read</a></td></tr>
+          <tr><th scope="row">Travel Insurance Acknowledgment</th><td>[VERSION]</td><td>March 5, 2026</td><td><a class="link-arrow" href="legal.html#insurance">Read</a></td></tr>
+          <tr><th scope="row">Itinerary acknowledgment</th><td>[VERSION]</td><td>March 5, 2026</td><td><a class="link-arrow" href="#trip" data-view="trip">Open</a></td></tr>
+          <tr class="is-off"><th scope="row">Marketing communications</th><td>[VERSION]</td><td>Declined</td><td><a class="link-arrow" href="#profile" data-view="profile">Change</a></td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="card__t" style="margin-top:2rem">Your privacy requests</h2>
+      <div class="prq">
+        <article class="card">
+          <h3 class="card__t">A copy of your information</h3>
+          <p class="card__p">Everything RefreshU holds about you, in a readable file.</p>
+          <button class="btn btn--sm btn--line" type="button" data-prq="copy">Request a copy</button>
+        </article>
+        <article class="card">
+          <h3 class="card__t">A correction</h3>
+          <p class="card__p">Tell us what is wrong and what it should say.</p>
+          <button class="btn btn--sm btn--line" type="button" data-prq="correction">Request a correction</button>
+        </article>
+        <article class="card">
+          <h3 class="card__t">Deletion</h3>
+          <p class="card__p">This opens a reviewed ticket rather than erasing records immediately, because some records carry a retention obligation. We tell you what can go and what cannot, and why.</p>
+          <button class="btn btn--sm btn--line" type="button" data-prq="deletion">Request deletion</button>
+        </article>
+        <article class="card">
+          <h3 class="card__t">Close your account</h3>
+          <p class="card__p">Ends access to this portal. Any active trip is discussed with you first.</p>
+          <button class="btn btn--sm btn--line" type="button" data-prq="closure">Request closure</button>
+        </article>
+      </div>
+      <p class="fine-note" id="prqOut" role="status" style="margin-top:.9rem">Each request opens a ticket with a case number and is answered within the time the Privacy Policy states.</p>
+
+      <p class="fine-note">Your medical records are not part of this list. They live in your physician&rsquo;s own system, and requests about them go to her clinic.</p>
+    </section>
+
     <!-- ========================================================== Profile -->
     <section class="pview" id="v-profile" hidden>
       <p class="pview__lead">Your details, who travels with you, and how you sign in.</p>
+
+      <!-- Prontidao de viagem, campos separados. Cumprir isto nao e
+           liberacao medica, e a tela precisa dizer isso. -->
+      <article class="card card--wide trvl">
+        <h2 class="card__t">Travel readiness</h2>
+        <div class="trvl__grid">
+          <div class="trvl__i is-ok"><b>Airfare</b><span>Confirmed both ways</span></div>
+          <div class="trvl__i is-todo"><b>Travel insurance proof</b><span>Upload pending, due today</span></div>
+          <div class="trvl__i is-ok"><b>Hotel</b><span>Confirmed, March 9 to 16</span></div>
+          <div class="trvl__i is-ok"><b>Emergency contact</b><span>On file</span></div>
+          <div class="trvl__i is-ok"><b>Arrival window</b><span>Arriving 3 days before the procedure</span></div>
+          <div class="trvl__i is-wait"><b>Physician requirements</b><span>Status only, controlled by your clinic</span></div>
+        </div>
+        <p class="fine-note">Meeting RefreshU&rsquo;s travel requirements is not medical clearance. Only your physician or clinic can decide whether medical requirements are satisfied and whether the procedure should proceed. The proposed rule is to arrive in Brazil at least seven days before the procedure unless your physician and your written terms set another timeframe.</p>
+      </article>
 
       <div class="two">
         <article class="card">
@@ -556,11 +820,21 @@
           </article>
 
           <article class="card">
-            <h2 class="card__t">What we email you</h2>
+            <h2 class="card__t">Service messages</h2>
+            <p class="card__p">About your account, your schedule, your physician-review status, travel and payments. Detailed medical content never appears in a message subject or preview, and a notification always sends you back here.</p>
             <label class="check"><input type="checkbox" checked><span>When something needs you</span></label>
-            <label class="check"><input type="checkbox" checked><span>When your schedule changes</span></label>
+            <label class="check"><input type="checkbox" checked><span>When your schedule or itinerary changes</span></label>
+            <label class="check"><input type="checkbox" checked><span>When your physician releases or updates an instruction</span></label>
             <label class="check"><input type="checkbox" checked><span>When a payment is coming up</span></label>
-            <label class="check"><input type="checkbox"><span>Ideas for your free days in Brazil</span></label>
+            <p class="fine-note" style="margin-top:.6rem">Security messages are always sent and cannot be switched off.</p>
+          </article>
+
+          <article class="card">
+            <h2 class="card__t">Marketing</h2>
+            <p class="card__p">Separate from everything above, never a condition of any service, and off unless you turn it on.</p>
+            <label class="check"><input type="checkbox" data-doc="marketing-consent"><span>RefreshU promotions, offers and news by email</span></label>
+            <label class="check"><input type="checkbox" data-doc="marketing-consent"><span>The same, by text message</span></label>
+            <p class="fine-note" style="margin-top:.6rem">Changing this is recorded with the date, and you can opt out from any message. See <a href="#legal" data-view="legal">My Legal Documents</a>.</p>
           </article>
         </div>
       </div>

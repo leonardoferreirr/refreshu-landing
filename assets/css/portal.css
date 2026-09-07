@@ -505,3 +505,173 @@
 
 .pside__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .pside__row .pside__out { padding-left: 4px; }
+
+/* ============================================================
+   Perfil do medico
+   ============================================================ */
+.doc__badge{
+  display:inline-block;margin-top:.4rem;
+  font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;font-weight:600;
+  color:var(--on-paper-dim);border:1px solid var(--line);
+  border-radius:100px;padding:.2rem .6rem;
+}
+.doc__ul{margin:0 0 1rem;padding-left:1.15rem}
+.doc__ul li{margin-bottom:.35rem;line-height:1.6;color:var(--on-paper-dim);font-size:.93rem}
+
+.gallery-off{
+  border:1px dashed var(--line);border-radius:10px;
+  padding:1rem 1.1rem;background:rgba(14,40,70,.03);
+}
+.gallery-off p{margin:0;font-size:.88rem;line-height:1.6;color:var(--on-paper-dim)}
+.gallery-off b{color:var(--navy)}
+
+.doc__roles{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;margin:1.6rem 0 1.2rem;
+}
+.role{background:var(--paper);padding:1.1rem 1.2rem}
+.role--ru{background:rgba(37,198,224,.05)}
+.role b{display:block;font-size:.88rem;color:var(--navy);margin-bottom:.4rem}
+.role p{margin:0;font-size:.87rem;line-height:1.6;color:var(--on-paper-dim)}
+
+.doc__acts{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem}
+
+/* ============================================================
+   Instrucoes do medico
+   ============================================================ */
+.pins{
+  border:1px solid var(--line);border-left:4px solid var(--navy);
+  border-radius:12px;background:var(--paper);
+  padding:1.2rem 1.3rem;margin:0 0 .8rem;
+}
+.pins[data-status="released"]{border-left-color:#c8891f}
+.pins[data-status="read"]{border-left-color:var(--teal)}
+.pins__h{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.pins__t{font-size:1.05rem;margin:0 0 .18rem;color:var(--navy)}
+.pins__by{margin:0;font-size:.84rem;color:var(--on-paper-dim)}
+.pins__by b{color:var(--navy);font-weight:600}
+.pins__badge{flex:0 0 auto}
+
+.pins__meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:.7rem 1.2rem;margin:1rem 0;padding:.9rem 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.pins__meta dt{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:var(--on-paper-fine);margin-bottom:.2rem}
+.pins__meta dd{margin:0;font-size:.87rem;color:var(--navy)}
+.pins__meta dd.is-important{color:#a8641a;font-weight:600}
+
+.pins__body h3{font-size:.98rem;margin:0 0 .45rem;color:var(--navy)}
+.pins__body p{margin:0 0 .6rem;font-size:.91rem;line-height:1.65;color:var(--on-paper-dim)}
+.pins__due{
+  display:inline-block;font-size:.85rem;color:#8f2a20;
+  background:rgba(180,67,58,.08);border-radius:6px;padding:.3rem .6rem;
+}
+.pins__due b{color:#8f2a20}
+
+.pins__foot{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+  margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--line);
+}
+.pins__ack{margin:0;font-size:.88rem}
+.pins__acts{display:flex;gap:.45rem;flex-wrap:wrap}
+.pins__hist{
+  margin:.9rem 0 0;padding:.75rem .85rem;border-radius:8px;
+  background:rgba(14,40,70,.04);font-size:.84rem;line-height:1.6;color:var(--on-paper-dim);
+}
+.pins__note{margin:0 0 1.6rem}
+.pins__sub{margin:0 0 .7rem}
+.chk__hint{display:block;font-size:.78rem;color:var(--on-paper-fine);margin-top:.3rem;line-height:1.5}
+
+@media (max-width:760px){
+  .doc__roles{grid-template-columns:1fr}
+  .pins__foot{align-items:flex-start;flex-direction:column}
+}
+
+/* ============================================================
+   Support: as duas portas
+   ============================================================ */
+.asktwo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0 0 .7rem}
+.ask{border:1px solid var(--line);border-radius:12px;padding:1.15rem 1.25rem;background:var(--paper)}
+.ask--med{border-top:3px solid var(--navy)}
+.ask--conc{border-top:3px solid var(--teal)}
+.ask__k{
+  display:inline-block;font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;
+  font-weight:700;color:var(--on-paper-fine);margin-bottom:.4rem;
+}
+.ask__t{font-size:1.05rem;margin:0 0 .4rem;color:var(--navy)}
+.ask p{margin:0 0 .9rem;font-size:.89rem;line-height:1.6;color:var(--on-paper-dim)}
+.asktwo__note{margin:0 0 1.6rem}
+
+/* ============================================================
+   My Legal Documents
+   ============================================================ */
+.tbl--legal tbody tr.is-off th,.tbl--legal tbody tr.is-off td{color:var(--on-paper-fine)}
+.prq{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem}
+.prq .card__t{font-size:.95rem}
+
+@media (max-width:760px){ .asktwo{grid-template-columns:1fr} }
+
+/* ============================================================
+   Itinerario publicado
+   ============================================================ */
+.itin__h{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:1.2rem;
+  flex-wrap:wrap;padding-bottom:1rem;margin-bottom:1.2rem;border-bottom:1px solid var(--line);
+}
+.itin__t{font-size:1.25rem;margin:0 0 .3rem;color:var(--navy)}
+.itin__meta{display:flex;flex-wrap:wrap;gap:.25rem .9rem;margin:0;font-size:.78rem;color:var(--on-paper-fine)}
+.itin__meta b{color:var(--on-paper-dim);font-weight:600}
+.itin__acts{display:flex;gap:.45rem;flex-wrap:wrap}
+.alert--soft{background:rgba(37,198,224,.08);border-color:rgba(37,198,224,.35);color:var(--on-paper-dim)}
+
+.itin__disc{
+  margin-top:1.8rem;padding-top:1.3rem;border-top:1px solid var(--line);
+}
+.itin__disc h3{font-size:.92rem;color:var(--navy);margin:1.1rem 0 .4rem}
+.itin__disc h3:first-child{margin-top:0}
+.itin__disc p{margin:0 0 .7rem;font-size:.85rem;line-height:1.65;color:var(--on-paper-dim)}
+.itin__foot{
+  margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--line);
+  font-size:.76rem;color:var(--on-paper-fine);line-height:1.6;
+}
+.itin__ack{margin-top:1.2rem;align-items:flex-start;gap:.6rem;font-size:.82rem;line-height:1.55}
+.itin__ack input{margin-top:.15rem;flex:0 0 auto}
+
+/* filtro do Explore Brazil */
+.xfilter{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:.8rem;padding:1rem 1.1rem;margin:0 0 1.3rem;
+  border:1px solid var(--line);border-radius:12px;background:rgba(14,40,70,.03);
+}
+.xfilter .f{margin:0}
+.xfilter label{display:block;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--on-paper-fine);margin-bottom:.25rem}
+.xfilter input,.xfilter select{
+  width:100%;font:inherit;font-size:.86rem;padding:.42rem .55rem;
+  border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--on-paper);
+}
+
+/* impressao: o itinerario sai limpo, sem nav e sem notas internas */
+@media print{
+  .pside,.ptop,.demo,.itin__acts,.xfilter,#siteFoot,.pburger{display:none !important}
+  .portal{display:block}
+  .pview[hidden]{display:none !important}
+  .itin__disc{break-inside:avoid}
+  body{background:#fff}
+}
+.ask.is-flash{box-shadow:0 0 0 3px rgba(37,198,224,.45);transition:box-shadow .3s}
+.fine-note.is-ok{color:var(--navy);font-weight:500}
+
+/* prontidao de viagem */
+.trvl{margin-bottom:1.2rem}
+.trvl__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.7rem;margin:.9rem 0 .9rem}
+.trvl__i{
+  border:1px solid var(--line);border-left:3px solid var(--line);
+  border-radius:8px;padding:.6rem .75rem;
+}
+.trvl__i b{display:block;font-size:.85rem;color:var(--navy);margin-bottom:.15rem}
+.trvl__i span{font-size:.79rem;color:var(--on-paper-dim);line-height:1.45}
+.trvl__i.is-ok{border-left-color:var(--teal)}
+.trvl__i.is-todo{border-left-color:#c8891f}
+.trvl__i.is-wait{border-left-color:var(--on-paper-fine)}

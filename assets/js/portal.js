@@ -91,5 +91,90 @@
     });
   });
 
+  /* ------------------------------------------- instrucoes do medico ------
+
+     Confirmar leitura muda o estado da instrucao e nada mais. Nao edita o
+     texto, nao completa clinicamente, nao vale como consentimento. Quem
+     completa um item clinico e o medico ou a equipe dele.                 */
+
+  var pins = document.getElementById('pins');
+  var pinsAck = document.getElementById('pinsAck');
+  var pinsBadge = document.getElementById('pinsBadge');
+
+  if (pins && pinsAck && pinsBadge) {
+    pinsAck.addEventListener('change', function () {
+      var lido = pinsAck.checked;
+      pins.dataset.status = lido ? 'read' : 'released';
+      pinsBadge.textContent = lido ? 'Read' : 'Action required';
+      pinsBadge.className = 'tag pins__badge ' + (lido ? 'tag--ok' : 'tag--act');
+      // Registro do aceite por versao: o backend grava author, versao e hora.
+      pins.dataset.ackAt = lido ? new Date().toISOString() : '';
+      pins.dataset.ackVersion = lido ? (pins.dataset.version || '') : '';
+    });
+  }
+
+  var pinsHist = document.getElementById('pinsHist');
+  var pinsHistBox = document.getElementById('pinsHistBox');
+  if (pinsHist && pinsHistBox) {
+    pinsHist.addEventListener('click', function () {
+      var aberto = !pinsHistBox.hidden;
+      pinsHistBox.hidden = aberto;
+      pinsHist.textContent = aberto ? 'View previous version' : 'Hide previous version';
+    });
+  }
+
+  /* --------------------------------------- perguntar ao medico ou a nos --
+
+     Um link com data-ask="physician" abre o Support ja na porta clinica.
+     Uma pergunta clinica nunca cai no canal do concierge por acidente.   */
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-ask]');
+    if (!a || a.dataset.ask !== 'physician') return;
+    setTimeout(function () {
+      var alvo = document.getElementById('ask-physician');
+      if (!alvo) return;
+      alvo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      alvo.classList.add('is-flash');
+      setTimeout(function () { alvo.classList.remove('is-flash'); }, 1400);
+    }, 60);
+  });
+
+  /* ------------------------------------------- pedidos de privacidade ----
+
+     Cada pedido abre um chamado com numero. Exclusao nunca apaga na hora:
+     ha registro sujeito a retencao, e isso e dito na propria resposta.   */
+
+  var prqOut = document.getElementById('prqOut');
+  var PRQ = {
+    copy: 'A copy of your information was requested.',
+    correction: 'A correction was requested. We will ask you what should change.',
+    deletion: 'A deletion request was opened for review. Records under a retention obligation are identified and explained to you before anything is removed.',
+    closure: 'Account closure was requested. If you have an active trip we speak to you first.'
+  };
+  document.querySelectorAll('[data-prq]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var d = new Date();
+      var num = 'RU-P-' + d.getFullYear() +
+        String(d.getMonth() + 1).padStart(2, '0') +
+        String(d.getDate()).padStart(2, '0') + '-' +
+        String(Math.floor(Math.random() * 9000) + 1000);
+      if (prqOut) {
+        prqOut.textContent = PRQ[b.dataset.prq] + ' Case number ' + num + '.';
+        prqOut.classList.add('is-ok');
+      }
+      b.disabled = true;
+    });
+  });
+
+  /* ------------------------------------------------ imprimir itinerario --
+     Sempre a versao publicada corrente, com data, hora e numero de versao
+     no proprio documento. Notas internas nao existem nesta tela.          */
+
+  ['itinPrint', 'itinPdf'].forEach(function (id) {
+    var b = document.getElementById(id);
+    if (b) b.addEventListener('click', function () { window.print(); });
+  });
+
   doHash();
 })();
