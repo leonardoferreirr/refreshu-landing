@@ -110,6 +110,18 @@
 
       <p class="cnav__grp">Administration</p>
 
+      <a href="#instructions" data-view="instructions" data-sub="What the physician released, and where each client stands">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14.5 3.5V8H19M9 12.5h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Physician instructions</span></a>
+      <a href="#suppliers" data-view="suppliers" data-sub="Restaurants, hotels, drivers and venues in São Paulo and Rio">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5h16M4 9.5 6 4h12l2 5.5M4 9.5V20h16V9.5M9.5 20v-6h5v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Suppliers</span></a>
+      <a href="#legal" data-view="legal" data-sub="Document versions, the consent log and public trust claims">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 4.5 6.5v5.2c0 4.3 3.1 8.3 7.5 9.3 4.4-1 7.5-5 7.5-9.3V6.5L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Legal &amp; consent</span></a>
+      <a href="#complaints" data-view="complaints" data-sub="Every concern with a case number, tracked to resolution">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8.5v3m0 2v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Concerns</span></a>
       <a href="#team" data-view="team" data-sub="Four roles, and exactly what each one reaches">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="9" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 19a5.5 5.5 0 0 1 11 0m-2 0a5.5 5.5 0 0 1 10 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <span class="cnav__lbl">Team &amp; roles</span>
@@ -887,10 +899,12 @@
 
       <div class="cpanel">
         <div class="cpanel__h">
-          <span class="cpanel__t">Michael Carter · São Paulo<small>March 9 to March 16 · one timeline, four schedules</small></span>
+          <span class="cpanel__t">Michael Carter · São Paulo<small>Trip RU-2026-00125 · March 9 to 16 · published version 3, March 5 at 4:30 PM</small></span>
           <span class="cpanel__a">
+            <span class="pubstate" id="pubState">2 unpublished changes</span>
             <button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="itinitem">Add item</button>
-            <button class="cbtn cbtn--sm" type="button" data-drawer="itinitem">Publish to client</button>
+            <button class="cbtn cbtn--ghost cbtn--sm" type="button" id="itinPreview">Preview client version</button>
+            <button class="cbtn cbtn--sm" type="button" id="itinPublish">Publish version 4</button>
           </span>
         </div>
         <div class="cpanel__b">
@@ -1554,6 +1568,251 @@
     </section>
 
     <!-- ====================================================== TEAM ====== -->
+    <!-- ============================================ Physician instructions -->
+    <!-- O medico e a clinica sao a fonte. Aqui a operacao registra o que
+         foi liberado, versiona e coordena em volta. Ninguem da RefreshU
+         escreve, edita ou completa clinicamente uma instrucao: os campos
+         que fariam isso nao existem nesta tela. -->
+    <section class="cview" id="v-instructions" hidden>
+
+      <div class="cbanner cbanner--rule">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 4.5 6.5v5.2c0 4.3 3.1 8.3 7.5 9.3 4.4-1 7.5-5 7.5-9.3V6.5L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <p><b>Clinical content is authored by the provider.</b> RefreshU records what the physician released, publishes it to the client unchanged, and coordinates the itinerary around it. A concierge cannot write, edit, release or medically complete an instruction, and full clinical text is restricted by default.</p>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Released instructions<small>Across every active client</small></span>
+          <span class="cpanel__a">
+            <button class="cbtn cbtn--sm" type="button" data-drawer="instruction">Record a released instruction</button>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl">
+            <caption class="sr">Physician instructions</caption>
+            <thead><tr>
+              <th scope="col">Client</th><th scope="col">Physician</th><th scope="col">Category</th>
+              <th scope="col">Released</th><th scope="col">Ver.</th><th scope="col">Status</th>
+              <th scope="col">Effect on itinerary</th><th scope="col"></th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <th scope="row">Michael Carter</th><td>Dr. Juliana Buttros</td><td>Pre-operative preparation</td>
+                <td>Mar 11, 4:20 PM</td><td>v2</td>
+                <td><span class="tag tag--act">Action due</span></td>
+                <td>No activities before March 12, 10:00</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">Open</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Michael Carter</th><td>Dr. Juliana Buttros</td><td>Recovery</td>
+                <td>Mar 11, 4:22 PM</td><td>v1</td>
+                <td><span class="tag tag--wait">Released</span></td>
+                <td>Wellness and day trips stay closed until released</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">Open</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Denise Park</th><td>Dr. Juliana Buttros</td><td>Required examinations</td>
+                <td>Mar 9, 11:05 AM</td><td>v1</td>
+                <td><span class="tag tag--ok">Read</span></td>
+                <td>Blood work before the consultation</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">Open</button></td>
+              </tr>
+              <tr class="is-off">
+                <th scope="row">Anthony Reyes</th><td>Dr. Juliana Buttros</td><td>Travel clearance</td>
+                <td>Mar 4, 9:40 AM</td><td>v1</td>
+                <td><span class="tag">Superseded</span></td>
+                <td>Replaced by version 2 on March 6</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">History</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ctwo">
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">What the concierge may see<small>Minimum necessary, by default</small></span></div>
+          <div class="cpanel__b">
+            <ul class="rulelist">
+              <li class="is-yes"><b>That an instruction exists</b><span>Always</span></li>
+              <li class="is-yes"><b>Status</b><span>Released, read, action due, completed</span></li>
+              <li class="is-yes"><b>Due date and time</b><span>When scheduling depends on it</span></li>
+              <li class="is-yes"><b>Effect on the itinerary</b><span>For example, no activities until physician release</span></li>
+              <li class="is-no"><b>Full clinical text</b><span>Restricted, enabled only if counsel and security decide it is necessary</span></li>
+              <li class="is-no"><b>Medication detail</b><span>Restricted</span></li>
+              <li class="is-no"><b>Diagnosis and clinical notes</b><span>Never</span></li>
+              <li class="is-no"><b>Editing an instruction</b><span>Never</span></li>
+              <li class="is-no"><b>Marking a clinical item complete</b><span>Never, the provider controls clinical completion</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Language rules<small>Applied everywhere the client can read</small></span></div>
+          <div class="cpanel__b">
+            <table class="ctbl ctbl--say">
+              <caption class="sr">Wording</caption>
+              <thead><tr><th scope="col">Never</th><th scope="col">Always</th></tr></thead>
+              <tbody>
+                <tr><td>RefreshU approved your instructions</td><td>Your physician released new instructions</td></tr>
+                <tr><td>RefreshU cleared you</td><td>Your physician released this activity</td></tr>
+                <tr><td>We recommend you stop this medication</td><td>Your physician&rsquo;s instruction says&hellip;</td></tr>
+                <tr><td>RefreshU says this test is not required</td><td>Your physician marked this test as not required</td></tr>
+                <tr><td>We completed your medical requirements</td><td>Your physician confirmed this requirement</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= Suppliers -->
+    <section class="cview" id="v-suppliers" hidden>
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Supplier network<small>116 in São Paulo, 85 in Rio de Janeiro</small></span>
+          <span class="cpanel__a">
+            <div class="segs" role="group" aria-label="City">
+              <button type="button" data-sup="sp" aria-pressed="true">São Paulo</button>
+              <button type="button" data-sup="rio" aria-pressed="false">Rio de Janeiro</button>
+            </div>
+            <button class="cbtn cbtn--ghost cbtn--sm" type="button">Export CSV</button>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl" id="supTbl">
+            <caption class="sr">Suppliers</caption>
+            <thead><tr>
+              <th scope="col">Supplier</th><th scope="col">Category</th><th scope="col">Area</th>
+              <th scope="col">Best contact route</th><th scope="col">Partnership ask</th><th scope="col">Status</th>
+            </tr></thead>
+            <tbody data-city="sp">
+              <tr><th scope="row">D.O.M.</th><td>Restaurant</td><td>Jardins</td><td>Phone, official site</td><td>Concierge reservations, preferred access</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Restaurante Fasano</th><td>Restaurant</td><td>Jardins</td><td>WhatsApp, email</td><td>Reservations, events, hotel partnership</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Evvai</th><td>Restaurant</td><td>Jardim Paulistano</td><td>Phone, email</td><td>Concierge reservations, VIP dining</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Skye, Hotel Unique</th><td>Rooftop</td><td>Jardins</td><td>Official site</td><td>Sunset table, concierge access</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Shopping Iguatemi</th><td>Shopping</td><td>Jardim Paulistano</td><td>Concierge desk</td><td>Personal shopper, VIP lounge</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Buddha Spa</th><td>Wellness</td><td>Alto de Pinheiros</td><td>Official site</td><td>Physician-released treatments only</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Vinícola Góes</th><td>Winery</td><td>São Roque</td><td>Official site</td><td>Chauffeured wine day, tasting</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+            </tbody>
+            <tbody data-city="rio" hidden>
+              <tr><th scope="row">Oro</th><td>Restaurant</td><td>Leblon</td><td>Official reservations</td><td>Concierge reservations, preferred access</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Oteque</th><td>Restaurant</td><td>Botafogo</td><td>Official reservations</td><td>Concierge reservations</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Fasano Rooftop</th><td>Rooftop</td><td>Ipanema</td><td>Hotel reservations</td><td>Sunset access for guests</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Bondinho Pão de Açúcar</th><td>Attraction</td><td>Urca</td><td>Official site</td><td>Priority tickets, private timing</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">VillageMall</th><td>Shopping</td><td>Barra da Tijuca</td><td>Concierge desk</td><td>Personal shopper</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Copacabana Palace Spa</th><td>Wellness</td><td>Copacabana</td><td>Hotel spa</td><td>Physician-released treatments only</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cbanner">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.6 17.4A2 2 0 0 0 4.3 20.4h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><b>Two rules for supplier outreach.</b> For tours and transport, ask for the company registration, the licence and the insurance before booking a client into them. And never let a vendor decide whether a client may take part in an activity: only the treating physician does that.</p>
+      </div>
+    </section>
+
+    <!-- ==================================================== Legal & consent -->
+    <section class="cview" id="v-legal" hidden>
+      <div class="ctwo">
+        <div class="cpanel">
+          <div class="cpanel__h">
+            <span class="cpanel__t">Document versions<small>Published in the Legal Center</small></span>
+            <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="legaldoc">New version</button></span>
+          </div>
+          <div class="cpanel__b cpanel__b--flush">
+            <table class="ctbl">
+              <caption class="sr">Legal documents</caption>
+              <thead><tr><th scope="col">Document</th><th scope="col">Version</th><th scope="col">Effective</th><th scope="col">Status</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Terms of Use</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Privacy Policy</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Medical Disclaimer</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Independent Provider Disclosure</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Concierge Services Agreement</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Cancellation &amp; Refund Policy</th><td>0.1</td><td>Not set</td><td><span class="tag tag--act">Amounts pending</span></td></tr>
+                <tr><th scope="row">Travel &amp; Journey Terms</th><td>0.1</td><td>Not set</td><td><span class="tag tag--act">Seven-day rule pending</span></td></tr>
+                <tr><th scope="row">Travel Insurance</th><td>0.1</td><td>Not set</td><td><span class="tag tag--act">Minimum coverage pending</span></td></tr>
+                <tr><th scope="row">Payment &amp; Fee Disclosure</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Consent log<small>Michael Carter, most recent first</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <table class="ctbl">
+              <caption class="sr">Consent log</caption>
+              <thead><tr><th scope="col">Document</th><th scope="col">Ver.</th><th scope="col">Accepted</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Itinerary acknowledgment</th><td>0.1</td><td>Mar 5, 10:12</td></tr>
+                <tr><th scope="row">Travel Insurance</th><td>0.1</td><td>Mar 5, 10:11</td></tr>
+                <tr><th scope="row">Travel &amp; Journey Terms</th><td>0.1</td><td>Mar 1, 14:38</td></tr>
+                <tr><th scope="row">Cancellation &amp; Refund Policy</th><td>0.1</td><td>Mar 1, 14:38</td></tr>
+                <tr><th scope="row">Concierge Services Agreement</th><td>0.1</td><td>Mar 1, 14:37</td></tr>
+                <tr><th scope="row">Electronic Communications</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Cross-border access</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Referral workflow</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Independent Provider Disclosure</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Medical Disclaimer</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Privacy Policy</th><td>0.1</td><td>Feb 18, 09:01</td></tr>
+                <tr><th scope="row">Terms of Use</th><td>0.1</td><td>Feb 18, 09:01</td></tr>
+                <tr class="is-off"><th scope="row">Marketing</th><td>0.1</td><td>Declined, Feb 18</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Public trust claims<small>A badge appears on the site only when it is earned</small></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl" id="credTbl">
+            <caption class="sr">Credentials</caption>
+            <thead><tr><th scope="col">Credential</th><th scope="col">Issuer</th><th scope="col">Status</th><th scope="col">On the site</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cbanner cbanner--rule">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 4.5 6.5v5.2c0 4.3 3.1 8.3 7.5 9.3 4.4-1 7.5-5 7.5-9.3V6.5L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <p><b>Decisions that belong to counsel, not to this console.</b> HIPAA classification and business-associate agreements; what a Brazilian physician may review while the client is in a given US state; the exact health-information consent instrument; cross-border transfer terms; cancellation amounts and deadlines; travel-insurance minimums; the seven-day arrival rule; referral compensation; arbitration and liability; and every savings or provider-quality claim.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== Concerns -->
+    <section class="cview" id="v-complaints" hidden>
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Concerns<small>Every one has a case number and an audit trail</small></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl">
+            <caption class="sr">Concerns</caption>
+            <thead><tr>
+              <th scope="col">Case</th><th scope="col">Client</th><th scope="col">Category</th>
+              <th scope="col">Opened</th><th scope="col">Requested resolution</th><th scope="col">Status</th>
+            </tr></thead>
+            <tbody>
+              <tr><th scope="row">RU-C-20260306-4812</th><td>Denise Park</td><td>Travel or transportation</td><td>Mar 6</td><td>Driver arrived late twice</td><td><span class="tag tag--act">Open</span></td></tr>
+              <tr><th scope="row">RU-C-20260302-2290</th><td>Anthony Reyes</td><td>Scheduling</td><td>Mar 2</td><td>Wants the follow-up moved</td><td><span class="tag tag--wait">With the clinic</span></td></tr>
+              <tr><th scope="row">RU-C-20260224-1077</th><td>Michael Carter</td><td>Accommodation</td><td>Feb 24</td><td>Room change, quieter floor</td><td><span class="tag tag--ok">Resolved</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cbanner">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.6 17.4A2 2 0 0 0 4.3 20.4h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><b>How the team handles reviews.</b> Never threaten legal action because a review is negative. Never offer anything conditional on a positive review, and never ask a client to hand over ownership of one. Suspected fake reviews, impersonation, privacy violations or threats are documented here and reported to the platform. A client&rsquo;s medical photographs and health information never enter a review or testimonial workflow, and any use of an identifiable photograph, video, testimonial, voice or likeness needs its own signed media authorization. Counsel approves any correction or removal template before the team uses it.</p>
+      </div>
+    </section>
+
     <section class="cview" id="v-team" hidden>
 
       <div class="cpanel">
@@ -2211,6 +2470,112 @@ You can take care of it from your portal.</textarea>
       </div>
 
       <!-- ---------------------------------------------------- A.3.6 ---- -->
+      <!-- Registrar o que o medico liberou. Note o que nao existe aqui:
+           campo de diagnostico, campo de resultado de exame, e qualquer
+           botao que permita a operacao concluir clinicamente um item. -->
+      <div class="dpanel" data-panel="instruction" data-title="Record a released instruction" hidden>
+        <p class="dhint">The physician or the clinic authors the instruction and decides when it is released. This screen records what they released, so the client sees it unchanged and the itinerary can be coordinated around it.</p>
+
+        <div class="dfield">
+          <label for="insClient">Client</label>
+          <select id="insClient"><option>Michael Carter</option><option>Denise Park</option><option>Anthony Reyes</option></select>
+        </div>
+        <div class="dfield">
+          <label for="insDoc">Released by</label>
+          <select id="insDoc"><option>Dr. Juliana Buttros · Clínica Vértice</option></select>
+        </div>
+        <div class="dfield">
+          <label for="insCat">Category</label>
+          <select id="insCat">
+            <option>Pre-operative preparation</option>
+            <option>Required examinations or testing</option>
+            <option>Medication instructions</option>
+            <option>Food or fasting instructions</option>
+            <option>Day-of-procedure instructions</option>
+            <option>Post-procedure care</option>
+            <option>Activity restrictions</option>
+            <option>When activities may resume</option>
+            <option>Travel or flight clearance</option>
+            <option>Follow-up appointment</option>
+            <option>Warning signs and when to contact the clinic</option>
+            <option>Other physician-specific instruction</option>
+          </select>
+        </div>
+        <div class="dfield">
+          <label for="insTitle">Instruction title</label>
+          <input type="text" id="insTitle" placeholder="The night before and the morning of your procedure">
+        </div>
+        <div class="dfield">
+          <label for="insBody">Instruction text, exactly as released</label>
+          <textarea id="insBody" rows="4" placeholder="Paste the physician's wording. Do not summarise, rewrite or complete it."></textarea>
+          <span class="dhint">Displayed to the client word for word. If the clinic owns the official document, link it instead of retyping it.</span>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="insEff">Effective date</label><input type="date" id="insEff"></div>
+          <div class="dfield"><label for="insDue">Due date and time</label><input type="datetime-local" id="insDue"></div>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="insPri">Priority</label>
+            <select id="insPri"><option>Routine</option><option>Important</option><option>Urgent</option></select></div>
+          <div class="dfield"><label for="insVer">Version</label><input type="text" id="insVer" value="v1" readonly></div>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="insAct">Client action required</label>
+            <select id="insAct"><option>No</option><option>Yes</option></select></div>
+          <div class="dfield"><label for="insAck">Acknowledgment required</label>
+            <select id="insAck"><option>Yes</option><option>No</option></select></div>
+        </div>
+        <div class="dfield">
+          <label for="insEffect">Effect on the itinerary</label>
+          <input type="text" id="insEffect" placeholder="No activities until physician release, March 12 at 10:00">
+          <span class="dhint">This is what the concierge sees. It opens and closes options without RefreshU making the medical decision.</span>
+        </div>
+
+        <div class="dnote dnote--warn">
+          <b>Before you save</b>
+          <p>Confirm this is what the physician released, for this client. RefreshU displays it exactly as recorded and does not edit or interpret it. Recording a new version supersedes the previous one and keeps it in history; it never overwrites it. If the physician marked acknowledgment as required, the client is asked to read the new version again.</p>
+        </div>
+
+        <div class="dactions">
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+          <button class="cbtn" type="button">Record and publish to client</button>
+        </div>
+      </div>
+
+      <!-- Nova versao de documento legal -->
+      <div class="dpanel" data-panel="legaldoc" data-title="Publish a new document version" hidden>
+        <p class="dhint">Previous versions are kept and stay readable. Acceptance records point at the version that was accepted, so a new version never rewrites history.</p>
+        <div class="dfield">
+          <label for="lgDoc">Document</label>
+          <select id="lgDoc">
+            <option>Terms of Use</option><option>Privacy Policy</option><option>Medical Disclaimer</option>
+            <option>Independent Provider Disclosure</option><option>Concierge Services Agreement</option>
+            <option>Cancellation &amp; Refund Policy</option><option>Travel &amp; Journey Terms</option>
+            <option>Travel Insurance</option><option>Payment &amp; Fee Disclosure</option>
+            <option>Electronic Communications</option><option>Marketing Consent</option>
+            <option>Cookies &amp; Privacy Choices</option><option>Accessibility</option>
+          </select>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="lgVer">Version</label><input type="text" id="lgVer" placeholder="1.0"></div>
+          <div class="dfield"><label for="lgEff">Effective date</label><input type="date" id="lgEff"></div>
+        </div>
+        <div class="dfield">
+          <label for="lgMat">Is this a material change?</label>
+          <select id="lgMat"><option>No, wording only</option><option>Yes, ask every client to accept again</option></select>
+          <span class="dhint">A material change asks for renewed acceptance where the law requires it, and the request is logged per client.</span>
+        </div>
+        <div class="dfield">
+          <label for="lgAppr">Approved by</label>
+          <input type="text" id="lgAppr" placeholder="Name of counsel who approved this version">
+          <span class="dhint">A version without a recorded approver stays in attorney review and is not published.</span>
+        </div>
+        <div class="dactions">
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+          <button class="cbtn" type="button">Save version</button>
+        </div>
+      </div>
+
       <div class="dpanel" data-panel="itinitem" data-title="Add itinerary item" hidden>
         <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
           <div class="fld2 fld2--req"><label for="itTrack">Track</label>
@@ -2237,6 +2602,7 @@ You can take care of it from your portal.</textarea>
 
 <footer id="siteFoot"></footer>
 
+<script src="assets/js/trust.js"></script>
 <script src="assets/js/console.js"></script>
 <script src="assets/js/foot.js" defer></script>
 </body>

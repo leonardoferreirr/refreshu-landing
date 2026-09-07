@@ -12,9 +12,6 @@
 (function () {
   'use strict';
 
-  var grid = document.getElementById('trustGrid');
-  if (!grid) return;
-
   var CREDENTIALS = [
     {
       name: 'Independent physician model',
@@ -88,6 +85,13 @@
     }
   ];
 
+  // O console lê esta mesma lista, para que site e console nunca divirjam
+  // sobre o que já foi conquistado.
+  window.RU_CREDENTIALS = CREDENTIALS;
+
+  var grid = document.getElementById('trustGrid');
+  if (!grid) return;
+
   var today = new Date();
 
   function live(c) {
@@ -110,7 +114,4 @@
       (c.href ? '<a href="' + c.href + '">' + inner + '</a>' : inner) +
       '</li>';
   }).join('');
-
-  // O console lê esta mesma lista para mostrar o que está pendente.
-  window.RU_CREDENTIALS = CREDENTIALS;
 })();

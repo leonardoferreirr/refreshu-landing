@@ -188,4 +188,60 @@
   var first = nav.querySelector('a[data-view]');
   show(document.getElementById('v-' + start) ? start : (first ? first.dataset.view : ''));
 
+
+  /* ------------------------------------------------- fornecedores ------- */
+  // Uma tabela por cidade. Sao Paulo abre por padrao.
+  document.querySelectorAll('[data-sup]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-sup]').forEach(function (x) {
+        x.setAttribute('aria-pressed', String(x === b));
+      });
+      document.querySelectorAll('#supTbl tbody').forEach(function (t) {
+        t.hidden = t.dataset.city !== b.dataset.sup;
+      });
+    });
+  });
+
+  /* ----------------------------------------- publicar o itinerario ------ */
+  // Publicar cria uma versao nova e carimba data e hora. Nunca altera a
+  // versao anterior, que continua auditavel.
+  var pub = document.getElementById('itinPublish');
+  var pubState = document.getElementById('pubState');
+  if (pub && pubState) {
+    pub.addEventListener('click', function () {
+      var now = new Date();
+      var hh = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+      pubState.textContent = 'Published version 4 at ' + hh;
+      pubState.classList.add('is-clean');
+      pub.disabled = true;
+      pub.textContent = 'Published';
+    });
+  }
+  var prev = document.getElementById('itinPreview');
+  if (prev) prev.addEventListener('click', function () { window.open('portal.html#trip', '_blank', 'noopener'); });
+
+  /* ------------------------------------- credenciais publicas ----------- */
+  // Le a mesma lista que o site usa, para que console e site nunca
+  // divirjam sobre o que ja foi conquistado.
+  var credBody = document.querySelector('#credTbl tbody');
+  if (credBody) {
+    var CREDS = window.RU_CREDENTIALS || [];
+    if (!CREDS.length) {
+      credBody.innerHTML = '<tr><td colspan="4">Credential list not loaded.</td></tr>';
+    } else {
+      credBody.innerHTML = CREDS.map(function (c) {
+        var live = c.status === 'active';
+        var tag = live ? '<span class="tag tag--ok">Active</span>'
+          : (c.status === 'expired' ? '<span class="tag tag--bad">Expired</span>'
+                                    : '<span class="tag tag--wait">Not earned yet</span>');
+        return '<tr' + (live ? '' : ' class="is-off"') + '>' +
+          '<th scope="row">' + c.name + '</th>' +
+          '<td>' + (c.issuer || 'RefreshU') + '</td>' +
+          '<td>' + tag + '</td>' +
+          '<td>' + (live ? 'Shown' : 'Hidden') + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+  }
+
 })();
