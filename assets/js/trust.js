@@ -85,6 +85,42 @@
     }
   ];
 
+  /* Versao pt-BR dos selos. A lista acima continua sendo a fonte: aqui so
+     entra a traducao, casada pelo nome em ingles. Se um selo novo aparecer
+     sem tradução, ele sai em ingles em vez de sumir. */
+  var PT = {
+    'Independent physician model': {
+      name: 'Modelo de médico independente',
+      body: 'As decisões médicas ficam com profissionais independentes e licenciados. A RefreshU coordena a jornada e não pratica medicina.'
+    },
+    'Encrypted connection': {
+      name: 'Conexão criptografada',
+      body: 'O site inteiro e o portal da cliente são servidos por HTTPS, com cookies seguros e sem conteúdo misto.'
+    },
+    'Secure client portal': {
+      name: 'Portal da cliente protegido',
+      body: 'O acesso é individual, criado pela RefreshU depois do fechamento, e cada pessoa vê apenas a própria jornada.'
+    },
+    'Verified provider process': {
+      name: 'Verificação dos profissionais',
+      body: 'Credenciais, números de registro e filiações a sociedades são conferidos com o médico antes de o perfil dele ser publicado.'
+    },
+    'Clear separation of roles': {
+      name: 'Papéis separados com clareza',
+      body: 'O que é médico é do médico, o que é viagem é da RefreshU, e cada tela diz de quem é cada parte.'
+    }
+  };
+
+  // Traduz quando a pagina esta em portugues, e so nesse caso.
+  if ((document.documentElement.lang || '').toLowerCase().indexOf('pt') === 0) {
+    CREDENTIALS.forEach(function (c) {
+      var tr = PT[c.name];
+      if (!tr) return;
+      if (tr.body) c.body = tr.body;
+      c.name = tr.name;
+    });
+  }
+
   // O console lê esta mesma lista, para que site e console nunca divirjam
   // sobre o que já foi conquistado.
   window.RU_CREDENTIALS = CREDENTIALS;

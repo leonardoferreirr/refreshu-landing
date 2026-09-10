@@ -576,3 +576,5 @@
 .book__card--flag { background: #fbf6ef; border-color: #e6d7bf; }
 
 @media (max-width: 900px) { .book { grid-template-columns: 1fr; } }
+
+.book__offnote { margin: 16px 0 0; font-size: .82rem; color: var(--on-paper-fine); }

@@ -249,17 +249,28 @@
     var url = urlDoCalendario();
 
     if (!url) {
+      /* Sem o link do calendario a tela nao pode agendar, mas ainda pode ser
+         apresentavel: diz o que acontece a seguir e da uma saida de verdade,
+         em vez de anunciar um defeito para quem esta do outro lado. */
       bookSlot.innerHTML = '';
       var aviso = document.createElement('div');
       aviso.className = 'book__off';
-      aviso.innerHTML = '<b>Scheduling is not connected yet.</b>' +
-        '<p>Write to us and we will arrange your call by email.</p>';
+      aviso.innerHTML =
+        '<b>One more step, and it is on our side</b>' +
+        '<p>Send us your request and a RefreshU advisor comes back within one ' +
+        'business day with the times available for your call, in your own time zone.</p>';
       var a = document.createElement('a');
-      a.className = 'btn btn--sm';
+      a.className = 'btn';
       a.href = 'mailto:' + (CFG.bookingFallbackEmail || '') +
                '?subject=' + encodeURIComponent('Book my RefreshU call');
-      a.textContent = 'Email us to book';
+      a.textContent = 'Send my request';
       aviso.appendChild(a);
+
+      var nota = document.createElement('p');
+      nota.className = 'book__offnote';
+      nota.textContent = 'Live scheduling, with instant confirmation, goes live once the RefreshU calendar is connected.';
+      aviso.appendChild(nota);
+
       bookSlot.appendChild(aviso);
       bookSlot.dataset.pronto = '1';
       return;

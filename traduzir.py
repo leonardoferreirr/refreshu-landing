@@ -22,6 +22,30 @@ PAGINAS = ['index.html', 'signin.html', 'portal.html']
 # regra de copy do projeto: sem travessao, virgula ou dois pontos no lugar
 # ---------------------------------------------------------------------------
 D = {
+# --- destinos e pacotes: trechos que ficaram sem traducao ---
+'Referral to a participating independent physician, and coordination of the review workflow':
+  'Encaminhamento a um médico independente participante e coordenação do fluxo de análise',
+'Pharmacy pickup for items your physician directed. RefreshU does not select or prescribe medication':
+  'Retirada em farmácia dos itens indicados pelo seu médico. A RefreshU não escolhe nem prescreve medicamento',
+'Barber, beauty and wellness professionals to the hotel where available':
+  'Profissionais de barbearia, beleza e bem-estar no hotel, onde houver disponibilidade',
+'The country&rsquo;s medical capital. The largest concentration of clinics, hospitals and specialists in Latin America, in a city built for people who came to work and stayed for the food.':
+  'A capital médica do país. A maior concentração de clínicas, hospitais e especialistas da América Latina, numa cidade feita para quem veio trabalhar e ficou pela comida.',
+'Jardins, Itaim Bibi, Vila Nova Conceição and Alto de Pinheiros. Walkable, residential, and close to the clinics.':
+  'Jardins, Itaim Bibi, Vila Nova Conceição e Alto de Pinheiros. Bairros residenciais, de caminhar a pé, perto das clínicas.',
+'Michelin dining, Ibirapuera park, MASP, the Oscar Freire shopping district, and the São Roque wine route an hour away.':
+  'Restaurantes com estrela Michelin, o Ibirapuera, o MASP, as compras da Oscar Freire e a rota do vinho de São Roque a uma hora dali.',
+'A stay centred on the procedure and on recovering in comfort, with a dense, urban week around it.':
+  'Uma estadia centrada no procedimento e em se recuperar com conforto, com uma semana urbana e intensa em volta.',
+'The recovery that does not feel like recovery. The same standard of clinic and the same concierge, in a city where the walk your physician clears you for happens by the sea.':
+  'A recuperação que não parece recuperação. O mesmo padrão de clínica e o mesmo concierge, numa cidade onde a caminhada que seu médico liberar acontece à beira-mar.',
+'Ipanema, Leblon, Copacabana and Jardim Botânico. Quiet streets, short transfers, and the beach a block away.':
+  'Ipanema, Leblon, Copacabana e Jardim Botânico. Ruas tranquilas, trajetos curtos e a praia a um quarteirão.',
+'Sugarloaf, Christ the Redeemer, the Botanical Garden, Parque Lage, and the beach on the days your physician releases it.':
+  'Pão de Açúcar, Cristo Redentor, o Jardim Botânico, o Parque Lage e a praia nos dias em que seu médico liberar.',
+'A longer stay, or a companion travelling with you, where the days between appointments are the point.':
+  'Uma estadia mais longa, ou com acompanhante, em que os dias entre as consultas são o ponto alto.',
+
 # --- blocos novos: agendamento, destino em abas, portal sem requirements ---
 'Book your call': 'Agende sua call',
 'Your destination': 'Seu destino',
@@ -441,7 +465,7 @@ D = {
 'Physician, travel, concierge and value, inside a <em>single coordinated journey</em>.': 'Médico, viagem, concierge e valor, dentro de uma <em>única jornada coordenada</em>.',
 
 # --- historia
-'You were already considering the procedure.<br><em>What if the same budget, or even less, could give you more?</em>': 'Você já estava considerando o procedimento.<br><em>E se o mesmo orçamento, ou até menos, pudesse te dar mais?</em>',
+'You were already considering the procedure. <em>What if the same budget, or even less, could give you more?</em>': 'Você já estava considerando o procedimento. <em>E se o mesmo orçamento, ou até menos, pudesse te dar mais?</em>',
 '<li class="reveal">Exceptional care.</li>': '<li class="reveal">Cuidado excepcional.</li>',
 '<li class="reveal">A personal concierge.</li>': '<li class="reveal">Um concierge pessoal.</li>',
 '<li class="reveal">A trip through Brazil.</li>': '<li class="reveal">Uma viagem pelo Brasil.</li>',
