@@ -89,3 +89,16 @@
     });
   });
 })();
+
+/* --- Pilha que sobe: carimba o indice de cada cartao -----------------------
+   O CSS precisa saber a posicao do cartao na fila para calcular o quanto ele
+   gruda abaixo do anterior. Nao da para fazer isso so com CSS, entao o indice
+   entra como variavel. Vale para qualquer .stack da pagina. */
+(function () {
+  'use strict';
+  document.querySelectorAll('.stack').forEach(function (pilha) {
+    [].forEach.call(pilha.children, function (c, i) {
+      c.style.setProperty('--i', i);
+    });
+  });
+})();

@@ -30,7 +30,16 @@
     <nav class="nav" id="nav" aria-label="Principal">
       <a href="#treatments">Tratamentos</a>
       <a href="#physicians">Médicos</a>
-      <a href="#destination">Destinos</a>
+      <div class="nav__has">
+        <a href="#destination" aria-expanded="false" aria-controls="navDest">Destinations
+          <svg class="nav__chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="nav__sub" id="navDest">
+          <a href="destination-sao-paulo.html"><b>São Paulo</b><span>The medical capital, and a city built around the table</span></a>
+          <a href="destination-rio.html"><b>Rio de Janeiro</b><span>The recovery that happens by the sea</span></a>
+          <a class="nav__subAll" href="#destination">Compare the two</a>
+        </div>
+      </div>
       <a href="#packages">Pacotes</a>
       <a href="#brazil">Experiência</a>
       <a href="#how">Como funciona</a>
@@ -79,7 +88,6 @@
 
   <!-- Mensagem exigida na home pelo guia: dizer o que a RefreshU e, e
        quem presta o cuidado medico, antes de qualquer outra coisa. -->
-  <p class="roleline"><span class="wrap">A RefreshU é uma plataforma de concierge médico, encaminhamento e coordenação de viagem. O cuidado médico é prestado por médicos e clínicas independentes, que decidem elegibilidade, tratamento e todo requisito clínico.</span></p>
 
   <!-- Three pillars -->
   <section class="pillars" id="pillars">
@@ -107,7 +115,7 @@
   <!-- Central idea -->
   <section class="idea">
     <div class="wrap">
-      <p class="display idea__t reveal">O procedimento é o motivo da viagem.<br><em>A RefreshU faz a viagem inteira valer a pena.</em></p>
+      <p class="display idea__t reveal">The procedure is the reason for the trip. <em>RefreshU makes the entire trip worth it.</em></p>
     </div>
   </section>
 
@@ -174,7 +182,7 @@
         <span class="pkey pkey--med">Serviço médico independente</span>
       </div>
 
-      <div class="pkgs__grid">
+      <div class="pkgs__grid stack stack--pkgs">
         <article class="pkg reveal">
           <h3 class="pkg__n">RefreshU Essential</h3>
           <p class="pkg__d">Para quem viaja por conta própria e quer os detalhes importantes organizados sem abrir mão da flexibilidade.</p>
@@ -422,14 +430,6 @@
         <article class="cc reveal"><h3>Suporte de recuperação</h3><p>Profissionais de recuperação qualificados quando apropriado, serviços aprovados pelo médico e transporte para o retorno.</p></article>
       </div>
 
-      <div class="conc__hotel reveal">
-        <figure><img src="../assets/img/transport.webp" alt="Banco traseiro de um carro particular" width="1100" height="825" loading="lazy" decoding="async"></figure>
-        <div>
-          <h3>Serviços médicos no hotel</h3>
-          <p>Onde for legalmente permitido e solicitado pelo seu médico, profissionais qualificados podem atender você no hotel: coleta de sangue, serviços laboratoriais, exames básicos solicitados pelo médico, eletrocardiograma quando prestado de forma adequada, visita de enfermagem e suporte de recuperação aprovado pelo médico.</p>
-          <p class="fine">A RefreshU cuida da logística. O médico e a clínica controlam todas as exigências clínicas.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -539,7 +539,7 @@
         <h2 class="display">Por que você pode confiar nisso</h2>
         <p class="sec-lead">Só aparece aqui o que conseguimos sustentar. Certificações em andamento não são exibidas antes de serem conquistadas.</p>
       </div>
-      <ul class="trust__grid" id="trustGrid" aria-label="Trust signals"></ul>
+      <ul class="trust__grid stack stack--trust" id="trustGrid" aria-label="Trust signals"></ul>
       <p class="fine-note trust__note reveal">A RefreshU não se descreve como certificada, aprovada ou verificada pela HIPAA, e não exibe como sua uma acreditação que pertence a um profissional.</p>
     </div>
   </section>
@@ -588,7 +588,8 @@
           <h3>Explorar</h3>
           <a href="#treatments">Tratamentos</a>
           <a href="#physicians">Médicos</a>
-          <a href="#destination">Destinos</a>
+          <a href="destination-sao-paulo.html">São Paulo</a>
+          <a href="destination-rio.html">Rio de Janeiro</a>
           <a href="#packages">Pacotes</a>
         </div>
         <div>
@@ -620,9 +621,6 @@
       </nav>
     </div>
 
-    <div class="foot__emerg" role="note">
-      <p><b>Não é para emergências médicas.</b> Se você acha que está tendo uma emergência médica, procure o serviço de emergência local imediatamente. Para dúvidas médicas sobre o procedimento, fale com o seu médico ou a clínica.</p>
-    </div>
 
     <div class="foot__legal" id="about">
       <p>A RefreshU coordena viagem, hospitalidade e logística em torno de uma jornada médica. Os médicos participantes e as clínicas controlam a elegibilidade, os planos de tratamento e todas as exigências clínicas. A RefreshU não pratica medicina, não toma decisões médicas e não promete resultado clínico.</p>

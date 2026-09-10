@@ -151,3 +151,12 @@
       '</li>';
   }).join('');
 })();
+
+/* Os selos nascem por JS, depois que o carimbo de indice da pilha ja rodou.
+   Carimbar aqui tambem, senao todos ficam com --i zero e a pilha nao escalona. */
+(function () {
+  'use strict';
+  var grade = document.getElementById('trustGrid');
+  if (!grade || !grade.classList.contains('stack')) return;
+  [].forEach.call(grade.children, function (c, i) { c.style.setProperty('--i', i); });
+})();

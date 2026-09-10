@@ -363,8 +363,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .dest__row { display: grid; grid-template-columns: .95fr 1fr; gap: clamp(30px, 4.5vw, 70px); align-items: start; }
 .dest__img {
   margin: 0; border-radius: 16px; overflow: hidden; position: sticky; top: 110px;
-  aspect-ratio: 4 / 5;   /* acompanha a altura da coluna dos modulos */
+  aspect-ratio: 4 / 5;
 }
+/* Dentro da aba, a foto para de mandar na altura: ela acompanha a coluna de
+   texto ao lado, que e curta. Retrato 4/5 solto deixava a foto duas vezes
+   mais alta que o texto, com um vazio embaixo. */
+.dest__panel .dest__img { aspect-ratio: auto; align-self: stretch; max-height: 100%; }
+.dest__panel .dest__img img { height: 100%; min-height: 320px; }
 .dest__img img { width: 100%; height: 100%; object-fit: cover; }
 .mod { padding: 22px 0; border-top: 1px solid var(--line); }
 .mod:first-child { border-top: 0; padding-top: 0; }
@@ -461,31 +466,34 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .faq details p { padding-bottom: 24px; color: var(--on-paper-dim); max-width: 66ch; }
 
 /* ----------------------------------------------------------------- rodape -- */
-.foot { background: var(--deep); color: var(--on-deep); padding: clamp(56px, 7vw, 96px) 0 30px; }
+/* O rodape tinha quase 100px de respiro no topo e tres faixas separadas por
+   linha, o que o deixava do tamanho de uma secao. Aqui ele volta a ser
+   rodape. */
+.foot { background: var(--deep); color: var(--on-deep); padding: clamp(38px, 4.4vw, 62px) 0 22px; }
 .foot__top { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(34px, 5vw, 70px); }
 .brand--foot .brand__word { color: #fff; }
 .brand--foot .brand__word b { color: var(--cyan); }
 .foot__sig {
-  margin-top: 18px; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase;
+  margin-top: 12px; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--on-deep-fine);
 }
-.foot__nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.foot__nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .foot__nav h3 {
-  font-size: .78rem; letter-spacing: .13em; text-transform: uppercase;
-  color: var(--on-deep-fine); margin-bottom: 14px; font-weight: 500; font-family: var(--sans);
+  font-size: .74rem; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--on-deep-fine); margin-bottom: 9px; font-weight: 500; font-family: var(--sans);
 }
 .foot__nav a {
-  display: block; text-decoration: none; padding: 6px 0;
-  color: var(--on-deep-dim); font-size: .95rem; transition: color .25s;
+  display: block; text-decoration: none; padding: 4px 0;
+  color: var(--on-deep-dim); font-size: .9rem; transition: color .25s;
 }
 .foot__nav a:hover { color: #fff; }
 .foot__legal {
-  margin-top: clamp(40px, 5vw, 66px); padding-top: 28px; border-top: 1px solid var(--line-deep);
-  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  margin-top: clamp(26px, 3vw, 40px); padding-top: 20px; border-top: 1px solid var(--line-deep);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
 }
-.foot__legal p { font-size: .85rem; color: var(--on-deep-fine); line-height: 1.6; }
+.foot__legal p { font-size: .81rem; color: var(--on-deep-fine); line-height: 1.55; }
 .foot__base {
-  margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line-deep);
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line-deep);
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
   font-size: .82rem; color: var(--on-deep-fine);
 }
@@ -1029,3 +1037,30 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .dnext__o svg { width: 20px; height: 20px; color: var(--navy); margin-top: 6px; }
 
 @media (max-width: 860px) { .dwhy, .dnext { grid-template-columns: 1fr; } }
+
+/* --- Pilha que sobe: cartoes que se cobrem conforme a pagina rola -----------
+   Cada cartao gruda no topo com um deslocamento crescente, entao o seguinte
+   sobe por cima do anterior e sobra so a borda do que ficou atras. Sem JS: e
+   position:sticky e uma variavel de indice.
+
+   Desligado abaixo de 900px e em prefers-reduced-motion. No celular a pilha
+   viraria uma torre de cartoes cobrindo texto, e o empilhamento e decoracao:
+   a lista em coluna diz a mesma coisa. */
+@media (min-width: 901px) {
+  .stack { display: block; }
+  .stack > * {
+    position: sticky;
+    top: calc(var(--alt-nav, 78px) + 26px + var(--i, 0) * 22px);
+    margin-bottom: 26px;
+    transition: box-shadow .4s var(--ease);
+  }
+  /* o de baixo precisa cobrir o de cima, entao o z-index sobe com o indice */
+  .stack > * { z-index: calc(var(--i, 0) + 1); }
+  .stack--pkgs > .pkg { background: #fff; box-shadow: 0 -2px 40px rgba(4, 32, 44, .1); }
+  .stack--trust > .tr { background: var(--paper); box-shadow: 0 -2px 30px rgba(4, 32, 44, .09); }
+  /* o ultimo nao gruda: sem isso a secao inteira fica presa no fim da rolagem */
+  .stack > *:last-child { position: static; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stack > * { position: static !important; }
+}
