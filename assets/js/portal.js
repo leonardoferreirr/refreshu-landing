@@ -178,3 +178,79 @@
 
   doHash();
 })();
+
+/* --- Perfil da medica: canais e antes/depois ------------------------------
+   Tudo vem de config.js. A regra e a mesma nos dois blocos: sem dado
+   aprovado, o portal diz "nao publicado" em vez de mostrar moldura vazia.
+   Publicar link ou foto de medica sem autorizacao assinada e o risco que
+   este arquivo existe para evitar. */
+(function () {
+  'use strict';
+  var CFG = (window.REFRESHU_CONFIG || {}).physicians || {};
+  var med = CFG['juliana-buttros'];
+  if (!med) return;
+
+  /* o botao que leva ao site dela: sem endereco, nao aparece */
+  var bt = document.getElementById('docSite');
+  if (bt) {
+    if (med.site) { bt.href = med.site; } else { bt.hidden = true; }
+  }
+
+  /* canais */
+  var REDES = { instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube', linkedin: 'LinkedIn' };
+  var ul = document.getElementById('docSocial');
+  var off = document.getElementById('docSocialOff');
+  var links = Object.keys(REDES).filter(function (k) { return med.social && med.social[k]; });
+
+  if (ul && links.length) {
+    links.forEach(function (k) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = med.social[k];
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = REDES[k];
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    ul.hidden = false;
+    if (off) off.hidden = true;
+  }
+
+  /* antes e depois */
+  var ba = document.getElementById('docBA');
+  var baNota = document.getElementById('docBANote');
+  var baOff = document.getElementById('docBAOff');
+  var casos = (med.beforeAfter || []).filter(function (c) { return c && c.before && c.after && c.consent; });
+
+  if (ba && casos.length) {
+    casos.forEach(function (c) {
+      var fig = document.createElement('figure');
+      fig.className = 'ba__i';
+      [['before', 'Before'], ['after', 'After']].map(function (par) {
+        var wrap = document.createElement('span');
+        wrap.className = 'ba__f';
+        var img = document.createElement('img');
+        img.src = c[par[0]];
+        img.alt = par[1] + (c.caption ? ', ' + c.caption : '');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        var tag = document.createElement('b');
+        tag.textContent = par[1];
+        wrap.appendChild(img);
+        wrap.appendChild(tag);
+        return wrap;
+      }).forEach(function (n) { fig.appendChild(n); });
+
+      if (c.caption) {
+        var cap = document.createElement('figcaption');
+        cap.textContent = c.caption;
+        fig.appendChild(cap);
+      }
+      ba.appendChild(fig);
+    });
+    ba.hidden = false;
+    if (baNota) baNota.hidden = false;
+    if (baOff) baOff.hidden = true;
+  }
+})();

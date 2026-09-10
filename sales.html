@@ -302,13 +302,54 @@
         </span>
         <span class="rhead__a">
           <button class="cbtn cbtn--ghost" type="button">Log attempt</button>
-          <button class="cbtn" type="button">Book concierge call</button>
+          <button class="cbtn cbtn--ghost" type="button">Book concierge call</button>
+          <button class="cbtn" type="button" id="btCreateAccount">Create client account</button>
         </span>
       </div>
 
       <div class="rec" style="margin-top:16px">
 
         <div style="display:grid;gap:16px">
+
+          <!-- Criacao da conta da cliente. E aqui, e so aqui, que uma conta
+               do portal nasce: o site publico nao tem mais cadastro aberto.
+               Quem abre e o comercial, depois do fechamento. -->
+          <div class="cpanel" id="acctPanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Client account<small>Created here, after the deal closes</small></span>
+              <span class="cpanel__a"><span class="tag tag--wait" id="acctTag">Not created</span></span>
+            </div>
+            <div class="cpanel__b" style="display:grid;gap:13px">
+              <div class="bound">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                <p><b>There is no public sign up.</b> The client portal has no open registration: an account exists because someone in sales or admin created it against a closed deal. The invitation goes to the email on this record, and the client sets their own password.</p>
+              </div>
+
+              <div style="display:grid;gap:5px">
+                <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="acctMail">Invitation goes to</label>
+                <input class="fsel" type="email" id="acctMail" style="height:38px;width:100%;background-image:none;padding-right:10px" value="j.whitfield@example.com">
+              </div>
+
+              <div style="display:grid;gap:5px">
+                <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="acctDeal">What closed</label>
+                <select class="fsel" id="acctDeal" style="height:38px;width:100%">
+                  <option value="">Select the package that closed</option>
+                  <option>Essential</option><option>Signature</option><option>Signature Plus</option>
+                  <option>Elite</option><option>Elite Private</option>
+                </select>
+              </div>
+
+              <label class="check" style="align-items:flex-start;gap:9px;display:flex">
+                <input type="checkbox" id="acctConfirm">
+                <span style="font-size:12.5px;line-height:1.5;color:var(--on-paper-dim)">I confirm the deal is closed and that this person agreed to receive a RefreshU account. Creating an account is recorded with my name and the time.</span>
+              </label>
+
+              <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+                <button class="cbtn" type="button" id="acctGo" disabled>Send the invitation</button>
+                <span id="acctMsg" style="font-size:12.5px;color:var(--on-paper-fine)"></span>
+              </div>
+            </div>
+          </div>
 
           <div class="cpanel">
             <div class="cpanel__h">

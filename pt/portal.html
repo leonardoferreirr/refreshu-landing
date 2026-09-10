@@ -43,15 +43,14 @@
       <a href="#trip" data-view="trip" data-sub="São Paulo, 9 a 16 de março">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 21 4l-4 8 4 8-18-6.5v-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
         <span class="pnav__lbl">Minha viagem</span></a>
-      <a href="#schedule" data-view="schedule" data-sub="Sua semana, sua viagem, seu médico e seu concierge">
+      <!-- My Schedule esta oculta a pedido do cliente ate ele decidir se mantem
+           a tela. Para religar: tirar este comentario e o que envolve #v-schedule. -->
+      <!--<a href="#schedule" data-view="schedule" data-sub="Sua semana, sua viagem, seu médico e seu concierge">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 10h17M8 3v4m8-4v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <span class="pnav__lbl">Minha agenda</span></a>
+        <span class="pnav__lbl">Minha agenda</span></a>-->
       <a href="#doctor" data-view="doctor" data-sub="Consulta na quarta, 11 de março">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <span class="pnav__lbl">Meu médico</span></a>
-      <a href="#requirements" data-view="requirements" data-sub="Dois itens dependem de você">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h14v16H5z" stroke="currentColor" stroke-width="1.6"/><path d="m8.5 11.5 2.2 2.2 4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="pnav__lbl">Minhas pendências</span> <span class="pnav__badge">2</span></a>
       <a href="#concierge" data-view="concierge" data-sub="Beatriz L., São Paulo">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18v-5a8 8 0 0 1 16 0v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="2.5" y="14" width="4" height="6" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="17.5" y="14" width="4" height="6" rx="2" stroke="currentColor" stroke-width="1.6"/></svg>
         <span class="pnav__lbl">Meu concierge</span></a>
@@ -61,9 +60,9 @@
       <a href="#documents" data-view="documents" data-sub="Tudo o que foi enviado e tudo o que foi emitido">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 3.5v6h6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
         <span class="pnav__lbl">Documentos</span></a>
-      <a href="#payments" data-view="payments" data-sub="Em que pé está cada item da sua jornada">
+      <a href="#payments" data-view="payments" data-sub="What you can add to your stay, and where each item stands">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.6"/></svg>
-        <span class="pnav__lbl">Pagamentos</span></a>
+        <span class="pnav__lbl">Serviços extras</span></a>
       <a href="#profile" data-view="profile" data-sub="Your details, your companion and how you sign in">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.6"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <span class="pnav__lbl">My Profile</span></a>
@@ -142,7 +141,7 @@
           <h2>O que você precisa fazer</h2>
           <p class="q__big">Envie seu seguro-viagem</p>
           <p>É o último documento que precisamos de você, e o prazo é hoje.</p>
-          <a class="link-arrow" href="#requirements" data-view="requirements">Ir para minhas pendências</a>
+          <a class="link-arrow" href="#documents" data-view="documents">Ir para meus documentos</a>
         </article>
         <article class="q">
           <h2>Com quem você fala</h2>
@@ -167,10 +166,10 @@
 
         <div class="stack">
           <article class="card card--act">
-            <h2 class="card__t">Próxima ação médica</h2>
-            <p class="card__big">Leve seus exames para a consulta</p>
-            <p class="card__p">O laboratório envia direto para a Dra. Camila Rocha, então não há nada para nos mandar. Marcamos o item como concluído assim que ela confirmar que recebeu.</p>
-            <a class="link-arrow" href="#requirements" data-view="requirements">Ver como está cada item</a>
+            <h2 class="card__t">A checklist da sua médica</h2>
+            <p class="card__big">3 de 4 itens confirmados</p>
+            <p class="card__p">Dr. Juliana&rsquo;s office confirms each item on her own system. RefreshU sees the count and nothing else: never the questionnaire, the photographs, the results or the reports.</p>
+            <a class="link-arrow" href="#doctor" data-view="doctor">Abrir a página da minha médica</a>
           </article>
 
           <article class="card">
@@ -248,6 +247,8 @@
     </section>
 
     <!-- ====================================================== My Schedule -->
+    <!-- My Schedule, oculta ate o cliente decidir. Nada aqui foi apagado. -->
+    <!--
     <section class="pview" id="v-schedule" hidden>
       <p class="pview__lead">Uma linha do tempo reunindo quatro agendas: a sua, a da viagem, a do médico e da equipe clínica, e a do concierge. As folgas ficam de propósito, para atrasos e para o que o seu médico exigir.</p>
 
@@ -288,7 +289,7 @@
         <li>
           <div class="week2__d"><b>Quarta</b><i>11 de março</i></div>
           <div class="week2__e">
-            <span class="ev ev--med is-pin">14h00 Consulta com a Dra. Camila Rocha</span>
+            <span class="ev ev--med is-pin">14:00 Consultation with Dra. Juliana Buttros</span>
             <span class="ev ev--med is-pin">15h30 Preparo para a recuperação e orientações</span>
             <span class="ev ev--you">Tarde livre, mantida tranquila de propósito</span>
           </div>
@@ -340,6 +341,8 @@
          orcamento, deposito, financiamento e qualquer forma de contato
          que leve o cliente para fora do fluxo RefreshU. A galeria existe
          no codigo e nasce desligada ate a autorizacao estar documentada. -->
+    -->
+
     <section class="pview" id="v-doctor" hidden>
       <div class="doc">
         <div class="doc__head">
@@ -384,8 +387,16 @@
           </ul>
           <p class="fine-note">A filiação é confirmada com a médica antes de qualquer selo ou logotipo de sociedade ser exibido.</p>
 
+          <h3>Onde acompanhar o trabalho dela</h3>
+          <ul class="doc__social" id="docSocial" hidden></ul>
+          <div class="gallery-off" id="docSocialOff">
+            <p><b>Not published.</b> Her channels appear here once she confirms which ones are hers and authorises RefreshU to link to them.</p>
+          </div>
+
           <h3>Antes e depois</h3>
-          <div class="gallery-off">
+          <div class="ba" id="docBA" hidden></div>
+          <p class="fine-note" id="docBANote" hidden>Physician-supplied examples, published with the patient&rsquo;s documented permission. Individual results vary and these images do not guarantee a particular result.</p>
+          <div class="gallery-off" id="docBAOff">
             <p><b>Not published.</b> The gallery is built and stays switched off until Dr. Juliana supplies approved images and the patient and media permissions for each one are documented. When it is enabled, every case carries the note that individual results vary and that the images are physician-supplied examples that do not guarantee a particular result.</p>
           </div>
         </div>
@@ -403,8 +414,7 @@
         </div>
 
         <div class="doc__acts">
-          <a class="btn btn--sm" href="#requirements" data-view="requirements">Ver meus requisitos</a>
-          <a class="btn btn--sm btn--line" href="#requirements" data-view="requirements">Ver as orientações da médica</a>
+          <a class="btn btn--sm" id="docSite" href="#" target="_blank" rel="noopener">Open Dr. Juliana&rsquo;s site</a>
           <a class="btn btn--sm btn--line" href="#support" data-view="support" data-ask="physician">Falar com a minha médica</a>
           <a class="btn btn--sm btn--line" href="#concierge" data-view="concierge">Falar com o concierge RefreshU</a>
         </div>
@@ -413,84 +423,6 @@
       </div>
     </section>
 
-    <!-- ================================================== My Requirements -->
-    <!-- O card de instrucoes e o coracao desta tela. O texto e exatamente
-         o que o medico liberou: a RefreshU exibe, versiona e coordena em
-         volta, e nunca escreve, resume nem completa clinicamente. -->
-    <section class="pview" id="v-requirements" hidden>
-      <div class="alert">
-        <b>Action needed:</b> seu documento de seguro-viagem vence hoje. É o último item que estamos esperando de você.
-      </div>
-
-      <p class="pview__lead">A RefreshU cuida da logística. Seu médico e a clínica controlam todas as exigências clínicas desta lista.</p>
-
-      <!-- ---------------------------------------- instrucoes do medico -->
-      <article class="pins" id="pins" data-status="released" data-version="2">
-        <header class="pins__h">
-          <div>
-            <h2 class="pins__t">Orientações da médica</h2>
-            <p class="pins__by">Liberado por <b>Dra. Juliana Buttros</b> · Clínica Vértice, São Paulo</p>
-          </div>
-          <span class="tag tag--act pins__badge" id="pinsBadge">Precisa de ação</span>
-        </header>
-
-        <dl class="pins__meta">
-          <div><dt>Categoria</dt><dd>Pre-operative preparation</dd></div>
-          <div><dt>Liberado em</dt><dd><time datetime="2026-03-11T16:20">March 11, 4:20 PM</time> local time</dd></div>
-          <div><dt>Prioridade</dt><dd class="is-important">Importante</dd></div>
-          <div><dt>Versão</dt><dd>v2 · updated March 11</dd></div>
-        </dl>
-
-        <div class="pins__body">
-          <h3>The night before and the morning of your procedure</h3>
-          <p>Exact physician-authored instruction appears here, as released. RefreshU displays it without rewriting, summarising or interpreting it.</p>
-          <p class="pins__due"><b>Due</b> March 12, 6:00 AM</p>
-        </div>
-
-        <div class="pins__foot">
-          <label class="check pins__ack">
-            <input type="checkbox" id="pinsAck">
-            <span>Li estas orientações</span>
-          </label>
-          <div class="pins__acts">
-            <a class="btn btn--sm btn--line" href="#support" data-view="support" data-ask="physician">Falar com a minha médica</a>
-            <button class="btn btn--sm btn--line" type="button" id="pinsHist">Ver a versão anterior</button>
-          </div>
-        </div>
-
-        <p class="pins__hist" id="pinsHistBox" hidden>
-          <b>Versão 1</b>, released March 11 at 9:05 AM, superseded by version 2 the same day. Superseded versions are kept and never disappear from your history. Acknowledging a version records only that you read it, and is not consent to treatment.
-        </p>
-      </article>
-
-      <p class="fine-note pins__note">Confirmar a leitura registra apenas que você abriu a orientação. Não altera nada e não é consentimento médico. Se a sua médica liberar uma versão revisada, você é convidado a ler de novo.</p>
-
-      <!-- --------------------------------------------- lista de itens -->
-      <h2 class="card__t pins__sub">O resto da sua lista</h2>
-      <ul class="chk">
-        <li class="is-done"><b>Médico questionnaire</b><span>Your physician confirmed she received it</span></li>
-        <li class="is-done"><b>Itinerário de voo</b><span>Confirmado nos dois trechos</span></li>
-        <li class="is-done"><b>Hotel</b><span>Confirmado, 9 a 16 de março</span></li>
-        <li class="is-done"><b>Transporte</b><span>Motorista particular para todo compromisso</span></li>
-        <li class="is-todo"><b>Travel insurance documentation</b><span>Due today · Upload pending</span>
-          <label class="upl">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Upload it here
-            <input type="file" accept=".pdf,.jpg,.jpeg,.png">
-          </label>
-          <span class="chk__hint">Travel and administrative documents only. Anything clinical goes to your physician, not here.</span></li>
-        <li class="is-todo"><b>Blood work</b><span>Your physician required it · Scheduled today at 10:00 · The laboratory reports to her directly</span></li>
-        <li class="is-todo"><b>Pagamentos</b><span>Um item a vencer antes do procedimento</span>
-          <a class="upl upl--go" href="#payments" data-view="payments">Go to payments</a></li>
-        <li class="is-wait"><b>Cardiac exam</b><span>Your physician marked this as not required for your case</span></li>
-        <li class="is-wait"><b>Médico consultation</b><span>Scheduled for Wednesday, March 11, 14:00</span></li>
-        <li class="is-wait"><b>Médico documents</b><span>Pending provider · Issued by the clinic after the procedure</span></li>
-      </ul>
-
-      <p class="fine-note">Clinical items carry a status here and nothing more, and only your physician or her clinical team can move one of them to complete or to not required. Questionnaires, exams and photographs go straight between you and your physician. What you upload here is travel and administrative documentation.</p>
-    </section>
-
-    <!-- ===================================================== My Concierge -->
     <section class="pview" id="v-concierge" hidden>
       <div class="conc2">
         <article class="card card--hi conc2__me">
@@ -845,6 +777,7 @@
 
 <footer id="siteFoot"></footer>
 
+<script src="../assets/js/config.js"></script>
 <script src="../assets/js/portal.js" defer></script>
 <script src="../assets/js/foot.js" defer></script>
 </body>

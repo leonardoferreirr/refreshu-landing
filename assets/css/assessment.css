@@ -549,3 +549,30 @@
 .check--con input{margin-top:.18rem;flex:0 0 auto}
 .check--con a{color:var(--navy);text-decoration:underline}
 @media (max-width:640px){ .locgrid{grid-template-columns:1fr} }
+
+/* --- Etapa 3: agendar a call ---------------------------------------------
+   O calendario e um iframe do Google: altura fixa porque nao da para medir o
+   conteudo de outro dominio, e a coluna ao lado carrega o que a pessoa
+   precisa saber antes de escolher o horario. */
+.book { display: grid; grid-template-columns: 1.35fr .8fr; gap: clamp(22px, 3vw, 40px); align-items: start; }
+.book__cal { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; min-height: 320px; }
+.book__slot iframe { display: block; width: 100%; border: 0; }
+.book__out {
+  display: block; padding: 13px 18px; border-top: 1px solid var(--line);
+  font-size: .88rem; color: var(--on-paper-dim); text-align: center; text-decoration: none;
+}
+.book__out:hover { color: var(--navy); }
+
+/* Sem link configurado: dizer que nao esta ligado e melhor que um quadro vazio */
+.book__off { padding: clamp(26px, 4vw, 42px); text-align: center; }
+.book__off b { display: block; font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+.book__off p { margin: 0 0 18px; font-size: .95rem; color: var(--on-paper-dim); }
+
+.book__side { display: grid; gap: 16px; }
+.book__card { padding: 20px 22px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.book__card b { display: block; font-size: .96rem; color: var(--navy); margin-bottom: 10px; }
+.book__card ul { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
+.book__card li, .book__card p { font-size: .9rem; line-height: 1.55; color: var(--on-paper-dim); margin: 0; }
+.book__card--flag { background: #fbf6ef; border-color: #e6d7bf; }
+
+@media (max-width: 900px) { .book { grid-template-columns: 1fr; } }

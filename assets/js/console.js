@@ -245,3 +245,43 @@
   }
 
 })();
+
+/* --- Criacao da conta da cliente (tela de vendas) -------------------------
+   A unica porta de entrada do portal. O site publico nao tem cadastro: uma
+   conta existe porque alguem de vendas ou do admin criou contra um negocio
+   fechado, e o convite sai para o e-mail da ficha.
+
+   Sem backend ligado, o botao registra a intencao e diz o que vai acontecer
+   quando o convite existir de verdade. Dizer isso e melhor que fingir que o
+   e-mail saiu. */
+(function () {
+  'use strict';
+  var go = document.getElementById('acctGo');
+  if (!go) return;
+
+  var ok = document.getElementById('acctConfirm');
+  var mail = document.getElementById('acctMail');
+  var deal = document.getElementById('acctDeal');
+  var msg = document.getElementById('acctMsg');
+  var tag = document.getElementById('acctTag');
+
+  function valida() {
+    var temMail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((mail.value || '').trim());
+    go.disabled = !(temMail && deal.value && ok.checked);
+  }
+
+  [ok, mail, deal].forEach(function (el) {
+    el.addEventListener('input', valida);
+    el.addEventListener('change', valida);
+  });
+  valida();
+
+  go.addEventListener('click', function () {
+    go.disabled = true;
+    tag.textContent = 'Invitation queued';
+    tag.className = 'tag tag--warn';
+    msg.textContent = 'Queued for ' + mail.value.trim() +
+      '. The email goes out when the backend is connected; the account itself is created on that same call.';
+    ok.disabled = mail.disabled = deal.disabled = true;
+  });
+})();

@@ -22,6 +22,31 @@ PAGINAS = ['index.html', 'signin.html', 'portal.html']
 # regra de copy do projeto: sem travessao, virgula ou dois pontos no lugar
 # ---------------------------------------------------------------------------
 D = {
+# --- blocos novos: agendamento, destino em abas, portal sem requirements ---
+'Book your call': 'Agende sua call',
+'Your destination': 'Seu destino',
+'RefreshU operates in two Brazilian cities. You choose the one your stay is built around, and the concierge experience is the same in both.':
+  'A RefreshU opera em duas cidades brasileiras. Você escolhe aquela em torno da qual sua estadia é construída, e a experiência de concierge é a mesma nas duas.',
+'Choose your destination': 'Escolha seu destino',
+'Rio de Janeiro': 'Rio de Janeiro',
+'The same in both cities': 'Igual nas duas cidades',
+'Neighbourhoods we place you in': 'Bairros onde hospedamos você',
+'What the city is known for': 'Pelo que a cidade é conhecida',
+'Best suited to': 'Combina mais com',
+'Three steps: about you, the procedure you are considering, and a time for your concierge call. Nothing clinical is asked here.':
+  'Três etapas: seus dados, o procedimento que você está considerando e um horário para a call com seu concierge. Nada clínico é pedido aqui.',
+'The call is with your RefreshU concierge, not with a physician. RefreshU does not make clinical decisions and does not promise a clinical outcome.':
+  'A call é com seu concierge da RefreshU, não com um médico. A RefreshU não toma decisões clínicas e não promete resultado clínico.',
+'A participating physician reviews your case in their own system, directly with you. RefreshU never sees the clinical material.':
+  'Um médico participante analisa seu caso no sistema dele, diretamente com você. A RefreshU nunca vê o material clínico.',
+'Refresh yourself. Experience Brazil.': 'Renove-se. Viva o Brasil.',
+'Where to follow her': 'Onde acompanhar o trabalho dela',
+'Extra services': 'Serviços extras',
+'Your physician&rsquo;s checklist': 'A checklist da sua médica',
+'3 of 4 items confirmed': '3 de 4 itens confirmados',
+'Open my physician&rsquo;s page': 'Abrir a página da minha médica',
+'Go to my documents': 'Ir para meus documentos',
+
 
 # --- portal: perfil da medica, instrucoes, itinerario, legal, suporte ---
 'Dr. Juliana Buttros': 'Dra. Juliana Buttros',

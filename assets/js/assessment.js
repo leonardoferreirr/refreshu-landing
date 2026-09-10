@@ -1,20 +1,23 @@
 /* ==========================================================================
-   RefreshU · Start My Assessment
+   RefreshU · Book your call
 
-   Cinco telas, o Anexo A.5.2. Tres delas coletam, a quarta encaminha e a
-   quinta confirma. Salvar e retomar guarda o rascunho no proprio navegador,
-   como pede o A.5.2; em producao o rascunho vive no servidor, atado a conta,
-   e este armazenamento vira so um espelho para quem ainda nao criou conta.
+   Tres telas: quem e voce, o que voce esta considerando, e a hora da call.
+   Salvar e retomar guarda o rascunho no proprio navegador; em producao o
+   rascunho vive no servidor, atado a conta.
 
    Nenhum campo clinico existe neste arquivo, e isso e proposital: a Clausula
-   12.6 nao e uma validacao que se possa desligar, e a ausencia do campo.
+   12.6 nao e uma validacao que se possa desligar, e a ausencia do campo. A
+   parte clinica acontece no sistema do proprio medico, fora daqui.
+
+   O agendamento e o "appointment schedule" do Google Calendar embutido: e ele
+   que confirma por e-mail, cria o evento e lembra. Ver assets/js/config.js.
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  var KEY = 'refreshu.assessment.v1';
-  var LAST = 5;
+  var KEY = 'refreshu.assessment.v2';
+  var LAST = 3;
 
   var panels = document.querySelectorAll('[data-panel]');
   var steps = document.querySelectorAll('.as__step');
@@ -24,18 +27,10 @@
   var saved = document.getElementById('saved');
   var procs = document.getElementById('procs');
   var form = document.getElementById('aboutForm');
-  var handoff = document.getElementById('handoffDone');
-  var handoffAck = document.getElementById('handoffAck');
-  var locCountry = document.getElementById('locCountry');
-  var locState = document.getElementById('locState');
-  var locStateWrap = document.getElementById('locStateWrap');
-  var locBlock = document.getElementById('locBlock');
-
-  // Restricoes por estado. Fica vazio de proposito: quem decide o que um
-  // medico brasileiro pode revisar com o paciente fisicamente nos Estados
-  // Unidos e o juridico, nao o codigo. O admin liga cada estado quando a
-  // orientacao chegar, e a mensagem vem junto.
-  var STATE_RULES = {};   // ex.: { 'California': 'message shown to the client' }
+  var procsHint = document.getElementById('procsHint');
+  var bookSlot = document.getElementById('bookSlot');
+  var bookAck = document.getElementById('bookAck');
+  var CFG = window.REFRESHU_CONFIG || {};
 
   var state = load();
   var step = 1;
@@ -115,14 +110,15 @@
       s.classList.toggle('is-now', i === step);
     });
 
-    back.hidden = step === 1 || step === LAST;
-    foot.hidden = step === LAST;
+    back.hidden = step === 1;
+    // A ultima tela nao tem "continuar": quem conclui e o proprio calendario.
+    next.hidden = step === LAST;
+    foot.hidden = false;
 
     if (step === 2) paintProcs();
-    if (step === 4) { paintDoctor(); paintLocation(); }
-    if (step === 5) { paintRecap(); save(); }
+    if (step === LAST) { montaCalendario(); save(); }
 
-    next.textContent = step === 3 ? 'Continue' : (step === 4 ? 'Send my assessment' : 'Continue');
+    next.textContent = 'Continue';
 
     gate();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -136,6 +132,9 @@
       if (state.area !== b.dataset.area) { state.proc = null; state.procName = null; }
       state.area = b.dataset.area;
       state.areaLabel = b.dataset.label;
+      // Area e procedimento moram na mesma etapa: escolher a area revela a
+      // lista logo abaixo, em vez de mandar para outra tela.
+      paintProcs();
       save();
       gate();
     });
@@ -145,7 +144,9 @@
 
   function paintProcs() {
     var cat = CATALOGUE[state.area];
-    if (!cat) return;
+    if (!cat) { procs.hidden = true; if (procsHint) procsHint.hidden = true; return; }
+    procs.hidden = false;
+    if (procsHint) procsHint.hidden = false;
 
     procs.innerHTML = '';
     cat.items.forEach(function (it) {
@@ -224,77 +225,78 @@
     });
   });
 
-  /* --------------------------------------------------- 4. hand-off ------ */
+  /* ----------------------------------------------- 3. book your call ----
+     O agendamento e o "appointment schedule" do Google Calendar embutido.
+     Ele confirma por e-mail, cria o evento nos dois calendarios e lembra, o
+     que resolve a etapa inteira sem backend. O link vive em config.js.
 
-  function paintDoctor() {
-    var cat = CATALOGUE[state.area];
-    if (!cat) return;
-    document.getElementById('docAv').textContent = cat.doctor.initials;
-    document.getElementById('docName').textContent = cat.doctor.name;
-    document.getElementById('docMeta').textContent = cat.doctor.meta;
+     Sem link configurado a tela diz isso com todas as letras e oferece o
+     e-mail, em vez de mostrar um quadro vazio que parece defeito.          */
+
+  function urlDoCalendario() {
+    var u = String(CFG.bookingUrl || '').trim();
+    if (!u) return '';
+    // O formato longo aceita ?gv=true para abrir ja embutido, sem o cabecalho
+    // do Google. O curto (calendar.app.google) redireciona e nao precisa.
+    if (u.indexOf('/appointments/schedules/') > -1 && u.indexOf('gv=true') === -1) {
+      u += (u.indexOf('?') > -1 ? '&' : '?') + 'gv=true';
+    }
+    return u;
   }
 
-  if (handoff) {
-    handoff.addEventListener('change', function () {
-      state.handoff = handoff.checked;
+  function montaCalendario() {
+    if (!bookSlot || bookSlot.dataset.pronto) return;
+    var url = urlDoCalendario();
+
+    if (!url) {
+      bookSlot.innerHTML = '';
+      var aviso = document.createElement('div');
+      aviso.className = 'book__off';
+      aviso.innerHTML = '<b>Scheduling is not connected yet.</b>' +
+        '<p>Write to us and we will arrange your call by email.</p>';
+      var a = document.createElement('a');
+      a.className = 'btn btn--sm';
+      a.href = 'mailto:' + (CFG.bookingFallbackEmail || '') +
+               '?subject=' + encodeURIComponent('Book my RefreshU call');
+      a.textContent = 'Email us to book';
+      aviso.appendChild(a);
+      bookSlot.appendChild(aviso);
+      bookSlot.dataset.pronto = '1';
+      return;
+    }
+
+    var f = document.createElement('iframe');
+    f.src = url;
+    f.title = 'Choose a time for your RefreshU call';
+    f.width = '100%';
+    f.height = '640';
+    f.frameBorder = '0';
+    f.style.border = '0';
+    f.loading = 'lazy';
+    bookSlot.innerHTML = '';
+    bookSlot.appendChild(f);
+
+    // Quem preferir a aba do Google, ou estiver num navegador que bloqueia o
+    // iframe de terceiro, ainda tem por onde ir.
+    var fora = document.createElement('a');
+    fora.className = 'book__out';
+    fora.href = url;
+    fora.target = '_blank';
+    fora.rel = 'noopener';
+    fora.textContent = 'Open the calendar in a new tab';
+    bookSlot.appendChild(fora);
+
+    bookSlot.dataset.pronto = '1';
+  }
+
+  if (bookAck) {
+    bookAck.addEventListener('change', function () {
+      state.ack = bookAck.checked;
+      state.ackAt = bookAck.checked ? new Date().toISOString() : null;
+      state.ackDoc = bookAck.dataset.doc;
+      state.ackVersion = bookAck.dataset.version;
       save();
     });
-  }
-
-  /* ------------------------------------------------ localizacao fisica --
-     O endereco residencial nao responde a pergunta que importa: onde a
-     pessoa esta quando o medico revisa o caso. A resposta e guardada com
-     o evento de encaminhamento.                                          */
-
-  function inUS() { return locCountry && locCountry.value === 'United States'; }
-
-  function locationOk() {
-    if (!locCountry) return true;
-    if (!locCountry.value) return false;
-    if (inUS() && !locState.value) return false;
-    if (inUS() && STATE_RULES[locState.value]) return false;   // estado bloqueado
-    return true;
-  }
-
-  function paintLocation() {
-    if (!locCountry) return;
-    var us = inUS();
-    if (locStateWrap) locStateWrap.hidden = !us;
-    if (locState) locState.required = us;
-
-    var rule = us && locState.value ? STATE_RULES[locState.value] : null;
-    if (locBlock) {
-      locBlock.hidden = !rule;
-      locBlock.textContent = rule || '';
-    }
-    state.locCountry = locCountry.value;
-    state.locState = us ? locState.value : '';
-    gate();
-  }
-
-  if (locCountry) locCountry.addEventListener('change', paintLocation);
-  if (locState) locState.addEventListener('change', paintLocation);
-  if (handoffAck) handoffAck.addEventListener('change', function () {
-    state.ack = handoffAck.checked;
-    state.ackAt = handoffAck.checked ? new Date().toISOString() : null;
-    state.ackDoc = handoffAck.dataset.doc;
-    state.ackVersion = handoffAck.dataset.version;
-    gate();
-  });
-
-  /* -------------------------------------------------- 5. confirmado ----- */
-
-  function paintRecap() {
-    var put = function (id, v) { document.getElementById(id).textContent = v || 'Not given'; };
-    put('rName', [state.fname, state.lname].filter(Boolean).join(' '));
-    put('rMail', state.mail);
-    put('rArea', state.areaLabel);
-    put('rProc', state.procName);
-    put('rState', state.state);
-    put('rWindow', state.window);
-    put('rComp', state.compLabel || 'Not answered');
-    put('rLoc', [state.locState, state.locCountry].filter(Boolean).join(', '));
-    put('rHandoff', state.handoff ? 'Marked as completed' : 'Still to complete');
   }
 
   /* --------------------------------------------------------- avancar ---- */
@@ -303,27 +305,17 @@
   // melhor que deixar avancar e reclamar depois.
   function gate() {
     var ok = true;
-    if (step === 1) ok = !!state.area;
+    if (step === 1) ok = REQUIRED.every(function (id) { return valid(id, true); });
     if (step === 2) ok = !!state.proc;
-    if (step === 3) ok = REQUIRED.every(function (id) { return valid(id, true); });
-    if (step === 4) ok = locationOk() && !!(handoffAck && handoffAck.checked);
     next.disabled = !ok;
   }
 
   next.addEventListener('click', function () {
-    if (step === 3) {
+    if (step === 1) {
       var bad = REQUIRED.filter(function (id) { return !valid(id); });
       if (bad.length) { field(bad[0]).focus(); return; }
     }
     if (step === LAST) return;
-
-    if (step === 4) {
-      next.disabled = true;
-      next.textContent = 'Sending…';
-      setTimeout(function () { go(5); }, 500);
-      return;
-    }
-
     save();
     go(step + 1);
   });
@@ -342,15 +334,11 @@
       var c = document.querySelector('[data-comp="' + state.comp + '"]');
       if (c) c.setAttribute('aria-pressed', 'true');
     }
-    if (state.handoff && handoff) handoff.checked = true;
-    if (state.ack && handoffAck) handoffAck.checked = true;
-    if (state.locCountry && locCountry) locCountry.value = state.locCountry;
-    if (state.locState && locState) locState.value = state.locState;
+    if (state.ack && bookAck) bookAck.checked = true;
 
     var at = 1;
-    if (state.area) at = 2;
+    if (REQUIRED.every(function (id) { return valid(id, true); })) at = 2;
     if (state.proc) at = 3;
-    if (REQUIRED.every(function (id) { return valid(id, true); })) at = 4;
 
     go(at);
   })();

@@ -58,3 +58,34 @@
 
   for (var k = 0; k < alvos.length; k++) io.observe(alvos[k]);
 })();
+
+/* --- Abas do destino ------------------------------------------------------
+   Padrao de tablist: clique troca o painel, seta esquerda/direita anda entre
+   as abas e leva o foco junto, e so a aba ativa fica na ordem de tabulacao. */
+(function () {
+  'use strict';
+  var abas = [].slice.call(document.querySelectorAll('.dest__tab'));
+  if (abas.length < 2) return;
+
+  function mostra(alvo, move) {
+    abas.forEach(function (b) {
+      var on = b === alvo;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+      var painel = document.getElementById(b.getAttribute('aria-controls'));
+      if (painel) painel.hidden = !on;
+    });
+    if (move) alvo.focus();
+  }
+
+  abas.forEach(function (b, i) {
+    b.addEventListener('click', function () { mostra(b, false); });
+    b.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      mostra(abas[(i + d + abas.length) % abas.length], true);
+    });
+  });
+})();

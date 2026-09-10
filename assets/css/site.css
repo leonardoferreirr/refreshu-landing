@@ -848,11 +848,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .pkgs__cta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem}
 
 /* dois destinos */
-.cities{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.6rem 0 1rem}
-.city{border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.25rem;background:var(--paper)}
-.city h3{font-family:var(--display);font-size:1.15rem;font-weight:400;margin:0 0 .35rem;color:var(--navy)}
-.city p{margin:0;font-size:.87rem;line-height:1.6;color:var(--on-paper-dim)}
-@media (max-width:700px){ .cities{grid-template-columns:1fr} }
 
 /* ============================================================
    Sinais de confianca
@@ -884,3 +879,47 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .roleline .wrap{display:block}
 .sec-note{margin:.5rem 0 0;font-size:.82rem;color:var(--on-paper-fine);line-height:1.55}
+
+/* --- Destino: duas abas, uma cidade em cada -------------------------------
+   O que a RefreshU coordena e igual nos dois destinos, entao os modulos ficam
+   fora das abas. Dentro delas so entra o que muda de cidade para cidade. */
+.dest__tabs { display: flex; gap: 8px; margin: 0 0 clamp(22px, 3vw, 34px); flex-wrap: wrap; }
+.dest__tab {
+  padding: 12px 26px; border: 1px solid var(--line); border-radius: 999px;
+  background: transparent; color: var(--on-paper-dim);
+  font-family: inherit; font-size: .95rem; cursor: pointer;
+  transition: background-color .3s, color .3s, border-color .3s;
+}
+.dest__tab:hover { color: var(--navy); border-color: var(--navy); }
+.dest__tab.is-on { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.dest__panel { display: grid; grid-template-columns: .85fr 1fr; gap: clamp(28px, 4vw, 62px); align-items: start; }
+.dest__panel[hidden] { display: none; }
+.dest__lead { font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem); line-height: 1.55; color: var(--navy); margin: 0 0 26px; }
+.dest__facts { margin: 0; display: grid; gap: 20px; }
+.dest__facts dt {
+  font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--on-paper-fine); margin-bottom: 5px;
+}
+.dest__facts dd { margin: 0; font-size: .99rem; line-height: 1.6; color: var(--on-paper-dim); }
+
+.dest__same { margin-top: clamp(40px, 5vw, 70px); }
+.dest__sameT {
+  font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--on-paper-fine); margin: 0 0 22px;
+}
+.dest__mods h4 { font-family: var(--display); font-size: 1.1rem; font-weight: 400; margin: 0 0 .4rem; color: var(--navy); }
+
+@media (max-width: 1000px) {
+  .dest__panel { grid-template-columns: 1fr; }
+  .dest__panel .dest__img { position: static; aspect-ratio: 16 / 10; }
+}
+@media (max-width: 520px) {
+  /* rotulo inteiro em cada aba, mesmo estreito: cortar "Rio de Janeiro" seria pior */
+  .dest__tab { flex: 1 1 auto; padding: 12px 16px; font-size: .9rem; }
+}
+
+/* Entre 861px e 1100px o menu inteiro e o botao do topo disputam a mesma
+   linha e o botao saia para fora da tela. O menu ja tem o proprio CTA no
+   fim, entao o do topo e que sai. */
+@media (max-width: 1100px) { .chrome__act .btn--sm { display: none; } }

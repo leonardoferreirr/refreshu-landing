@@ -293,7 +293,20 @@
 .pview__lead { color: var(--on-paper-dim); max-width: 74ch; margin-bottom: clamp(22px, 3vw, 32px); }
 
 /* ---------------------------------------------------------------- trilho -- */
-.rail { overflow-x: auto; padding-bottom: 6px; margin-bottom: clamp(26px, 3.4vw, 40px); }
+/* A trilha tem 720px de largura minima e rola no celular. Sem a mascara nas
+   pontas ela parece cortada, e nao rolavel: a borda esmaecida e o unico aviso
+   de que ha mais etapa do lado. */
+.rail {
+  overflow-x: auto; padding-bottom: 6px; margin-bottom: clamp(26px, 3.4vw, 40px);
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+@media (max-width: 900px) {
+  .rail {
+    -webkit-mask: linear-gradient(90deg, transparent, #000 18px, #000 calc(100% - 26px), transparent);
+    mask: linear-gradient(90deg, transparent, #000 18px, #000 calc(100% - 26px), transparent);
+  }
+}
 .rail__steps { display: flex; min-width: 720px; }
 .rail__steps li {
   flex: 1; position: relative; padding-top: 22px; padding-right: 8px;
@@ -675,3 +688,25 @@
 .trvl__i.is-ok{border-left-color:var(--teal)}
 .trvl__i.is-todo{border-left-color:#c8891f}
 .trvl__i.is-wait{border-left-color:var(--on-paper-fine)}
+
+/* --- Canais e antes/depois da medica ------------------------------------- */
+.doc__social { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0 0 8px; padding: 0; }
+.doc__social a {
+  display: inline-block; padding: 9px 18px; border: 1px solid var(--line); border-radius: 999px;
+  font-size: .88rem; color: var(--navy); text-decoration: none; transition: border-color .3s, background-color .3s;
+}
+.doc__social a:hover { border-color: var(--navy); background: rgba(4, 32, 44, .04); }
+
+/* Os dois lados sempre lado a lado, inclusive no celular: antes e depois em
+   linhas diferentes deixa de ser comparacao e vira duas fotos soltas. */
+.ba { display: grid; gap: 22px; margin: 4px 0 12px; }
+.ba__i { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ba__f { position: relative; display: block; overflow: hidden; border-radius: 10px; background: var(--line); }
+.ba__f img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; }
+.ba__f b {
+  position: absolute; left: 8px; bottom: 8px; padding: 4px 10px; border-radius: 999px;
+  background: rgba(4, 32, 44, .82); color: #fff; font-size: .68rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.ba__i figcaption { grid-column: 1 / -1; font-size: .86rem; color: var(--on-paper-dim); }
+@media (min-width: 760px) { .ba { grid-template-columns: 1fr 1fr; } }
