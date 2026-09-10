@@ -380,6 +380,38 @@ DESTINOS = {
     },
 }
 
+# Fotos por cidade. Todas de licenca livre para uso comercial (Pexels
+# License), sem pessoa reconhecivel em primeiro plano, o que importa aqui:
+# a licenca proibe usar pessoa identificavel de forma que sugira endosso, e
+# turismo medico estetico e area sensivel.
+#
+# O Cristo Redentor ficou de fora de proposito, mesmo com foto livre
+# disponivel: a Arquidiocese do Rio reivindica direitos sobre a imagem para
+# uso comercial, e a licenca do banco cobre o fotografo, nao a obra. Pao de
+# Acucar e Dois Irmaos nao tem essa discussao.
+FOTOS = {
+  'sao-paulo': {
+    'hero':   ('dest/sp-paulista-hero.webp', 'Avenida Paulista from above at the end of the day'),
+    'faixa1': ('dest/sp-ibirapuera.webp', 'The tree canopy of Ibirapuera park'),
+    'estada': ('dest/sp-verde.webp', 'A residential building behind trees in São Paulo'),
+    'fazer':  ('dest/sp-masp.webp', 'The red pillars of MASP on Avenida Paulista'),
+    'comer':  ('dest/sp-cafe.webp', 'Brazilian coffee being poured through a cloth filter'),
+    'cidade': ('dest/sp-copan.webp', 'The curve of the Copan building in black and white'),
+    'faixa2': ('dest/sp-masp-faixa.webp', 'The red pillars of MASP seen from below'),
+    'faixa3': ('dest/sp-arte-faixa.webp', 'A São Paulo alley covered in murals'),
+  },
+  'rio': {
+    'hero':   ('dest/rio-arpoador-hero.webp', 'Ipanema and the Dois Irmãos peaks seen from the rocks at Arpoador'),
+    'faixa1': ('dest/rio-lagoa.webp', 'Rodrigo de Freitas lagoon with the hills behind it'),
+    'estada': ('dest/rio-predios.webp', 'The sea appearing between buildings in Ipanema'),
+    'fazer':  ('dest/rio-bondinho.webp', 'The cable car climbing towards Sugarloaf'),
+    'comer':  ('dest/rio-botanico.webp', 'The imperial palm avenue at the botanical garden'),
+    'cidade': ('dest/rio-copacabana.webp', 'The wave pattern of the Copacabana promenade from above'),
+    'faixa2': ('dest/rio-botanico-faixa.webp', 'The imperial palm avenue at the botanical garden'),
+    'faixa3': ('dest/rio-arpoador-faixa.webp', 'Ipanema seen from the rocks at Arpoador'),
+  },
+}
+
 ESFORCO = [
     ('leve', 'Gentle', 'Little walking, no heat, no exertion. The kind of outing most people are cleared for early.'),
     ('medio', 'Moderate', 'More time on your feet, some sun. Usually a question for the middle of the stay.'),
@@ -387,7 +419,7 @@ ESFORCO = [
 ]
 
 
-def lista(itens, chave_titulo='nome', chave_texto='texto'):
+def lista(itens, chave_titulo='nome', chave_texto='texto', colunas=0):
     if not itens:
         return ('<p class="dpend">This block is filled from the destination guide. '
                 'The content is being written and is not published yet.</p>')
@@ -396,7 +428,8 @@ def lista(itens, chave_titulo='nome', chave_texto='texto'):
         extra = f'<span class="dcard__m">{it["meta"]}</span>' if it.get('meta') else ''
         out.append(f'<article class="dcard"><h3>{it[chave_titulo]}</h3>{extra}'
                    f'<p>{it[chave_texto]}</p></article>')
-    return '<div class="dgrid">' + ''.join(out) + '</div>'
+    cls = 'dgrid dgrid--1' if colunas == 1 else 'dgrid'
+    return f'<div class="{cls}">' + ''.join(out) + '</div>'
 
 
 def completa(d):
@@ -405,6 +438,24 @@ def completa(d):
     cheios = [d['bairros'], d['hoteis'], d['mesa'], d['compras'], d['clima']]
     cheios += list(d['passeios'].values())
     return all(x for x in cheios)
+
+
+def faixa(chave, tipo, legenda=''):
+    """Faixa de foto que corta a pagina de ponta a ponta. Serve de respiro
+    entre blocos de cartao: sem ela a pagina vira uma parede de fichas."""
+    src, alt = FOTOS[chave][tipo]
+    leg = f'<figcaption>{legenda}</figcaption>' if legenda else ''
+    return (f'<figure class="dband reveal"><img src="assets/img/{src}" alt="{alt}" '
+            f'width="1700" height="728" loading="lazy" decoding="async">{leg}</figure>')
+
+
+def lado(chave, tipo, corpo, invertido=False):
+    """Foto de um lado, conteudo do outro. Quebra o ritmo dos grids."""
+    src, alt = FOTOS[chave][tipo]
+    cls = 'dside dside--inv' if invertido else 'dside'
+    return (f'<div class="{cls} reveal"><figure><img src="assets/img/{src}" alt="{alt}" '
+            f'width="900" height="1200" loading="lazy" decoding="async"></figure>'
+            f'<div class="dside__c">{corpo}</div></div>')
 
 
 def pagina(chave, d, cabeca, rodape):
@@ -428,6 +479,7 @@ def pagina(chave, d, cabeca, rodape):
 <title>{d['titulo']} · RefreshU</title>
 <meta name="description" content="{d['meta']}">{robots}
 <link rel="icon" href="assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="assets/img/{FOTOS[chave]['hero'][0]}" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
@@ -438,7 +490,7 @@ def pagina(chave, d, cabeca, rodape):
 <main id="main">
 
   <section class="dhero">
-    <div class="dhero__foto"><img src="{d['foto']}" alt="{d['foto_alt']}" width="1600" height="900" fetchpriority="high" decoding="async"></div>
+    <div class="dhero__foto"><img src="assets/img/{FOTOS[chave]['hero'][0]}" alt="{FOTOS[chave]['hero'][1]}" width="1700" height="728" fetchpriority="high" decoding="async"></div>
     <div class="dhero__veu"></div>
     <div class="wrap dhero__g">
       <p class="dhero__k">Destination</p>
@@ -454,14 +506,19 @@ def pagina(chave, d, cabeca, rodape):
     </div>
   </section>
 
+  {faixa(chave, 'faixa1')}
+
   <section class="sec sec--claro">
     <div class="wrap">
       <div class="sec-head reveal"><h2 class="display">Where you stay</h2>
         <p class="sec-lead">Walkable, residential and close to the clinics. We book the hotel; you pay the hotel directly.</p></div>
+      <h3 class="dsub reveal">The neighbourhoods</h3>
       {lista(d['bairros'])}
-      {lista(d['hoteis'])}
+      {lado(chave, 'estada', '<h3 class="dsub">The hotels</h3>' + lista(d['hoteis'], colunas=1))}
     </div>
   </section>
+
+  {faixa(chave, 'faixa2')}
 
   <section class="sec">
     <div class="wrap">
@@ -472,18 +529,28 @@ def pagina(chave, d, cabeca, rodape):
     </div>
   </section>
 
+  {faixa(chave, 'faixa3')}
+
   <section class="sec sec--claro">
     <div class="wrap">
       <div class="sec-head reveal"><h2 class="display">Where you eat</h2>
         <p class="sec-lead">Your concierge handles the reservation, including the ones that normally need weeks. Meals come to the room on the days you should be resting.</p></div>
       {lista(d['mesa'])}
+      {lado(chave, 'comer', '<h3 class="dsub">On the days you stay in</h3><p class="dsideP">Meals come to the room, and your concierge knows which kitchens travel well and which do not. Nothing on this page is a medical recommendation, and what you are cleared to eat is your physician&rsquo;s call.</p>')}
     </div>
   </section>
 
   <section class="sec">
     <div class="wrap">
-      <div class="sec-head reveal"><h2 class="display">Shopping, services and the weather</h2></div>
-      {lista(d['compras'])}
+      <div class="sec-head reveal"><h2 class="display">Shopping and services</h2></div>
+      {lado(chave, 'cidade', lista(d['compras'], colunas=1), invertido=True)}
+    </div>
+  </section>
+
+  <section class="sec sec--claro">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2 class="display">When to come</h2>
+        <p class="sec-lead">A healing scalp needs about thirty days out of direct sun, and caps are not allowed early on. That makes the month you choose a clinical question, not a comfort one.</p></div>
       {lista(d['clima'])}
     </div>
   </section>

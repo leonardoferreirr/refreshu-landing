@@ -1064,3 +1064,37 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .stack > * { position: static !important; }
 }
+
+/* --- Destino: ritmo entre os blocos ---------------------------------------
+   A primeira versao era uma parede de 33 fichas brancas iguais. O que quebra
+   isso nao e mudar a ficha, e alternar o tipo de bloco: grade, foto de ponta
+   a ponta, foto ao lado de texto, grade de novo. */
+.dsub {
+  margin: 0 0 18px; font-size: .74rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--on-paper-fine);
+}
+.dgrid--1 { grid-template-columns: 1fr; }
+
+/* faixa que corta a pagina de ponta a ponta */
+.dband { margin: 0; position: relative; }
+.dband img { display: block; width: 100%; height: clamp(230px, 30vw, 400px); object-fit: cover; }
+.dband figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 6vw 18px;
+  background: linear-gradient(0deg, rgba(4,32,44,.72), transparent);
+  color: rgba(255,255,255,.9); font-size: .86rem;
+}
+
+/* foto de um lado, conteudo do outro */
+.dside { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(24px, 3.4vw, 54px); align-items: center; margin-top: clamp(30px, 4vw, 54px); }
+.dside--inv { grid-template-columns: 1.2fr .8fr; }
+.dside--inv figure { order: 2; }
+.dside figure { margin: 0; border-radius: 16px; overflow: hidden; }
+.dside figure img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 4; }
+.dside .dgrid { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .dside, .dside--inv { grid-template-columns: 1fr; }
+  .dside--inv figure { order: 0; }
+  .dside figure img { aspect-ratio: 16 / 10; }
+}
+.dsideP { margin: 0; font-size: .99rem; line-height: 1.65; color: var(--on-paper-dim); }
