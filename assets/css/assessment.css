@@ -578,3 +578,5 @@
 @media (max-width: 900px) { .book { grid-template-columns: 1fr; } }
 
 .book__offnote { margin: 16px 0 0; font-size: .82rem; color: var(--on-paper-fine); }
+
+.book__tz { margin: 0; padding: 13px 18px; border-top: 1px solid var(--line); font-size: .84rem; line-height: 1.5; color: var(--on-paper-fine); }

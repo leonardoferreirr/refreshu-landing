@@ -236,8 +236,13 @@
   function urlDoCalendario() {
     var u = String(CFG.bookingUrl || '').trim();
     if (!u) return '';
-    // O formato longo aceita ?gv=true para abrir ja embutido, sem o cabecalho
-    // do Google. O curto (calendar.app.google) redireciona e nao precisa.
+    // Cal.com: ?embed=true tira o cabecalho e o rodape do proprio Cal, para a
+    // pagina de agendamento parecer parte do site e nao um site dentro do site.
+    if (u.indexOf('cal.com/') > -1 && u.indexOf('embed=') === -1) {
+      u += (u.indexOf('?') > -1 ? '&' : '?') + 'embed=true';
+    }
+    // Google Calendar: o formato longo aceita ?gv=true com o mesmo efeito. O
+    // curto (calendar.app.google) redireciona e nao precisa.
     if (u.indexOf('/appointments/schedules/') > -1 && u.indexOf('gv=true') === -1) {
       u += (u.indexOf('?') > -1 ? '&' : '?') + 'gv=true';
     }

@@ -8,7 +8,16 @@
 
 window.REFRESHU_CONFIG = {
 
-  /* Link do "appointment schedule" do Google Calendar da conta da RefreshU.
+  /* Pagina de agendamento da RefreshU. Hoje e o Cal.com; o campo aceita
+     tambem um "appointment schedule" do Google Calendar, e trocar de um para
+     o outro e trocar esta linha.
+
+     Por que Cal.com e nao Google: na conta gratuita do Google o agendamento
+     existe mas NAO manda lembrete para quem marcou, e a call e com alguem em
+     outro fuso, marcada com 12h ou mais de antecedencia. Sem lembrete, o
+     no-show sobe. O Cal.com manda no plano gratuito.
+
+     Notas do Google, para o dia em que a RefreshU assinar o Workspace:
      Como gerar, na conta que vai receber as calls:
 
        Google Calendar > Create > Appointment schedule
@@ -27,7 +36,10 @@ window.REFRESHU_CONFIG = {
 
      Enquanto estiver vazio, a tela avisa que o agendamento ainda nao foi
      ligado, em vez de mostrar um quadro em branco. */
-  bookingUrl: '',
+  /* O link curto (calendar.app.google/sQi3JYZiqBQpae8A7) redireciona para
+     este. Usamos o longo de proposito: e o unico que aceita ?gv=true, o
+     parametro que abre a agenda ja embutida, sem o cabecalho do Google. */
+  bookingUrl: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0XKHslykIGRzyZdcm-Wrr2cBNXVhBkcDYLRHGN8VjSW3NRkT_qhC_8e5Qjus2SoH3XQgUjluki',
 
   /* Para onde a cliente escreve se o agendamento nao abrir. Sai do Legal
      Center quando a entidade legal e os e-mails oficiais forem definidos. */
