@@ -30,7 +30,16 @@
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#treatments">Treatments</a>
       <a href="#physicians">Doctors</a>
-      <a href="#destination">Destinations</a>
+      <div class="nav__has">
+        <a href="#destination" aria-expanded="false" aria-controls="navDest">Destinations
+          <svg class="nav__chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="nav__sub" id="navDest">
+          <a href="destination-sao-paulo.html"><b>São Paulo</b><span>The medical capital, and a city built around the table</span></a>
+          <a href="destination-rio.html"><b>Rio de Janeiro</b><span>The recovery that happens by the sea</span></a>
+          <a class="nav__subAll" href="#destination">Compare the two</a>
+        </div>
+      </div>
       <a href="#packages">Packages</a>
       <a href="#brazil">Experience</a>
       <a href="#how">How It Works</a>
@@ -588,7 +597,8 @@
           <h3>Explore</h3>
           <a href="#treatments">Treatments</a>
           <a href="#physicians">Doctors</a>
-          <a href="#destination">Destinations</a>
+          <a href="destination-sao-paulo.html">São Paulo</a>
+          <a href="destination-rio.html">Rio de Janeiro</a>
           <a href="#packages">Packages</a>
         </div>
         <div>
