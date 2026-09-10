@@ -22,6 +22,104 @@ PAGINAS = ['index.html', 'signin.html', 'portal.html']
 # regra de copy do projeto: sem travessao, virgula ou dois pontos no lugar
 # ---------------------------------------------------------------------------
 D = {
+# --- portal: textos longos e FAQ ---
+'Today at 10:00, at the hotel. Your driver is confirmed for 09:00.':
+  'Hoje às 10:00, no hotel. Seu motorista está confirmado para as 09:00.',
+'Dr. Juliana&rsquo;s office confirms each item on her own system. RefreshU sees the count and nothing else: never the questionnaire, the photographs, the results or the reports.':
+  'O consultório da Dra. Juliana confirma cada item no sistema dela. A RefreshU vê a contagem e nada além disso: nunca o questionário, as fotografias, os resultados ou os laudos.',
+'Only where compatible with the physician-controlled schedule and status.':
+  'Somente quando compatível com a agenda e o status que estão sob controle da médica.',
+'This itinerary is provided by RefreshU as a non-medical concierge and logistical coordination tool. It summarises the information available to RefreshU at the time shown on the document. It is not medical advice, a medical order, a treatment recommendation, medical clearance, an emergency plan, or a guarantee that any physician, airline, hotel, transportation provider, restaurant, experience, appointment or other third-party service will occur exactly as displayed.':
+  'Este roteiro é fornecido pela RefreshU como ferramenta de concierge e de coordenação logística, sem caráter médico. Ele resume as informações disponíveis à RefreshU no horário indicado no documento. Não é orientação médica, prescrição, recomendação de tratamento, liberação médica, plano de emergência, nem garantia de que qualquer médico, companhia aérea, hotel, transporte, restaurante, experiência, consulta ou outro serviço de terceiro vá acontecer exatamente como exibido.',
+'All medical evaluations, eligibility decisions, diagnoses, procedure recommendations, examinations, laboratory requirements, prescriptions, medication instructions, preparation instructions, informed consent, procedures, recovery instructions, medical restrictions, medical clearance, follow-up care and emergency medical decisions are controlled exclusively by your independent physician or clinic. RefreshU does not practise medicine and does not create, change, interpret, approve or replace physician instructions. If anything here appears inconsistent with your physician&rsquo;s instructions, follow your physician and contact the clinic.':
+  'Toda avaliação médica, decisão de elegibilidade, diagnóstico, recomendação de procedimento, exame, exigência laboratorial, prescrição, orientação sobre medicamento, orientação de preparo, consentimento informado, procedimento, orientação de recuperação, restrição médica, liberação médica, acompanhamento e decisão médica de emergência é controlada exclusivamente pela sua médica independente ou pela clínica. A RefreshU não pratica medicina e não cria, altera, interpreta, aprova nem substitui orientação médica. Se algo aqui parecer divergir da orientação da sua médica, siga a sua médica e entre em contato com a clínica.',
+'Airlines, hotels, transportation providers, restaurants, tour and experience providers, insurers and personal-service providers are independent third parties. Times, reservations, flight information and provider appointments may change. RefreshU updates the itinerary when it receives confirmed changes, and the itinerary is not a guarantee of availability, transportation, medical scheduling, admission, performance or outcome.':
+  'Companhias aéreas, hotéis, transportadoras, restaurantes, operadores de passeios e experiências, seguradoras e prestadores de serviços pessoais são terceiros independentes. Horários, reservas, informações de voo e compromissos com prestadores podem mudar. A RefreshU atualiza o roteiro quando recebe a confirmação da mudança, e o roteiro não é garantia de disponibilidade, transporte, agendamento médico, admissão, desempenho ou resultado.',
+'You are responsible for valid passports, visas or entry authorisations, airline documentation and identification. Insurance coverage, exclusions and claims are determined by your insurer; RefreshU is not the insurer. Tell us promptly about any error in non-medical information, such as name spelling, flight details, dates or hotel information, and take medical questions to your physician.':
+  'Você é responsável por passaporte válido, visto ou autorização de entrada, documentação da companhia aérea e identificação. Cobertura, exclusões e sinistros do seguro são definidos pela sua seguradora; a RefreshU não é a seguradora. Avise-nos logo sobre qualquer erro em informação não médica, como grafia do nome, dados do voo, datas ou informações do hotel, e leve as dúvidas médicas à sua médica.',
+'Restaurants, sightseeing, wellness, personal services and experiences shown here are concierge options, not medical recommendations. Do not take part in an activity that conflicts with your physician&rsquo;s instructions. If you print or download this itinerary, you are responsible for safeguarding the copy.':
+  'Restaurantes, passeios, bem-estar, serviços pessoais e experiências aqui exibidos são opções de concierge, não recomendações médicas. Não participe de atividade que contrarie a orientação da sua médica. Se você imprimir ou baixar este roteiro, a guarda dessa cópia é sua responsabilidade.',
+'I understand that my RefreshU itinerary is a concierge and logistical planning document and may change, that RefreshU is not my medical provider, that all medical instructions come from my independent physician or clinic, and that third-party services are subject to their own terms, availability and changes. Accepted March 5, 2026.':
+  'Entendo que meu roteiro RefreshU é um documento de concierge e planejamento logístico e pode mudar, que a RefreshU não é minha prestadora de serviço médico, que toda orientação médica vem da minha médica independente ou da clínica, e que serviços de terceiros seguem os próprios termos, disponibilidade e alterações. Aceito em 5 de março de 2026.',
+'Dr. Juliana Buttros is a plastic surgeon and master&rsquo;s degree holder trained at the Federal University of S&atilde;o Paulo (UNIFESP-EPM). Her professional practice is focused on hair transplantation using the FUE technique, with an emphasis on individualized planning and natural-looking hair restoration.':
+  'A Dra. Juliana Buttros é cirurgiã plástica e mestre pela Universidade Federal de São Paulo (UNIFESP-EPM). Sua atuação profissional é focada em transplante capilar pela técnica FUE, com ênfase em planejamento individualizado e resultado de aparência natural.',
+'Physician-supplied examples, published with the patient&rsquo;s documented permission. Individual results vary and these images do not guarantee a particular result.':
+  'Exemplos fornecidos pela médica, publicados com permissão documentada da paciente. Os resultados variam de pessoa para pessoa e estas imagens não garantem determinado resultado.',
+'All medical evaluation, eligibility, diagnosis, treatment recommendations, risks and benefits, required examinations, informed consent, procedure decisions, prescriptions, clinical instructions, medical care and follow-up are determined and provided by Dr. Juliana and her clinical team.':
+  'Toda avaliação médica, elegibilidade, diagnóstico, recomendação de tratamento, riscos e benefícios, exames exigidos, consentimento informado, decisão sobre o procedimento, prescrição, orientação clínica, cuidado médico e acompanhamento é determinada e prestada pela Dra. Juliana e pela equipe clínica dela.',
+'RefreshU is a separate concierge service. We facilitate the introduction and coordinate the non-medical parts of your journey: scheduling coordination, travel, accommodation, transportation and concierge support. RefreshU does not diagnose, recommend a medical procedure, prescribe treatment or make medical decisions.':
+  'A RefreshU é um serviço de concierge à parte. Fazemos a apresentação e coordenamos a parte não médica da sua jornada: coordenação de agenda, viagem, hospedagem, transporte e apoio de concierge. A RefreshU não diagnostica, não recomenda procedimento médico, não prescreve tratamento e não toma decisões médicas.',
+'Qualified professionals where appropriate, services approved by your physician, and transport for the return.':
+  'Profissionais qualificados quando cabível, serviços aprovados pela sua médica e transporte para a volta.',
+'Where it is legally permitted and requested by your physician, qualified professionals attend you at the hotel: blood collection, laboratory services, basic exams, an electrocardiogram when properly provided, a nursing visit and physician approved recovery support.':
+  'Onde for legalmente permitido e solicitado pela sua médica, profissionais qualificados atendem você no hotel: coleta de sangue, serviços laboratoriais, exames básicos, eletrocardiograma quando devidamente fornecido, visita de enfermagem e apoio de recuperação aprovado pela médica.',
+'Concierge options in São Paulo, filtered by what your physician has released for the day you are on. Categories open as your physician releases them, never because time has passed.':
+  'Opções de concierge em São Paulo, filtradas pelo que a sua médica liberou para o dia em que você está. As categorias abrem conforme a médica libera, nunca porque o tempo passou.',
+'D.O.M., Picchi, Fasano, Evvai, Maní and Ryo, with the reservation handled for you.':
+  'D.O.M., Picchi, Fasano, Evvai, Maní e Ryo, com a reserva feita para você.',
+'Theatro Municipal, Sala São Paulo and what is on during your stay.':
+  'Theatro Municipal, Sala São Paulo e o que estiver em cartaz durante a sua estadia.',
+'Massage, sauna and heat are only offered once your physician has released them, because they can be incompatible with a procedure.':
+  'Massagem, sauna e calor só são oferecidos depois que a sua médica liberar, porque podem ser incompatíveis com um procedimento.',
+'Aquarium, Parque da Mônica, the zoo and a companion itinerary for the days you are resting.':
+  'Aquário, Parque da Mônica, zoológico e um roteiro para o acompanhante nos dias em que você estiver descansando.',
+'Every option here is a concierge recommendation and not a medical recommendation. RefreshU does not guarantee the safety of any neighbourhood, venue or event, does not determine whether an activity is medically appropriate, and never infers clearance from silence or from elapsed time. Addresses, hours, menus, distinctions and prices change, and are reconfirmed before booking.':
+  'Toda opção aqui é recomendação de concierge, não recomendação médica. A RefreshU não garante a segurança de nenhum bairro, local ou evento, não determina se uma atividade é adequada do ponto de vista médico, e nunca deduz liberação a partir do silêncio ou do tempo decorrido. Endereços, horários, cardápios, premiações e preços mudam, e são reconfirmados antes da reserva.',
+'This portal is not for medical emergencies.':
+  'Este portal não serve para emergências médicas.',
+'Symptoms, medications, test questions, the procedure, recovery and anything in your physician instructions. This reaches Dr. Juliana Buttros and her clinical team, and RefreshU does not answer it.':
+  'Sintomas, medicamentos, dúvidas sobre exames, o procedimento, a recuperação e qualquer coisa que esteja na orientação da sua médica. Isso chega à Dra. Juliana Buttros e à equipe clínica dela, e a RefreshU não responde.',
+'Flights, hotel, driver, restaurants, your schedule and concierge services. Beatriz L., your concierge in São Paulo, from 07:00 to 22:00 local time.':
+  'Voos, hotel, motorista, restaurantes, sua agenda e serviços de concierge. Beatriz L., sua concierge em São Paulo, das 07:00 às 22:00, horário local.',
+'If a medical question arrives in the RefreshU channel, we tell you so and hand it to your physician in one click. We do not answer it ourselves, and a concierge cannot mark a clinical item complete.':
+  'Se uma dúvida médica chegar pelo canal da RefreshU, avisamos você e encaminhamos à sua médica em um clique. Não respondemos por conta própria, e uma concierge não pode marcar um item clínico como concluído.',
+'A line that reaches a person at any hour, for anything that cannot wait until morning. For anything medical, contact your physician or the clinic first.':
+  'Uma linha que alcança uma pessoa a qualquer hora, para o que não pode esperar até de manhã. Para qualquer assunto médico, procure antes a sua médica ou a clínica.',
+'Report it and you get a case number and an audit trail, and we track it to resolution.':
+  'Registre e você recebe um número de caso e uma trilha de auditoria, e acompanhamos até a resolução.',
+'If something on this portal is not working with your keyboard, your screen reader or at the text size you need, tell us and we complete the task with you while it is fixed.':
+  'Se algo neste portal não funcionar com o seu teclado, com o seu leitor de tela ou no tamanho de texto de que você precisa, avise: concluímos a tarefa junto com você enquanto corrigimos.',
+'Your physician, and only your physician. RefreshU coordinates the trip around that decision and takes no part in making it.':
+  'A sua médica, e somente ela. A RefreshU coordena a viagem em torno dessa decisão e não participa de tomá-la.',
+'In your physician&rsquo;s own system. Your questionnaire, any photographs, your exam results and your reports go straight to her and never pass through RefreshU. Here you see the status of each item and the instructions she releases to you.':
+  'No sistema da própria médica. Seu questionário, suas fotografias, seus resultados de exame e seus laudos vão direto para ela e nunca passam pela RefreshU. Aqui você vê o status de cada item e as orientações que ela liberar para você.',
+'No. Confirming that you read an instruction records only that you opened it. Consent to treatment is a separate process, and it happens with your physician.':
+  'Não. Confirmar a leitura de uma orientação registra apenas que você a abriu. O consentimento para tratamento é um processo separado, e acontece com a sua médica.',
+'Your schedule bends around it. Your concierge rearranges restaurants, experiences and transport, and anything your physician has fixed stays where it is. RefreshU never assumes you are cleared for an activity because time has passed.':
+  'Sua agenda se ajusta em volta. Sua concierge remaneja restaurantes, experiências e transporte, e o que a sua médica fixou permanece onde está. A RefreshU nunca presume que você está liberada para uma atividade porque o tempo passou.',
+'Yes. Add a companion under My Profile and they are included in your transfers, your room and the parts of the schedule they can join. If your companion is also seeing a physician, they complete their own physician review, their own consents and their own medical payment.':
+  'Sim. Adicione um acompanhante em Meu perfil e ele passa a fazer parte dos seus traslados, do seu quarto e dos trechos da agenda de que pode participar. Se o acompanhante também for consultar um médico, ele faz a própria análise médica, os próprios consentimentos e o próprio pagamento médico.',
+'You pay on the provider&rsquo;s own secure page, through a link we send you. No card detail is ever stored by RefreshU. Your RefreshU concierge fee and any medical fee are shown as separate lines, paid to separate parties.':
+  'Você paga na página segura do próprio prestador, por um link que enviamos. Nenhum dado de cartão é guardado pela RefreshU. A taxa de concierge da RefreshU e qualquer valor médico aparecem em linhas separadas, pagos a partes distintas.',
+'Use the urgent number on this page. For anything medical, contact your physician or the clinic directly, and call local emergency services if it cannot wait.':
+  'Use o número de urgência desta página. Para qualquer assunto médico, procure diretamente a sua médica ou a clínica, e acione o serviço de emergência local se não puder esperar.',
+"The printed kit reached your hotel room on arrival: your itinerary, the numbers you need, a local guide for the neighbourhood and the card with your concierge's direct line. Everything in it is also here, always current.":
+  'O kit impresso chegou ao seu quarto de hotel na chegada: seu roteiro, os números de que você precisa, um guia do bairro e o cartão com a linha direta da sua concierge. Tudo o que está nele também está aqui, sempre atualizado.',
+'Everything you have accepted, the version you accepted, and the date. Previous versions are kept, so nothing is silently replaced.':
+  'Tudo o que você aceitou, a versão aceita e a data. As versões anteriores ficam guardadas, então nada é substituído em silêncio.',
+'Tell us what is wrong and what it should say.':
+  'Diga o que está errado e o que deveria constar.',
+'This opens a reviewed ticket rather than erasing records immediately, because some records carry a retention obligation. We tell you what can go and what cannot, and why.':
+  'Isso abre um chamado que passa por análise, em vez de apagar registros na hora, porque alguns registros têm obrigação de guarda. Dizemos o que pode sair, o que não pode e por quê.',
+'Ends access to this portal. Any active trip is discussed with you first.':
+  'Encerra o acesso a este portal. Qualquer viagem em andamento é conversada com você antes.',
+'Each request opens a ticket with a case number and is answered within the time the Privacy Policy states.':
+  'Cada pedido abre um chamado com número de caso e é respondido no prazo previsto na Política de Privacidade.',
+'Your medical records are not part of this list. They live in your physician&rsquo;s own system, and requests about them go to her clinic.':
+  'Seus registros médicos não fazem parte desta lista. Eles ficam no sistema da própria médica, e os pedidos sobre eles vão para a clínica dela.',
+'Your details, who travels with you, and how you sign in.':
+  'Seus dados, quem viaja com você e como você entra na conta.',
+'Meeting RefreshU&rsquo;s travel requirements is not medical clearance. Only your physician or clinic can decide whether medical requirements are satisfied and whether the procedure should proceed. The proposed rule is to arrive in Brazil at least seven days before the procedure unless your physician and your written terms set another timeframe.':
+  'Cumprir os requisitos de viagem da RefreshU não é liberação médica. Só a sua médica ou a clínica pode decidir se os requisitos médicos foram atendidos e se o procedimento deve seguir. A regra proposta é chegar ao Brasil pelo menos sete dias antes do procedimento, salvo se a sua médica e os seus termos escritos definirem outro prazo.',
+'A companion is added to your transfers, your hotel room and the parts of the schedule they can join.':
+  'O acompanhante passa a fazer parte dos seus traslados, do seu quarto de hotel e dos trechos da agenda de que pode participar.',
+'Full family accounts, where a second person signs in with their own login, are not part of this release.':
+  'Contas familiares completas, em que uma segunda pessoa entra com o próprio login, não fazem parte desta versão.',
+'Optional for you, and required for everyone on the RefreshU team.':
+  'Opcional para você, e obrigatório para toda a equipe da RefreshU.',
+'About your account, your schedule, your physician-review status, travel and payments. Detailed medical content never appears in a message subject or preview, and a notification always sends you back here.':
+  'Sobre sua conta, sua agenda, o status da análise médica, viagem e pagamentos. Conteúdo médico detalhado nunca aparece no assunto nem na prévia de uma mensagem, e a notificação sempre traz você de volta para cá.',
+
 # --- destinos e pacotes: trechos que ficaram sem traducao ---
 'Referral to a participating independent physician, and coordination of the review workflow':
   'Encaminhamento a um médico independente participante e coordenação do fluxo de análise',
