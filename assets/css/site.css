@@ -215,8 +215,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .idea__t em { color: var(--navy); }
 
 /* -------------------------------------------------------------- cabecalho -- */
-.sec-head { max-width: 62ch; margin-bottom: clamp(40px, 6vw, 72px); }
+/* O cabecalho de secao e centrado, e o titulo tem medida curta de proposito:
+   em torno de 22ch ele cai em duas linhas na maioria das larguras, que e a
+   forma que o cliente aprovou. `balance` divide as duas linhas em vez de
+   deixar uma palavra sozinha embaixo, e substitui o <br> na mao. */
+.sec-head { max-width: 62ch; margin-inline: auto; margin-bottom: clamp(40px, 6vw, 72px); text-align: center; }
 .sec-head .display, h2.display { font-size: clamp(1.95rem, 1.2rem + 2.7vw, 3.3rem); }
+.sec-head .display { max-width: 22ch; margin-inline: auto; text-wrap: balance; }
+.sec-head .sec-lead { margin-inline: auto; text-wrap: pretty; }
 .sec-lead { margin-top: 18px; color: var(--on-paper-dim); font-size: clamp(1rem, .95rem + .3vw, 1.13rem); }
 .sec-head--light .sec-lead { color: var(--on-deep-dim); }
 
