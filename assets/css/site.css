@@ -127,6 +127,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .chrome.is-stuck .link-quiet:hover { color: var(--navy); }
 
 /* ---------------------------------------------------------------- botoes -- */
+/* Qualquer display declarado pelo autor vence o `hidden` do navegador, e o
+   botao continuava aparecendo na ultima etapa mesmo com hidden=true. */
+[hidden] { display: none !important; }
+
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
   padding: 15px 30px; border: 0; border-radius: 999px;
