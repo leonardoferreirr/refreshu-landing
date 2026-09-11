@@ -49,10 +49,30 @@ def desescapa(s):
     return s.replace("\\'", "'").replace('\\"', '"').replace('\\\\', '\\')
 
 
-def chaves():
+def arquivos_de(paginas, raiz=RAIZ):
+    """Quais .js as paginas dadas realmente carregam.
+
+    Serve para o relatorio nao cobrar de um idioma o texto de uma tela que
+    esse idioma nao tem. O portugues so publica a home, entao o rodape legal
+    do portal nao e uma pendencia dele.
+    """
+    usados = set()
+    for nome in paginas:
+        caminho = os.path.join(raiz, nome)
+        if not os.path.exists(caminho):
+            continue
+        html = open(caminho, encoding='utf-8').read()
+        usados.update(re.findall(r'src="assets/js/([\w.\-]+\.js)"', html))
+    usados.discard('i18n.js')
+    return usados
+
+
+def chaves(apenas=None):
     achadas = []
     for arq in sorted(os.listdir(JS)):
         if not arq.endswith('.js') or arq == 'i18n.js':
+            continue
+        if apenas is not None and arq not in apenas:
             continue
         src = open(os.path.join(JS, arq), encoding='utf-8').read()
 

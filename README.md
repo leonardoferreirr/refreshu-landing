@@ -10,10 +10,10 @@ Construído a partir de `RefreshU-Briefing-de-Design-PT-BR.pdf`, 31 seções.
 npx -y serve -l 8821 .
 ```
 
-Site estático, sem build. A única etapa gerada é a versão em português:
+Site estático, sem build. A única etapa gerada são os outros idiomas:
 
 ```bash
-python3 traduzir.py
+python3 i18n_traduzir.py
 ```
 
 ## Páginas
@@ -21,11 +21,35 @@ python3 traduzir.py
 | Arquivo | O que é |
 |---|---|
 | `index.html` | home pública |
-| `signin.html` | entrada no portal |
-| `portal.html` | portal do cliente, demonstrativo, dez áreas da seção 27 |
-| `pt/` | as três acima em pt-BR, **geradas**, nunca editar na mão |
+| `destination-sao-paulo.html`, `destination-rio.html` | guias de destino |
+| `legal.html` | Centro Legal, quinze documentos |
+| `assessment.html` | avaliação em três etapas e agendamento |
+| `signin.html`, `recover.html` | entrada e recuperação de senha da cliente |
+| `portal.html` | portal da cliente, demonstrativo, onze áreas |
+| `signin-sales.html`, `sales.html` | aplicação comercial |
+| `signin-team.html`, `console.html` | console de operação |
+| `es/` | as doze acima em espanhol, **geradas**, nunca editar na mão |
+| `pt/` | a home em pt-BR, **gerada**, nunca editar na mão |
 
-O inglês é a fonte da verdade. Mexeu no texto? Roda `traduzir.py` de novo. O script avisa se alguma chave do dicionário deixou de casar, que é o sinal de que o texto mudou e a tradução ficou para trás.
+## Idiomas
+
+O inglês é a fonte da verdade. Mexeu no texto? Roda `i18n_traduzir.py` de novo.
+
+| Script | Para quê |
+|---|---|
+| `i18n_core.py` | o motor: acha cada trecho traduzível **com a posição dele** no arquivo, e troca por posição, não por busca |
+| `i18n_extrair.py` | lista de trabalho por página, em `i18n/unidades/` |
+| `i18n_js.py` | o texto de tela que nasce dentro do JavaScript (rodapé legal, selos, catálogo) |
+| `i18n_juntar.py` | junta um lote de traduções ao dicionário, sem sobrescrever o que já foi revisado |
+| `i18n_traduzir.py` | gera `/es/` e `/pt/`, mais `assets/js/i18n.<idioma>.js` |
+
+O build **cobra o que ficou sem traduzir**, por página e no JavaScript, e escreve a lista em `i18n/pendente-<idioma>.json`. Era o que faltava no script antigo: ele só sabia reclamar de chave do dicionário que sobrou, nunca de texto da página que nunca entrou nele. Foi assim que a seção de pacotes ficou em inglês dentro do `/pt/` sem ninguém perceber.
+
+**Matriz de idiomas.** A Plataforma (portal, vendas, console e os logins) sai em inglês e espanhol. O site público pode ter português também. Veio da Agata em 10/09/2026 e substitui a linha "Idioma: apenas inglês" do Anexo A. Estender o português para todo o site público é trocar uma linha em `IDIOMAS`, dentro de `i18n_traduzir.py`.
+
+**Página que não existe num idioma aponta para a raiz em inglês**, em vez de 404 dentro da própria pasta. O seletor de idioma só oferece o idioma em que aquela página existe.
+
+**O seletor é texto, não bandeira.** Bandeira nomeia país e idioma não é país: quem lê espanhol aqui mora nos Estados Unidos, e a bandeira da Espanha diria a coisa errada para uma cliente mexicana ou colombiana.
 
 ## Decisões que valem saber
 
@@ -99,6 +123,15 @@ Lighthouse com `--throttling-method=devtools`, porque `simulate` infla o LCP:
 | `/portal.html` mobile | 97 | 100 | 100 | 54 |
 
 SEO baixo em `signin` e `portal` é o `noindex`, proposital. LCP 2,2 s, CLS 0, TBT 0 ms.
+
+Depois do espanhol, medido em desktop, para conferir que o dicionário do JavaScript não cobrou nada:
+
+| Página | Perf | A11y | Práticas | SEO |
+|---|---|---|---|---|
+| `/` desktop | 100 | 100 | 100 | 100 |
+| `/es/` desktop | 100 | 100 | 100 | 100 |
+
+A página em espanhol carrega 9,5 KB a mais, que é o dicionário `i18n.es.js`, e isso não apareceu na nota. Uma coisa apareceu: trocar bandeira por texto no seletor criou divergência entre o rótulo visível (`PT`) e o nome acessível (`Português`), o que quebra o critério 2.5.3 da WCAG para quem usa controle por voz. O nome acessível agora começa pelo texto visível: `PT, Português`.
 
 ## Armadilhas já pagas
 

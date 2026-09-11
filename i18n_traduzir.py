@@ -133,9 +133,14 @@ def seletor(pagina, idioma_atual):
         if pagina not in cfg['paginas']:
             continue
         atual = cod == idioma_atual
+        # O nome acessivel comeca pelo texto que esta na tela. Sem isso quem
+        # usa controle por voz diz "clicar PT" e nao acerta o elemento, porque
+        # para o navegador ele se chama "Português". E o criterio 2.5.3 da
+        # WCAG, e foi o Lighthouse que apontou depois da troca de bandeira
+        # por texto.
         itens.append(
             '<a class="lang__b{on}" href="{href}" hreflang="{lang}"{marca}'
-            ' title="{rotulo}" aria-label="{rotulo}">'
+            ' title="{rotulo}" aria-label="{curto}, {rotulo}">'
             '<span class="lang__c">{curto}</span></a>'.format(
                 on=' is-on' if atual else '',
                 href=url(pagina, idioma_atual, cod),
@@ -163,15 +168,21 @@ def troca_seletor(html, pagina, idioma):
 
 
 # ------------------------------------------------------------------ build ----
-def escreve_dicionario_js(codigo, dicionario):
+def escreve_dicionario_js(codigo, cfg, dicionario):
     """Grava assets/js/i18n.<codigo>.js, o dicionario que o JavaScript le.
 
     Devolve as chaves de tela que vivem no JS e ainda nao tem traducao, para
     o relatorio poder cobrar por elas do mesmo jeito que cobra pelo HTML.
+
+    O dicionario leva todas as chaves, porque custa pouco e evita surpresa
+    se uma pagina passar a carregar outro script. Mas a COBRANCA olha so os
+    scripts das paginas que este idioma publica: o portugues so tem a home,
+    e o rodape legal do portal nao e pendencia dele.
     """
     chaves = i18n_js.chaves()
     traduzidas = {k: dicionario[k] for k in chaves if k in dicionario}
-    faltando = [k for k in chaves if k not in dicionario]
+    alcancaveis = i18n_js.chaves(i18n_js.arquivos_de(cfg['paginas']))
+    faltando = [k for k in alcancaveis if k not in dicionario]
 
     destino = os.path.join(RAIZ, 'assets', 'js', f'i18n.{codigo}.js')
     corpo = json.dumps(traduzidas, ensure_ascii=False, indent=1, sort_keys=True)
@@ -243,7 +254,7 @@ def main():
         print(f'\n{codigo}  ({cfg["rotulo"]}, {len(dicionario)} trechos no dicionario)')
         print('  ' + '-' * 58)
         rel = gera(codigo, cfg, dicionario)
-        falta_js = escreve_dicionario_js(codigo, dicionario)
+        falta_js = escreve_dicionario_js(codigo, cfg, dicionario)
         for pagina, n, _ in rel:
             estado = 'completa' if n == 0 else f'{n} trechos em ingles'
             print(f'  {codigo}/{pagina:<30}{estado}')
