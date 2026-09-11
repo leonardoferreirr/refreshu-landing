@@ -10,8 +10,7 @@
   "<span class=\"brand__word\">refresh<b>U</b></span>",
   "<span class=\"pnav__lbl\">My Journey</span>",
   "<span class=\"pnav__lbl\">My Trip</span>",
-  "<span class=\"pnav__lbl\">My Schedule</span>",
-  "-->\n      <a href=\"#doctor\" data-view=\"doctor\" data-sub=\"Consultation on Wednesday, March 11\">",
+  "-->",
   "<span class=\"pnav__lbl\">My Doctor</span>",
   "<span class=\"pnav__lbl\">My Concierge</span>",
   "<span class=\"pnav__lbl\">Explore Brazil</span>",
@@ -128,7 +127,6 @@
   "<span class=\"ev ev--you\">11:00 Museum visit</span>\n            <span class=\"ev ev--you\">19:30 Dinner reservation</span>",
   "<b>Monday</b><i>March 16</i>",
   "<span class=\"ev ev--med is-pin\">09:00 Final check with your physician</span>\n            <span class=\"ev ev--conc\">18:30 Driver to the airport</span>\n            <span class=\"ev ev--trav\">22:10 Return flight</span>",
-  "-->",
   "<span class=\"doc__av\" aria-hidden=\"true\">JB</span>",
   "Plastic Surgeon · Hair Transplantation",
   "CRM 144522 · RQE 75343",
@@ -391,7 +389,7 @@
   "Separate from everything above, never a condition of any service, and off unless you turn it on.",
   "<span>RefreshU promotions, offers and news by email</span>",
   "<span>The same, by text message</span>",
-  "Changing this is recorded with the date, and you can opt out from any message. See <a href=\"#legal\" data-view=\"legal\">My Legal Documents</a>"
+  "Changing this is recorded with the date, and you can opt out from any message. See <a href=\"#legal\" data-view=\"legal\">My Legal Documents</a>."
  ],
  "atributos": [
   {

@@ -33,6 +33,12 @@ ANCORA = 'a'
 # Conteudo que nunca e texto de tela.
 OPACAS = {'script', 'style', 'svg', 'noscript', 'template'}
 
+# Elementos que nao tem fechamento, e por isso nunca contam no equilibrio.
+VAZIAS = {
+    'br', 'img', 'input', 'hr', 'meta', 'link', 'source', 'wbr',
+    'area', 'base', 'col', 'embed', 'param', 'track',
+}
+
 # Atributos que chegam na pessoa, na tela ou no leitor de tela.
 ATTRS = {
     'title', 'aria-label', 'alt', 'placeholder', 'aria-placeholder',
@@ -63,6 +69,70 @@ SOBRA_ESQ = re.compile(
     r'\s*(?:</[a-zA-Z][\w:-]*\s*>|<([a-zA-Z][\w:-]*)[^>]*>\s*</\1\s*>|'
     r'<[a-zA-Z][\w:-]*[^>]*/>)\s*'
 )
+# Tag de fechamento na ponta direita, candidata a sobra se nao abriu aqui.
+SOBRA_DIR = re.compile(r'</([a-zA-Z][\w:-]*)\s*>\s*$')
+# Tag de abertura na ponta direita: uma unidade nunca termina abrindo algo,
+# porque nao sobrou conteudo dela para dentro.
+ABRE_DIR = re.compile(r'<([a-zA-Z][\w:-]*)(?:\s[^>]*)?/?>\s*$')
+
+
+def desequilibrio(html, ini, fim):
+    """Acha as tags sem par dentro da fatia.
+
+    Devolve (fim_do_ultimo_fechamento_orfao, inicio_da_primeira_abertura_orfa).
+    Fechamento orfao e o que fechou algo aberto antes da fatia; abertura orfa
+    e a que so vai fechar depois dela.
+    """
+    pilha, orfao_fecha, orfa_abre = [], None, None
+    for m in TAG.finditer(html, ini, fim):
+        nome = m.group(2).lower()
+        if nome in VAZIAS or m.group(4):
+            continue
+        if m.group(1):
+            if any(n == nome for n, _ in pilha):
+                while pilha:
+                    n, _ = pilha.pop()
+                    if n == nome:
+                        break
+            else:
+                orfao_fecha = m.end()
+                pilha.clear()
+                orfa_abre = None
+        else:
+            pilha.append((nome, m.start()))
+    if pilha:
+        orfa_abre = pilha[0][1]
+    return orfao_fecha, orfa_abre
+
+
+def apara(html, ini, fim):
+    """Recorta a fatia ate ela ficar com as tags equilibradas.
+
+    Sem isso a unidade chega ao tradutor com tag pendurada e volta como HTML
+    invalido, porque a traducao substitui a fatia inteira. Acontece nas duas
+    pontas: um </span> que fechou algo aberto antes do texto, e um <span> que
+    so vai fechar depois do fim da unidade.
+    """
+    for _ in range(8):
+        antes = (ini, fim)
+        while ini < fim:
+            m = SOBRA_ESQ.match(html, ini, fim)
+            if not m or m.end() >= fim:
+                break
+            ini = m.end()
+        while ini < fim:
+            m = ABRE_DIR.search(html[ini:fim])
+            if not m:
+                break
+            fim = ini + m.start()
+        fecha_orfao, abre_orfa = desequilibrio(html, ini, fim)
+        if fecha_orfao is not None:
+            ini = fecha_orfao
+        if abre_orfa is not None:
+            fim = abre_orfa
+        if (ini, fim) == antes:
+            break
+    return ini, min(max(fim, ini), len(html))
 
 # Trecho que nao vale traducao: so numero, simbolo, entidade ou espaco.
 SO_SIMBOLO = re.compile(
@@ -72,6 +142,23 @@ SO_SIMBOLO = re.compile(
 
 def so_simbolo(s):
     return bool(SO_SIMBOLO.match(s))
+
+
+def continua_a_frase(html, pos):
+    """Depois de um </a>, diz se o que vem a seguir ainda e a mesma frase.
+
+    Serve para separar duas coisas que parecem iguais no HTML: uma lista de
+    links soltos, que sao unidades independentes, e um link no meio de um
+    periodo, que tem que viajar junto com ele. A diferenca esta no que vem
+    logo depois do fechamento: outro link ou uma tag de bloco encerram a
+    frase; texto a continua.
+    """
+    sem_espaco = html[pos:pos + 400].lstrip()
+    # So texto continua a frase. Qualquer tag logo depois do </a> significa
+    # outro elemento, nao o resto do periodo: e a diferenca entre
+    # "li a <a>Politica</a> e o <a>Aviso</a>." e um link de menu seguido do
+    # proximo item.
+    return bool(sem_espaco) and not sem_espaco.startswith('<')
 
 
 def unidades(html):
@@ -100,13 +187,8 @@ def unidades(html):
         """
         nonlocal tem_texto, ancoras
         if tem_texto:
-            comeco = ini
-            while True:
-                salto = SOBRA_ESQ.match(html, comeco, fim)
-                if not salto or salto.end() >= fim:
-                    break
-                comeco = salto.end()
-            bruto = html[comeco:fim]
+            comeco, termino = apara(html, ini, fim)
+            bruto = html[comeco:termino]
             corte = bruto.strip()
             if corte and not so_simbolo(corte):
                 desloc = len(bruto) - len(bruto.lstrip())
@@ -185,13 +267,21 @@ def unidades(html):
             # uma chave so; quando ele fecha um <a> que abriu aqui dentro, a
             # unidade leva o </a> junto, para nao sair com tag pendurada.
             if fechando:
-                if tem_texto:
+                if not tem_texto:
+                    ini = m.end()
+                elif continua_a_frase(html, m.end()):
+                    # a frase segue depois do link: "li a <a>Politica</a> e o
+                    # <a>Aviso</a>." e uma frase so, e tem que ser traduzida
+                    # como uma frase so
+                    if ancoras > 0:
+                        ancoras -= 1
+                else:
                     if ancoras > 0:
                         ancoras -= 1
                         fecha(m.end())
                     else:
                         fecha(m.start())
-                ini = m.end()
+                    ini = m.end()
             elif not tem_texto:
                 ini = m.end()
             else:
