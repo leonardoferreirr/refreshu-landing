@@ -406,9 +406,10 @@
 /* Foto aprovada da medica. Fica decorativa (alt vazio) porque o nome
    aparece ao lado, e um alt com o nome repetiria a leitura. */
 .doc__av--photo {
-  display: block; width: 62px; height: 62px;
-  background: none; object-fit: cover; object-position: 50% 20%;
+  display: block; width: 96px; height: 96px;
+  background: none; object-fit: cover; object-position: 50% 18%;
 }
+@media (max-width: 560px) { .doc__av--photo { width: 72px; height: 72px; } }
 .doc__n { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
 .doc__s { color: var(--on-paper-dim); margin-top: 3px; }
 .doc__c { color: var(--on-paper-fine); font-size: .9rem; }

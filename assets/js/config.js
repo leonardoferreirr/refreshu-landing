@@ -61,7 +61,11 @@ window.REFRESHU_CONFIG = {
       name: 'Dr. Juliana Buttros',
       site: '',                       // ex.: 'https://julianabuttros.com.br'
       social: {
-        instagram: '',                // ex.: 'https://instagram.com/...'
+        /* Autorizado pela medica em 11/09/2026, por decisao do cliente.
+           Vale notar que o briefing MY_DOCTOR pede o contrario: a regra de
+           escopo de perfil manda nao exibir canal que leve o cliente a
+           encontra-la fora do fluxo RefreshU. Publicado assim mesmo. */
+        instagram: 'https://www.instagram.com/drajulianabuttros/',
         tiktok: '',
         youtube: '',
         linkedin: ''
