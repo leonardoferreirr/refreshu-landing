@@ -56,6 +56,20 @@ IDIOMAS = {
 RAIZ_IDIOMA = {'lang': 'en', 'rotulo': 'English', 'curto': 'EN',
                'paginas': TODAS}
 
+# Onde o seletor fica sobre fundo claro, o texto precisa escurecer. As paginas
+# com cabecalho .chrome se resolvem sozinhas pela regra .is-stuck; estas aqui
+# tem topo proprio e claro. O portal fica de fora: la o seletor esta na barra
+# lateral escura, ao lado de Sign out.
+VARIANTE = {
+    'signin.html': 'lang--light',
+    'signin-team.html': 'lang--light',
+    'signin-sales.html': 'lang--light',
+    'recover.html': 'lang--light',
+    'assessment.html': 'lang--light',
+    'console.html': 'lang--light',
+    'sales.html': 'lang--light',
+}
+
 MARCA_INI = core.MARCA_INI
 MARCA_FIM = core.MARCA_FIM
 
@@ -132,7 +146,9 @@ def seletor(pagina, idioma_atual):
         )
     if len(itens) < 2:
         return ''
-    return ('<div class="lang" role="group" aria-label="Language">'
+    extra = VARIANTE.get(pagina)
+    classe = 'lang ' + extra if extra else 'lang'
+    return (f'<div class="{classe}" role="group" aria-label="Language">'
             + ''.join(itens) + '</div>')
 
 
