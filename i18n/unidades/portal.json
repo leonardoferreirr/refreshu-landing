@@ -10,7 +10,6 @@
   "<span class=\"brand__word\">refresh<b>U</b></span>",
   "<span class=\"pnav__lbl\">My Journey</span>",
   "<span class=\"pnav__lbl\">My Trip</span>",
-  "-->",
   "<span class=\"pnav__lbl\">My Doctor</span>",
   "<span class=\"pnav__lbl\">My Concierge</span>",
   "<span class=\"pnav__lbl\">Explore Brazil</span>",
@@ -102,30 +101,6 @@
   "Restaurants, sightseeing, wellness, personal services and experiences shown here are concierge options, not medical recommendations. Do not take part in an activity that conflicts with your physician&rsquo;s instructions. If you print or download this itinerary, you are responsible for safeguarding the copy.",
   "RefreshU concierge itinerary · Trip RU-2026-00125 · Version 3 · Updated March 5, 2026, 4:30 PM<br>Concierge and logistics document only, not medical advice or medical clearance.",
   "<span>I understand that my RefreshU itinerary is a concierge and logistical planning document and may change, that RefreshU is not my medical provider, that all medical instructions come from my independent physician or clinic, and that third-party services are subject to their own terms, availability and changes. Accepted March 5, 2026.</span>",
-  "One timeline holding four schedules together: yours, your travel, your physician and clinical team, and your concierge. Gaps are left on purpose, for delays and for whatever your physician requires.",
-  "You",
-  "Travel",
-  "Physician and clinic",
-  "Concierge",
-  "Fixed by your physician",
-  "By day",
-  "As a list",
-  "<b>Monday</b><i>March 9</i>",
-  "<span class=\"ev ev--trav\">06:40 Arrival at GRU</span>\n            <span class=\"ev ev--conc\">08:00 Airport transfer</span>\n            <span class=\"ev ev--conc\">10:00 Hotel check in and welcome kit</span>\n            <span class=\"ev ev--you\">20:00 Dinner reservation</span>",
-  "<b>Tuesday</b><i>March 10</i>",
-  "<span class=\"ev ev--conc\">09:00 Driver</span>\n            <span class=\"ev ev--med is-pin\">10:00 Pre operative blood work</span>\n            <span class=\"ev ev--you\">12:30 Lunch</span>\n            <span class=\"ev ev--you\">15:00 Jardins</span>\n            <span class=\"ev ev--you\">19:30 Dinner</span>",
-  "<b>Wednesday</b><i>March 11</i>",
-  "<span class=\"ev ev--med is-pin\">14:00 Consultation with Dr. Juliana Buttros</span>\n            <span class=\"ev ev--med is-pin\">15:30 Recovery preparation and guidance</span>\n            <span class=\"ev ev--you\">Free afternoon, kept quiet on purpose</span>",
-  "<b>Thursday</b><i>March 12</i>",
-  "<span class=\"ev ev--conc\">06:15 Driver</span>\n            <span class=\"ev ev--med is-pin\">07:00 Procedure, Clínica Vértice</span>\n            <span class=\"ev ev--conc\">Return to the hotel</span>\n            <span class=\"ev ev--conc\">Recovery support and meal delivery</span>",
-  "<b>Friday</b><i>March 13</i>",
-  "<span class=\"ev ev--med is-pin\">11:00 Follow up with your physician</span>\n            <span class=\"ev ev--conc\">Recovery at the hotel, meals delivered</span>",
-  "<b>Saturday</b><i>March 14</i>",
-  "<span class=\"ev ev--med is-pin\">Activities released by your physician</span>\n            <span class=\"ev ev--you\">13:00 Lunch reservation</span>\n            <span class=\"ev ev--you\">A calm day in São Paulo</span>",
-  "<b>Sunday</b><i>March 15</i>",
-  "<span class=\"ev ev--you\">11:00 Museum visit</span>\n            <span class=\"ev ev--you\">19:30 Dinner reservation</span>",
-  "<b>Monday</b><i>March 16</i>",
-  "<span class=\"ev ev--med is-pin\">09:00 Final check with your physician</span>\n            <span class=\"ev ev--conc\">18:30 Driver to the airport</span>\n            <span class=\"ev ev--trav\">22:10 Return flight</span>",
   "<span class=\"doc__av\" aria-hidden=\"true\">JB</span>",
   "Plastic Surgeon · Hair Transplantation",
   "CRM 144522 · RQE 75343",
@@ -446,10 +421,6 @@
   {
    "attr": "aria-label",
    "texto": "Open menu"
-  },
-  {
-   "attr": "aria-label",
-   "texto": "How to show the schedule"
   }
  ]
 }

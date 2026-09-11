@@ -63,7 +63,10 @@ META_TRAD = {
 MARCA_INI = '<!--LANG-->'
 MARCA_FIM = '<!--/LANG-->'
 
-TOKEN = re.compile(r'<[^>]*>|[^<]+', re.S)
+# O comentario vem primeiro na alternancia: sem isso, um comentario que tem
+# tag dentro (o caso do bloco desligado no portal) era cortado no primeiro
+# ">", e o "-->" do fim virava texto de tela pedindo traducao.
+TOKEN = re.compile(r'<!--.*?-->|<[^>]*>|[^<]+', re.S)
 TAG = re.compile(r'<\s*(/?)\s*([a-zA-Z][\w:-]*)([^>]*?)(/?)\s*>', re.S)
 ATTR = re.compile(r'([a-zA-Z_:][\w:.-]*)\s*=\s*"([^"]*)"', re.S)
 
