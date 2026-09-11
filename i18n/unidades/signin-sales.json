@@ -1,0 +1,65 @@
+{
+ "pagina": "signin-sales.html",
+ "frases": [
+  "Sales Sign In · RefreshU",
+  "<span class=\"brand__word\">refresh<b>U</b></span>",
+  "Sales",
+  "Your pipeline, from first enquiry to handover.",
+  "Your funnel by stage",
+  "Prospects and contact history",
+  "Follow-ups with a due date",
+  "Packages and approved savings",
+  "Your own conversion",
+  "Part of the operations team? <a class=\"auth__x\" href=\"signin-team.html\">Sign in there",
+  "Back to refreshu.com",
+  "Sales sign in",
+  "For the RefreshU sales team. Client accounts sign in <a href=\"signin.html\">here",
+  "Work email",
+  "<span class=\"fld__err\" data-err-for=\"email\">Use your @refreshu.com address.</span>",
+  "Password",
+  "Forgot your password?",
+  "<span class=\"fld__err\" data-err-for=\"password\">Enter your password.</span>",
+  "</span>\n            <span>\n              <b>Two-factor code</b>\n              <i>Six digits from your authenticator app</i>\n            </span>",
+  "Lost your device? <a href=\"#recover\">Use a recovery code",
+  "Continue",
+  "This app carries the commercial side of a record. Physician instructions, itineraries, requirements and documents live in operations."
+ ],
+ "atributos": [
+  {
+   "attr": "aria-label",
+   "texto": "RefreshU, home"
+  },
+  {
+   "attr": "placeholder",
+   "texto": "you@refreshu.com"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Show password"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 1"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 2"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 3"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 4"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 5"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 6"
+  }
+ ]
+}

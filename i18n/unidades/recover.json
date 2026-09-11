@@ -1,0 +1,68 @@
+{
+ "pagina": "recover.html",
+ "frases": [
+  "Reset Your Password · RefreshU",
+  "<span class=\"brand__word\">refresh<b>U</b></span>",
+  "Password",
+  "Back into your journey in two steps.",
+  "My Journey",
+  "My Trip",
+  "My Schedule",
+  "My Doctor",
+  "My Requirements",
+  "My Concierge",
+  "Explore Brazil",
+  "Documents",
+  "Payments",
+  "Support",
+  "Save. Refresh. Experience Brazil.",
+  "Back to refreshu.com",
+  "Reset your password",
+  "Tell us your email and we send a six digit code. Remembered it? <a href=\"signin.html\">Sign in",
+  "Email",
+  "<span class=\"fld__err\" data-err-for=\"email\">Enter the email on your account.</span>",
+  "</span>\n            <span>\n              <b>Check your email</b>\n              <i>Six digits, valid for 15 minutes</i>\n            </span>",
+  "Nothing arrived? <a href=\"#resend\">Send it again",
+  "New password",
+  "<span class=\"fld__err\" data-err-for=\"password\">At least 10 characters.</span>",
+  "Send the code"
+ ],
+ "atributos": [
+  {
+   "attr": "content",
+   "texto": "Sign in to your RefreshU client portal: your journey, your trip, your schedule, your physician and your concierge in one place."
+  },
+  {
+   "attr": "aria-label",
+   "texto": "RefreshU, home"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 1"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 2"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 3"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 4"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 5"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Digit 6"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Show password"
+  }
+ ]
+}

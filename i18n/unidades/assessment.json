@@ -1,0 +1,117 @@
+{
+ "pagina": "assessment.html",
+ "frases": [
+  "Start My Assessment · RefreshU",
+  "<span class=\"brand__word\">refresh<b>U</b></span>",
+  "Save and exit",
+  "<span class=\"as__step is-now\" data-step=\"1\"><i></i><b>About you</b></span>\n      <span class=\"as__step\" data-step=\"2\"><i></i><b>Procedure</b></span>\n      <span class=\"as__step\" data-step=\"3\"><i></i><b>Your call</b></span>",
+  "Step 1 of 3",
+  "About you",
+  "Enough to reach you and to plan the trip. Nothing medical is asked anywhere in this form.",
+  "First name",
+  "<span class=\"f__err\" data-err-for=\"fname\">Tell us your first name.</span>",
+  "Last name",
+  "<span class=\"f__err\" data-err-for=\"lname\">Tell us your last name.</span>",
+  "Email",
+  "<span class=\"f__err\" data-err-for=\"mail\">We need a valid email to reach you.</span>",
+  "Phone",
+  "<span class=\"f__hint\">Optional, but it makes the concierge call easier to arrange.</span>",
+  "Where you live",
+  "Select your state",
+  "Arizona",
+  "California",
+  "Colorado",
+  "Florida",
+  "Georgia",
+  "Illinois",
+  "Massachusetts",
+  "New York",
+  "Oregon",
+  "Texas",
+  "Washington",
+  "Another state",
+  "Outside the United States",
+  "<span class=\"f__err\" data-err-for=\"state\">Select where you live.</span>",
+  "When you could travel",
+  "Select a window",
+  "Within 2 months",
+  "In 3 to 6 months",
+  "In 6 to 12 months",
+  "Still deciding",
+  "<span class=\"f__err\" data-err-for=\"window\">Give us a rough window.</span>",
+  "Would someone travel with you?",
+  "Yes, with a companion",
+  "No, travelling alone",
+  "Not sure yet",
+  "Anything you want us to know",
+  "<span class=\"f__hint\">This reaches your concierge, not a physician. Please keep medical details for your consultation.</span>",
+  "Step 2 of 3",
+  "What are you considering?",
+  "Pick the area, then the closest procedure. Nothing here is a commitment, and it is common for the physician to recommend something different once they see you.",
+  "</span>\n            <span class=\"pick__n\">Hair</span>\n            <span class=\"pick__d\">Transplant, restoration and density.</span>",
+  "</span>\n            <span class=\"pick__n\">Face</span>\n            <span class=\"pick__d\">Facelift, eyelids, nose and profile.</span>",
+  "</span>\n            <span class=\"pick__n\">Body</span>\n            <span class=\"pick__d\">Contouring, lifts and sculpting.</span>",
+  "</span>\n            <span class=\"pick__n\">Dental</span>\n            <span class=\"pick__d\">Veneers, implants and whitening.</span>",
+  "Savings are ranges against typical United States pricing, from published fee surveys. Your own figure comes after the physician sees you.",
+  "Step 3 of 3",
+  "Book your call",
+  "Pick a time that works for you. The call is with your RefreshU concierge, and it is where the trip, the packages and the next steps get discussed.",
+  "The calendar shows the time zone it is using just above the dates. Your confirmation email arrives with the time in your own zone.",
+  "<b>What the call covers</b>",
+  "The experience, the destination and the concierge services",
+  "General pricing, potential savings and travel expectations",
+  "The packages, and what is never part of one",
+  "How the medical side works, and who handles it",
+  "<b>The call is not a consultation</b>",
+  "Your concierge is not a clinician and does not give medical advice. The clinical part happens directly between you and the physician, in their own system, under their own care.",
+  "<span>I understand that RefreshU coordinates travel and concierge services, that it does not make medical decisions and does not promise a clinical outcome. I have read the <a href=\"legal.html#privacy\" target=\"_blank\" rel=\"noopener\">Privacy Policy",
+  "and the <a href=\"legal.html#medical\" target=\"_blank\" rel=\"noopener\">Medical Disclaimer",
+  ".</span>",
+  "<b>Not for medical emergencies.</b> If you believe you are experiencing a medical emergency, contact your local emergency service immediately.",
+  "Back",
+  "Saved\n        </span>",
+  "Continue"
+ ],
+ "atributos": [
+  {
+   "attr": "content",
+   "texto": "Tell us what you are considering and we will connect you with a participating physician in Brazil. Three steps, no medical questions."
+  },
+  {
+   "attr": "aria-label",
+   "texto": "RefreshU, home"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Progress"
+  },
+  {
+   "attr": "placeholder",
+   "texto": "Dates that matter, questions about the trip, anything at all."
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Area of interest"
+  },
+  {
+   "attr": "data-label",
+   "texto": "Hair"
+  },
+  {
+   "attr": "data-label",
+   "texto": "Face"
+  },
+  {
+   "attr": "data-label",
+   "texto": "Body"
+  },
+  {
+   "attr": "data-label",
+   "texto": "Dental"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Procedure"
+  }
+ ]
+}

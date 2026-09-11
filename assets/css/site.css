@@ -737,22 +737,35 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 /* ------------------------------------------------------------------ idioma */
-/* bandeiras ao lado do CTA: a ativa fica cheia com anel ciano, a outra apagada */
-.lang { display: flex; align-items: center; gap: 4px; flex: none; }
+/* Codigo de duas letras, nao bandeira. Bandeira nomeia pais, e idioma nao e
+   pais: quem le espanhol aqui mora nos Estados Unidos, e uma bandeira da
+   Espanha diria a coisa errada para uma cliente mexicana ou colombiana.
+   Com tres idiomas, tres circulos tambem apertavam demais o cabecalho.
+   O bloco inteiro e montado pelo build (i18n_traduzir.py), entre as marcas
+   <!--LANG--> e <!--/LANG-->, e so oferece idioma em que a pagina existe. */
+.lang { display: flex; align-items: center; gap: 2px; flex: none; }
 .lang__b {
-  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
-  opacity: .55; transition: opacity .25s var(--ease), transform .25s var(--ease);
+  display: grid; place-items: center;
+  min-width: 34px; height: 26px; padding: 0 9px; border-radius: 999px;
+  color: var(--on-deep-dim);
+  transition: color .25s var(--ease), background-color .25s var(--ease);
 }
-.lang__b:hover { opacity: .9; transform: translateY(-1px); }
-.lang__b.is-on { opacity: 1; }
-.flag {
-  width: 21px; height: 21px; border-radius: 50%; display: block;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .38);
+.lang__c {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; line-height: 1;
 }
-.chrome.is-stuck .flag { box-shadow: 0 0 0 1px rgba(14, 40, 70, .2); }
-.lang__b.is-on .flag { box-shadow: 0 0 0 2px var(--cyan); }
+.lang__b:hover { color: var(--on-deep); }
+.lang__b.is-on { color: var(--on-deep); background: rgba(255, 255, 255, .14); }
+
+/* Fundo claro: cabecalho preso ao topo, telas de login e o topo dos apps. */
+.chrome.is-stuck .lang__b,
+.lang--light .lang__b { color: var(--on-paper-fine); }
+.chrome.is-stuck .lang__b:hover,
+.lang--light .lang__b:hover { color: var(--navy); }
+.chrome.is-stuck .lang__b.is-on,
+.lang--light .lang__b.is-on { color: var(--navy); background: rgba(14, 40, 70, .08); }
+
 @media (max-width: 860px) { .lang { order: 2; } }
-.lang--light .flag { box-shadow: 0 0 0 1px rgba(14, 40, 70, .2); }
 .auth__topbar {
   position: absolute; top: clamp(18px, 2.6vh, 34px); right: var(--gutter);
   display: flex; align-items: center; gap: 14px;

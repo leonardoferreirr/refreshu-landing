@@ -1,0 +1,55 @@
+{
+ "pagina": "signin.html",
+ "frases": [
+  "Sign In · RefreshU",
+  "<span class=\"brand__word\">refresh<b>U</b></span>",
+  "Everything about your journey, in one place.",
+  "My Journey",
+  "My Trip",
+  "My Schedule",
+  "My Doctor",
+  "My Requirements",
+  "My Concierge",
+  "Explore Brazil",
+  "Documents",
+  "Payments",
+  "Support",
+  "Save. Refresh. Experience Brazil.",
+  "Back to refreshu.com",
+  "Welcome back",
+  "Pick your journey up where you left it. Your account is created by your RefreshU advisor after your call, and the invitation arrives by email.",
+  "Email",
+  "<span class=\"fld__err\" data-err-for=\"email\">Enter the email you used in your evaluation.</span>",
+  "Password",
+  "Forgot your password?",
+  "<span class=\"fld__err\" data-err-for=\"password\">Enter your password.</span>",
+  "<span>Keep me signed in on this device</span>",
+  "Sign In"
+ ],
+ "atributos": [
+  {
+   "attr": "content",
+   "texto": "Sign in to your RefreshU client portal: your journey, your trip, your schedule, your physician and your concierge in one place."
+  },
+  {
+   "attr": "aria-label",
+   "texto": "RefreshU, home"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Language"
+  },
+  {
+   "attr": "title",
+   "texto": "English"
+  },
+  {
+   "attr": "title",
+   "texto": "Português"
+  },
+  {
+   "attr": "aria-label",
+   "texto": "Show password"
+  }
+ ]
+}
