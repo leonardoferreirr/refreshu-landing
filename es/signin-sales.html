@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inicio de sesión de ventas · RefreshU</title>
+<meta name="theme-color" content="#071b33">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/auth-team.css">
+</head>
+<body class="auth-body">
+
+<main class="auth">
+
+  <aside class="auth__side auth__side--sales">
+    <div class="auth__sideIn">
+      <a class="brand brand--foot" href="index.html" aria-label="RefreshU, inicio">
+        <img class="brand__mark" src="../assets/img/refreshu-mark.svg" alt="" width="26" height="37">
+        <span class="brand__word">refresh<b>U</b></span>
+      </a>
+
+      <div>
+        <p class="authk">Ventas</p>
+        <p class="display auth__claim">Su embudo, desde la primera consulta hasta la entrega.</p>
+        <ul class="auth__list">
+          <li>Su embudo por etapa</li>
+          <li>Prospectos e historial de contacto</li>
+          <li>Seguimientos con fecha de vencimiento</li>
+          <li>Paquetes y ahorros aprobados</li>
+          <li>Su propia conversión</li>
+        </ul>
+      </div>
+
+      <p class="auth__sig">¿Forma parte del equipo de operaciones? <a class="auth__x" href="signin-team.html">Inicie sesión allí</a>.</p>
+    </div>
+  </aside>
+
+  <section class="auth__main">
+    <div class="auth__topbar">
+      <a class="auth__back" href="index.html">Volver a refreshu.com</a>
+      <!--LANG--><div class="lang lang--light" role="group" aria-label="Language"><a class="lang__b" href="../signin-sales.html" hreflang="en" title="English" aria-label="English"><span class="lang__c">EN</span></a><a class="lang__b is-on" href="signin-sales.html" hreflang="es" aria-current="page" title="Español" aria-label="Español"><span class="lang__c">ES</span></a></div><!--/LANG-->
+    </div>
+
+    <div class="auth__box">
+      <h1 class="display auth__t">Inicio de sesión de ventas</h1>
+      <p class="auth__sub">Para el equipo de ventas de RefreshU. Las cuentas de clientas inician sesión <a href="signin.html">aquí</a>.</p>
+
+      <form class="auth__form" id="teamForm" data-app="sales" novalidate>
+        <div class="fld">
+          <label for="email">Correo corporativo</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="usted@refreshu.com" required>
+          <span class="fld__err" data-err-for="email">Use su dirección @refreshu.com.</span>
+        </div>
+
+        <div class="fld">
+          <div class="fld__row">
+            <label for="password">Contraseña</label>
+            <a class="fld__aux" href="recover.html">¿Olvidó su contraseña?</a>
+          </div>
+          <div class="fld__pass">
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
+            <button type="button" class="peek" id="peek" aria-label="Mostrar contraseña" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <span class="fld__err" data-err-for="password">Ingrese su contraseña.</span>
+        </div>
+
+        <!-- Segunda etapa. O Anexo A.3.1 torna a autenticacao multifator
+             obrigatoria para toda a equipe, entao ela aparece no fluxo em vez
+             de virar uma configuracao que alguem esquece de ligar. -->
+        <div class="mfa" id="mfa" hidden>
+          <div class="mfa__h">
+            <span class="mfa__i" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 18h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <span>
+              <b>Código de dos factores</b>
+              <i>Seis dígitos de su aplicación de autenticación</i>
+            </span>
+          </div>
+          <div class="mfa__in">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 1">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 2">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 3">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 4">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 5">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 6">
+          </div>
+          <p class="mfa__aux">¿Perdió su dispositivo? <a href="#recover">Use un código de recuperación</a>.</p>
+        </div>
+
+        <button type="submit" class="btn btn--full" id="teamBtn">Continuar</button>
+      </form>
+
+      <p class="auth__note">
+        Esta aplicación lleva el lado comercial de una ficha. Las indicaciones del médico, los itinerarios, los requisitos y los documentos viven en operaciones.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="../assets/js/auth-team.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations Console · RefreshU</title>
+<meta name="theme-color" content="#071b33">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/console.css">
+</head>
+<body class="console-body">
+
+<!-- Faixa de demonstracao, igual a do portal do cliente. Michael Carter e a
+     mesma pessoa das telas do cliente, de proposito: e a operacao por tras
+     daquele portal. -->
+<div class="demo" role="note">
+  <span class="demo__dot" aria-hidden="true"></span>
+  <p><b>Demonstration.</b> Every client, physician, date and amount on these screens is sample data.</p>
+  <nav class="demo__go" aria-label="Platforms">
+    <a href="index.html">Public site</a>
+    <a href="console.html" aria-current="page">Operaciones</a>
+    <a href="sales.html">Ventas</a>
+    <a href="portal.html">Client portal</a>
+  </nav>
+</div>
+
+<div class="cs">
+
+  <!-- ==================================================== NAVEGACAO ===== -->
+  <aside class="cside" id="cside">
+
+    <div class="cside__top">
+      <a class="cside__brand" href="index.html" aria-label="RefreshU, inicio">
+        <img src="../assets/img/refreshu-mark.svg" alt="" width="20" height="28">
+        <span>refresh<b>U</b></span>
+      </a>
+      <span class="cside__app">Operations</span>
+    </div>
+
+    <nav class="cnav" aria-label="Console">
+
+      <p class="cnav__grp">Operation</p>
+
+      <a href="#overview" data-view="overview" data-sub="Where every journey stands right now" class="is-on">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19h16M6 19v-7m5 7V6m5 13v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Overview</span>
+      </a>
+
+      <a href="#clients" data-view="clients" data-sub="42 records, 11 active journeys">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M3 19a6 6 0 0 1 12 0M16.5 5.6a3.4 3.4 0 0 1 0 6.6M18 19a5.6 5.6 0 0 0-2.2-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Clients</span>
+        <span class="cnav__n">42</span>
+      </a>
+
+      <a href="#referrals" data-view="referrals" data-sub="Hand-off to the physician, and what comes back">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h11m0 0-4-4m4 4-4 4M20 4v16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Referrals</span>
+        <span class="cnav__n cnav__n--risk">3</span>
+      </a>
+
+      <a href="#journeys" data-view="journeys" data-sub="Eleven stages, and who is stuck where">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="19" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span class="cnav__lbl">Journeys</span>
+      </a>
+
+      <a href="#itinerary" data-view="itinerary" data-sub="One timeline: patient, travel, physician and concierge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 10h17M8 3v4m8-4v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Itinerary</span>
+      </a>
+
+      <a href="#requirements" data-view="requirements" data-sub="What each physician confirmed, across every record">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m8.6 11.6 2.2 2.2 4.6-4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Physician checks</span>
+        <span class="cnav__n cnav__n--risk">4</span>
+      </a>
+
+      <a href="#documents" data-view="documents" data-sub="What is filed, and who can see each one">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13 3.5v6h6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Documents</span>
+      </a>
+
+      <a href="#concierge" data-view="concierge" data-sub="Every open request, oldest first">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 18v-5a7.5 7.5 0 0 1 15 0v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="2.5" y="13.5" width="4" height="6.5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="17.5" y="13.5" width="4" height="6.5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span class="cnav__lbl">Concierge desk</span>
+        <span class="cnav__n">7</span>
+      </a>
+
+
+      <a href="#payments" data-view="payments" data-sub="Amounts due, paid and outstanding">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span class="cnav__lbl">Payments</span>
+      </a>
+
+      <p class="cnav__grp">Catalogue</p>
+
+      <a href="#physicians" data-view="physicians" data-sub="Profiles, consent and what may be published">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.7"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Physicians</span>
+      </a>
+
+      <a href="#content" data-view="content" data-sub="Procedures, destinations, packages and savings ranges">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 9h8M8 13h8M8 17h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Content</span>
+        <span class="cnav__n cnav__n--risk">2</span>
+      </a>
+
+      <p class="cnav__grp">Administration</p>
+
+      <a href="#instructions" data-view="instructions" data-sub="What the physician released, and where each client stands">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14.5 3.5V8H19M9 12.5h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Physician instructions</span></a>
+      <a href="#suppliers" data-view="suppliers" data-sub="Restaurants, hotels, drivers and venues in São Paulo and Rio">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9.5h16M4 9.5 6 4h12l2 5.5M4 9.5V20h16V9.5M9.5 20v-6h5v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Suppliers</span></a>
+      <a href="#legal" data-view="legal" data-sub="Document versions, the consent log and public trust claims">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 4.5 6.5v5.2c0 4.3 3.1 8.3 7.5 9.3 4.4-1 7.5-5 7.5-9.3V6.5L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Legal &amp; consent</span></a>
+      <a href="#complaints" data-view="complaints" data-sub="Every concern with a case number, tracked to resolution">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4v-15Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8.5v3m0 2v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Concerns</span></a>
+      <a href="#team" data-view="team" data-sub="Four roles, and exactly what each one reaches">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8" cy="9" r="3" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="9" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 19a5.5 5.5 0 0 1 11 0m-2 0a5.5 5.5 0 0 1 10 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Team &amp; roles</span>
+      </a>
+
+      <a href="#audit" data-view="audit" data-sub="Every access and every change, kept">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9.2 11.8 2 2 3.6-3.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Audit log</span>
+      </a>
+
+    </nav>
+
+    <div class="cside__foot">
+
+      <div class="cme" style="margin-top:0;padding-top:0;border-top:0">
+        <span class="cme__av" id="meAv" aria-hidden="true">BL</span>
+        <span class="cme__id">
+          <b id="meName">Beatriz Lima</b>
+          <i id="meRole">Administrator · São Paulo</i>
+        </span>
+        <a class="cme__out" href="signin-team.html" aria-label="Sign out" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 17l5-5-5-5m5 5H9M11 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ====================================================== CONTEUDO ==== -->
+  <main class="cmain">
+
+    <header class="ctop">
+      <button class="cburger" id="cburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="cside">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="ctop__h">
+        <h1 class="ctop__t" id="viewTitle">Overview</h1>
+        <p class="ctop__sub" id="viewSub">Where every journey stands right now</p>
+      </div>
+      <label class="csearch">
+        <span class="sr">Search clients</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="search" placeholder="Search clients, physicians, records">
+      </label>
+      <!--LANG--><div class="lang lang--light" role="group" aria-label="Language"><a class="lang__b" href="../console.html" hreflang="en" title="English" aria-label="English"><span class="lang__c">EN</span></a><a class="lang__b is-on" href="console.html" hreflang="es" aria-current="page" title="Español" aria-label="Español"><span class="lang__c">ES</span></a></div><!--/LANG-->
+      <button class="cbtn" type="button" data-drawer="new">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        New record
+      </button>
+    </header>
+
+    <!-- ================================================== OVERVIEW ====== -->
+    <section class="cview" id="v-overview">
+
+      <div class="kpis">
+        <article class="kpi kpi--info">
+          <span class="kpi__k">Active journeys</span>
+          <b class="kpi__v">11</b>
+          <span class="kpi__d">3 in Brazil today</span>
+        </article>
+        <article class="kpi kpi--risk">
+          <span class="kpi__k">Awaiting medical result</span>
+          <b class="kpi__v">3</b>
+          <span class="kpi__d"><b class="dn">1 over 5 days</b></span>
+        </article>
+        <article class="kpi kpi--warn">
+          <span class="kpi__k">Requirements overdue</span>
+          <b class="kpi__v">4</b>
+          <span class="kpi__d">across 3 records</span>
+        </article>
+        <article class="kpi">
+          <span class="kpi__k">Open concierge requests</span>
+          <b class="kpi__v">7</b>
+          <span class="kpi__d">oldest open 6h</span>
+        </article>
+        <article class="kpi kpi--ok">
+          <span class="kpi__k">Submissions this week</span>
+          <b class="kpi__v">9</b>
+          <span class="kpi__d"><b>+3</b> vs last week</span>
+        </article>
+        <article class="kpi kpi--warn">
+          <span class="kpi__k">Payments outstanding</span>
+          <b class="kpi__v"><small>$</small>18,400</b>
+          <span class="kpi__d">4 invoices</span>
+        </article>
+      </div>
+
+      <div class="sec-h">
+        <h2>Records by journey stage</h2>
+        <p>The eleven stages, and who is standing in each</p>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__b">
+          <div class="tw">
+            <table class="ctbl">
+              <thead>
+                <tr>
+                  <th>Stage</th><th class="num">Records</th><th>Longest waiting</th><th>Owner</th><th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-open="record">
+                  <td><b>Assessment</b></td><td class="num">6</td>
+                  <td class="nw">2 days</td><td class="nw">Unassigned</td>
+                  <td class="nw"><span class="tag tag--flat">Intake</span></td>
+                </tr>
+                <tr data-open="referrals">
+                  <td><b>Medical review</b></td><td class="num">3</td>
+                  <td class="nw"><span class="tag tag--risk">5 days</span></td><td class="nw">Beatriz L.</td>
+                  <td class="nw"><span class="tag tag--flat">Referral out</span></td>
+                </tr>
+                <tr>
+                  <td><b>Concierge contact</b></td><td class="num">2</td>
+                  <td class="nw">1 day</td><td class="nw">Rafael M.</td>
+                  <td class="nw"><span class="tag tag--flat">Call due</span></td>
+                </tr>
+                <tr>
+                  <td><b>Medical consultation</b></td><td class="num">2</td>
+                  <td class="nw">3 days</td><td class="nw">Beatriz L.</td>
+                  <td class="nw"><span class="tag tag--ok">On track</span></td>
+                </tr>
+                <tr>
+                  <td><b>Confirmed</b></td><td class="num">4</td>
+                  <td class="nw">6 days</td><td class="nw">Rafael M.</td>
+                  <td class="nw"><span class="tag tag--warn">2 payments due</span></td>
+                </tr>
+                <tr>
+                  <td><b>Preparation</b></td><td class="num">3</td>
+                  <td class="nw">4 days</td><td class="nw">Beatriz L.</td>
+                  <td class="nw"><span class="tag tag--risk">4 requirements late</span></td>
+                </tr>
+                <tr data-open="record">
+                  <td><b>Arrival in Brazil</b></td><td class="num">1</td>
+                  <td class="nw">Today</td><td class="nw">Beatriz L.</td>
+                  <td class="nw"><span class="tag tag--ok">In country</span></td>
+                </tr>
+                <tr>
+                  <td><b>Procedure</b></td><td class="num">1</td>
+                  <td class="nw">Thursday</td><td class="nw">Beatriz L.</td>
+                  <td class="nw"><span class="tag tag--info">Scheduled</span></td>
+                </tr>
+                <tr>
+                  <td><b>Recovery</b></td><td class="num">2</td>
+                  <td class="nw">Day 3</td><td class="nw">Rafael M.</td>
+                  <td class="nw"><span class="tag tag--ok">Cleared</span></td>
+                </tr>
+                <tr>
+                  <td><b>Experience</b></td><td class="num">1</td>
+                  <td class="nw">Day 6</td><td class="nw">Rafael M.</td>
+                  <td class="nw"><span class="tag tag--ok">Cleared</span></td>
+                </tr>
+                <tr>
+                  <td><b>Return home</b></td><td class="num">2</td>
+                  <td class="nw">Monday</td><td class="nw">Beatriz L.</td>
+                  <td class="nw"><span class="tag tag--flat">Transport set</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="g2" style="margin-top:16px">
+        <div class="cpanel">
+          <div class="cpanel__h">
+            <span class="cpanel__t">Needs you today<small>Sorted by how long it has been open</small></span>
+          </div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row">
+                <span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                <span class="row__t"><b>Medical result not returned</b><span>James Whitfield · referred 5 days ago to Dr. Camila Rocha</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="referral">Chase</button></span>
+              </div>
+              <div class="row">
+                <span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                <span class="row__t"><b>Travel insurance proof overdue</b><span>Michael Carter · due yesterday · client notified twice</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Remind</button></span>
+              </div>
+              <div class="row">
+                <span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 18v-5a7.5 7.5 0 0 1 15 0v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                <span class="row__t"><b>Restaurant request, Saturday lunch</b><span>Michael Carter · open 6h · recovery window allows it</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Open</button></span>
+              </div>
+              <div class="row">
+                <span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                <span class="row__t"><b>Balance due in 3 days</b><span>Susan Delgado · $6,200 · checkout link sent Monday</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="member">Resend</button></span>
+              </div>
+              <div class="row">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 21 4l-4 8 4 8-18-6.5v-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                <span class="row__t"><b>Arrival tomorrow, no driver confirmed</b><span>Robert Nguyen · GRU 05:55 · transport still pending</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Assign</button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cpanel">
+          <div class="cpanel__h">
+            <span class="cpanel__t">In Brazil right now<small>Three clients, live</small></span>
+          </div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row" data-open="record">
+                <span class="who__av">MC</span>
+                <span class="row__t"><b>Michael Carter</b><span>Day 2 of 8 · FUE hair transplant Thursday · Hotel Aurora</span></span>
+                <span class="row__x"><span class="tag tag--ok">On track</span></span>
+              </div>
+              <div class="row">
+                <span class="who__av">SD</span>
+                <span class="row__t"><b>Susan Delgado</b><span>Day 5 of 9 · recovery day 3 · cleared for short walks</span></span>
+                <span class="row__x"><span class="tag tag--ok">Recovering</span></span>
+              </div>
+              <div class="row">
+                <span class="who__av">RN</span>
+                <span class="row__t"><b>Robert Nguyen</b><span>Arrives tomorrow 05:55 · transport unconfirmed</span></span>
+                <span class="row__x"><span class="tag tag--warn">Action needed</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bound" style="margin-top:16px">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>No clinical content lives in this platform.</b> Questionnaires, photographs and results go straight from the client to the physician's own system. RefreshU tracks the hand-off, the status and the operational instructions the physician releases, and nothing else.</p>
+      </div>
+
+    </section>
+
+    <!-- =================================================== CLIENTS ====== -->
+    <section class="cview" id="v-clients" hidden>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Client records</span>
+          <span class="cpanel__a">
+            <div class="filters">
+              <select class="fsel" aria-label="Stage">
+                <option>All stages</option><option>Assessment</option><option>Medical review</option>
+                <option>Confirmed</option><option>Preparation</option><option>In Brazil</option><option>Return home</option>
+              </select>
+              <select class="fsel" aria-label="Vertical">
+                <option>All procedures</option><option>Cabello</option><option>Face</option><option>Body</option><option>Dental</option>
+              </select>
+              <select class="fsel" aria-label="Concierge">
+                <option>Any concierge</option><option>Beatriz L.</option><option>Rafael M.</option>
+              </select>
+              <select class="fsel" aria-label="Package">
+                <option>All packages</option><option>Solo Refresh</option><option>Companion Refresh</option><option>Full Refresh</option><option>Undecided</option>
+              </select>
+              <select class="fsel" aria-label="Destination">
+                <option>All destinations</option><option>São Paulo</option><option>Río de Janeiro</option>
+              </select>
+              <select class="fsel" aria-label="Period">
+                <option>Any travel period</option><option>This month</option><option>Next month</option><option>Next 90 days</option><option>Past journeys</option>
+              </select>
+              <button class="cbtn cbtn--ghost cbtn--sm" type="button">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v12m0 0-4.5-4.5M12 16l4.5-4.5M4 18v2h16v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Export CSV
+              </button>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead>
+                <tr>
+                  <th>Client</th><th>Procedure</th><th>Journey</th><th>Physician</th>
+                  <th>Concierge</th><th>Viaje</th><th class="num">Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-open="record">
+                  <td><span class="who"><span class="who__av">MC</span><span class="who__t"><b>Michael Carter</b><span>Austin, TX</span></span></span></td>
+                  <td class="nw">FUE hair transplant<br><span style="font-size:11.5px;color:var(--on-paper-dim)">Solo Refresh</span></td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:64%"></i></span><span class="prog__l">7 of 11 · Arrival in Brazil</span></span></td>
+                  <td class="nw">Dr. Camila Rocha</td>
+                  <td class="nw">Beatriz L.</td>
+                  <td class="nw">Mar 9 – 16</td>
+                  <td class="num"><span class="tag tag--ok tag--flat">Paid</span></td>
+                </tr>
+                <tr data-open="record">
+                  <td><span class="who"><span class="who__av">SD</span><span class="who__t"><b>Susan Delgado</b><span>Phoenix, AZ</span></span></span></td>
+                  <td class="nw">Facelift<br><span style="font-size:11.5px;color:var(--on-paper-dim)">Full Refresh</span></td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:82%"></i></span><span class="prog__l">9 of 11 · Recovery</span></span></td>
+                  <td class="nw">Dr. Helena Braga</td>
+                  <td class="nw">Rafael M.</td>
+                  <td class="nw">Mar 6 – 15</td>
+                  <td class="num"><span class="tag tag--warn tag--flat">$6,200</span></td>
+                </tr>
+                <tr data-open="record">
+                  <td><span class="who"><span class="who__av">RN</span><span class="who__t"><b>Robert Nguyen</b><span>San Diego, CA</span></span></span></td>
+                  <td class="nw">Dental veneers<br><span style="font-size:11.5px;color:var(--on-paper-dim)">Solo Refresh</span></td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:55%"></i></span><span class="prog__l">6 of 11 · Preparation</span></span></td>
+                  <td class="nw">Dr. Paulo Serra</td>
+                  <td class="nw">Beatriz L.</td>
+                  <td class="nw">Mar 10 – 18</td>
+                  <td class="num"><span class="tag tag--ok tag--flat">Paid</span></td>
+                </tr>
+                <tr data-open="record">
+                  <td><span class="who"><span class="who__av">JW</span><span class="who__t"><b>James Whitfield</b><span>Denver, CO</span></span></span></td>
+                  <td class="nw">Rhinoplasty<br><span style="font-size:11.5px;color:var(--on-paper-dim)">Undecided</span></td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:18%"></i></span><span class="prog__l">2 of 11 · Medical review</span></span></td>
+                  <td class="nw"><span class="tag tag--risk">Awaiting result</span></td>
+                  <td class="nw">Beatriz L.</td>
+                  <td class="nw">Apr, flexible</td>
+                  <td class="num">—</td>
+                </tr>
+                <tr data-open="record">
+                  <td><span class="who"><span class="who__av">LP</span><span class="who__t"><b>Linda Park</b><span>Seattle, WA</span></span></span></td>
+                  <td class="nw">Body contouring<br><span style="font-size:11.5px;color:var(--on-paper-dim)">Companion Refresh</span></td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:45%"></i></span><span class="prog__l">5 of 11 · Confirmed</span></span></td>
+                  <td class="nw">Dr. Helena Braga</td>
+                  <td class="nw">Rafael M.</td>
+                  <td class="nw">Apr 2 – 12</td>
+                  <td class="num"><span class="tag tag--warn tag--flat">$8,900</span></td>
+                </tr>
+                <tr data-open="record">
+                  <td><span class="who"><span class="who__av">TA</span><span class="who__t"><b>Thomas Ayers</b><span>Miami, FL</span></span></span></td>
+                  <td class="nw">Hair transplant<br><span style="font-size:11.5px;color:var(--on-paper-dim)">Solo Refresh</span></td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:9%"></i></span><span class="prog__l">1 of 11 · Assessment</span></span></td>
+                  <td class="nw">—</td>
+                  <td class="nw"><span class="tag tag--flat">Unassigned</span></td>
+                  <td class="nw">Jun, flexible</td>
+                  <td class="num">—</td>
+                </tr>
+                <tr data-open="record">
+                  <td><span class="who"><span class="who__av">GM</span><span class="who__t"><b>Grace Mitchell</b><span>Chicago, IL</span></span></span></td>
+                  <td class="nw">Eyelid surgery<br><span style="font-size:11.5px;color:var(--on-paper-dim)">Solo Refresh</span></td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:100%"></i></span><span class="prog__l">11 of 11 · Returned home</span></span></td>
+                  <td class="nw">Dr. Camila Rocha</td>
+                  <td class="nw">Beatriz L.</td>
+                  <td class="nw">Feb 14 – 22</td>
+                  <td class="num"><span class="tag tag--ok tag--flat">Paid</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================================================== RECORD ====== -->
+    <section class="cview" id="v-record" hidden>
+
+      <div class="rhead">
+        <span class="rhead__av">MC</span>
+        <span class="rhead__id">
+          <h2>Michael Carter</h2>
+          <span class="rhead__m">
+            <span>Austin, Texas</span><span>·</span>
+            <span>michael.carter@example.com</span><span>·</span>
+            <span>+1 512 555 0148</span><span>·</span>
+            <span>Record #RU-2419</span>
+          </span>
+        </span>
+        <span class="rhead__a">
+          <button class="cbtn cbtn--ghost" type="button" data-drawer="note">Add internal note</button>
+          <button class="cbtn" type="button" data-drawer="advance">Advance stage</button>
+        </span>
+      </div>
+
+      <div class="cpanel" style="margin-top:14px">
+        <div class="cpanel__b">
+          <div class="rail" aria-label="Journey stage, 7 of 11">
+            <span class="rail__s done"><i></i><b>Assessment</b></span>
+            <span class="rail__s done"><i></i><b>Medical review</b></span>
+            <span class="rail__s done"><i></i><b>Concierge</b></span>
+            <span class="rail__s done"><i></i><b>Consultation</b></span>
+            <span class="rail__s done"><i></i><b>Confirmed</b></span>
+            <span class="rail__s done"><i></i><b>Preparation</b></span>
+            <span class="rail__s now"><i></i><b>In Brazil</b></span>
+            <span class="rail__s"><i></i><b>Procedure</b></span>
+            <span class="rail__s"><i></i><b>Recovery</b></span>
+            <span class="rail__s"><i></i><b>Experience</b></span>
+            <span class="rail__s"><i></i><b>Return home</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rec" style="margin-top:16px">
+
+        <div style="display:grid;gap:16px">
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Medical review outcome<small>What the physician released back to operations</small></span>
+              <span class="cpanel__a"><span class="tag tag--ok">Candidate</span></span>
+            </div>
+            <div class="cpanel__b" style="display:grid;gap:12px">
+              <div class="bound">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                <p><b>Status and operational instructions only.</b> The questionnaire and the photographs went directly to Dr. Camila Rocha's own system. Nothing clinical is stored here, and there is no viewer for it.</p>
+              </div>
+              <dl class="facts">
+                <div><dt>Referred</dt><dd>February 24, by Beatriz Lima</dd></div>
+                <div><dt>Result recorded</dt><dd>February 27, by Beatriz Lima</dd></div>
+                <div><dt>Outcome</dt><dd>Candidate</dd></div>
+                <div><dt>Required arrival</dt><dd>At least 2 days before the procedure</dd></div>
+                <div><dt>Preparation</dt><dd>No blood thinners for 7 days before</dd></div>
+                <div><dt>Recovery window</dt><dd>4 days, no direct sun, no strenuous activity</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Today in Brazil<small>Tuesday, day 2 of 8 · this is what the client sees</small></span>
+              <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-goto="itinerary">Open itinerary</button></span>
+            </div>
+            <div class="cpanel__b" style="display:grid;gap:7px">
+              <div class="iev iev--conc">
+                <span class="iev__t">09:30</span>
+                <span class="iev__c"><b>Concierge check-in call</b><span>Beatriz L. · hotel lobby</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Done</span></span>
+              </div>
+              <div class="iev iev--med">
+                <span class="iev__t">14:00</span>
+                <span class="iev__c"><b>Pre-operative consultation</b><span>Clínica Vértice, Itaim Bibi · Dr. Camila Rocha</span></span>
+                <span class="iev__x">
+                  <span class="pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v8m0 0-3-2m3 2 3-2M7 21h10M12 11v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Fixed</span>
+                </span>
+              </div>
+              <div class="iev iev--trav">
+                <span class="iev__t">13:15</span>
+                <span class="iev__c"><b>Driver, hotel to clinic</b><span>Confirmed · 25 min with traffic</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+              <div class="iev iev--you">
+                <span class="iev__t">20:00</span>
+                <span class="iev__c"><b>Dinner reservation</b><span>Tuju, Vila Madalena · table for 2</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Booked</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Pre-operative checklist<small>Twelve items · 2 waiting on the client</small></span>
+              <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="checklist">Edit template</button></span>
+            </div>
+            <div class="cpanel__b">
+              <div class="chk">
+                <div class="chk__i chk__i--done">
+                  <span class="chk__box chk__box--on"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="chk__t"><b>Passport valid beyond travel dates</b><span>Approved Feb 28 by Beatriz L.</span></span>
+                  <span></span><span class="tag tag--ok">Approved</span>
+                </div>
+                <div class="chk__i chk__i--done">
+                  <span class="chk__box chk__box--on"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="chk__t"><b>Blood work</b><span>Physician confirmed completion on Mar 3</span></span>
+                  <span class="clin">Status only</span><span class="tag tag--ok">Confirmed</span>
+                </div>
+                <div class="chk__i chk__i--done">
+                  <span class="chk__box chk__box--on"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="chk__t"><b>Medical questionnaire</b><span>Physician confirmed receipt on Feb 26</span></span>
+                  <span class="clin">Status only</span><span class="tag tag--ok">Confirmed</span>
+                </div>
+                <div class="chk__i">
+                  <span class="chk__box chk__box--wait"></span>
+                  <span class="chk__t"><b>Travel insurance proof</b><span>Due yesterday · client notified twice</span></span>
+                  <span></span><span class="tag tag--risk">Overdue</span>
+                </div>
+                <div class="chk__i">
+                  <span class="chk__box chk__box--wait"></span>
+                  <span class="chk__t"><b>Signed consent forms</b><span>Due Mar 11 · sent Mar 5</span></span>
+                  <span></span><span class="tag tag--warn">Waiting on client</span>
+                </div>
+                <div class="chk__i chk__i--done">
+                  <span class="chk__box chk__box--on"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="chk__t"><b>Arrival flight details</b><span>Received Feb 20</span></span>
+                  <span></span><span class="tag tag--ok">Approved</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Documents<small>Four filed, one still with the client</small></span>
+              <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="upload">File a document</button></span>
+            </div>
+            <div class="cpanel__b cpanel__b--flush">
+              <div class="rows">
+                <div class="row">
+                  <span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13 3.5v6h6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Itinerary, March 9 to 16</b><span>Filed Mar 5 by Beatriz L. · opened today, 08:12</span></span>
+                  <span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Visible to the client"><span></span></button></span>
+                </div>
+                <div class="row">
+                  <span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Hotel Aurora confirmation</b><span>Filed Mar 1 by Beatriz L.</span></span>
+                  <span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Visible to the client"><span></span></button></span>
+                </div>
+                <div class="row">
+                  <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                  <span class="row__t"><b>Receipt, balance payment</b><span>Issued Mar 5 by the payment provider</span></span>
+                  <span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Visible to the client"><span></span></button></span>
+                </div>
+                <div class="row">
+                  <span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                  <span class="row__t"><b>Travel insurance</b><span>Requested Feb 27 · overdue since yesterday</span></span>
+                  <span class="row__x"><span class="tag tag--risk">Waiting</span></span>
+                </div>
+                <div class="row" style="opacity:.55">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16v11H4zM4 8l2-4h12l2 4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Itinerary v1, superseded</b><span>Archived Mar 5 when v2 replaced it</span></span>
+                  <span class="row__x"><span class="tag tag--flat">Archived</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Concierge thread<small>Beatriz Lima · assigned Feb 27</small></span>
+              <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="manage">Reassign</button></span>
+            </div>
+            <div class="cpanel__b">
+              <div class="thread">
+                <div class="msg">
+                  <div class="msg__b">Hi Beatriz, we landed and checked in. The room is perfect, thank you for the high floor.</div>
+                  <span class="msg__m">Michael Carter · yesterday, 08:12</span>
+                </div>
+                <div class="msg msg--out">
+                  <div class="msg__b">Wonderful, Michael. Your consultation is tomorrow at 14:00 and the driver will collect you at 13:15. Rest today.</div>
+                  <span class="msg__m">Beatriz Lima · yesterday, 08:40</span>
+                </div>
+                <div class="msg">
+                  <div class="msg__b">Would a Saturday lunch be possible somewhere nice? Nothing heavy.</div>
+                  <span class="msg__m">Michael Carter · today, 07:05</span>
+                </div>
+                <div class="msg msg--out">
+                  <div class="msg__b">Yes. Saturday is inside your recovery window but lunch out is allowed, so I will send you three options this afternoon.</div>
+                  <span class="msg__m">Beatriz Lima · today, 07:22</span>
+                </div>
+              </div>
+              <div class="compose">
+                <textarea placeholder="Write to Michael…" aria-label="Message"></textarea>
+                <button class="cbtn" type="button">Send</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="rec__side">
+
+          <div class="cpanel">
+            <div class="cpanel__h"><span class="cpanel__t">Record</span></div>
+            <div class="cpanel__b">
+              <dl class="facts">
+                <div><dt>Stage</dt><dd>Arrival in Brazil</dd></div>
+                <div><dt>Package</dt><dd>Solo Refresh</dd></div>
+                <div><dt>Procedure</dt><dd>Trasplante capilar FUE</dd></div>
+                <div><dt>Physician</dt><dd>Dr. Camila Rocha</dd></div>
+                <div><dt>Concierge</dt><dd>Beatriz Lima</dd></div>
+                <div><dt>Destination</dt><dd>São Paulo</dd></div>
+                <div><dt>Viaje</dt><dd>Mar 9 – Mar 16</dd></div>
+                <div><dt>Companion</dt><dd>None</dd></div>
+                <div><dt>Source</dt><dd>Website assessment</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Payments</span>
+              <span class="cpanel__a"><span class="tag tag--ok">Settled</span></span>
+            </div>
+            <div class="cpanel__b cpanel__b--flush">
+              <div class="rows">
+                <div class="row">
+                  <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Deposit · $4,500</b><span>Paid Feb 28</span></span>
+                  <span class="row__x"></span>
+                </div>
+                <div class="row">
+                  <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Balance · $9,300</b><span>Paid Mar 5</span></span>
+                  <span class="row__x"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Internal notes<small>Never visible to the client</small></span>
+            </div>
+            <div class="cpanel__b" style="display:grid;gap:9px">
+              <div class="note">
+                <span class="note__h"><b>Beatriz Lima</b> · Mar 9, 09:40</span>
+                <p>Prefers morning appointments. Nervous flyer, so keep the return transfer generous on time.</p>
+              </div>
+              <div class="note">
+                <span class="note__h"><b>Rafael Moraes</b> · Feb 27, 16:02</span>
+                <p>Came in through the website, not a referral. Compared us against a Turkey clinic on price and chose us on the concierge side.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================= REFERRALS ====== -->
+    <section class="cview" id="v-referrals" hidden>
+
+      <div class="bound" style="margin-bottom:14px">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>This queue tracks a hand-off, not a medical record.</b> The client sends the questionnaire and any photographs directly to the physician. This screen shows who was referred, to whom, when, and what outcome came back. There is no viewer, no storage and no transmission path for clinical content anywhere in the platform.</p>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Referral queue</span>
+          <span class="cpanel__a">
+            <div class="segs" role="group" aria-label="Filter by status">
+              <button type="button" aria-pressed="true">All</button>
+              <button type="button" aria-pressed="false">Awaiting referral</button>
+              <button type="button" aria-pressed="false">Awaiting result</button>
+              <button type="button" aria-pressed="false">Recorded</button>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead>
+                <tr><th>Client</th><th>Interest</th><th>Destination</th><th>Referred to</th><th>Waiting</th><th>Status</th><th></th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="who"><span class="who__av">JW</span><span class="who__t"><b>James Whitfield</b><span>Denver, CO</span></span></span></td>
+                  <td class="nw">Rinoplastia</td><td class="nw">São Paulo</td>
+                  <td class="nw">Dr. Camila Rocha</td>
+                  <td class="nw"><span class="tag tag--risk">5 days</span></td>
+                  <td class="nw"><span class="tag tag--warn">Awaiting result</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="request">Open</button> <button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="referral">Record result</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">TA</span><span class="who__t"><b>Thomas Ayers</b><span>Miami, FL</span></span></span></td>
+                  <td class="nw">Cabello</td><td class="nw">São Paulo</td>
+                  <td class="nw">—</td>
+                  <td class="nw">2 days</td>
+                  <td class="nw"><span class="tag tag--info">Awaiting referral</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="assign">Assign physician</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">EM</span><span class="who__t"><b>Ellen Marsh</b><span>Portland, OR</span></span></span></td>
+                  <td class="nw">Face</td><td class="nw">Río de Janeiro</td>
+                  <td class="nw">Dr. Helena Braga</td>
+                  <td class="nw">1 day</td>
+                  <td class="nw"><span class="tag tag--warn">Awaiting result</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="request">Open</button> <button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="referral">Record result</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">MC</span><span class="who__t"><b>Michael Carter</b><span>Austin, TX</span></span></span></td>
+                  <td class="nw">Cabello</td><td class="nw">São Paulo</td>
+                  <td class="nw">Dr. Camila Rocha</td>
+                  <td class="nw">—</td>
+                  <td class="nw"><span class="tag tag--ok">Candidate</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-open="record">Open record</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">DK</span><span class="who__t"><b>Daniel Kroft</b><span>Boston, MA</span></span></span></td>
+                  <td class="nw">Body</td><td class="nw">São Paulo</td>
+                  <td class="nw">Dr. Helena Braga</td>
+                  <td class="nw">—</td>
+                  <td class="nw"><span class="tag tag--risk">More information needed</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="assign">Notify client</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================== JOURNEYS ====== -->
+    <section class="cview" id="v-journeys" hidden>
+
+      <div class="sec-h">
+        <h2>Journeys by stage</h2>
+        <p>Drag a card to advance or return a stage. Every move records who, when and why.</p><span class="sec-h__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="stagetasks">Internal actions per stage</button></span>
+      </div>
+
+      <div class="funnel">
+        <div class="fcol">
+          <div class="fcol__h"><b>Preparation</b><span class="fcol__n">3</span></div>
+          <div class="fcol__b">
+            <article class="fcard" data-open="record">
+              <span class="fcard__n">Robert Nguyen</span>
+              <span class="fcard__m"><span>Dental veneers</span><span>·</span><span>Mar 10</span></span>
+              <span class="fcard__f"><span class="who__av">BL</span><span class="tag tag--warn">Transport pending</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Linda Park</span>
+              <span class="fcard__m"><span>Body contouring</span><span>·</span><span>Apr 2</span></span>
+              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--warn">$8,900 due</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Ellen Marsh</span>
+              <span class="fcard__m"><span>Face</span><span>·</span><span>Apr 18</span></span>
+              <span class="fcard__f"><span class="who__av">RM</span><span class="tag">3 requirements</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Arrival in Brazil</b><span class="fcol__n">1</span></div>
+          <div class="fcol__b">
+            <article class="fcard" data-open="record">
+              <span class="fcard__n">Michael Carter</span>
+              <span class="fcard__m"><span>FUE hair</span><span>·</span><span>Day 2 of 8</span></span>
+              <span class="fcard__f"><span class="who__av">BL</span><span class="tag tag--ok">On track</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Procedure</b><span class="fcol__n">1</span></div>
+          <div class="fcol__b">
+            <article class="fcard">
+              <span class="fcard__n">Alan Reeves</span>
+              <span class="fcard__m"><span>Dental</span><span>·</span><span>Tomorrow 07:00</span></span>
+              <span class="fcard__f"><span class="who__av">BL</span><span class="tag tag--info">Confirmed</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Recovery</b><span class="fcol__n">2</span></div>
+          <div class="fcol__b">
+            <article class="fcard">
+              <span class="fcard__n">Susan Delgado</span>
+              <span class="fcard__m"><span>Facelift</span><span>·</span><span>Day 3</span></span>
+              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--ok">Cleared</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Peter Hollis</span>
+              <span class="fcard__m"><span>Hair</span><span>·</span><span>Day 1</span></span>
+              <span class="fcard__f"><span class="who__av">BL</span><span class="tag">Rest only</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Return home</b><span class="fcol__n">2</span></div>
+          <div class="fcol__b">
+            <article class="fcard">
+              <span class="fcard__n">Grace Mitchell</span>
+              <span class="fcard__m"><span>Eyelid</span><span>·</span><span>Departed</span></span>
+              <span class="fcard__f"><span class="who__av">BL</span><span class="tag tag--ok">Complete</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Marcus Webb</span>
+              <span class="fcard__m"><span>Dental</span><span>·</span><span>Monday 22:10</span></span>
+              <span class="fcard__f"><span class="who__av">RM</span><span class="tag tag--ok">Driver set</span></span>
+            </article>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================= ITINERARY ====== -->
+    <section class="cview" id="v-itinerary" hidden>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Michael Carter · São Paulo<small>Trip RU-2026-00125 · March 9 to 16 · published version 3, March 5 at 4:30 PM</small></span>
+          <span class="cpanel__a">
+            <span class="pubstate" id="pubState">2 unpublished changes</span>
+            <button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="itinitem">Add item</button>
+            <button class="cbtn cbtn--ghost cbtn--sm" type="button" id="itinPreview">Preview client version</button>
+            <button class="cbtn cbtn--sm" type="button" id="itinPublish">Publish version 4</button>
+          </span>
+        </div>
+        <div class="cpanel__b">
+
+          <div class="legend" style="margin-bottom:14px">
+            <span><i style="background:var(--t-med)"></i>Physician and clinical team</span>
+            <span><i style="background:var(--t-trav)"></i>Travel</span>
+            <span><i style="background:var(--t-conc)"></i>RefreshU concierge</span>
+            <span><i style="background:var(--t-you)"></i>Patient's own time</span>
+          </div>
+
+          <div class="conflict" style="margin-bottom:14px">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8.5v4.5m0 3.2v.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10.3 4.2 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.2a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            <p><b>Conflict on Friday.</b> The museum visit at 15:00 falls inside the recovery window Dr. Camila Rocha set, which runs to Saturday 12:00. Move it, or record a physician release before it is published to the client.</p>
+          </div>
+
+          <div class="itin">
+            <div class="itin__d"><b>09</b><span>Mon</span></div>
+            <div class="itin__e">
+              <div class="iev iev--trav">
+                <span class="iev__t">06:40</span>
+                <span class="iev__c"><b>Arrival, GRU</b><span>United 8842 from Austin · confirmation KX7QR2</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+              <div class="iev iev--trav">
+                <span class="iev__t">07:30</span>
+                <span class="iev__c"><b>Private transfer to hotel</b><span>Driver Anderson · plate FQP-2288</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+              <div class="iev iev--trav">
+                <span class="iev__t">09:00</span>
+                <span class="iev__c"><b>Check in, Hotel Aurora</b><span>Jardins · high floor, quiet side, recovery friendly</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+            </div>
+
+            <div class="itin__d"><b>10</b><span>Tue</span></div>
+            <div class="itin__e">
+              <div class="iev iev--conc">
+                <span class="iev__t">09:30</span>
+                <span class="iev__c"><b>Concierge check-in</b><span>Beatriz L. · hotel lobby</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Done</span></span>
+              </div>
+              <div class="iev iev--trav">
+                <span class="iev__t">13:15</span>
+                <span class="iev__c"><b>Driver, hotel to clinic</b><span>25 min with traffic</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+              <div class="iev iev--med">
+                <span class="iev__t">14:00</span>
+                <span class="iev__c"><b>Pre-operative consultation</b><span>Clínica Vértice, Itaim Bibi · Dr. Camila Rocha</span></span>
+                <span class="iev__x"><span class="pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v8m0 0-3-2m3 2 3-2M7 21h10M12 11v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Fixed</span></span>
+              </div>
+              <div class="iev iev--you">
+                <span class="iev__t">20:00</span>
+                <span class="iev__c"><b>Dinner, Tuju</b><span>Vila Madalena · table for 2</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Booked</span></span>
+              </div>
+            </div>
+
+            <div class="itin__d"><b>12</b><span>Thu</span></div>
+            <div class="itin__e">
+              <div class="iev iev--trav">
+                <span class="iev__t">06:15</span>
+                <span class="iev__c"><b>Driver, hotel to clinic</b><span>Early call · driver confirmed the night before</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+              <div class="iev iev--med">
+                <span class="iev__t">07:00</span>
+                <span class="iev__c"><b>FUE hair transplant</b><span>Clínica Vértice · arrival 07:00 · same-day return to hotel</span></span>
+                <span class="iev__x"><span class="pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v8m0 0-3-2m3 2 3-2M7 21h10M12 11v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Fixed</span></span>
+              </div>
+              <div class="iev iev--conc">
+                <span class="iev__t">18:00</span>
+                <span class="iev__c"><b>Meal delivery to the room</b><span>Light menu, cleared for the evening</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Arranged</span></span>
+              </div>
+            </div>
+
+            <div class="itin__d"><b>13</b><span>Fri</span></div>
+            <div class="itin__e">
+              <div class="iev iev--med">
+                <span class="iev__t">All day</span>
+                <span class="iev__c"><b>Recovery window</b><span>Set by Dr. Camila Rocha · runs to Saturday 12:00</span></span>
+                <span class="iev__x"><span class="pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v8m0 0-3-2m3 2 3-2M7 21h10M12 11v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Fixed</span></span>
+              </div>
+              <div class="iev iev--you" style="border-color:rgba(190,60,74,.4)">
+                <span class="iev__t">15:00</span>
+                <span class="iev__c"><b>Museum visit, MASP</b><span>Requested by the client on Monday</span></span>
+                <span class="iev__x"><span class="tag tag--risk">In conflict</span></span>
+              </div>
+            </div>
+
+            <div class="itin__d"><b>16</b><span>Mon</span></div>
+            <div class="itin__e">
+              <div class="iev iev--trav">
+                <span class="iev__t">18:30</span>
+                <span class="iev__c"><b>Driver, hotel to GRU</b><span>Generous timing, nervous flyer</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+              <div class="iev iev--trav">
+                <span class="iev__t">22:10</span>
+                <span class="iev__c"><b>Departure, GRU to Austin</b><span>United 8843 · confirmation KX7QR2</span></span>
+                <span class="iev__x"><span class="tag tag--ok">Confirmed</span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================== REQUIREMENTS ====== -->
+    <section class="cview" id="v-requirements" hidden>
+
+      <div class="bound" style="margin-bottom:14px">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>Clinical items carry a status, never a result.</b> Blood work, cardiac tests and the medical questionnaire are marked confirmed when the physician says so. The file itself stays in the physician's system. Uploads here are limited to administrative and travel documents.</p>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Physician checks<small>Confirmed by the physician on her own system</small></span>
+          <span class="cpanel__a">
+            <button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="checklist" style="margin-right:7px">Edit template</button><div class="segs" role="group" aria-label="Filter">
+              <button type="button" aria-pressed="true">Needs attention</button>
+              <button type="button" aria-pressed="false">All</button>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Client</th><th>Item</th><th>Type</th><th>Owner</th><th>Due</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="nw"><b>Michael Carter</b></td>
+                  <td>Travel insurance proof</td>
+                  <td class="nw"><span class="tag tag--flat">Administrative</span></td>
+                  <td class="nw">Client</td>
+                  <td class="nw"><span class="tag tag--risk">Yesterday</span></td>
+                  <td class="nw"><span class="tag tag--risk">Overdue</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Remind</button></td>
+                </tr>
+                <tr>
+                  <td class="nw"><b>Michael Carter</b></td>
+                  <td>Signed consent forms</td>
+                  <td class="nw"><span class="tag tag--flat">Administrative</span></td>
+                  <td class="nw">Client</td>
+                  <td class="nw">Mar 11</td>
+                  <td class="nw"><span class="tag tag--warn">Waiting on client</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Remind</button></td>
+                </tr>
+                <tr>
+                  <td class="nw"><b>Linda Park</b></td>
+                  <td>Cardiac evaluation</td>
+                  <td class="nw"><span class="clin">Status only</span></td>
+                  <td class="nw">Physician</td>
+                  <td class="nw"><span class="tag tag--risk">2 days ago</span></td>
+                  <td class="nw"><span class="tag tag--risk">Not confirmed</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="request">Chase physician</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Linda Park</td>
+                  <td>Passport scan</td>
+                  <td class="nw"><span class="tag tag--flat">Administrative</span></td>
+                  <td class="nw">Client</td>
+                  <td class="nw">Mar 20</td>
+                  <td class="nw"><span class="tag tag--warn">Waiting on client</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Remind</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Robert Nguyen</td>
+                  <td>Blood work</td>
+                  <td class="nw"><span class="clin">Status only</span></td>
+                  <td class="nw">Physician</td>
+                  <td class="nw">Mar 8</td>
+                  <td class="nw"><span class="tag tag--ok">Confirmed</span></td>
+                  <td class="nw"></td>
+                </tr>
+                <tr>
+                  <td class="nw">Ellen Marsh</td>
+                  <td>Arrival flight details</td>
+                  <td class="nw"><span class="tag tag--flat">Travel</span></td>
+                  <td class="nw">Client</td>
+                  <td class="nw">Apr 4</td>
+                  <td class="nw"><span class="tag tag--info">Not started</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Publish</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Susan Delgado</td>
+                  <td>Signed consent forms</td>
+                  <td class="nw"><span class="tag tag--flat">Administrative</span></td>
+                  <td class="nw">Beatriz L.</td>
+                  <td class="nw">Mar 4</td>
+                  <td class="nw"><span class="tag tag--info">In review</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Approve</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Michael Carter</td>
+                  <td>Cardiac evaluation</td>
+                  <td class="nw"><span class="clin">Status only</span></td>
+                  <td class="nw">Physician</td>
+                  <td class="nw">—</td>
+                  <td class="nw"><span class="tag tag--flat">Not applicable</span></td>
+                  <td class="nw"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================= DOCUMENTS ====== -->
+    <section class="cview" id="v-documents" hidden>
+
+      <div class="bound" style="margin-bottom:14px">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>Administrative and travel documents only.</b> Medical records stay in the physician's system. Every file here is served by a link that expires, and every time one is opened it is written to the audit log with who opened it.</p>
+      </div>
+
+      <div class="kpis" style="margin-bottom:16px">
+        <article class="kpi kpi--info"><span class="kpi__k">Filed</span><b class="kpi__v">128</b><span class="kpi__d">across 42 records</span></article>
+        <article class="kpi kpi--warn"><span class="kpi__k">Hidden from client</span><b class="kpi__v">9</b><span class="kpi__d">internal or not ready</span></article>
+        <article class="kpi kpi--risk"><span class="kpi__k">Awaiting the client</span><b class="kpi__v">4</b><span class="kpi__d">1 overdue</span></article>
+        <article class="kpi"><span class="kpi__k">Opened this week</span><b class="kpi__v">37</b><span class="kpi__d">all logged</span></article>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Document library</span>
+          <span class="cpanel__a">
+            <div class="filters">
+              <select class="fsel" aria-label="Category">
+                <option>All categories</option><option>Itinerary</option><option>Booking confirmation</option>
+                <option>Travel insurance</option><option>Invoice or receipt</option>
+                <option>Consent form</option><option>Correspondence</option>
+              </select>
+              <select class="fsel" aria-label="Visibility">
+                <option>Any visibility</option><option>Visible to client</option><option>Internal only</option>
+              </select>
+              <button class="cbtn cbtn--sm" type="button" data-drawer="upload">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Upload
+              </button>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead>
+                <tr><th>Document</th><th>Client</th><th>Category</th><th>Filed</th><th>Client can see</th><th>Last opened</th><th></th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="who"><span class="ico ico--info" style="width:30px;height:30px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="who__t"><b>Itinerary, March 9 to 16</b><span>PDF · 240 KB</span></span></span></td>
+                  <td class="nw">Michael Carter</td>
+                  <td class="nw"><span class="tag tag--flat">Itinerary</span></td>
+                  <td class="nw">Mar 5, Beatriz L.</td>
+                  <td class="nw"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Visible to the client"><span></span></button></td>
+                  <td class="nw">Today, 08:12</td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="upload">Replace</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="ico ico--info" style="width:30px;height:30px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="who__t"><b>Hotel Aurora confirmation</b><span>PDF · 88 KB</span></span></span></td>
+                  <td class="nw">Michael Carter</td>
+                  <td class="nw"><span class="tag tag--flat">Booking confirmation</span></td>
+                  <td class="nw">Mar 1, Beatriz L.</td>
+                  <td class="nw"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Visible to the client"><span></span></button></td>
+                  <td class="nw">Yesterday</td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="upload">Replace</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="ico ico--warn" style="width:30px;height:30px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="who__t"><b>Travel insurance</b><span>Not received</span></span></span></td>
+                  <td class="nw">Michael Carter</td>
+                  <td class="nw"><span class="tag tag--flat">Travel insurance</span></td>
+                  <td class="nw"><span class="tag tag--risk">Overdue</span></td>
+                  <td class="nw"><span class="tag tag--flat">Requested</span></td>
+                  <td class="nw">—</td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Remind</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="ico ico--info" style="width:30px;height:30px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="who__t"><b>Consent forms, signed</b><span>PDF · 1.2 MB</span></span></span></td>
+                  <td class="nw">Susan Delgado</td>
+                  <td class="nw"><span class="tag tag--flat">Consent form</span></td>
+                  <td class="nw">Mar 4, Rafael M.</td>
+                  <td class="nw"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Visible to the client"><span></span></button></td>
+                  <td class="nw">Mar 6</td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="upload">Replace</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="ico" style="width:30px;height:30px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/></svg></span><span class="who__t"><b>Supplier quote, transport</b><span>PDF · 64 KB</span></span></span></td>
+                  <td class="nw">Robert Nguyen</td>
+                  <td class="nw"><span class="tag tag--flat">Correspondence</span></td>
+                  <td class="nw">Mar 7, Beatriz L.</td>
+                  <td class="nw"><button class="vis" type="button" aria-pressed="false" aria-label="Hidden from the client"><span></span></button></td>
+                  <td class="nw">Mar 7</td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Archive</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="ico ico--ok" style="width:30px;height:30px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="who__t"><b>Receipt, balance payment</b><span>PDF · 42 KB</span></span></span></td>
+                  <td class="nw">Michael Carter</td>
+                  <td class="nw"><span class="tag tag--flat">Invoice or receipt</span></td>
+                  <td class="nw">Mar 5, system</td>
+                  <td class="nw"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Visible to the client"><span></span></button></td>
+                  <td class="nw">Mar 5</td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Archive</button></td>
+                </tr>
+                <tr style="opacity:.55">
+                  <td><span class="who"><span class="ico" style="width:30px;height:30px;border-radius:7px"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16v11H4zM4 8l2-4h12l2 4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="who__t"><b>Itinerary v1, superseded</b><span>PDF · 236 KB</span></span></span></td>
+                  <td class="nw">Michael Carter</td>
+                  <td class="nw"><span class="tag tag--flat">Itinerary</span></td>
+                  <td class="nw">Feb 28, Beatriz L.</td>
+                  <td class="nw"><span class="tag tag--flat">Archived</span></td>
+                  <td class="nw">Feb 28</td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Restore</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================= CONCIERGE ====== -->
+    <section class="cview" id="v-concierge" hidden>
+
+      <div class="kpis" style="margin-bottom:16px">
+        <article class="kpi"><span class="kpi__k">Open requests</span><b class="kpi__v">7</b><span class="kpi__d">across 4 clients</span></article>
+        <article class="kpi kpi--warn"><span class="kpi__k">Oldest open</span><b class="kpi__v">6<small>h</small></b><span class="kpi__d">Saturday lunch, M. Carter</span></article>
+        <article class="kpi kpi--ok"><span class="kpi__k">Closed this week</span><b class="kpi__v">23</b><span class="kpi__d">median 41 min</span></article>
+        <article class="kpi kpi--info"><span class="kpi__k">Unassigned clients</span><b class="kpi__v">2</b><span class="kpi__d">both in assessment</span></article>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Open requests<small>Six categories from section 21 of the brief</small></span>
+          <span class="cpanel__a">
+            <select class="fsel" aria-label="Category">
+              <option>All categories</option><option>Transporte</option><option>Gastronomía</option>
+              <option>Experiencias</option><option>Cuidado personal</option><option>Practicidad</option><option>Acompañamiento en la recuperación</option>
+            </select>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="rows">
+            <div class="row">
+              <span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 11h12l-1 8H7l-1-8Zm3 0V8a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Saturday lunch, somewhere light</b><span>Michael Carter · Dining · open 6h · inside recovery window, lunch allowed</span></span>
+              <span class="row__x"><span class="tag tag--warn">Open</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Take</button></span>
+            </div>
+            <div class="row">
+              <span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16.5h16M6.5 16.5V9l2-3.5h7L18 9v7.5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="8" cy="19" r="1.6" stroke="currentColor" stroke-width="1.7"/><circle cx="16" cy="19" r="1.6" stroke="currentColor" stroke-width="1.7"/></svg></span>
+              <span class="row__t"><b>Driver for tomorrow's arrival</b><span>Robert Nguyen · Transport · open 4h · GRU 05:55</span></span>
+              <span class="row__x"><span class="tag tag--risk">Urgent</span><button class="cbtn cbtn--sm" type="button">Assign</button></span>
+            </div>
+            <div class="row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c2.3 2.5 3.5 5.4 3.5 8.5s-1.2 6-3.5 8.5" stroke="currentColor" stroke-width="1.7"/></svg></span>
+              <span class="row__t"><b>Museum visit, Friday afternoon</b><span>Michael Carter · Experiences · open 3h · conflicts with recovery window</span></span>
+              <span class="row__x"><span class="tag tag--risk">Blocked</span><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-goto="itinerary">Review</button></span>
+            </div>
+            <div class="row">
+              <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6h8v4a4 4 0 0 1-8 0V6Z" stroke="currentColor" stroke-width="1.7"/><path d="M12 14v4M9 18h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Barber for Sunday morning</b><span>Susan Delgado · Personal care · open 2h · physician cleared</span></span>
+              <span class="row__x"><span class="tag">Open</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Take</button></span>
+            </div>
+            <div class="row">
+              <span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1.8 1.8 0 0 1-1.8 1.6H8a1.8 1.8 0 0 1-1.8-1.6L5 8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.7"/></svg></span>
+              <span class="row__t"><b>Pharmacy run, prescribed items</b><span>Peter Hollis · Convenience · open 1h</span></span>
+              <span class="row__x"><span class="tag">Open</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Take</button></span>
+            </div>
+            <div class="row">
+              <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 18v-5a7.5 7.5 0 0 1 15 0v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Nurse visit at the hotel</b><span>Susan Delgado · Recovery support · open 40 min · hotel chosen over clinic</span></span>
+              <span class="row__x"><span class="tag">Open</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Take</button></span>
+            </div>
+            <div class="row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+              <span class="row__t"><b>Laundry, same-day return</b><span>Marcus Webb · Convenience · open 25 min</span></span>
+              <span class="row__x"><span class="tag">Open</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Take</button></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================== PAYMENTS ====== -->
+    <section class="cview" id="v-payments" hidden>
+
+      <div class="kpis" style="margin-bottom:16px">
+        <article class="kpi kpi--warn"><span class="kpi__k">Outstanding</span><b class="kpi__v"><small>$</small>18,400</b><span class="kpi__d">4 invoices</span></article>
+        <article class="kpi kpi--ok"><span class="kpi__k">Collected this month</span><b class="kpi__v"><small>$</small>62,700</b><span class="kpi__d">9 payments</span></article>
+        <article class="kpi kpi--risk"><span class="kpi__k">Past due</span><b class="kpi__v">1</b><span class="kpi__d">$3,300 · 4 days</span></article>
+        <article class="kpi"><span class="kpi__k">Average journey value</span><b class="kpi__v"><small>$</small>13,900</b><span class="kpi__d">last 12 journeys</span></article>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Amounts due<small>Hosted checkout only · no card data touches the platform</small></span><span class="cpanel__a"><button class="cbtn cbtn--sm" type="button" data-drawer="charge">Set amount due</button></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Client</th><th>Item</th><th class="num">Amount</th><th>Due</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="nw"><b>Susan Delgado</b></td><td>Balance</td>
+                  <td class="num">$6,200</td><td class="nw">Mar 12</td>
+                  <td class="nw"><span class="tag tag--warn">Pending</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="charge">Resend link</button></td>
+                </tr>
+                <tr>
+                  <td class="nw"><b>Linda Park</b></td><td>Deposit</td>
+                  <td class="num">$8,900</td><td class="nw">Mar 15</td>
+                  <td class="nw"><span class="tag tag--warn">Pending</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="charge">Resend link</button></td>
+                </tr>
+                <tr>
+                  <td class="nw"><b>Peter Hollis</b></td><td>Concierge extras</td>
+                  <td class="num">$3,300</td><td class="nw"><span class="tag tag--risk">Mar 5</span></td>
+                  <td class="nw"><span class="tag tag--risk">Past due</span></td>
+                  <td class="nw"><button class="cbtn cbtn--sm" type="button" data-drawer="charge">Chase</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Michael Carter</td><td>Balance</td>
+                  <td class="num">$9,300</td><td class="nw">Mar 5</td>
+                  <td class="nw"><span class="tag tag--ok">Paid</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Receipt</button></td>
+                </tr>
+                <tr>
+                  <td class="nw">Robert Nguyen</td><td>Full package</td>
+                  <td class="num">$11,400</td><td class="nw">Mar 2</td>
+                  <td class="nw"><span class="tag tag--ok">Paid</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Receipt</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================ PHYSICIANS ====== -->
+    <section class="cview" id="v-physicians" hidden>
+
+      <div class="sec-h">
+        <h2>Physicians</h2>
+        <p>Consent decides what may be published. Unauthorised content cannot reach the public site or the client portal.</p>
+        <span class="sec-h__a"><button class="cbtn cbtn--sm" type="button" data-drawer="physician">Add physician</button></span>
+      </div>
+
+      <div class="docs">
+
+        <article class="doc">
+          <div class="doc__h">
+            <span class="doc__av">CR</span>
+            <span>
+              <b class="doc__n">Dr. Camila Rocha</b>
+              <span class="doc__s">Hair restoration · São Paulo</span>
+            </span>
+          </div>
+          <div class="doc__b">
+            <div class="doc__meta">
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.7"/></svg>Clínica Vértice, Itaim Bibi</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>14 years · 400+ international patients</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>English, Portuguese, Spanish</span>
+            </div>
+            <div class="doc__c">
+              <span class="tag tag--flat">FUE</span><span class="tag tag--flat">DHI</span><span class="tag tag--flat">Beard restoration</span>
+            </div>
+            <div class="consent">
+              <span class="consent__r"><svg class="yes" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Professional content<b class="yes">Authorised</b></span>
+              <span class="consent__r"><svg class="yes" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Patient content<b class="yes">Authorised</b></span>
+            </div>
+            <span class="tag tag--ok">3 active journeys</span><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="physician">Edit profile</button><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="availability">Availability</button></div>
+          </div>
+        </article>
+
+        <article class="doc">
+          <div class="doc__h">
+            <span class="doc__av">HB</span>
+            <span>
+              <b class="doc__n">Dr. Helena Braga</b>
+              <span class="doc__s">Plastic surgery · São Paulo</span>
+            </span>
+          </div>
+          <div class="doc__b">
+            <div class="doc__meta">
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.7"/></svg>Instituto Braga, Jardins</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>19 years · 600+ international patients</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>English, Portuguese</span>
+            </div>
+            <div class="doc__c">
+              <span class="tag tag--flat">Facelift</span><span class="tag tag--flat">Body contouring</span><span class="tag tag--flat">Eyelid</span>
+            </div>
+            <div class="consent">
+              <span class="consent__r"><svg class="yes" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Professional content<b class="yes">Authorised</b></span>
+              <span class="consent__r"><svg class="no" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Patient content<b class="no">Not authorised</b></span>
+            </div>
+            <span class="tag tag--warn">Before and after gallery held back</span>
+          </div>
+        </article>
+
+        <article class="doc">
+          <div class="doc__h">
+            <span class="doc__av">PS</span>
+            <span>
+              <b class="doc__n">Dr. Paulo Serra</b>
+              <span class="doc__s">Dentistry · São Paulo</span>
+            </span>
+          </div>
+          <div class="doc__b">
+            <div class="doc__meta">
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.7"/></svg>Serra Odontologia, Pinheiros</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>11 years · 250+ international patients</span>
+              <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>English, Portuguese</span>
+            </div>
+            <div class="doc__c">
+              <span class="tag tag--flat">Veneers</span><span class="tag tag--flat">Implants</span><span class="tag tag--flat">Whitening</span>
+            </div>
+            <div class="consent">
+              <span class="consent__r"><svg class="yes" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Professional content<b class="yes">Authorised</b></span>
+              <span class="consent__r"><svg class="yes" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Patient content<b class="yes">Authorised</b></span>
+            </div>
+            <span class="tag tag--ok">1 active journey</span>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================== CONTENT ====== -->
+    <section class="cview" id="v-content" hidden>
+
+      <div class="g2">
+
+        <div class="cpanel">
+          <div class="cpanel__h">
+            <span class="cpanel__t">Savings ranges<small>Nothing publishes without an approved source</small></span>
+            <span class="cpanel__a"><span class="tag tag--risk">2 unapproved</span></span>
+          </div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="tw">
+              <table class="ctbl">
+                <thead><tr><th>Procedure</th><th>Range</th><th>Source</th><th>State</th><th></th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Hair transplant</td><td class="nw">55 – 70%</td>
+                    <td class="nw">ISHRS 2025 survey</td>
+                    <td class="nw"><span class="tag tag--ok">Published</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="savings">Edit</button></td></tr>
+                  <tr>
+                    <td>Lifting facial</td><td class="nw">60 – 72%</td>
+                    <td class="nw">ASPS 2025 fee report</td>
+                    <td class="nw"><span class="tag tag--ok">Published</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="savings">Edit</button></td></tr>
+                  <tr>
+                    <td>Dental veneers</td><td class="nw">50 – 65%</td>
+                    <td class="nw"><span class="tag tag--risk">Missing</span></td>
+                    <td class="nw"><span class="tag tag--warn">Held back</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="savings">Edit</button></td></tr>
+                  <tr>
+                    <td>Body contouring</td><td class="nw">58 – 68%</td>
+                    <td class="nw">Internal estimate</td>
+                    <td class="nw"><span class="tag tag--warn">Awaiting approval</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="savings">Edit</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Content library</span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row">
+                <span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                <span class="row__t"><b>Procedure pages</b><span>9 published · 2 drafts</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="content">Edit</button></span>
+              </div>
+              <div class="row">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c2.3 2.5 3.5 5.4 3.5 8.5s-1.2 6-3.5 8.5" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                <span class="row__t"><b>Destinations</b><span>São Paulo and Rio de Janeiro</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="content">Edit</button></span>
+              </div>
+              <div class="row">
+                <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16v11H4zM4 8l2-4h12l2 4M12 8v11" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                <span class="row__t"><b>Packages</b><span>Solo, Companion and Full Refresh</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="content">Edit</button></span>
+              </div>
+              <div class="row">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16v13H4zM9 4h6v3H9z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                <span class="row__t"><b>Welcome kit</b><span>Printed kit and the QR path into the portal</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="content">Edit</button></span>
+              </div>
+              <div class="row">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                <span class="row__t"><b>Frequently asked questions</b><span>21 entries</span></span>
+                <span class="row__x"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="content">Edit</button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cpanel" style="margin-top:16px">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Email templates<small>Six events are in scope under this contract</small></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Event</th><th>Subject</th><th class="num">Sent, 30 days</th><th>Delivery</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Assessment received</td><td>We have your assessment, here is what happens next</td><td class="num">14</td><td class="nw"><span class="tag tag--ok">100%</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="template">Edit</button></td></tr>
+                <tr><td>Medical result available</td><td>Your physician has responded</td><td class="num">11</td><td class="nw"><span class="tag tag--ok">100%</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="template">Edit</button></td></tr>
+                <tr><td>Action needed</td><td>One item needs you before we can move on</td><td class="num">23</td><td class="nw"><span class="tag tag--ok">96%</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="template">Edit</button></td></tr>
+                <tr><td>Appointment set or changed</td><td>Your schedule has been updated</td><td class="num">31</td><td class="nw"><span class="tag tag--ok">100%</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="template">Edit</button></td></tr>
+                <tr><td>Payment due</td><td>A payment is coming up</td><td class="num">9</td><td class="nw"><span class="tag tag--ok">100%</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="template">Edit</button></td></tr>
+                <tr><td>Arrival reminder</td><td>Everything ready for your arrival</td><td class="num">6</td><td class="nw"><span class="tag tag--ok">100%</span></td><td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="template">Edit</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="cpanel" style="margin-top:16px">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Messages sent<small>Every message, with what happened to it</small></span>
+          <span class="cpanel__a">
+            <div class="filters">
+              <select class="fsel" aria-label="Template"><option>All templates</option><option>Action needed</option><option>Assessment received</option><option>Medical result available</option><option>Appointment set or changed</option><option>Payment due</option><option>Arrival reminder</option></select>
+              <select class="fsel" aria-label="Delivery"><option>Any result</option><option>Delivered</option><option>Bounced</option><option>Failed</option></select>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Sent</th><th>Recipient</th><th>Template</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td class="nw">Mar 10, 09:41</td><td class="nw">michael.carter@example.com</td><td>Action needed</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 10, 08:02</td><td class="nw">s.delgado@example.com</td><td>Payment due</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 9, 17:20</td><td class="nw">michael.carter@example.com</td><td>Appointment set or changed</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 9, 16:48</td><td class="nw">j.whitfield@example.com</td><td>Medical result available</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 9, 14:05</td><td class="nw">t.ayers@exmaple.com</td><td>Assessment received</td><td class="nw"><span class="tag tag--risk">Bounced</span></td></tr>
+                <tr><td class="nw">Mar 9, 11:12</td><td class="nw">r.nguyen@example.com</td><td>Arrival reminder</td><td class="nw"><span class="tag tag--ok">Delivered</span></td></tr>
+                <tr><td class="nw">Mar 8, 19:30</td><td class="nw">l.park@example.com</td><td>Action needed</td><td class="nw"><span class="tag tag--warn">Deferred, retrying</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ====================================================== TEAM ====== -->
+    <!-- ============================================ Physician instructions -->
+    <!-- O medico e a clinica sao a fonte. Aqui a operacao registra o que
+         foi liberado, versiona e coordena em volta. Ninguem da RefreshU
+         escreve, edita ou completa clinicamente uma instrucao: os campos
+         que fariam isso nao existem nesta tela. -->
+    <section class="cview" id="v-instructions" hidden>
+
+      <div class="cbanner cbanner--rule">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 4.5 6.5v5.2c0 4.3 3.1 8.3 7.5 9.3 4.4-1 7.5-5 7.5-9.3V6.5L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <p><b>Clinical content lives on the physician&rsquo;s own site.</b> The questionnaire, the photographs, the exams and the reports never reach RefreshU. What arrives here is the operational instruction the physician chose to release, and the confirmation that a step is done. A concierge cannot write, edit, release or medically complete an instruction.</p>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Released instructions<small>Across every active client</small></span>
+          <span class="cpanel__a">
+            <button class="cbtn cbtn--sm" type="button" data-drawer="instruction">Record a released instruction</button>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl">
+            <caption class="sr">Physician instructions</caption>
+            <thead><tr>
+              <th scope="col">Client</th><th scope="col">Physician</th><th scope="col">Category</th>
+              <th scope="col">Released</th><th scope="col">Ver.</th><th scope="col">Status</th>
+              <th scope="col">Effect on itinerary</th><th scope="col"></th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <th scope="row">Michael Carter</th><td>Dr. Juliana Buttros</td><td>Pre-operative preparation</td>
+                <td>Mar 11, 4:20 PM</td><td>v2</td>
+                <td><span class="tag tag--act">Action due</span></td>
+                <td>No activities before March 12, 10:00</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">Open</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Michael Carter</th><td>Dr. Juliana Buttros</td><td>Recovery</td>
+                <td>Mar 11, 4:22 PM</td><td>v1</td>
+                <td><span class="tag tag--wait">Released</span></td>
+                <td>Wellness and day trips stay closed until released</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">Open</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Denise Park</th><td>Dr. Juliana Buttros</td><td>Required examinations</td>
+                <td>Mar 9, 11:05 AM</td><td>v1</td>
+                <td><span class="tag tag--ok">Read</span></td>
+                <td>Blood work before the consultation</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">Open</button></td>
+              </tr>
+              <tr class="is-off">
+                <th scope="row">Anthony Reyes</th><td>Dr. Juliana Buttros</td><td>Travel clearance</td>
+                <td>Mar 4, 9:40 AM</td><td>v1</td>
+                <td><span class="tag">Superseded</span></td>
+                <td>Replaced by version 2 on March 6</td>
+                <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="instruction">History</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ctwo">
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">What the concierge may see<small>Minimum necessary, by default</small></span></div>
+          <div class="cpanel__b">
+            <ul class="rulelist">
+              <li class="is-yes"><b>That an instruction exists</b><span>Always</span></li>
+              <li class="is-yes"><b>Status</b><span>Released, read, action due, completed</span></li>
+              <li class="is-yes"><b>Due date and time</b><span>When scheduling depends on it</span></li>
+              <li class="is-yes"><b>Effect on the itinerary</b><span>For example, no activities until physician release</span></li>
+              <li class="is-no"><b>Full clinical text</b><span>Restricted, enabled only if counsel and security decide it is necessary</span></li>
+              <li class="is-no"><b>Medication detail</b><span>Restricted</span></li>
+              <li class="is-no"><b>Diagnosis and clinical notes</b><span>Never</span></li>
+              <li class="is-no"><b>Editing an instruction</b><span>Never</span></li>
+              <li class="is-no"><b>Marking a clinical item complete</b><span>Never, the provider controls clinical completion</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Language rules<small>Applied everywhere the client can read</small></span></div>
+          <div class="cpanel__b">
+            <table class="ctbl ctbl--say">
+              <caption class="sr">Wording</caption>
+              <thead><tr><th scope="col">Never</th><th scope="col">Always</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">RefreshU approved your instructions</th><td>Your physician released new instructions</td></tr>
+                <tr><th scope="row">RefreshU cleared you</th><td>Your physician released this activity</td></tr>
+                <tr><th scope="row">We recommend you stop this medication</th><td>Your physician&rsquo;s instruction says&hellip;</td></tr>
+                <tr><th scope="row">RefreshU says this test is not required</th><td>Your physician marked this test as not required</td></tr>
+                <tr><th scope="row">We completed your medical requirements</th><td>Your physician confirmed this requirement</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= Suppliers -->
+    <section class="cview" id="v-suppliers" hidden>
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Supplier network<small>116 in São Paulo, 85 in Rio de Janeiro</small></span>
+          <span class="cpanel__a">
+            <div class="segs" role="group" aria-label="City">
+              <button type="button" data-sup="sp" aria-pressed="true">São Paulo</button>
+              <button type="button" data-sup="rio" aria-pressed="false">Río de Janeiro</button>
+            </div>
+            <button class="cbtn cbtn--ghost cbtn--sm" type="button">Export CSV</button>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl" id="supTbl">
+            <caption class="sr">Suppliers</caption>
+            <thead><tr>
+              <th scope="col">Supplier</th><th scope="col">Category</th><th scope="col">Area</th>
+              <th scope="col">Best contact route</th><th scope="col">Partnership ask</th><th scope="col">Status</th>
+            </tr></thead>
+            <tbody data-city="sp">
+              <tr><th scope="row">D.O.M.</th><td>Restaurant</td><td>Jardins</td><td>Phone, official site</td><td>Concierge reservations, preferred access</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Restaurante Fasano</th><td>Restaurant</td><td>Jardins</td><td>WhatsApp, email</td><td>Reservations, events, hotel partnership</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Evvai</th><td>Restaurant</td><td>Jardim Paulistano</td><td>Phone, email</td><td>Concierge reservations, VIP dining</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Skye, Hotel Unique</th><td>Rooftop</td><td>Jardins</td><td>Official site</td><td>Sunset table, concierge access</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Shopping Iguatemi</th><td>Shopping</td><td>Jardim Paulistano</td><td>Mesa de concierge</td><td>Personal shopper, VIP lounge</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Buddha Spa</th><td>Bienestar</td><td>Alto de Pinheiros</td><td>Official site</td><td>Physician-released treatments only</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Vinícola Góes</th><td>Winery</td><td>São Roque</td><td>Official site</td><td>Chauffeured wine day, tasting</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+            </tbody>
+            <tbody data-city="rio" hidden>
+              <tr><th scope="row">Oro</th><td>Restaurant</td><td>Leblon</td><td>Official reservations</td><td>Concierge reservations, preferred access</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Oteque</th><td>Restaurant</td><td>Botafogo</td><td>Official reservations</td><td>Concierge reservations</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Fasano Rooftop</th><td>Rooftop</td><td>Ipanema</td><td>Hotel reservations</td><td>Sunset access for guests</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Bondinho Pão de Açúcar</th><td>Attraction</td><td>Urca</td><td>Official site</td><td>Priority tickets, private timing</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">VillageMall</th><td>Shopping</td><td>Barra da Tijuca</td><td>Mesa de concierge</td><td>Personal shopper</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+              <tr><th scope="row">Copacabana Palace Spa</th><td>Bienestar</td><td>Copacabana</td><td>Hotel spa</td><td>Physician-released treatments only</td><td><span class="tag tag--wait">Not contacted</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cbanner">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.6 17.4A2 2 0 0 0 4.3 20.4h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><b>Two rules for supplier outreach.</b> For tours and transport, ask for the company registration, the licence and the insurance before booking a client into them. And never let a vendor decide whether a client may take part in an activity: only the treating physician does that.</p>
+      </div>
+    </section>
+
+    <!-- ==================================================== Legal & consent -->
+    <section class="cview" id="v-legal" hidden>
+      <div class="ctwo">
+        <div class="cpanel">
+          <div class="cpanel__h">
+            <span class="cpanel__t">Document versions<small>Published in the Legal Center</small></span>
+            <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="legaldoc">New version</button></span>
+          </div>
+          <div class="cpanel__b cpanel__b--flush">
+            <table class="ctbl">
+              <caption class="sr">Legal documents</caption>
+              <thead><tr><th scope="col">Document</th><th scope="col">Version</th><th scope="col">Effective</th><th scope="col">Status</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Términos de uso</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Política de privacidad</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Aviso médico</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Independent Provider Disclosure</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Concierge Services Agreement</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+                <tr><th scope="row">Cancellation &amp; Refund Policy</th><td>0.1</td><td>Not set</td><td><span class="tag tag--act">Amounts pending</span></td></tr>
+                <tr><th scope="row">Travel &amp; Journey Terms</th><td>0.1</td><td>Not set</td><td><span class="tag tag--act">Seven-day rule pending</span></td></tr>
+                <tr><th scope="row">Travel Insurance</th><td>0.1</td><td>Not set</td><td><span class="tag tag--act">Minimum coverage pending</span></td></tr>
+                <tr><th scope="row">Payment &amp; Fee Disclosure</th><td>0.1</td><td>Not set</td><td><span class="tag tag--wait">Attorney review</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Consent log<small>Michael Carter, most recent first</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <table class="ctbl">
+              <caption class="sr">Consent log</caption>
+              <thead><tr><th scope="col">Document</th><th scope="col">Ver.</th><th scope="col">Accepted</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Itinerary acknowledgment</th><td>0.1</td><td>Mar 5, 10:12</td></tr>
+                <tr><th scope="row">Travel Insurance</th><td>0.1</td><td>Mar 5, 10:11</td></tr>
+                <tr><th scope="row">Travel &amp; Journey Terms</th><td>0.1</td><td>Mar 1, 14:38</td></tr>
+                <tr><th scope="row">Cancellation &amp; Refund Policy</th><td>0.1</td><td>Mar 1, 14:38</td></tr>
+                <tr><th scope="row">Concierge Services Agreement</th><td>0.1</td><td>Mar 1, 14:37</td></tr>
+                <tr><th scope="row">Electronic Communications</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Cross-border access</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Referral workflow</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Independent Provider Disclosure</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Aviso médico</th><td>0.1</td><td>Feb 18, 09:02</td></tr>
+                <tr><th scope="row">Política de privacidad</th><td>0.1</td><td>Feb 18, 09:01</td></tr>
+                <tr><th scope="row">Términos de uso</th><td>0.1</td><td>Feb 18, 09:01</td></tr>
+                <tr class="is-off"><th scope="row">Marketing</th><td>0.1</td><td>Declined, Feb 18</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Public trust claims<small>A badge appears on the site only when it is earned</small></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl" id="credTbl">
+            <caption class="sr">Credenciales</caption>
+            <thead><tr><th scope="col">Credential</th><th scope="col">Issuer</th><th scope="col">Status</th><th scope="col">On the site</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cbanner cbanner--rule">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 4.5 6.5v5.2c0 4.3 3.1 8.3 7.5 9.3 4.4-1 7.5-5 7.5-9.3V6.5L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <p><b>Decisions that belong to counsel, not to this console.</b> HIPAA classification and business-associate agreements; what a Brazilian physician may review while the client is in a given US state; the exact health-information consent instrument; cross-border transfer terms; cancellation amounts and deadlines; travel-insurance minimums; the seven-day arrival rule; referral compensation; arbitration and liability; and every savings or provider-quality claim.</p>
+      </div>
+    </section>
+
+    <!-- ========================================================== Concerns -->
+    <section class="cview" id="v-complaints" hidden>
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Concerns<small>Every one has a case number and an audit trail</small></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <table class="ctbl">
+            <caption class="sr">Concerns</caption>
+            <thead><tr>
+              <th scope="col">Case</th><th scope="col">Client</th><th scope="col">Category</th>
+              <th scope="col">Opened</th><th scope="col">Requested resolution</th><th scope="col">Status</th>
+            </tr></thead>
+            <tbody>
+              <tr><th scope="row">RU-C-20260306-4812</th><td>Denise Park</td><td>Travel or transportation</td><td>Mar 6</td><td>Driver arrived late twice</td><td><span class="tag tag--act">Open</span></td></tr>
+              <tr><th scope="row">RU-C-20260302-2290</th><td>Anthony Reyes</td><td>Scheduling</td><td>Mar 2</td><td>Wants the follow-up moved</td><td><span class="tag tag--wait">With the clinic</span></td></tr>
+              <tr><th scope="row">RU-C-20260224-1077</th><td>Michael Carter</td><td>Accommodation</td><td>Feb 24</td><td>Room change, quieter floor</td><td><span class="tag tag--ok">Resolved</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cbanner">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.6 17.4A2 2 0 0 0 4.3 20.4h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><b>How the team handles reviews.</b> Never threaten legal action because a review is negative. Never offer anything conditional on a positive review, and never ask a client to hand over ownership of one. Suspected fake reviews, impersonation, privacy violations or threats are documented here and reported to the platform. A client&rsquo;s medical photographs and health information never enter a review or testimonial workflow, and any use of an identifiable photograph, video, testimonial, voice or likeness needs its own signed media authorization. Counsel approves any correction or removal template before the team uses it.</p>
+      </div>
+    </section>
+
+    <section class="cview" id="v-team" hidden>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Team</span>
+          <span class="cpanel__a"><button class="cbtn cbtn--sm" type="button" data-drawer="member">Invite member</button></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Member</th><th>Role</th><th>Two-factor</th><th>Last active</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><span class="who"><span class="who__av">BL</span><span class="who__t"><b>Beatriz Lima</b><span>beatriz@refreshu.com</span></span></span></td>
+                  <td class="nw">Administrator</td><td class="nw"><span class="tag tag--ok">On</span></td>
+                  <td class="nw">2 minutes ago</td><td class="nw"><span class="tag tag--ok">Active</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="manage">Manage</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">RM</span><span class="who__t"><b>Rafael Moraes</b><span>rafael@refreshu.com</span></span></span></td>
+                  <td class="nw">Concierge</td><td class="nw"><span class="tag tag--ok">On</span></td>
+                  <td class="nw">1 hour ago</td><td class="nw"><span class="tag tag--ok">Active</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="manage">Manage</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">AS</span><span class="who__t"><b>Alberto Silveira</b><span>alberto@refreshu.com</span></span></span></td>
+                  <td class="nw">Administrator</td><td class="nw"><span class="tag tag--ok">On</span></td>
+                  <td class="nw">Yesterday</td><td class="nw"><span class="tag tag--ok">Active</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="manage">Manage</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">TC</span><span class="who__t"><b>Tomás Cardoso</b><span>tomas@refreshu.com</span></span></span></td>
+                  <td class="nw">Ventas</td><td class="nw"><span class="tag tag--warn">Pending setup</span></td>
+                  <td class="nw">Never</td><td class="nw"><span class="tag tag--info">Invited</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="member">Resend</button></td>
+                </tr>
+                <tr>
+                  <td><span class="who"><span class="who__av">MF</span><span class="who__t"><b>Marina Fontes</b><span>marina@refreshu.com</span></span></span></td>
+                  <td class="nw">Read only</td><td class="nw"><span class="tag tag--ok">On</span></td>
+                  <td class="nw">3 days ago</td><td class="nw"><span class="tag tag--ok">Active</span></td>
+                  <td class="nw"><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-drawer="manage">Manage</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="cpanel" style="margin-top:16px">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Permission matrix<small>Configurable by an Administrator across every module</small></span>
+          <span class="cpanel__a">
+            <select class="fsel" aria-label="Edit role"><option>Editing: Concierge</option><option>Editing: Sales</option><option>Editing: Read only</option></select>
+            <button class="cbtn cbtn--sm" type="button">Save permissions</button>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="matrix">
+              <thead>
+                <tr><th>Module</th><th>Administrator</th><th>Concierge</th><th>Ventas</th><th>Read only</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Client records</td>
+                  <td class="y">Full</td><td class="y">Full</td><td class="y">Assigned only</td><td class="n">View</td>
+                </tr>
+                <tr>
+                  <td>Medical review outcome</td>
+                  <td class="y">Full</td><td class="y">Full</td><td class="n">Status only</td><td class="n">Status only</td>
+                </tr>
+                <tr>
+                  <td>Physician instructions</td>
+                  <td class="y">Full</td><td class="y">Full</td><td class="n">No access</td><td class="n">View</td>
+                </tr>
+                <tr>
+                  <td>Itinerary and schedule</td>
+                  <td class="y">Full</td><td class="y">Full</td><td class="n">No access</td><td class="n">View</td>
+                </tr>
+                <tr>
+                  <td>Requirements</td>
+                  <td class="y">Full</td><td class="y">Full</td><td class="n">No access</td><td class="n">View</td>
+                </tr>
+                <tr>
+                  <td>Documentos</td>
+                  <td class="y">Full</td><td class="y">Full</td><td class="n">No access</td><td class="n">View</td>
+                </tr>
+                <tr>
+                  <td>Payments</td>
+                  <td class="y">Full</td><td class="y">View</td><td class="n">Own records only</td><td class="n">View</td>
+                </tr>
+                <tr>
+                  <td>Content and savings approval</td>
+                  <td class="y">Full</td><td class="n">View</td><td class="n">View approved</td><td class="n">View</td>
+                </tr>
+                <tr>
+                  <td>Team, roles and settings</td>
+                  <td class="y">Full</td><td class="n">No access</td><td class="n">No access</td><td class="n">No access</td>
+                </tr>
+                <tr>
+                  <td>Audit log</td>
+                  <td class="y">Full</td><td class="n">No access</td><td class="n">No access</td><td class="n">No access</td>
+                </tr>
+                <tr>
+                  <td>Bulk export</td>
+                  <td class="y">Full</td><td class="n">No access</td><td class="n">No access</td><td class="n">No access</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================== AUDIT ====== -->
+    <section class="cview" id="v-audit" hidden>
+
+      <div class="bound" style="margin-bottom:14px">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>Every access and every change to a client record is written here.</b> Filterable by user, by record and by date, and reachable only by an Administrator.</p>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Audit log</span>
+          <span class="cpanel__a">
+            <div class="filters">
+              <select class="fsel" aria-label="User"><option>Any user</option><option>Beatriz Lima</option><option>Rafael Moraes</option><option>Alberto Silveira</option></select>
+              <select class="fsel" aria-label="Client record"><option>Any client record</option><option>Michael Carter · RU-2419</option><option>Susan Delgado · RU-2402</option><option>Robert Nguyen · RU-2431</option></select>
+              <select class="fsel" aria-label="Range"><option>Last 24 hours</option><option>Last 7 days</option><option>Last 30 days</option></select>
+              <button class="cbtn cbtn--ghost cbtn--sm" type="button">Export CSV</button>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="audit">
+            <div class="audit__r"><span class="audit__t">Mar 10 · 09:41:22</span><span class="audit__u">beatriz@</span><span class="audit__a">Viewed record <b>RU-2419</b> · Michael Carter</span><span class="tag tag--flat">Read</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 10 · 09:40:08</span><span class="audit__u">beatriz@</span><span class="audit__a">Added internal note to <b>RU-2419</b></span><span class="tag tag--info tag--flat">Write</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 10 · 08:12:55</span><span class="audit__u">rafael@</span><span class="audit__a">Advanced <b>RU-2402</b> to Recovery · reason recorded</span><span class="tag tag--info tag--flat">Write</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 10 · 07:22:31</span><span class="audit__u">beatriz@</span><span class="audit__a">Replied on concierge thread <b>RU-2419</b></span><span class="tag tag--info tag--flat">Write</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 09 · 18:04:12</span><span class="audit__u">alberto@</span><span class="audit__a">Exported client list · 42 rows</span><span class="tag tag--warn tag--flat">Export</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 09 · 16:47:03</span><span class="audit__u">beatriz@</span><span class="audit__a">Recorded medical outcome for <b>RU-2419</b> · Candidate</span><span class="tag tag--info tag--flat">Write</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 09 · 16:45:40</span><span class="audit__u">beatriz@</span><span class="audit__a">Generated signed URL for <b>RU-2419</b> · itinerary.pdf</span><span class="tag tag--flat">Read</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 09 · 14:20:19</span><span class="audit__u">tomas@</span><span class="audit__a">Access denied · attempted to open Audit log</span><span class="tag tag--risk tag--flat">Denied</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 09 · 11:58:02</span><span class="audit__u">rafael@</span><span class="audit__a">Assigned <b>RU-2431</b> to Dr. Helena Braga</span><span class="tag tag--info tag--flat">Write</span></div>
+            <div class="audit__r"><span class="audit__t">Mar 09 · 09:15:44</span><span class="audit__u">alberto@</span><span class="audit__a">Changed role of tomas@ from Read only to Sales</span><span class="tag tag--warn tag--flat">Admin</span></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- ======================================================= DRAWER ====== -->
+<!-- Um drawer, um painel por acao. O botao que abre nomeia o painel em
+     data-drawer, e o JS troca o titulo junto. Toda acao que o Anexo A nomeia
+     tem tela: sem isso o botao existe e nao leva a lugar nenhum. -->
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+  <div class="drawer__veil" data-close></div>
+  <div class="drawer__p">
+    <div class="drawer__h">
+      <h2 id="drawerTitle">Record medical outcome</h2>
+      <button class="cbtn cbtn--ghost cbtn--icon" type="button" data-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="drawer__b">
+
+      <!-- ---------------------------------------------------- A.3.3 ---- -->
+      <div class="dpanel" data-panel="referral" data-title="Record medical outcome">
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p><b>Record the outcome, not the reasoning.</b> Paste only what the physician released for operations: the status, and any instruction the team needs to act on. Do not paste clinical findings, and never attach clinical files.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2 fld2--req"><label for="dOut">Outcome</label>
+            <select id="dOut"><option>Candidate</option><option>Not a candidate</option><option>More information needed</option></select></div>
+          <div class="fld2"><label for="dArr">Required arrival</label>
+            <select id="dArr"><option>At least 2 days before the procedure</option><option>Day before the procedure</option><option>No requirement</option></select></div>
+          <div class="fld2"><label for="dRec">Recovery window</label>
+            <input id="dRec" value="4 days, no direct sun, no strenuous activity"></div>
+          <div class="fld2"><label for="dNote">Operational instructions</label>
+            <textarea id="dNote" placeholder="Only what the team must act on.">No blood thinners for 7 days before.</textarea></div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Record and release to client</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.3 ---- -->
+      <div class="dpanel" data-panel="request" data-title="Assessment request" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p><b>No clinical content is shown, because none is held.</b> This is what the person told RefreshU, and nothing else. Their questionnaire and photographs went straight to the physician.</p>
+        </div>
+        <div class="cpanel">
+          <div class="cpanel__h">
+            <span class="cpanel__t">James Whitfield<small>Submitted February 24, through the website</small></span>
+            <span class="cpanel__a"><span class="tag tag--warn">Awaiting result</span></span>
+          </div>
+          <div class="cpanel__b">
+            <dl class="facts">
+              <div><dt>Correo electrónico</dt><dd>j.whitfield@example.com</dd></div>
+              <div><dt>Phone</dt><dd>+1 303 555 0192</dd></div>
+              <div><dt>Where they live</dt><dd>Denver, Colorado</dd></div>
+              <div><dt>Area of interest</dt><dd>Face</dd></div>
+              <div><dt>Procedure selected</dt><dd>Rinoplastia</dd></div>
+              <div><dt>Destination</dt><dd>São Paulo</dd></div>
+              <div><dt>Travel window</dt><dd>April, flexible</dd></div>
+              <div><dt>Companion</dt><dd>Travelling alone</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Hand-off<small>Who, when, and what came back</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Referred to Dr. Camila Rocha</b><span>February 24, 11:40, by Beatriz Lima</span></span><span class="row__x"></span></div>
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m3.6 7 8.4 6 8.4-6" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Screening instruction sent to the client</b><span>February 24, 11:41, delivered</span></span><span class="row__x"></span></div>
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Client marked the physician's form complete</b><span>February 26</span></span><span class="row__x"></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="row__t"><b>Waiting on the physician</b><span>5 days · chased on March 1 and March 6</span></span><span class="row__x"><span class="tag tag--risk">Slow</span></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-drawer="referral">Record the outcome</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Chase the physician</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.2 ---- -->
+      <div class="dpanel" data-panel="new" data-title="New client record" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p><b>For someone who arrived by phone or referral</b>, rather than through the website assessment. Nothing clinical is captured here or anywhere else.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="drow">
+            <div class="fld2 fld2--req"><label for="nFirst">First name</label><input id="nFirst"></div>
+            <div class="fld2 fld2--req"><label for="nLast">Last name</label><input id="nLast"></div>
+          </div>
+          <div class="drow">
+            <div class="fld2 fld2--req"><label for="nMail">Correo electrónico</label><input type="email" id="nMail"></div>
+            <div class="fld2"><label for="nPhone">Phone</label><input type="tel" id="nPhone"></div>
+          </div>
+          <div class="drow">
+            <div class="fld2"><label for="nSrc">Source</label>
+              <select id="nSrc"><option>Phone</option><option>Referral</option><option>Event</option><option>Website</option></select></div>
+            <div class="fld2"><label for="nProc">Procedure of interest</label>
+              <select id="nProc"><option>Cabello</option><option>Face</option><option>Body</option><option>Dental</option></select></div>
+          </div>
+          <div class="drow">
+            <div class="fld2"><label for="nDest">Destination</label>
+              <select id="nDest"><option>São Paulo</option><option>Río de Janeiro</option></select></div>
+            <div class="fld2"><label for="nPack">Package</label>
+              <select id="nPack"><option>Undecided</option><option>Solo Refresh</option><option>Companion Refresh</option><option>Full Refresh</option></select></div>
+          </div>
+          <div class="fld2"><label for="nOwner">Assign to</label>
+            <select id="nOwner"><option>Leave unassigned</option><option>Beatriz Lima</option><option>Rafael Moraes</option></select></div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Create record</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.2 ---- -->
+      <div class="dpanel" data-panel="note" data-title="Add an internal note" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/></svg>
+          <p><b>Never visible to the client.</b> Notes stay with the team, carry your name and the time, and are for operations, not for anything clinical.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="noRec">On the record of</label>
+            <input id="noRec" value="Michael Carter · RU-2419" readonly></div>
+          <div class="fld2 fld2--req">
+            <label for="noText">Note</label>
+            <textarea id="noText" style="min-height:120px" placeholder="What the team should know."></textarea>
+          </div>
+          <label class="check"><input type="checkbox"><span>Flag it, so it sits at the top of the record</span></label>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Save note</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.8 ---- -->
+      <div class="dpanel" data-panel="upload" data-title="File a document" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p><b>Administrative and travel documents only.</b> Never a medical record, a laboratory result or a clinical image. Those stay in the physician's system.</p>
+        </div>
+        <label class="drop">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Choose a file</b>
+          <span>PDF, JPG or PNG, up to 20 MB</span>
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+        </label>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2 fld2--req"><label for="uRec">Client record</label>
+            <select id="uRec"><option>Michael Carter · RU-2419</option><option>Susan Delgado · RU-2402</option><option>Robert Nguyen · RU-2431</option><option>Linda Park · RU-2440</option></select></div>
+          <div class="fld2 fld2--req"><label for="uCat">Category</label>
+            <select id="uCat"><option>Itinerary</option><option>Booking confirmation</option><option>Travel insurance</option><option>Invoice or receipt</option><option>Consent form</option><option>Correspondence</option></select></div>
+          <div class="fld2"><label for="uName">Name shown to the client</label><input id="uName" placeholder="Itinerary, March 9 to 16"></div>
+          <div class="fld2">
+            <label for="uVis">Visibility</label>
+            <select id="uVis"><option>Visible to the client</option><option>Internal only</option></select>
+            <small>You can change this later, one document at a time, from the library.</small>
+          </div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>File document</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.5 ---- -->
+      <div class="dpanel" data-panel="advance" data-title="Change journey stage" hidden>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="aFrom">Currently</label>
+            <input id="aFrom" value="Arrival in Brazil, stage 7 of 11" readonly></div>
+          <div class="fld2 fld2--req"><label for="aTo">Move to</label>
+            <select id="aTo">
+              <option>Procedure, stage 8</option>
+              <option>Preparation, stage 6, going back</option>
+              <option>Recovery, stage 9</option>
+              <option>Experience, stage 10</option>
+              <option>Return home, stage 11</option>
+            </select></div>
+          <div class="fld2 fld2--req">
+            <label for="aWhy">Reason</label>
+            <textarea id="aWhy" placeholder="Why the stage is changing."></textarea>
+            <small>Required by the contract on every move, forward or back. It is written to the record with your name and the time.</small>
+          </div>
+          <label class="check"><input type="checkbox" id="aNotify" checked><span>Notify the client that their journey moved</span></label>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Change stage</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.3 ---- -->
+      <div class="dpanel" data-panel="assign" data-title="Refer to a physician" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p>The person receives the physician's screening instruction and completes it directly with them. <b>Nothing clinical comes back through here</b>, only the outcome.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="rWho">Referring</label><input id="rWho" value="James Whitfield · rhinoplasty · São Paulo" readonly></div>
+          <div class="fld2 fld2--req"><label for="rDoc">Physician</label>
+            <select id="rDoc">
+              <option>Dr. Helena Braga · plastic surgery · São Paulo</option>
+              <option>Dr. Camila Rocha · hair restoration · São Paulo</option>
+              <option>Dr. Paulo Serra · dentistry · São Paulo</option>
+            </select></div>
+          <div class="fld2"><label for="rHow">Send the screening instruction by</label>
+            <select id="rHow"><option>Email to the client</option><option>Copy the link, I will send it</option></select></div>
+          <div class="fld2"><label for="rDue">Chase if no answer after</label>
+            <select id="rDue"><option>3 days</option><option>5 days</option><option>7 days</option></select></div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Refer and send</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- --------------------------------------------------- A.3.10 ---- -->
+      <div class="dpanel" data-panel="charge" data-title="Set an amount due" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"/></svg>
+          <p><b>Hosted checkout only.</b> The client pays on the provider's page and no card detail ever reaches this platform.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2 fld2--req"><label for="cRec">Client record</label>
+            <select id="cRec"><option>Michael Carter · RU-2419</option><option>Susan Delgado · RU-2402</option><option>Linda Park · RU-2440</option></select></div>
+          <div class="drow">
+            <div class="fld2 fld2--req"><label for="cWhat">What it is for</label>
+              <select id="cWhat"><option>Deposit</option><option>Balance</option><option>Full package</option><option>Concierge extras</option></select></div>
+            <div class="fld2 fld2--req"><label for="cAmt">Amount, USD</label><input id="cAmt" inputmode="decimal" placeholder="6,200"></div>
+          </div>
+          <div class="fld2 fld2--req"><label for="cDue">Due date</label><input type="date" id="cDue"></div>
+          <label class="check"><input type="checkbox" id="cSend" checked><span>Email the checkout link as soon as I save</span></label>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Save and send link</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- --------------------------------------------------- A.3.11 ---- -->
+      <div class="dpanel" data-panel="content" data-title="Edit content" hidden>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="ctWhat">Editing</label>
+            <select id="ctWhat"><option>Procedure page · FUE hair transplant</option><option>Destination · São Paulo</option><option>Package · Solo Refresh</option><option>Welcome kit</option><option>Frequently asked questions</option></select></div>
+          <div class="fld2"><label for="ctTitle">Title</label><input id="ctTitle" value="FUE hair transplant"></div>
+          <div class="fld2"><label for="ctBody">Body</label>
+            <textarea id="ctBody" style="min-height:150px">Follicular unit extraction, the most common route. Individual follicles are moved one at a time, which leaves no linear scar and suits most patterns of loss.</textarea></div>
+          <div class="fld2">
+            <label for="ctState">State</label>
+            <select id="ctState"><option>Published</option><option>Draft</option></select>
+            <small>Published content appears on the public site and in the client portal.</small>
+          </div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Ahorre</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- --------------------------------------------------- A.3.11 ---- -->
+      <div class="dpanel" data-panel="savings" data-title="Edit a savings range" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/></svg>
+          <p>A range publishes only once a source is filled in <b>and</b> an Administrator approves it. Until then nothing is shown publicly and sales cannot quote it.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="svProc">Procedure</label>
+            <select id="svProc"><option>Dental veneers</option><option>Body contouring</option><option>Hair transplant</option><option>Lifting facial</option></select></div>
+          <div class="drow">
+            <div class="fld2 fld2--req"><label for="svLo">From</label><input id="svLo" value="50" inputmode="numeric"></div>
+            <div class="fld2 fld2--req"><label for="svHi">To</label><input id="svHi" value="65" inputmode="numeric"></div>
+          </div>
+          <div class="fld2 fld2--req">
+            <label for="svSrc">Source</label>
+            <input id="svSrc" placeholder="Published survey, year and publisher">
+            <small>Required. A range without a source cannot be approved.</small>
+          </div>
+          <label class="check"><input type="checkbox" id="svOk"><span>Approve for publication</span></label>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Ahorre</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- --------------------------------------------------- A.3.12 ---- -->
+      <div class="dpanel" data-panel="template" data-title="Edit email template" hidden>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="tmEvent">Event</label>
+            <select id="tmEvent"><option>Action needed</option><option>Assessment received</option><option>Medical result available</option><option>Appointment set or changed</option><option>Payment due</option><option>Arrival reminder</option></select></div>
+          <div class="fld2 fld2--req"><label for="tmSubj">Subject</label>
+            <input id="tmSubj" value="One item needs you before we can move on"></div>
+          <div class="fld2">
+            <label for="tmBody">Body</label>
+            <textarea id="tmBody" style="min-height:150px">Hello {{first_name}},
+
+One item on your checklist needs you: {{item_name}}, due {{due_date}}.
+
+You can take care of it from your portal.</textarea>
+            <small>Available fields: first_name, item_name, due_date, concierge_name, portal_link.</small>
+          </div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Save template</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Send me a test</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.1 ---- -->
+      <div class="dpanel" data-panel="member" data-title="Invite a team member" hidden>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2 fld2--req"><label for="mName">Full name</label><input id="mName"></div>
+          <div class="fld2 fld2--req"><label for="mMail">Correo corporativo</label><input type="email" id="mMail" placeholder="name@refreshu.com"></div>
+          <div class="fld2 fld2--req">
+            <label for="mRole">Role</label>
+            <select id="mRole"><option>Concierge</option><option>Ventas</option><option>Read only</option><option>Administrator</option></select>
+            <small>Sales signs in to the separate sales app. Every other role signs in to operations.</small>
+          </div>
+          <label class="check"><input type="checkbox" id="mMfa" checked disabled><span>Require two-factor authentication</span></label>
+          <label class="check"><input type="checkbox" id="mPass" checked disabled><span>Force a password change on first sign in</span></label>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Send invitation</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.1 ---- -->
+      <div class="dpanel" data-panel="manage" data-title="Manage member" hidden>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="gWho">Member</label><input id="gWho" value="Rafael Moraes · rafael@refreshu.com" readonly></div>
+          <div class="fld2"><label for="gRole">Role</label>
+            <select id="gRole"><option>Concierge</option><option>Ventas</option><option>Read only</option><option>Administrator</option></select></div>
+          <div class="fld2">
+            <label for="gState">Account state</label>
+            <select id="gState"><option>Active</option><option>Suspended</option><option>Deactivated</option></select>
+            <small>Suspending or deactivating ends every open session immediately.</small>
+          </div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Ahorre</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Reset two-factor</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.4 ---- -->
+      <div class="dpanel" data-panel="availability" data-title="Availability windows" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 10h17M8 3v4m8-4v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <p>Basic windows, so the itinerary builder knows when a consultation or a procedure can be placed. <b>Full availability management is out of scope</b> and sits in Exhibit D.</p>
+        </div>
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Dr. Camila Rocha<small>Clínica Vértice, Itaim Bibi</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row"><span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Consultations</b><span>Tuesday and Wednesday, 14:00 to 18:00</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Window active"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v8m0 0-3-2m3 2 3-2M7 21h10M12 11v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="row__t"><b>Procedures</b><span>Thursday, from 07:00, one per day</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="Window active"><span></span></button></span></div>
+              <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="row__t"><b>Away</b><span>April 14 to April 22</span></span><span class="row__x"><button class="vis" type="button" aria-pressed="false" aria-label="Window inactive"><span></span></button></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="drow">
+            <div class="fld2"><label for="avType">New window for</label>
+              <select id="avType"><option>Consultations</option><option>Procedures</option><option>Away</option></select></div>
+            <div class="fld2"><label for="avDay">Day</label>
+              <select id="avDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option></select></div>
+          </div>
+          <div class="drow">
+            <div class="fld2"><label for="avFrom">From</label><input type="time" id="avFrom" value="14:00"></div>
+            <div class="fld2"><label for="avTo">To</label><input type="time" id="avTo" value="18:00"></div>
+          </div>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Add window</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Done</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.4 ---- -->
+      <div class="dpanel" data-panel="physician" data-title="Physician profile" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p>Content marked as not authorised <b>cannot be published</b> on the public site or in the client portal, whatever is filled in below.</p>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="drow">
+            <div class="fld2 fld2--req"><label for="phName">Name</label><input id="phName" value="Dr. Camila Rocha"></div>
+            <div class="fld2 fld2--req"><label for="phSpec">Specialty</label><input id="phSpec" value="Hair restoration"></div>
+          </div>
+          <div class="drow">
+            <div class="fld2"><label for="phClinic">Clínica u hospital</label><input id="phClinic" value="Clínica Vértice, Itaim Bibi"></div>
+            <div class="fld2"><label for="phCity">Ubicación</label><input id="phCity" value="São Paulo"></div>
+          </div>
+          <div class="drow">
+            <div class="fld2"><label for="phYears">Años de experiencia</label><input id="phYears" value="14" inputmode="numeric"></div>
+            <div class="fld2"><label for="phIntl">International patients</label><input id="phIntl" value="400+" ></div>
+          </div>
+          <div class="fld2"><label for="phLang">Languages</label><input id="phLang" value="English, Portuguese, Spanish"></div>
+          <div class="fld2"><label for="phCred">Credenciales</label><input id="phCred" placeholder="Board, registration number, memberships"></div>
+          <div class="fld2"><label for="phBio">Biography</label><textarea id="phBio" placeholder="Shown on the physician profile in the client portal."></textarea></div>
+          <div class="fld2"><label for="phApproach">Approach</label><textarea id="phApproach" placeholder="How they work with patients."></textarea></div>
+          <div class="drow">
+            <div class="fld2"><label for="phPhoto">Photograph</label><input id="phPhoto" placeholder="Not uploaded"></div>
+            <div class="fld2"><label for="phVideo">Video</label><input id="phVideo" placeholder="Not uploaded"></div>
+          </div>
+          <div class="drow">
+            <div class="fld2"><label for="phBa">Galería de antes y después</label><input id="phBa" value="12 images"></div>
+            <div class="fld2"><label for="phClinicImg">Clinic images</label><input id="phClinicImg" value="6 images"></div>
+          </div>
+        </div></div>
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Content authorisation<small>The signed document is what makes it usable</small></span></div>
+          <div class="cpanel__b" style="display:grid;gap:11px">
+            <label class="check"><input type="checkbox" checked><span>Professional content authorised</span></label>
+            <label class="check"><input type="checkbox" checked><span>Patient content authorised, before and after included</span></label>
+            <div class="fld2"><label for="phDoc">Authorisation document</label><input id="phDoc" value="rocha-content-consent.pdf" readonly></div>
+          </div>
+        </div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Save profile</button>
+          <button class="cbtn cbtn--ghost" type="button" data-drawer="availability">Availability windows</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.5 ---- -->
+      <div class="dpanel" data-panel="stagetasks" data-title="Internal actions for this stage" hidden>
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Arrival in Brazil<small>What the team does before the stage can close</small></span></div>
+          <div class="cpanel__b">
+            <div class="chk">
+              <div class="chk__i chk__i--done">
+                <span class="chk__box chk__box--on"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="chk__t"><b>Confirm the driver 24h before landing</b><span>Beatriz L. · done Mar 8</span></span><span></span><span class="tag tag--ok">Done</span>
+              </div>
+              <div class="chk__i chk__i--done">
+                <span class="chk__box chk__box--on"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="chk__t"><b>Reconfirm the hotel room preferences</b><span>Beatriz L. · done Mar 7</span></span><span></span><span class="tag tag--ok">Done</span>
+              </div>
+              <div class="chk__i">
+                <span class="chk__box chk__box--wait"></span>
+                <span class="chk__t"><b>Check in with the client on arrival day</b><span>Beatriz L. · due today</span></span><span></span><span class="tag tag--warn">Open</span>
+              </div>
+              <div class="chk__i">
+                <span class="chk__box chk__box--wait"></span>
+                <span class="chk__t"><b>Confirm the pre-operative consultation with the clinic</b><span>Beatriz L. · due tomorrow</span></span><span></span><span class="tag tag--warn">Open</span>
+              </div>
+              <div class="chk__i">
+                <span class="chk__box chk__box--wait"></span>
+                <span class="chk__t"><b>Chase the outstanding travel insurance</b><span>Beatriz L. · overdue</span></span><span></span><span class="tag tag--risk">Overdue</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2"><label for="stNew">Add an action to this stage</label><input id="stNew" placeholder="What needs doing"></div>
+          <div class="drow">
+            <div class="fld2"><label for="stWho">Owner</label>
+              <select id="stWho"><option>Beatriz Lima</option><option>Rafael Moraes</option></select></div>
+            <div class="fld2"><label for="stDue">Due</label><input type="date" id="stDue"></div>
+          </div>
+          <label class="check"><input type="checkbox" checked><span>Add to the template, so every future client gets it</span></label>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Add action</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Done</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.7 ---- -->
+      <div class="dpanel" data-panel="checklist" data-title="Requirement template" hidden>
+        <div class="bound">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <p>A clinical item is tracked <b>by status only</b>. The checklist records that the physician confirmed an exam, and never holds the result.</p>
+        </div>
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Twelve items<small>Applied to every new record, adjustable per client</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row"><span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Passport valid beyond travel dates</b><span>Administrative · client uploads</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 21 4l-4 8 4 8-18-6.5v-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Arrival flight details</b><span>Travel · client uploads</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 21 4l-4 8 4 8-18-6.5v-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Return flight details</b><span>Travel · client uploads</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Travel insurance proof</b><span>Administrative · client uploads</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.5L13 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Signed consent forms</b><span>Administrative · client uploads</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16v11H4z" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Hotel confirmed</b><span>Travel · team completes</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16.5h16M6.5 16.5V9l2-3.5h7L18 9v7.5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Transport arranged</b><span>Travel · team completes</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Payments settled before the procedure</b><span>Administrative · team completes</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Medical questionnaire</b><span>Clinical · status only, physician confirms</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Blood work</b><span>Clinical · status only, physician confirms</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Cardiac evaluation</b><span>Clinical · status only, often not applicable</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Pre-operative consultation attended</b><span>Clinical · status only, physician confirms</span></span><span class="row__x"><button class="vis vis--on" type="button" aria-pressed="true" aria-label="In the template"><span></span></button></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Save template</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------- A.3.6 ---- -->
+      <!-- Registrar o que o medico liberou. Note o que nao existe aqui:
+           campo de diagnostico, campo de resultado de exame, e qualquer
+           botao que permita a operacao concluir clinicamente um item. -->
+      <div class="dpanel" data-panel="instruction" data-title="Record a released instruction" hidden>
+        <p class="dhint">The physician or the clinic authors the instruction and decides when it is released. This screen records what they released, so the client sees it unchanged and the itinerary can be coordinated around it.</p>
+
+        <div class="dfield">
+          <label for="insClient">Client</label>
+          <select id="insClient"><option>Michael Carter</option><option>Denise Park</option><option>Anthony Reyes</option></select>
+        </div>
+        <div class="dfield">
+          <label for="insDoc">Released by</label>
+          <select id="insDoc"><option>Dr. Juliana Buttros · Clínica Vértice</option></select>
+        </div>
+        <div class="dfield">
+          <label for="insCat">Category</label>
+          <select id="insCat">
+            <option>Pre-operative preparation</option>
+            <option>Required examinations or testing</option>
+            <option>Medication instructions</option>
+            <option>Food or fasting instructions</option>
+            <option>Day-of-procedure instructions</option>
+            <option>Post-procedure care</option>
+            <option>Activity restrictions</option>
+            <option>When activities may resume</option>
+            <option>Travel or flight clearance</option>
+            <option>Follow-up appointment</option>
+            <option>Warning signs and when to contact the clinic</option>
+            <option>Other physician-specific instruction</option>
+          </select>
+        </div>
+        <div class="dfield">
+          <label for="insTitle">Instruction title</label>
+          <input type="text" id="insTitle" placeholder="The night before and the morning of your procedure">
+        </div>
+        <div class="dfield">
+          <label for="insBody">Instruction text, exactly as released</label>
+          <textarea id="insBody" rows="4" placeholder="Paste the physician's wording. Do not summarise, rewrite or complete it."></textarea>
+          <span class="dhint">Displayed to the client word for word. If the clinic owns the official document, link it instead of retyping it.</span>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="insEff">Effective date</label><input type="date" id="insEff"></div>
+          <div class="dfield"><label for="insDue">Due date and time</label><input type="datetime-local" id="insDue"></div>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="insPri">Priority</label>
+            <select id="insPri"><option>Routine</option><option>Important</option><option>Urgent</option></select></div>
+          <div class="dfield"><label for="insVer">Version</label><input type="text" id="insVer" value="v1" readonly></div>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="insAct">Client action required</label>
+            <select id="insAct"><option>No</option><option>Yes</option></select></div>
+          <div class="dfield"><label for="insAck">Acknowledgment required</label>
+            <select id="insAck"><option>Yes</option><option>No</option></select></div>
+        </div>
+        <div class="dfield">
+          <label for="insEffect">Effect on the itinerary</label>
+          <input type="text" id="insEffect" placeholder="No activities until physician release, March 12 at 10:00">
+          <span class="dhint">This is what the concierge sees. It opens and closes options without RefreshU making the medical decision.</span>
+        </div>
+
+        <div class="dnote dnote--warn">
+          <b>Before you save</b>
+          <p>Confirm this is what the physician released, for this client. RefreshU displays it exactly as recorded and does not edit or interpret it. Recording a new version supersedes the previous one and keeps it in history; it never overwrites it. If the physician marked acknowledgment as required, the client is asked to read the new version again.</p>
+        </div>
+
+        <div class="dactions">
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+          <button class="cbtn" type="button">Record and publish to client</button>
+        </div>
+      </div>
+
+      <!-- Nova versao de documento legal -->
+      <div class="dpanel" data-panel="legaldoc" data-title="Publish a new document version" hidden>
+        <p class="dhint">Previous versions are kept and stay readable. Acceptance records point at the version that was accepted, so a new version never rewrites history.</p>
+        <div class="dfield">
+          <label for="lgDoc">Document</label>
+          <select id="lgDoc">
+            <option>Términos de uso</option><option>Política de privacidad</option><option>Aviso médico</option>
+            <option>Independent Provider Disclosure</option><option>Concierge Services Agreement</option>
+            <option>Cancellation &amp; Refund Policy</option><option>Travel &amp; Journey Terms</option>
+            <option>Travel Insurance</option><option>Payment &amp; Fee Disclosure</option>
+            <option>Electronic Communications</option><option>Marketing Consent</option>
+            <option>Cookies &amp; Privacy Choices</option><option>Accesibilidad</option>
+          </select>
+        </div>
+        <div class="drow">
+          <div class="dfield"><label for="lgVer">Version</label><input type="text" id="lgVer" placeholder="1.0"></div>
+          <div class="dfield"><label for="lgEff">Effective date</label><input type="date" id="lgEff"></div>
+        </div>
+        <div class="dfield">
+          <label for="lgMat">Is this a material change?</label>
+          <select id="lgMat"><option>No, wording only</option><option>Yes, ask every client to accept again</option></select>
+          <span class="dhint">A material change asks for renewed acceptance where the law requires it, and the request is logged per client.</span>
+        </div>
+        <div class="dfield">
+          <label for="lgAppr">Approved by</label>
+          <input type="text" id="lgAppr" placeholder="Name of counsel who approved this version">
+          <span class="dhint">A version without a recorded approver stays in attorney review and is not published.</span>
+        </div>
+        <div class="dactions">
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+          <button class="cbtn" type="button">Save version</button>
+        </div>
+      </div>
+
+      <div class="dpanel" data-panel="itinitem" data-title="Add itinerary item" hidden>
+        <div class="cpanel"><div class="cpanel__b" style="display:grid;gap:13px">
+          <div class="fld2 fld2--req"><label for="itTrack">Track</label>
+            <select id="itTrack"><option>Physician and clinical team</option><option>Viaje</option><option>RefreshU concierge</option><option>Patient's own time</option></select></div>
+          <div class="fld2 fld2--req"><label for="itWhat">What it is</label><input id="itWhat" placeholder="Dinner reservation, museum visit, driver"></div>
+          <div class="drow">
+            <div class="fld2 fld2--req"><label for="itDate">Date</label><input type="date" id="itDate"></div>
+            <div class="fld2"><label for="itTime">Time</label><input type="time" id="itTime"></div>
+          </div>
+          <div class="fld2"><label for="itWhere">Where</label><input id="itWhere" placeholder="Address or venue"></div>
+          <label class="check"><input type="checkbox" id="itPin"><span>Fixed for a medical reason, cannot be moved around</span></label>
+          <small style="font-size:11.5px;color:var(--on-paper-fine);line-height:1.5">The builder warns you if this lands inside a recovery window or clashes with a fixed medical item.</small>
+        </div></div>
+        <div class="dact">
+          <button class="cbtn" type="button" data-close>Add to itinerary</button>
+          <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer id="siteFoot"></footer>
+
+<script src="../assets/js/trust.js"></script>
+<script src="../assets/js/console.js"></script>
+<script src="../assets/js/foot.js" defer></script>
+</body>
+</html>

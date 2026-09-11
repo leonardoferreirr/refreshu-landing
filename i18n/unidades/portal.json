@@ -25,19 +25,18 @@
   "My Journey",
   "Tuesday, day 2 of 8 in São Paulo",
   "Contact My Concierge",
-  "<span></span>Evaluation",
-  "<span></span>Medical review",
-  "<span></span>Concierge call",
-  "<span></span>Doctor consult",
-  "<span></span>Confirmed",
-  "<span></span>Preparation",
-  "<span></span>In Brazil",
-  "<span></span>Procedure",
-  "<span></span>Recovery",
-  "<span></span>Experience",
-  "<span></span>Home",
-  "Where am I",
+  "Evaluation",
+  "Medical review",
+  "Concierge call",
+  "Doctor consult",
+  "Confirmed",
+  "Preparation",
   "In Brazil",
+  "Procedure",
+  "Recovery",
+  "Experience",
+  "Home",
+  "Where am I",
   "You arrived yesterday. Your pre operative process runs today and tomorrow.",
   "What is next",
   "Pre operative blood work",
@@ -80,7 +79,6 @@
   "Independent physician",
   "Dr. Juliana Buttros",
   "Clínica Vértice, São Paulo. Appointments below are set by the clinic and cannot be moved by RefreshU.",
-  "Procedure",
   "Thu, March 12",
   "Provider time. Medical care is provided exclusively by the independent physician and clinic. RefreshU coordinates logistics only.",
   "Assigned concierge",
@@ -107,11 +105,11 @@
   "RefreshU concierge itinerary · Trip RU-2026-00125 · Version 3 · Updated March 5, 2026, 4:30 PM<br>Concierge and logistics document only, not medical advice or medical clearance.",
   "<span>I understand that my RefreshU itinerary is a concierge and logistical planning document and may change, that RefreshU is not my medical provider, that all medical instructions come from my independent physician or clinic, and that third-party services are subject to their own terms, availability and changes. Accepted March 5, 2026.</span>",
   "One timeline holding four schedules together: yours, your travel, your physician and clinical team, and your concierge. Gaps are left on purpose, for delays and for whatever your physician requires.",
-  "<i class=\"k k--you\"></i>You",
-  "<i class=\"k k--trav\"></i>Travel",
-  "<i class=\"k k--med\"></i>Physician and clinic",
-  "<i class=\"k k--conc\"></i>Concierge",
-  "<i class=\"k k--pin\" aria-hidden=\"true\"></i>Fixed by your physician",
+  "You",
+  "Travel",
+  "Physician and clinic",
+  "Concierge",
+  "Fixed by your physician",
   "By day",
   "As a list",
   "<b>Monday</b><i>March 9</i>",
@@ -393,7 +391,7 @@
   "Separate from everything above, never a condition of any service, and off unless you turn it on.",
   "<span>RefreshU promotions, offers and news by email</span>",
   "<span>The same, by text message</span>",
-  "Changing this is recorded with the date, and you can opt out from any message. See <a href=\"#legal\" data-view=\"legal\">My Legal Documents"
+  "Changing this is recorded with the date, and you can opt out from any message. See <a href=\"#legal\" data-view=\"legal\">My Legal Documents</a>"
  ],
  "atributos": [
   {
@@ -407,18 +405,6 @@
   {
    "attr": "aria-label",
    "texto": "Portal"
-  },
-  {
-   "attr": "aria-label",
-   "texto": "Language"
-  },
-  {
-   "attr": "title",
-   "texto": "English"
-  },
-  {
-   "attr": "title",
-   "texto": "Português"
   },
   {
    "attr": "aria-label",

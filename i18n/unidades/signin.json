@@ -8,11 +8,12 @@
   "My Trip",
   "My Schedule",
   "My Doctor",
-  "My Requirements",
   "My Concierge",
   "Explore Brazil",
   "Documents",
-  "Payments",
+  "Extra services",
+  "My Profile",
+  "My Legal Documents",
   "Support",
   "Save. Refresh. Experience Brazil.",
   "Back to refreshu.com",
@@ -34,18 +35,6 @@
   {
    "attr": "aria-label",
    "texto": "RefreshU, home"
-  },
-  {
-   "attr": "aria-label",
-   "texto": "Language"
-  },
-  {
-   "attr": "title",
-   "texto": "English"
-  },
-  {
-   "attr": "title",
-   "texto": "Português"
   },
   {
    "attr": "aria-label",

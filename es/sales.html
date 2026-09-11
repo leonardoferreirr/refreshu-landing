@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales · RefreshU</title>
+<meta name="theme-color" content="#071b33">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/console.css">
+</head>
+<body class="console-body">
+
+<div class="demo" role="note">
+  <span class="demo__dot" aria-hidden="true"></span>
+  <p><b>Demonstration.</b> Every prospect, date and amount on these screens is sample data.</p>
+  <nav class="demo__go" aria-label="Platforms">
+    <a href="index.html">Public site</a>
+    <a href="console.html">Operaciones</a>
+    <a href="sales.html" aria-current="page">Ventas</a>
+    <a href="portal.html">Client portal</a>
+  </nav>
+</div>
+
+<div class="cs">
+
+  <!-- ==================================================== NAVEGACAO ===== -->
+  <aside class="cside" id="cside">
+
+    <div class="cside__top">
+      <a class="cside__brand" href="index.html" aria-label="RefreshU, inicio">
+        <img src="../assets/img/refreshu-mark.svg" alt="" width="20" height="28">
+        <span>refresh<b>U</b></span>
+      </a>
+      <span class="cside__app">Sales</span>
+    </div>
+
+    <nav class="cnav" aria-label="Ventas">
+
+      <a href="#pipeline" data-view="pipeline" data-sub="Your prospects by stage" class="is-on">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Pipeline</span>
+        <span class="cnav__n">18</span>
+      </a>
+
+      <a href="#prospects" data-view="prospects" data-sub="12 assigned to you, 6 in the unassigned pool">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M3 19a6 6 0 0 1 12 0M16.5 5.6a3.4 3.4 0 0 1 0 6.6M18 19a5.6 5.6 0 0 0-2.2-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Prospects</span>
+      </a>
+
+      <a href="#followups" data-view="followups" data-sub="What is due, and what slipped">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">Follow-ups</span>
+        <span class="cnav__n cnav__n--risk">2</span>
+      </a>
+
+      <a href="#packages" data-view="packages" data-sub="What you may quote, and what is approved to say">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16v11H4zM4 8l2-4h12l2 4M12 8v11" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <span class="cnav__lbl">Packages</span>
+      </a>
+
+      <a href="#performance" data-view="performance" data-sub="Your own funnel and your own conversion">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19h16M7 19v-5m5 5V8m5 11v-8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="cnav__lbl">My performance</span>
+      </a>
+
+    </nav>
+
+    <div class="cside__foot">
+      <div class="cme" style="margin-top:0;padding-top:0;border-top:0">
+        <span class="cme__av" aria-hidden="true">TC</span>
+        <span class="cme__id">
+          <b>Tomás Cardoso</b>
+          <i>Sales · São Paulo</i>
+        </span>
+        <a class="cme__out" href="signin-sales.html" aria-label="Sign out" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 17l5-5-5-5m5 5H9M11 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ====================================================== CONTEUDO ==== -->
+  <main class="cmain">
+
+    <header class="ctop">
+      <button class="cburger" id="cburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="cside">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="ctop__h">
+        <h1 class="ctop__t" id="viewTitle">Pipeline</h1>
+        <p class="ctop__sub" id="viewSub">Your prospects by stage</p>
+      </div>
+      <label class="csearch">
+        <span class="sr">Search prospects</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="search" placeholder="Search prospects">
+      </label>
+      <!--LANG--><div class="lang lang--light" role="group" aria-label="Language"><a class="lang__b" href="../sales.html" hreflang="en" title="English" aria-label="English"><span class="lang__c">EN</span></a><a class="lang__b is-on" href="sales.html" hreflang="es" aria-current="page" title="Español" aria-label="Español"><span class="lang__c">ES</span></a></div><!--/LANG-->
+      <button class="cbtn" type="button" data-drawer>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        New prospect
+      </button>
+    </header>
+
+    <!-- ================================================== PIPELINE ====== -->
+    <section class="cview" id="v-pipeline">
+
+      <div class="kpis">
+        <article class="kpi kpi--info"><span class="kpi__k">Assigned to you</span><b class="kpi__v">12</b><span class="kpi__d">6 unassigned in the pool</span></article>
+        <article class="kpi kpi--warn"><span class="kpi__k">Awaiting medical status</span><b class="kpi__v">3</b><span class="kpi__d">status only, no clinical detail</span></article>
+        <article class="kpi kpi--ok"><span class="kpi__k">Converted this month</span><b class="kpi__v">4</b><span class="kpi__d"><b>33%</b> of qualified</span></article>
+        <article class="kpi"><span class="kpi__k">Contact attempts today</span><b class="kpi__v">9</b><span class="kpi__d">2 follow-ups due</span></article>
+      </div>
+
+      <div class="sec-h">
+        <h2>Your funnel</h2>
+        <p>Drag a card to move a prospect. Everything you move is written to the record.</p>
+      </div>
+
+      <div class="funnel">
+        <div class="fcol">
+          <div class="fcol__h"><b>New enquiry</b><span class="fcol__n">6</span></div>
+          <div class="fcol__b">
+            <article class="fcard" data-open="prospect">
+              <span class="fcard__n">Thomas Ayers</span>
+              <span class="fcard__m"><span>Hair</span><span>·</span><span>Miami, FL</span></span>
+              <span class="fcard__f"><span class="tag tag--flat">Website</span><span class="tag tag--warn">Unassigned</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Nina Alvarez</span>
+              <span class="fcard__m"><span>Face</span><span>·</span><span>Tampa, FL</span></span>
+              <span class="fcard__f"><span class="tag tag--flat">Referral</span><span class="tag tag--warn">Unassigned</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Carl Weston</span>
+              <span class="fcard__m"><span>Dental</span><span>·</span><span>Houston, TX</span></span>
+              <span class="fcard__f"><span class="tag tag--flat">Phone</span><span class="tag tag--warn">Unassigned</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Contacted</b><span class="fcol__n">5</span></div>
+          <div class="fcol__b">
+            <article class="fcard" data-open="prospect">
+              <span class="fcard__n">Ellen Marsh</span>
+              <span class="fcard__m"><span>Face</span><span>·</span><span>April window</span></span>
+              <span class="fcard__f"><span class="who__av">TC</span><span class="tag tag--info">Call booked</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Derek Foss</span>
+              <span class="fcard__m"><span>Body</span><span>·</span><span>Undecided</span></span>
+              <span class="fcard__f"><span class="who__av">TC</span><span class="tag">2 attempts</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Medical review</b><span class="fcol__n">3</span></div>
+          <div class="fcol__b">
+            <article class="fcard" data-open="prospect">
+              <span class="fcard__n">James Whitfield</span>
+              <span class="fcard__m"><span>Rhinoplasty</span><span>·</span><span>Denver, CO</span></span>
+              <span class="fcard__f"><span class="who__av">TC</span><span class="tag tag--warn">Awaiting status</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Daniel Kroft</span>
+              <span class="fcard__m"><span>Body</span><span>·</span><span>Boston, MA</span></span>
+              <span class="fcard__f"><span class="who__av">TC</span><span class="tag tag--risk">More info needed</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Proposal</b><span class="fcol__n">2</span></div>
+          <div class="fcol__b">
+            <article class="fcard">
+              <span class="fcard__n">Linda Park</span>
+              <span class="fcard__m"><span>Companion Refresh</span><span>·</span><span>Apr 2</span></span>
+              <span class="fcard__f"><span class="who__av">TC</span><span class="tag tag--info">Package sent</span></span>
+            </article>
+          </div>
+        </div>
+
+        <div class="fcol">
+          <div class="fcol__h"><b>Won</b><span class="fcol__n">4</span></div>
+          <div class="fcol__b">
+            <article class="fcard">
+              <span class="fcard__n">Michael Carter</span>
+              <span class="fcard__m"><span>Solo Refresh</span><span>·</span><span>Mar 9</span></span>
+              <span class="fcard__f"><span class="who__av">TC</span><span class="tag tag--ok">Handed over</span></span>
+            </article>
+            <article class="fcard">
+              <span class="fcard__n">Robert Nguyen</span>
+              <span class="fcard__m"><span>Solo Refresh</span><span>·</span><span>Mar 10</span></span>
+              <span class="fcard__f"><span class="who__av">TC</span><span class="tag tag--ok">Handed over</span></span>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="bound" style="margin-top:16px">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>Medical review shows you a status, and nothing else.</b> Physician instructions, recovery restrictions and any note attached to the outcome belong to operations. Once a prospect is won, the journey moves to the concierge team and this app hands it over.</p>
+      </div>
+
+    </section>
+
+    <!-- ================================================= PROSPECTS ====== -->
+    <section class="cview" id="v-prospects" hidden>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Your prospects</span>
+          <span class="cpanel__a">
+            <div class="filters">
+              <select class="fsel" aria-label="Owner"><option>Assigned to me</option><option>Unassigned pool</option><option>Everything I can see</option></select>
+              <select class="fsel" aria-label="Stage"><option>All stages</option><option>New enquiry</option><option>Contacted</option><option>Medical review</option><option>Proposal</option><option>Won</option></select>
+              <select class="fsel" aria-label="Interest"><option>All interests</option><option>Cabello</option><option>Face</option><option>Body</option><option>Dental</option></select>
+            </div>
+          </span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead>
+                <tr><th>Prospect</th><th>Interest</th><th>Source</th><th>Stage</th><th>Medical status</th><th>Travel window</th><th>Next action</th></tr>
+              </thead>
+              <tbody>
+                <tr data-open="prospect">
+                  <td><span class="who"><span class="who__av">JW</span><span class="who__t"><b>James Whitfield</b><span>Denver, CO</span></span></span></td>
+                  <td class="nw">Rinoplastia</td><td class="nw">Website</td>
+                  <td class="nw"><span class="tag tag--info">Medical review</span></td>
+                  <td class="nw"><span class="tag tag--warn">In review</span></td>
+                  <td class="nw">April, flexible</td>
+                  <td class="nw"><span class="tag tag--risk">Call overdue</span></td>
+                </tr>
+                <tr data-open="prospect">
+                  <td><span class="who"><span class="who__av">LP</span><span class="who__t"><b>Linda Park</b><span>Seattle, WA</span></span></span></td>
+                  <td class="nw">Body contouring</td><td class="nw">Referral</td>
+                  <td class="nw"><span class="tag tag--info">Proposal</span></td>
+                  <td class="nw"><span class="tag tag--ok">Candidate</span></td>
+                  <td class="nw">Apr 2 – 12</td>
+                  <td class="nw"><span class="tag tag--warn">Send comparison</span></td>
+                </tr>
+                <tr data-open="prospect">
+                  <td><span class="who"><span class="who__av">EM</span><span class="who__t"><b>Ellen Marsh</b><span>Portland, OR</span></span></span></td>
+                  <td class="nw">Face</td><td class="nw">Website</td>
+                  <td class="nw"><span class="tag tag--flat">Contacted</span></td>
+                  <td class="nw"><span class="tag tag--warn">In review</span></td>
+                  <td class="nw">April, flexible</td>
+                  <td class="nw"><span class="tag">Book call</span></td>
+                </tr>
+                <tr data-open="prospect">
+                  <td><span class="who"><span class="who__av">DK</span><span class="who__t"><b>Daniel Kroft</b><span>Boston, MA</span></span></span></td>
+                  <td class="nw">Body</td><td class="nw">Website</td>
+                  <td class="nw"><span class="tag tag--info">Medical review</span></td>
+                  <td class="nw"><span class="tag tag--risk">More info needed</span></td>
+                  <td class="nw">Undecided</td>
+                  <td class="nw"><span class="tag tag--warn">Notify prospect</span></td>
+                </tr>
+                <tr data-open="prospect">
+                  <td><span class="who"><span class="who__av">DF</span><span class="who__t"><b>Derek Foss</b><span>Austin, TX</span></span></span></td>
+                  <td class="nw">Body</td><td class="nw">Phone</td>
+                  <td class="nw"><span class="tag tag--flat">Contacted</span></td>
+                  <td class="nw"><span class="tag tag--flat">Not sent</span></td>
+                  <td class="nw">Undecided</td>
+                  <td class="nw"><span class="tag">Follow up Friday</span></td>
+                </tr>
+                <tr data-open="prospect">
+                  <td><span class="who"><span class="who__av">TA</span><span class="who__t"><b>Thomas Ayers</b><span>Miami, FL</span></span></span></td>
+                  <td class="nw">Cabello</td><td class="nw">Website</td>
+                  <td class="nw"><span class="tag tag--flat">New enquiry</span></td>
+                  <td class="nw"><span class="tag tag--flat">Not sent</span></td>
+                  <td class="nw">June, flexible</td>
+                  <td class="nw"><span class="tag tag--warn">Claim it</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================== PROSPECT ====== -->
+    <section class="cview" id="v-prospect" hidden>
+
+      <div class="rhead">
+        <span class="rhead__av">JW</span>
+        <span class="rhead__id">
+          <h2>James Whitfield</h2>
+          <span class="rhead__m">
+            <span>Denver, Colorado</span><span>·</span>
+            <span>j.whitfield@example.com</span><span>·</span>
+            <span>+1 303 555 0192</span><span>·</span>
+            <span>Prospect #PR-1188</span>
+          </span>
+        </span>
+        <span class="rhead__a">
+          <button class="cbtn cbtn--ghost" type="button">Log attempt</button>
+          <button class="cbtn cbtn--ghost" type="button">Book concierge call</button>
+          <button class="cbtn" type="button" id="btCreateAccount">Create client account</button>
+        </span>
+      </div>
+
+      <div class="rec" style="margin-top:16px">
+
+        <div style="display:grid;gap:16px">
+
+          <!-- Criacao da conta da cliente. E aqui, e so aqui, que uma conta
+               do portal nasce: o site publico nao tem mais cadastro aberto.
+               Quem abre e o comercial, depois do fechamento. -->
+          <div class="cpanel" id="acctPanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Client account<small>Created here, after the deal closes</small></span>
+              <span class="cpanel__a"><span class="tag tag--wait" id="acctTag">Not created</span></span>
+            </div>
+            <div class="cpanel__b" style="display:grid;gap:13px">
+              <div class="bound">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                <p><b>There is no public sign up.</b> The client portal has no open registration: an account exists because someone in sales or admin created it against a closed deal. The invitation goes to the email on this record, and the client sets their own password.</p>
+              </div>
+
+              <div style="display:grid;gap:5px">
+                <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="acctMail">Invitation goes to</label>
+                <input class="fsel" type="email" id="acctMail" style="height:38px;width:100%;background-image:none;padding-right:10px" value="j.whitfield@example.com">
+              </div>
+
+              <div style="display:grid;gap:5px">
+                <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="acctDeal">What closed</label>
+                <select class="fsel" id="acctDeal" style="height:38px;width:100%">
+                  <option value="">Select the package that closed</option>
+                  <option>Essential</option><option>Signature</option><option>Signature Plus</option>
+                  <option>Elite</option><option>Elite Private</option>
+                </select>
+              </div>
+
+              <label class="check" style="align-items:flex-start;gap:9px;display:flex">
+                <input type="checkbox" id="acctConfirm">
+                <span style="font-size:12.5px;line-height:1.5;color:var(--on-paper-dim)">I confirm the deal is closed and that this person agreed to receive a RefreshU account. Creating an account is recorded with my name and the time.</span>
+              </label>
+
+              <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+                <button class="cbtn" type="button" id="acctGo" disabled>Send the invitation</button>
+                <span id="acctMsg" style="font-size:12.5px;color:var(--on-paper-fine)"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Medical review<small>Status only, and that is the whole screen</small></span>
+              <span class="cpanel__a"><span class="tag tag--warn">In review</span></span>
+            </div>
+            <div class="cpanel__b" style="display:grid;gap:12px">
+              <div class="bound">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                <p><b>You see six possible states and no clinical content.</b> Awaiting submission, submitted, in review, candidate, not a candidate, more information needed. If the physician sends instructions, they go to operations, not here.</p>
+              </div>
+              <div class="rows" style="margin:-4px 0">
+                <div class="row" style="padding-inline:0">
+                  <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Referred to a physician</b><span>February 24</span></span>
+                  <span class="row__x"></span>
+                </div>
+                <div class="row" style="padding-inline:0">
+                  <span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                  <span class="row__t"><b>In review</b><span>5 days · operations is chasing it</span></span>
+                  <span class="row__x"><span class="tag tag--risk">Slow</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Contact history<small>Every attempt and what came of it</small></span>
+              <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Log attempt</button></span>
+            </div>
+            <div class="cpanel__b cpanel__b--flush">
+              <div class="rows">
+                <div class="row">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 5 5.6 1.5 1.5 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Call, no answer</b><span>Monday, 14:20 · voicemail left</span></span>
+                  <span class="row__x"><span class="tag tag--flat">Attempt 2</span></span>
+                </div>
+                <div class="row">
+                  <span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m3.6 7 8.4 6 8.4-6" stroke="currentColor" stroke-width="1.7"/></svg></span>
+                  <span class="row__t"><b>Email opened</b><span>Sunday, 09:05 · package overview</span></span>
+                  <span class="row__x"><span class="tag tag--ok">Engaged</span></span>
+                </div>
+                <div class="row">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 5 5.6 1.5 1.5 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                  <span class="row__t"><b>Call, spoke for 12 minutes</b><span>February 25 · wants April, worried about time off work</span></span>
+                  <span class="row__x"><span class="tag tag--flat">Attempt 1</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h">
+              <span class="cpanel__t">Commercial notes<small>Marked commercial, never clinical</small></span>
+              <span class="cpanel__a"><button class="cbtn cbtn--ghost cbtn--sm" type="button">Add note</button></span>
+            </div>
+            <div class="cpanel__b" style="display:grid;gap:9px">
+              <div class="note">
+                <span class="note__h"><b>Tomás Cardoso</b> · Feb 25, 15:10</span>
+                <p>Comparing us with a clinic in Turkey. Price is close, so the decision will be the concierge side and the recovery week. Send the Companion package even though he is travelling alone.</p>
+              </div>
+              <div class="note">
+                <span class="note__h"><b>Tomás Cardoso</b> · Feb 24, 10:02</span>
+                <p>Came through the website. Wants April so he can use the same time off he already booked.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="rec__side">
+          <div class="cpanel">
+            <div class="cpanel__h"><span class="cpanel__t">Prospect</span></div>
+            <div class="cpanel__b">
+              <dl class="facts">
+                <div><dt>Stage</dt><dd>Medical review</dd></div>
+                <div><dt>Interest</dt><dd>Rinoplastia</dd></div>
+                <div><dt>Destination</dt><dd>São Paulo</dd></div>
+                <div><dt>Package interest</dt><dd>Undecided</dd></div>
+                <div><dt>Travel window</dt><dd>April, flexible</dd></div>
+                <div><dt>Companion</dt><dd>None</dd></div>
+                <div><dt>Source</dt><dd>Website assessment</dd></div>
+                <div><dt>Owner</dt><dd>Tomás Cardoso</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="cpanel">
+            <div class="cpanel__h"><span class="cpanel__t">Next action</span></div>
+            <div class="cpanel__b" style="display:grid;gap:9px">
+              <div class="conflict">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8.5v4.5m0 3.2v.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/></svg>
+                <p><b>Call overdue since yesterday.</b> Two attempts already, so try the evening window this time.</p>
+              </div>
+              <button class="cbtn" type="button">Log attempt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================ FOLLOW-UPS ====== -->
+    <section class="cview" id="v-followups" hidden>
+
+      <div class="cpanel">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Follow-ups<small>Yours, with a due date</small></span>
+          <span class="cpanel__a"><button class="cbtn cbtn--sm" type="button">Add follow-up</button></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="rows">
+            <div class="row">
+              <span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Call James Whitfield</b><span>Due yesterday · 2 attempts, no answer · try the evening</span></span>
+              <span class="row__x"><span class="tag tag--risk">Overdue</span><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-open="prospect">Open</button></span>
+            </div>
+            <div class="row">
+              <span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Send package comparison to Linda Park</b><span>Due today · asked for Companion against Full, side by side</span></span>
+              <span class="row__x"><span class="tag tag--warn">Today</span><button class="cbtn cbtn--ghost cbtn--sm" type="button" data-goto="packages">Open</button></span>
+            </div>
+            <div class="row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Book the concierge conversation for Ellen Marsh</b><span>Due Thursday · free after 3pm Pacific</span></span>
+              <span class="row__x"><span class="tag">Thursday</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Schedule</button></span>
+            </div>
+            <div class="row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Follow up with Derek Foss</b><span>Due Friday · still undecided between body and face</span></span>
+              <span class="row__x"><span class="tag">Friday</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Open</button></span>
+            </div>
+            <div class="row">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+              <span class="row__t"><b>Claim Thomas Ayers from the pool</b><span>Due Friday · came in 2 days ago, still unassigned</span></span>
+              <span class="row__x"><span class="tag">Friday</span><button class="cbtn cbtn--ghost cbtn--sm" type="button">Claim</button></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================== PACKAGES ====== -->
+    <section class="cview" id="v-packages" hidden>
+
+      <div class="bound" style="margin-bottom:16px">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>Only approved savings ranges appear here.</b> A range without a cleared source is not shown at all, so anything on this screen is safe to say out loud on a call.</p>
+      </div>
+
+      <div class="pkgkey">
+        <span class="pkey pkey--inc">Included in the fee</span>
+        <span class="pkey pkey--coord">Coordination included</span>
+        <span class="pkey pkey--third">Client pays the third party</span>
+        <span class="pkey pkey--med">Independent medical service</span>
+      </div>
+
+      <div class="g3">
+        <article class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">RefreshU Essential<small>Organised, flexible coordination</small></span></div>
+          <div class="cpanel__b">
+            <p class="pkgdesc">Para quien viaja por su cuenta y quiere lo importante organizado sin perder flexibilidad.</p>
+            <ul class="pkglist">
+              <li data-k="inc">Portal access, onboarding and non-medical coordination</li>
+              <li data-k="inc">Referral to an independent physician and coordination of the review</li>
+              <li data-k="inc">Cronograma de viaje personalizado y planificación de la llegada</li>
+              <li data-k="coord">Flight-itinerary coordination for appointments</li>
+              <li data-k="third">Recomendaciones de hotel y de transporte terrestre</li>
+              <li data-k="inc">Travel-readiness checklist and insurance status tracking</li>
+              <li data-k="inc">Pre-departure concierge call and destination guide</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">RefreshU Signature<small>Arrival to departure</small></span></div>
+          <div class="cpanel__b">
+            <p class="pkgdesc">Everything in Essential, plus the full coordinated stay.</p>
+            <ul class="pkglist">
+              <li data-k="coord">Recepción en el aeropuerto y transporte terrestre privado</li>
+              <li data-k="coord">Selección de hotel y ayuda con la reserva</li>
+              <li data-k="inc">A local concierge point of contact</li>
+              <li data-k="coord">Restaurants, grocery, laundry, barber, nails and wellness</li>
+              <li data-k="coord">Pharmacy pickup for physician-directed items</li>
+              <li data-k="inc">Welcome kit and recovery-logistics coordination</li>
+              <li data-k="inc">Daily non-medical check-in</li>
+            </ul>
+            <span class="tag tag--ok">Most complete</span>
+          </div>
+        </article>
+
+        <article class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">RefreshU White Glove<small>Dedicated concierge</small></span></div>
+          <div class="cpanel__b">
+            <p class="pkgdesc">Everything in Signature, plus premium personalised support.</p>
+            <ul class="pkglist">
+              <li data-k="inc">Un concierge RefreshU dedicado</li>
+              <li data-k="coord">Premium or private transportation throughout</li>
+              <li data-k="coord">Premium hotel or suite and room preparation</li>
+              <li data-k="coord">Barber, beauty and wellness to the hotel</li>
+              <li data-k="coord">Personal shopping, errands, companion itinerary</li>
+              <li data-k="inc">Non-medical translation assistance</li>
+            </ul>
+            <p class="pkgnote">Say on the call: a dedicated concierge is a hospitality and logistics professional, not a private nurse or healthcare professional.</p>
+          </div>
+        </article>
+
+        <article class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">RefreshU Companion &amp; Family<small>Two or more travelling</small></span></div>
+          <div class="cpanel__b">
+            <p class="pkgdesc">For couples, friends or family, whether one person or several are seeing providers.</p>
+            <ul class="pkglist">
+              <li data-k="inc">One coordinated group itinerary and shared transfers</li>
+              <li data-k="coord">Planificación del alojamiento para el grupo</li>
+              <li data-k="med">Separate physician coordination per adult</li>
+              <li data-k="coord">Companion transportation, activities and itinerary</li>
+              <li data-k="third">Babysitting and childcare vendor coordination</li>
+            </ul>
+            <p class="pkgnote">Each adult receiving medical services completes their own physician review, consents, provider agreement and medical payment. One person&rsquo;s physician decision never applies to another traveller.</p>
+          </div>
+        </article>
+
+        <article class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">RefreshU Bespoke<small>Quoted individually</small></span></div>
+          <div class="cpanel__b">
+            <p class="pkgdesc">When travel, hospitality, companion or lifestyle requirements go beyond the standard packages.</p>
+            <ul class="pkglist">
+              <li data-k="coord">Luxury hotel or suite, chauffeur, executive transfers</li>
+              <li data-k="coord">Private guide, private chef, personal stylist</li>
+              <li data-k="coord">Fine dining and special reservations</li>
+              <li data-k="coord">Extended concierge support and extended stay</li>
+            </ul>
+            <p class="pkgnote">Quote individually and show it in the Service Summary before purchase. Never improvise a price on a call.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="bound" style="margin:16px 0">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>Never part of a package, and never quoted as one.</b> Physician consultation, evaluation and candidacy, the procedure, anesthesia, hospital and facility services, laboratory and diagnostic testing, interpretation of results, prescriptions, clinical nursing, medical clearance, informed consent, aftercare and emergency services. These are the physician&rsquo;s or the clinic&rsquo;s, charged separately and paid to them. A single combined total would make RefreshU look like the seller of medical care.</p>
+      </div>
+
+      <div class="cpanel" style="margin-top:16px">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Approved savings ranges<small>Against typical United States pricing</small></span>
+        </div>
+        <div class="cpanel__b cpanel__b--flush">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Procedure</th><th>Range you may quote</th><th>Source</th></tr></thead>
+              <tbody>
+                <tr><td>Hair transplant</td><td class="nw"><b>55 – 70%</b></td><td class="nw">ISHRS 2025 survey</td></tr>
+                <tr><td>Lifting facial</td><td class="nw"><b>60 – 72%</b></td><td class="nw">ASPS 2025 fee report</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty" style="padding:22px 20px">
+            <p style="font-size:12.5px;color:var(--on-paper-dim);max-width:52ch">Dental veneers and body contouring are not listed because their sources have not cleared approval. Do not quote a number for those on a call.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =============================================== PERFORMANCE ====== -->
+    <section class="cview" id="v-performance" hidden>
+
+      <div class="kpis">
+        <article class="kpi kpi--ok"><span class="kpi__k">Won this month</span><b class="kpi__v">4</b><span class="kpi__d"><b>+1</b> vs last month</span></article>
+        <article class="kpi kpi--info"><span class="kpi__k">Qualified to won</span><b class="kpi__v">33<small>%</small></b><span class="kpi__d">team average 29%</span></article>
+        <article class="kpi"><span class="kpi__k">Median days to win</span><b class="kpi__v">18</b><span class="kpi__d">from first contact</span></article>
+        <article class="kpi kpi--warn"><span class="kpi__k">Lost, medical</span><b class="kpi__v">2</b><span class="kpi__d">not a candidate</span></article>
+      </div>
+
+      <div class="cpanel" style="margin-top:16px">
+        <div class="cpanel__h">
+          <span class="cpanel__t">Where your prospects go<small>Last 90 days, 41 prospects</small></span>
+        </div>
+        <div class="cpanel__b">
+          <div class="tw">
+            <table class="ctbl">
+              <thead><tr><th>Stage</th><th class="num">Entered</th><th class="num">Moved on</th><th>Conversion</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><b>New enquiry</b></td><td class="num">41</td><td class="num">34</td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:83%"></i></span><span class="prog__l">83%</span></span></td>
+                </tr>
+                <tr>
+                  <td><b>Contacted</b></td><td class="num">34</td><td class="num">27</td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:79%"></i></span><span class="prog__l">79%</span></span></td>
+                </tr>
+                <tr>
+                  <td><b>Medical review</b></td><td class="num">27</td><td class="num">21</td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:78%"></i></span><span class="prog__l">78% · 6 not candidates</span></span></td>
+                </tr>
+                <tr>
+                  <td><b>Proposal</b></td><td class="num">21</td><td class="num">12</td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:57%"></i></span><span class="prog__l">57%</span></span></td>
+                </tr>
+                <tr>
+                  <td><b>Won</b></td><td class="num">12</td><td class="num">—</td>
+                  <td><span class="prog"><span class="prog__b"><i style="width:29%"></i></span><span class="prog__l">29% of everything you touched</span></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="g2" style="margin-top:16px">
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Why you lost<small>Last 90 days</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row"><span class="ico ico--warn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Not a candidate</b><span>The physician declined. Nothing you could have done</span></span><span class="row__x"><b>6</b></span></div>
+              <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="row__t"><b>Timing</b><span>Wanted a window we could not staff</span></span><span class="row__x"><b>5</b></span></div>
+              <div class="row"><span class="ico ico--risk"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Chose another provider</b><span>Four went to Turkey, one stayed in the United States</span></span><span class="row__x"><b>5</b></span></div>
+              <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Went quiet</b><span>Three or more attempts, no answer</span></span><span class="row__x"><b>13</b></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cpanel">
+          <div class="cpanel__h"><span class="cpanel__t">Where they came from<small>Last 90 days</small></span></div>
+          <div class="cpanel__b cpanel__b--flush">
+            <div class="rows">
+              <div class="row"><span class="ico ico--info"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c2.3 2.5 3.5 5.4 3.5 8.5s-1.2 6-3.5 8.5" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="row__t"><b>Website assessment</b><span>Best conversion, 34%</span></span><span class="row__x"><b>26</b></span></div>
+              <div class="row"><span class="ico ico--ok"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M3 19a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="row__t"><b>Referral</b><span>Fewest, but 50% conversion</span></span><span class="row__x"><b>8</b></span></div>
+              <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 5 5.6 1.5 1.5 0 0 1 6.5 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="row__t"><b>Phone</b><span>Lowest conversion, 14%</span></span><span class="row__x"><b>7</b></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- ======================================================= DRAWER ====== -->
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
+  <div class="drawer__veil" data-close></div>
+  <div class="drawer__p">
+    <div class="drawer__h">
+      <h2 id="drawerTitle">New prospect</h2>
+      <button class="cbtn cbtn--ghost cbtn--icon" type="button" data-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="drawer__b">
+
+      <div class="bound">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 5 6.5v5c0 4 2.9 7.7 7 9 4.1-1.3 7-5 7-9v-5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <p><b>Commercial fields only.</b> Someone who came by phone or referral starts here. The medical side never begins in this app: it starts when operations refers the person to a physician.</p>
+      </div>
+
+      <div class="cpanel">
+        <div class="cpanel__b" style="display:grid;gap:13px">
+          <div style="display:grid;gap:5px">
+            <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="pName">Full name</label>
+            <input class="fsel" id="pName" style="height:38px;width:100%;background-image:none;padding-right:10px" placeholder="First and last name">
+          </div>
+          <div style="display:grid;gap:5px">
+            <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="pMail">Correo electrónico</label>
+            <input class="fsel" type="email" id="pMail" style="height:38px;width:100%;background-image:none;padding-right:10px" placeholder="name@example.com">
+          </div>
+          <div style="display:grid;gap:5px">
+            <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="pInt">Area of interest</label>
+            <select class="fsel" id="pInt" style="height:38px;width:100%"><option>Cabello</option><option>Face</option><option>Body</option><option>Dental</option></select>
+          </div>
+          <div style="display:grid;gap:5px">
+            <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="pSrc">Source</label>
+            <select class="fsel" id="pSrc" style="height:38px;width:100%"><option>Phone</option><option>Referral</option><option>Event</option><option>Website</option></select>
+          </div>
+          <div style="display:grid;gap:5px">
+            <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="pWin">Travel window</label>
+            <input class="fsel" id="pWin" style="height:38px;width:100%;background-image:none;padding-right:10px" placeholder="April, flexible">
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px">
+        <button class="cbtn" type="button" data-close>Create prospect</button>
+        <button class="cbtn cbtn--ghost" type="button" data-close>Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer id="siteFoot"></footer>
+
+<script src="../assets/js/console.js"></script>
+<script src="../assets/js/foot.js" defer></script>
+</body>
+</html>

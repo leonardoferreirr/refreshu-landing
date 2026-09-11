@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restablecer su contraseña · RefreshU</title>
+<meta name="description" content="Ingrese a su portal de clienta RefreshU: su recorrido, su viaje, su agenda, su médico y su concierge en un solo lugar.">
+<meta name="theme-color" content="#071b33">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/refreshu-mark.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/auth-team.css">
+</head>
+<body class="auth-body">
+
+<main class="auth">
+
+  <!-- Painel da marca: mostra o que existe atras da porta -->
+  <aside class="auth__side">
+    <img class="auth__bg" src="../assets/img/wellness.webp" alt="" width="1200" height="900" decoding="async">
+    <div class="auth__veil"></div>
+    <div class="auth__sideIn">
+      <a class="brand brand--foot" href="index.html" aria-label="RefreshU, inicio">
+        <img class="brand__mark" src="../assets/img/refreshu-mark.svg" alt="" width="26" height="37">
+        <span class="brand__word">refresh<b>U</b></span>
+      </a>
+
+      <div>
+        <p class="authk">Contraseña</p>
+        <p class="display auth__claim">De vuelta en su recorrido en dos pasos.</p>
+        <ul class="auth__list">
+          <li>Mi recorrido</li>
+          <li>Mi viaje</li>
+          <li>Mi agenda</li>
+          <li>Mi médico</li>
+          <li>Mi concierge</li>
+          <li>Explorar Brasil</li>
+          <li>Documentos</li>
+          <li>Servicios adicionales</li>
+          <li>Mi perfil</li>
+          <li>Mis documentos legales</li>
+          <li>Soporte</li>
+        </ul>
+      </div>
+
+      <p class="auth__sig">Ahorre. Renuévese. Viva Brasil.</p>
+    </div>
+  </aside>
+
+  <!-- Formulario -->
+  <section class="auth__main">
+    <div class="auth__topbar">
+      <a class="auth__back" href="index.html">Volver a refreshu.com</a>
+      <!--LANG--><div class="lang lang--light" role="group" aria-label="Language"><a class="lang__b" href="../recover.html" hreflang="en" title="English" aria-label="English"><span class="lang__c">EN</span></a><a class="lang__b is-on" href="recover.html" hreflang="es" aria-current="page" title="Español" aria-label="Español"><span class="lang__c">ES</span></a></div><!--/LANG-->
+    </div>
+
+    <div class="auth__box">
+      <h1 class="display auth__t">Restablezca su contraseña</h1>
+      <p class="auth__sub">Díganos su correo y le enviamos un código de seis dígitos. ¿Ya lo recordó? <a href="signin.html">Inicie sesión</a>.</p>
+
+      <form class="auth__form" id="resetForm" novalidate>
+        <div class="fld">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+          <span class="fld__err" data-err-for="email">Ingrese el correo de su cuenta.</span>
+        </div>
+
+        <div class="mfa" id="mfa" hidden>
+          <div class="mfa__h">
+            <span class="mfa__i" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="m3.6 7 8.4 6 8.4-6" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <span>
+              <b>Revise su correo</b>
+              <i>Seis dígitos, válidos por 15 minutos</i>
+            </span>
+          </div>
+          <div class="mfa__in">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 1">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 2">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 3">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 4">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 5">
+            <input inputmode="numeric" maxlength="1" aria-label="Dígito 6">
+          </div>
+          <p class="mfa__aux">¿No llegó nada? <a href="#resend">Envíelo de nuevo</a>.</p>
+        </div>
+
+        <div class="fld" id="newPassWrap" hidden>
+          <label for="password">Nueva contraseña</label>
+          <div class="fld__pass">
+            <input type="password" id="password" name="password" autocomplete="new-password">
+            <button type="button" class="peek" id="peek" aria-label="Mostrar contraseña" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <span class="fld__err" data-err-for="password">Al menos 10 caracteres.</span>
+        </div>
+
+        <button type="submit" class="btn btn--full" id="resetBtn">Enviar el código</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<script src="../assets/js/auth-account.js" defer></script>
+</body>
+</html>

@@ -57,6 +57,13 @@ TOKEN = re.compile(r'<[^>]*>|[^<]+', re.S)
 TAG = re.compile(r'<\s*(/?)\s*([a-zA-Z][\w:-]*)([^>]*?)(/?)\s*>', re.S)
 ATTR = re.compile(r'([a-zA-Z_:][\w:.-]*)\s*=\s*"([^"]*)"', re.S)
 
+# Sobra na ponta esquerda de uma unidade: uma tag de fechamento que nao abriu
+# aqui dentro, ou um elemento vazio. Nos dois casos nao e texto e sai fora.
+SOBRA_ESQ = re.compile(
+    r'\s*(?:</[a-zA-Z][\w:-]*\s*>|<([a-zA-Z][\w:-]*)[^>]*>\s*</\1\s*>|'
+    r'<[a-zA-Z][\w:-]*[^>]*/>)\s*'
+)
+
 # Trecho que nao vale traducao: so numero, simbolo, entidade ou espaco.
 SO_SIMBOLO = re.compile(
     r'^(?:\s|&[a-zA-Z]+;|&#\d+;|[\d.,:;/()\[\]{}#+%$*·•—–\-−|®©™°"\'!?…])*$'
@@ -82,21 +89,35 @@ def unidades(html):
     ini = 0              # onde comeca a unidade de texto em construcao
     tem_texto = False    # a unidade ja tem texto, nao so tag
     pular_ate = 0        # fim do bloco do seletor de idioma, que nao e texto
+    ancoras = 0          # <a> abertos DENTRO da unidade atual
 
     def fecha(fim):
-        nonlocal tem_texto
+        """Fecha a unidade, aparando as tags que sobraram nas pontas.
+
+        Sem essa apara a unidade as vezes comeca com um </span> solto, que
+        fechou algo aberto antes do texto, ou com um <span></span> vazio. Isso
+        chega no tradutor como lixo e volta como HTML invalido.
+        """
+        nonlocal tem_texto, ancoras
         if tem_texto:
-            bruto = html[ini:fim]
+            comeco = ini
+            while True:
+                salto = SOBRA_ESQ.match(html, comeco, fim)
+                if not salto or salto.end() >= fim:
+                    break
+                comeco = salto.end()
+            bruto = html[comeco:fim]
             corte = bruto.strip()
             if corte and not so_simbolo(corte):
                 desloc = len(bruto) - len(bruto.lstrip())
                 achados.append({
                     'tipo': 'texto',
-                    'ini': ini + desloc,
-                    'fim': ini + desloc + len(corte),
+                    'ini': comeco + desloc,
+                    'fim': comeco + desloc + len(corte),
                     'texto': corte,
                 })
         tem_texto = False
+        ancoras = 0
 
     for m in TOKEN.finditer(html):
         if m.start() < pular_ate:
@@ -158,16 +179,23 @@ def unidades(html):
 
         # ---- limites de unidade ----
         if nome == ANCORA:
-            # <a> que abre sem texto antes dele e link solto: nao entra na
-            # frase. <a> no meio de uma frase e inline e viaja junto.
-            # </a> sempre encerra a frase que ele fechou, o que impede dois
-            # links irmaos de virarem uma chave so.
+            # <a> que abre sem texto antes dele e link solto, e fica fora da
+            # frase. <a> no meio de uma frase e inline e viaja junto com ela.
+            # </a> encerra a unidade, o que impede dois links irmaos de virarem
+            # uma chave so; quando ele fecha um <a> que abriu aqui dentro, a
+            # unidade leva o </a> junto, para nao sair com tag pendurada.
             if fechando:
                 if tem_texto:
-                    fecha(m.start())
+                    if ancoras > 0:
+                        ancoras -= 1
+                        fecha(m.end())
+                    else:
+                        fecha(m.start())
                 ini = m.end()
             elif not tem_texto:
                 ini = m.end()
+            else:
+                ancoras += 1
             continue
 
         if nome in INLINE:
