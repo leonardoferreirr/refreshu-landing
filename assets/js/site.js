@@ -4,6 +4,7 @@
    IntersectionObserver nunca dispara. Aqui a entrada e so opacity/transform. */
 (function () {
   'use strict';
+  var traduz = window.t || function (s) { return s; };
 
   var chrome = document.getElementById('chrome');
   var burger = document.getElementById('burger');
@@ -23,14 +24,14 @@
     burger.addEventListener('click', function () {
       var open = nav.classList.toggle('is-open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      burger.setAttribute('aria-label', open ? traduz('Close menu') : traduz('Open menu'));
       document.body.style.overflow = open ? 'hidden' : '';
     });
     nav.addEventListener('click', function (e) {
       if (e.target.tagName !== 'A' || !nav.classList.contains('is-open')) return;
       nav.classList.remove('is-open');
       burger.setAttribute('aria-expanded', 'false');
-      burger.setAttribute('aria-label', 'Open menu');
+      burger.setAttribute('aria-label', traduz('Open menu'));
       document.body.style.overflow = '';
     });
   }

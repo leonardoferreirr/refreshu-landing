@@ -3,6 +3,7 @@
    voltar do navegador funcione durante a apresentacao ao cliente. */
 (function () {
   'use strict';
+  var traduz = window.t || function (s) { return s; };
 
   /* O titulo e o subtitulo saem do proprio menu, nao de uma tabela no codigo.
      Assim a versao pt-BR gerada por traduzir.py traduz o HTML e as telas
@@ -105,7 +106,7 @@
     pinsAck.addEventListener('change', function () {
       var lido = pinsAck.checked;
       pins.dataset.status = lido ? 'read' : 'released';
-      pinsBadge.textContent = lido ? 'Read' : 'Action required';
+      pinsBadge.textContent = lido ? traduz('Read') : traduz('Action required');
       pinsBadge.className = 'tag pins__badge ' + (lido ? 'tag--ok' : 'tag--act');
       // Registro do aceite por versao: o backend grava author, versao e hora.
       pins.dataset.ackAt = lido ? new Date().toISOString() : '';
@@ -119,7 +120,7 @@
     pinsHist.addEventListener('click', function () {
       var aberto = !pinsHistBox.hidden;
       pinsHistBox.hidden = aberto;
-      pinsHist.textContent = aberto ? 'View previous version' : 'Hide previous version';
+      pinsHist.textContent = aberto ? traduz('View previous version') : traduz('Hide previous version');
     });
   }
 
@@ -147,10 +148,10 @@
 
   var prqOut = document.getElementById('prqOut');
   var PRQ = {
-    copy: 'A copy of your information was requested.',
-    correction: 'A correction was requested. We will ask you what should change.',
-    deletion: 'A deletion request was opened for review. Records under a retention obligation are identified and explained to you before anything is removed.',
-    closure: 'Account closure was requested. If you have an active trip we speak to you first.'
+    copy: traduz('A copy of your information was requested.'),
+    correction: traduz('A correction was requested. We will ask you what should change.'),
+    deletion: traduz('A deletion request was opened for review. Records under a retention obligation are identified and explained to you before anything is removed.'),
+    closure: traduz('Account closure was requested. If you have an active trip we speak to you first.')
   };
   document.querySelectorAll('[data-prq]').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -227,7 +228,7 @@
     casos.forEach(function (c) {
       var fig = document.createElement('figure');
       fig.className = 'ba__i';
-      [['before', 'Before'], ['after', 'After']].map(function (par) {
+      [['before', traduz('Before')], ['after', traduz('After')]].map(function (par) {
         var wrap = document.createElement('span');
         wrap.className = 'ba__f';
         var img = document.createElement('img');

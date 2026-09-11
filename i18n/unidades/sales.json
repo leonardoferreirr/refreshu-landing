@@ -16,7 +16,6 @@
   "<span class=\"cnav__lbl\">My performance</span>",
   "<span class=\"cme__av\" aria-hidden=\"true\">TC</span>\n        <span class=\"cme__id\">\n          <b>Tomás Cardoso</b>\n          <i>Sales · São Paulo</i>\n        </span>",
   "Pipeline",
-  "Your prospects by stage",
   "<span class=\"sr\">Search prospects</span>",
   "New prospect",
   "<span class=\"kpi__k\">Assigned to you</span><b class=\"kpi__v\">12</b><span class=\"kpi__d\">6 unassigned in the pool</span>",
@@ -100,11 +99,11 @@
   "Invitation goes to",
   "What closed",
   "Select the package that closed",
-  "Essential",
-  "Signature",
-  "Signature Plus",
-  "Elite",
-  "Elite Private",
+  "RefreshU Essential",
+  "RefreshU Signature",
+  "RefreshU White Glove",
+  "RefreshU Companion &amp; Family",
+  "RefreshU Bespoke",
   "<span style=\"font-size:12.5px;line-height:1.5;color:var(--on-paper-dim)\">I confirm the deal is closed and that this person agreed to receive a RefreshU account. Creating an account is recorded with my name and the time.</span>",
   "Send the invitation",
   "<span class=\"cpanel__t\">Medical review<small>Status only, and that is the whole screen</small></span>\n              <span class=\"cpanel__a\"><span class=\"tag tag--warn\">In review</span></span>",
@@ -240,6 +239,26 @@
   {
    "attr": "aria-label",
    "texto": "RefreshU, home"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Your prospects by stage"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "12 assigned to you, 6 in the unassigned pool"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "What is due, and what slipped"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "What you may quote, and what is approved to say"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Your own funnel and your own conversion"
   },
   {
    "attr": "aria-label",

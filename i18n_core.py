@@ -44,6 +44,10 @@ ATTRS = {
     'title', 'aria-label', 'alt', 'placeholder', 'aria-placeholder',
     'aria-roledescription', 'aria-valuetext', 'label',
     'data-label', 'data-empty', 'data-title', 'data-titulo',
+    # data-sub vira o subtitulo do cabecalho, escrito na tela pelo JS. Ficou
+    # de fora na primeira versao e por isso o app de vendas saiu com titulo
+    # em espanhol e subtitulo em ingles.
+    'data-sub',
 }
 
 # <meta> cujo content e texto de tela.

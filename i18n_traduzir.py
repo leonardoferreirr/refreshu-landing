@@ -24,6 +24,7 @@ divisao veio da Agata em 10/09/2026 e substitui a que estava no Anexo A.
 """
 import os, re, sys, json, shutil
 import i18n_core as core
+import i18n_js
 
 RAIZ = os.path.dirname(os.path.abspath(__file__))
 DIC = os.path.join(RAIZ, 'i18n')
@@ -162,6 +163,33 @@ def troca_seletor(html, pagina, idioma):
 
 
 # ------------------------------------------------------------------ build ----
+def escreve_dicionario_js(codigo, dicionario):
+    """Grava assets/js/i18n.<codigo>.js, o dicionario que o JavaScript le.
+
+    Devolve as chaves de tela que vivem no JS e ainda nao tem traducao, para
+    o relatorio poder cobrar por elas do mesmo jeito que cobra pelo HTML.
+    """
+    chaves = i18n_js.chaves()
+    traduzidas = {k: dicionario[k] for k in chaves if k in dicionario}
+    faltando = [k for k in chaves if k not in dicionario]
+
+    destino = os.path.join(RAIZ, 'assets', 'js', f'i18n.{codigo}.js')
+    corpo = json.dumps(traduzidas, ensure_ascii=False, indent=1, sort_keys=True)
+    open(destino, 'w', encoding='utf-8').write(
+        '/* Gerado por i18n_traduzir.py. Nao editar a mao: a fonte e o ingles\n'
+        '   no proprio JavaScript, e a traducao vive em i18n/%s.json. */\n'
+        'window.RU_T = %s;\n'
+        '(function () {\n'
+        "  'use strict';\n"
+        '  var D = window.RU_T || {};\n'
+        '  window.t = function (s) {\n'
+        '    return Object.prototype.hasOwnProperty.call(D, s) ? D[s] : s;\n'
+        '  };\n'
+        '})();\n' % (codigo, corpo)
+    )
+    return faltando
+
+
 def gera(codigo, cfg, dicionario):
     destino = os.path.join(RAIZ, codigo)
     if os.path.isdir(destino):
@@ -178,6 +206,9 @@ def gera(codigo, cfg, dicionario):
 
         faltando = []
         html = core.aplicar(html, dicionario, faltando)
+        # o dicionario do JavaScript e um arquivo por idioma, trocado no
+        # <script> da propria pagina
+        html = html.replace('assets/js/i18n.js', f'assets/js/i18n.{codigo}.js')
         html = corrige_caminhos(html, cfg['paginas'])
         html = marca_idioma(html, cfg['lang'])
         html = troca_seletor(html, pagina, codigo)
@@ -212,19 +243,24 @@ def main():
         print(f'\n{codigo}  ({cfg["rotulo"]}, {len(dicionario)} trechos no dicionario)')
         print('  ' + '-' * 58)
         rel = gera(codigo, cfg, dicionario)
+        falta_js = escreve_dicionario_js(codigo, dicionario)
         for pagina, n, _ in rel:
             estado = 'completa' if n == 0 else f'{n} trechos em ingles'
             print(f'  {codigo}/{pagina:<30}{estado}')
             houve_falta |= n > 0
 
+        estado_js = 'completo' if not falta_js else f'{len(falta_js)} trechos em ingles'
+        print(f'  {codigo}/{"(texto dentro do JavaScript)":<30}{estado_js}')
+        houve_falta |= bool(falta_js)
+
         pendentes = [(p, f) for p, n, f in rel if n]
-        if pendentes:
+        if pendentes or falta_js:
             saida = os.path.join(DIC, f'pendente-{codigo}.json')
-            json.dump(
-                {p: [u['texto'] for u in f] for p, f in pendentes},
-                open(saida, 'w', encoding='utf-8'),
-                ensure_ascii=False, indent=1,
-            )
+            mapa = {p: [u['texto'] for u in f] for p, f in pendentes}
+            if falta_js:
+                mapa['__javascript__'] = falta_js
+            json.dump(mapa, open(saida, 'w', encoding='utf-8'),
+                      ensure_ascii=False, indent=1)
             print(f'\n  o que falta traduzir esta em i18n/pendente-{codigo}.json')
 
     if not houve_falta:

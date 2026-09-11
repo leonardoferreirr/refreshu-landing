@@ -6,6 +6,7 @@
    ============================================================ */
 (function () {
   'use strict';
+  var traduz = window.t || function (s) { return s; };
 
   /* ---------- indice acompanha a leitura ---------- */
   var links = [].slice.call(document.querySelectorAll('.lgnav a'));
@@ -64,8 +65,8 @@
       return;
     }
     var id = caseNumber();
-    out.textContent = 'Received. Your case number is ' + id +
-      '. We reply within two business days, and the case stays open until you tell us it is resolved.';
+    out.textContent = traduz('Received. Your case number is {n}. We reply within two business days, and the case stays open until you tell us it is resolved.')
+      .replace('{n}', id);
     out.classList.add('is-ok');
     form.querySelector('button[type="submit"]').disabled = true;
   });

@@ -78,12 +78,16 @@
           <div class="f">
             <label for="state">Where you live</label>
             <select id="state" name="state" required>
+              <!-- O value fica em ingles de proposito. Sem ele o navegador
+                   envia o proprio rotulo, e a versao em espanhol passaria a
+                   gravar "Fuera de Estados Unidos" no registro da cliente,
+                   divergindo do mesmo campo em ingles. -->
               <option value="">Select your state</option>
-              <option>Arizona</option><option>California</option><option>Colorado</option>
-              <option>Florida</option><option>Georgia</option><option>Illinois</option>
-              <option>Massachusetts</option><option>New York</option><option>Oregon</option>
-              <option>Texas</option><option>Washington</option><option>Another state</option>
-              <option>Outside the United States</option>
+              <option value="Arizona">Arizona</option><option value="California">California</option><option value="Colorado">Colorado</option>
+              <option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Illinois">Illinois</option>
+              <option value="Massachusetts">Massachusetts</option><option value="New York">New York</option><option value="Oregon">Oregon</option>
+              <option value="Texas">Texas</option><option value="Washington">Washington</option><option value="Another state">Another state</option>
+              <option value="Outside the United States">Outside the United States</option>
             </select>
             <span class="f__err" data-err-for="state">Select where you live.</span>
           </div>
@@ -92,10 +96,10 @@
             <label for="window">When you could travel</label>
             <select id="window" name="window" required>
               <option value="">Select a window</option>
-              <option>Within 2 months</option>
-              <option>In 3 to 6 months</option>
-              <option>In 6 to 12 months</option>
-              <option>Still deciding</option>
+              <option value="Within 2 months">Within 2 months</option>
+              <option value="In 3 to 6 months">In 3 to 6 months</option>
+              <option value="In 6 to 12 months">In 6 to 12 months</option>
+              <option value="Still deciding">Still deciding</option>
             </select>
             <span class="f__err" data-err-for="window">Give us a rough window.</span>
           </div>
@@ -230,6 +234,7 @@
 
 <footer id="siteFoot"></footer>
 
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/assessment.js"></script>
 <script src="assets/js/foot.js" defer></script>

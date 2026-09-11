@@ -11,6 +11,7 @@
 
 (function () {
   'use strict';
+  var traduz = window.t || function (s) { return s; };
 
   var nav = document.querySelector('.cnav');
   if (!nav) return;
@@ -25,8 +26,8 @@
   // Telas de detalhe: nao tem item de menu proprio, entao carregam o titulo
   // consigo e acendem o item da listagem de onde vieram.
   var DETAIL = {
-    record: { title: 'Michael Carter', sub: 'Record #RU-2419 · arrival in Brazil · day 2 of 8', parent: 'clients' },
-    prospect: { title: 'James Whitfield', sub: 'Prospect #PR-1188 · medical review · call overdue', parent: 'prospects' }
+    record: { title: 'Michael Carter', sub: traduz('Record #RU-2419 · arrival in Brazil · day 2 of 8'), parent: 'clients' },
+    prospect: { title: 'James Whitfield', sub: traduz('Prospect #PR-1188 · medical review · call overdue'), parent: 'prospects' }
   };
 
   /* ------------------------------------------------------------- telas --- */
@@ -141,7 +142,7 @@
     t.setAttribute('aria-pressed', String(!on));
     t.classList.toggle('vis--on', !on);
     var lbl = t.getAttribute('aria-label') || '';
-    if (/client/i.test(lbl)) t.setAttribute('aria-label', on ? 'Hidden from the client' : 'Visible to the client');
+    if (/client/i.test(lbl)) t.setAttribute('aria-label', on ? traduz('Hidden from the client') : traduz('Visible to the client'));
   });
 
   document.addEventListener('keydown', function (e) {
@@ -211,10 +212,10 @@
     pub.addEventListener('click', function () {
       var now = new Date();
       var hh = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
-      pubState.textContent = 'Published version 4 at ' + hh;
+      pubState.textContent = traduz('Published version 4 at {h}').replace('{h}', hh);
       pubState.classList.add('is-clean');
       pub.disabled = true;
-      pub.textContent = 'Published';
+      pub.textContent = traduz('Published');
     });
   }
   var prev = document.getElementById('itinPreview');
@@ -238,7 +239,7 @@
           '<th scope="row">' + c.name + '</th>' +
           '<td>' + (c.issuer || 'RefreshU') + '</td>' +
           '<td>' + tag + '</td>' +
-          '<td>' + (live ? 'Shown' : 'Hidden') + '</td>' +
+          '<td>' + (live ? traduz('Shown') : traduz('Hidden')) + '</td>' +
           '</tr>';
       }).join('');
     }
@@ -278,7 +279,7 @@
 
   go.addEventListener('click', function () {
     go.disabled = true;
-    tag.textContent = 'Invitation queued';
+    tag.textContent = traduz('Invitation queued');
     tag.className = 'tag tag--warn';
     msg.textContent = 'Queued for ' + mail.value.trim() +
       '. The email goes out when the backend is connected; the account itself is created on that same call.';

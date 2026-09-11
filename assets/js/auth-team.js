@@ -10,6 +10,7 @@
 
 (function () {
   'use strict';
+  var traduz = window.t || function (s) { return s; };
 
   var form = document.getElementById('teamForm');
   if (!form) return;
@@ -42,7 +43,7 @@
       var shown = pass.type === 'text';
       pass.type = shown ? 'password' : 'text';
       peek.setAttribute('aria-pressed', String(!shown));
-      peek.setAttribute('aria-label', shown ? 'Show password' : 'Hide password');
+      peek.setAttribute('aria-label', shown ? traduz('Show password') : traduz('Hide password'));
       pass.focus();
     });
   }
@@ -89,7 +90,7 @@
 
       step = 2;
       mfa.hidden = false;
-      btn.textContent = 'Sign in';
+      btn.textContent = traduz('Sign in');
       email.readOnly = true;
       pass.readOnly = true;
       digits[0].focus();
@@ -99,7 +100,7 @@
     if (code().length < digits.length) { digits[code().length].focus(); return; }
 
     btn.disabled = true;
-    btn.textContent = 'Signing in…';
+    btn.textContent = traduz('Signing in…');
     setTimeout(function () { location.href = app; }, 420);
   });
 

@@ -15,6 +15,7 @@
 
 (function () {
   'use strict';
+  var traduz = window.t || function (x) { return x; };
 
   var KEY = 'refreshu.assessment.v2';
   var LAST = 3;
@@ -162,14 +163,14 @@
           '<span class="proc__d"></span>' +
         '</span>' +
         '<span class="proc__x">' +
-          (it.save ? '<span class="save">Save ' + it.save + '</span>' : '') +
+          (it.save ? '<span class="save">' + traduz('Save {x}').replace('{x}', it.save) + '</span>' : '') +
           '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:18px;height:18px;color:var(--on-paper-fine)"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         '</span>';
 
       // Texto por nó, nunca por innerHTML: o catalogo e conteudo editavel
       // pelo admin, entao entra como dado, nao como marcacao.
-      b.querySelector('.proc__n').textContent = it.name;
-      b.querySelector('.proc__d').textContent = it.desc;
+      b.querySelector('.proc__n').textContent = traduz(it.name);
+      b.querySelector('.proc__d').textContent = traduz(it.desc);
 
       b.addEventListener('click', function () {
         procs.querySelectorAll('.proc').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });

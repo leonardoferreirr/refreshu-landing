@@ -334,9 +334,18 @@
               <div style="display:grid;gap:5px">
                 <label style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-paper-fine)" for="acctDeal">What closed</label>
                 <select class="fsel" id="acctDeal" style="height:38px;width:100%">
+                  <!-- Os cinco pacotes oficiais, os mesmos nomes que estao
+                       no site publico e no painel acima. A lista antiga
+                       (Signature Plus, Elite, Elite Private) oferecia pacote
+                       que nao existe, e era ela que gravava o que foi vendido.
+                       O value fica em ingles para o registro nao mudar com o
+                       idioma da tela. -->
                   <option value="">Select the package that closed</option>
-                  <option>Essential</option><option>Signature</option><option>Signature Plus</option>
-                  <option>Elite</option><option>Elite Private</option>
+                  <option value="RefreshU Essential">RefreshU Essential</option>
+                  <option value="RefreshU Signature">RefreshU Signature</option>
+                  <option value="RefreshU White Glove">RefreshU White Glove</option>
+                  <option value="RefreshU Companion &amp; Family">RefreshU Companion &amp; Family</option>
+                  <option value="RefreshU Bespoke">RefreshU Bespoke</option>
                 </select>
               </div>
 
@@ -745,6 +754,7 @@
 
 <footer id="siteFoot"></footer>
 
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/console.js"></script>
 <script src="assets/js/foot.js" defer></script>
 </body>

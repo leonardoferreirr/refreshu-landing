@@ -12,6 +12,11 @@
 
   var base = host.dataset.base || '';   // '../' quando a pagina estiver em subpasta
 
+  // traduz() vem de i18n.js. Se por algum motivo ele nao carregar, o rodape
+  // continua saindo em ingles em vez de quebrar: e conteudo exigido por
+  // compliance e nao pode sumir da tela.
+  var traduz = window.t || function (s) { return s; };
+
   var LINKS = [
     ['Terms of Use', 'legal.html#terms'],
     ['Privacy Policy', 'legal.html#privacy'],
@@ -32,24 +37,24 @@
   host.innerHTML =
     '<div class="wrap">' +
       '<div class="foot__emerg" role="note">' +
-        '<p><b>Not for medical emergencies.</b> If you believe you are experiencing a medical emergency, ' +
-        'contact your local emergency service immediately. For procedure-related medical questions, ' +
-        'contact your treating physician or clinic.</p>' +
+        '<p>' + traduz('<b>Not for medical emergencies.</b> If you believe you are experiencing a medical ' +
+        'emergency, contact your local emergency service immediately. For procedure-related medical ' +
+        'questions, contact your treating physician or clinic.') + '</p>' +
       '</div>' +
-      '<nav class="foot__legalnav" aria-label="Legal">' +
+      '<nav class="foot__legalnav" aria-label="' + traduz('Legal') + '">' +
         LINKS.map(function (l) {
-          return '<a href="' + base + l[1] + '">' + l[0] + '</a>';
+          return '<a href="' + base + l[1] + '">' + traduz(l[0]) + '</a>';
         }).join('') +
       '</nav>' +
       '<div class="foot__legal">' +
-        '<p>RefreshU coordinates travel, hospitality and logistics around a medical journey. ' +
+        '<p>' + traduz('RefreshU coordinates travel, hospitality and logistics around a medical journey. ' +
         'Participating physicians and clinics are independent providers and control eligibility, ' +
         'treatment plans and every clinical requirement. RefreshU does not practise medicine, does not ' +
-        'make medical decisions and does not promise a clinical result.</p>' +
+        'make medical decisions and does not promise a clinical result.') + '</p>' +
       '</div>' +
       '<div class="foot__base">' +
         '<span>&copy; ' + year + ' RefreshU</span>' +
-        '<span>Legal, privacy, pricing, insurance and marketing content is pending professional review.</span>' +
+        '<span>' + traduz('Legal, privacy, pricing, insurance and marketing content is pending professional review.') + '</span>' +
       '</div>' +
     '</div>';
 })();

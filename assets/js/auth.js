@@ -5,6 +5,7 @@
    enviar(): validar credencial de verdade antes de redirecionar. */
 (function () {
   'use strict';
+  var traduz = window.t || function (s) { return s; };
 
   var form = document.getElementById('signinForm');
   if (!form) return;
@@ -20,7 +21,7 @@
       var vendo = senha.type === 'text';
       senha.type = vendo ? 'password' : 'text';
       olho.setAttribute('aria-pressed', vendo ? 'false' : 'true');
-      olho.setAttribute('aria-label', vendo ? 'Show password' : 'Hide password');
+      olho.setAttribute('aria-label', vendo ? traduz('Show password') : traduz('Hide password'));
       senha.focus();
     });
   }
@@ -40,7 +41,7 @@
   });
 
   function enviar() {
-    botao.textContent = 'Signing in';
+    botao.textContent = traduz('Signing in');
     botao.disabled = true;
     setTimeout(function () { window.location.href = 'portal.html'; }, 620);
   }

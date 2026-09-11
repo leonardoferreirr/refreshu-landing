@@ -31,7 +31,6 @@
   "<span class=\"cnav__lbl\">Audit log</span>",
   "<span class=\"cme__av\" id=\"meAv\" aria-hidden=\"true\">BL</span>\n        <span class=\"cme__id\">\n          <b id=\"meName\">Beatriz Lima</b>\n          <i id=\"meRole\">Administrator · São Paulo</i>\n        </span>",
   "Overview",
-  "Where every journey stands right now",
   "<span class=\"sr\">Search clients</span>",
   "New record",
   "<span class=\"kpi__k\">Active journeys</span>\n          <b class=\"kpi__v\">11</b>\n          <span class=\"kpi__d\">3 in Brazil today</span>",
@@ -966,6 +965,74 @@
   {
    "attr": "aria-label",
    "texto": "Console"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Where every journey stands right now"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "42 records, 11 active journeys"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Hand-off to the physician, and what comes back"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Eleven stages, and who is stuck where"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "One timeline: patient, travel, physician and concierge"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "What each physician confirmed, across every record"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "What is filed, and who can see each one"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Every open request, oldest first"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Amounts due, paid and outstanding"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Profiles, consent and what may be published"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Procedures, destinations, packages and savings ranges"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "What the physician released, and where each client stands"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Restaurants, hotels, drivers and venues in São Paulo and Rio"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Document versions, the consent log and public trust claims"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Every concern with a case number, tracked to resolution"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Four roles, and exactly what each one reaches"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Every access and every change, kept"
   },
   {
    "attr": "aria-label",

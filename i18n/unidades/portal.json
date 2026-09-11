@@ -22,7 +22,6 @@
   "<span class=\"pme__av\" aria-hidden=\"true\">MC</span>\n        <span>\n          <b>Michael Carter</b>\n          <i>Solo Refresh, São Paulo</i>\n        </span>",
   "Sign out",
   "My Journey",
-  "Tuesday, day 2 of 8 in São Paulo",
   "Contact My Concierge",
   "Evaluation",
   "Medical review",
@@ -403,6 +402,46 @@
   {
    "attr": "aria-label",
    "texto": "Portal"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Tuesday, day 2 of 8 in São Paulo"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "São Paulo, March 9 to March 16"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Consultation on Wednesday, March 11"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Beatriz L., São Paulo"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Filtered by what your physician has cleared"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Everything sent and everything issued"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "What you can add to your stay, and where each item stands"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Your details, your companion and how you sign in"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Every document you accepted, and the version you accepted"
+  },
+  {
+   "attr": "data-sub",
+   "texto": "Who to talk to, and about what"
   },
   {
    "attr": "aria-label",
